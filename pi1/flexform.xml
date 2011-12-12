@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3DataStructure>
+  <meta>
+    <langDisable>1</langDisable>
+  </meta>
+  <sheets>
+    <input>EXT:pdfcontroller/pi1/flexform_sheet_input.xml</input>
+    <addcontent>EXT:pdfcontroller/pi1/flexform_sheet_addcontent.xml</addcontent>
+    <properties>EXT:pdfcontroller/pi1/flexform_sheet_properties.xml</properties>
+    <output>EXT:pdfcontroller/pi1/flexform_sheet_output.xml</output>
+    <sDEF>EXT:pdfcontroller/pi1/flexform_sheet_sDEF.xml</sDEF>
+    <debugging>EXT:pdfcontroller/pi1/flexform_sheet_debugging.xml</debugging>
+  </sheets>
+</T3DataStructure>

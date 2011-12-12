@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3DataStructure>
+  <ROOT>
+    <TCEforms>
+      <sheetTitle>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_properties</sheetTitle>
+    </TCEforms>
+    <type>array</type>
+    <el>
+      <renderimages>
+        <TCEforms>
+          <label>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_properties.renderimages</label>
+          <config>
+            <type>check</type>
+            <items type="array">
+              <numIndex index="0" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.php:sheet_properties.renderimages.0</numIndex>
+              </numIndex>
+            </items>
+            <default>1</default>
+          </config>
+        </TCEforms>
+      </renderimages>
+      <renderlinks>
+        <TCEforms>
+          <label>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_properties.renderlinks</label>
+          <config>
+            <type>check</type>
+            <items type="array">
+              <numIndex index="0" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.php:sheet_properties.renderlinks.0</numIndex>
+              </numIndex>
+            </items>
+            <default>1</default>
+          </config>
+        </TCEforms>
+      </renderlinks>
+      <renderfields>
+        <TCEforms>
+          <label>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_properties.renderfields</label>
+          <config>
+            <type>check</type>
+            <items type="array">
+              <numIndex index="0" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.php:sheet_properties.renderfields.0</numIndex>
+              </numIndex>
+            </items>
+            <default>1</default>
+          </config>
+        </TCEforms>
+      </renderfields>
+      <renderforms>
+        <TCEforms>
+          <label>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_properties.renderforms</label>
+          <config>
+            <type>check</type>
+            <items type="array">
+              <numIndex index="0" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.php:sheet_properties.renderforms.0</numIndex>
+              </numIndex>
+            </items>
+            <default>0</default>
+          </config>
+        </TCEforms>
+      </renderforms>
+    </el>
+  </ROOT>
+</T3DataStructure>

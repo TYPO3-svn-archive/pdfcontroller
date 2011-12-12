@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3DataStructure>
+  <ROOT>
+    <TCEforms>
+      <sheetTitle>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_addcontent</sheetTitle>
+    </TCEforms>
+    <type>array</type>
+    <el>
+      <toc>
+        <TCEforms>
+          <label>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_addcontent.toc</label>
+          <onChange>reload</onChange>
+          <config>
+            <type>select</type>
+            <items type="array">
+              <numIndex index="0" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_addcontent.toc.0</numIndex>
+                <numIndex index="1">0</numIndex>
+              </numIndex>
+              <numIndex index="1" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_addcontent.toc.1</numIndex>
+                <numIndex index="1">1</numIndex>
+              </numIndex>
+            </items>
+            <default>0</default>
+            <maxitems>1</maxitems>
+            <size>1</size>
+          </config>
+        </TCEforms>
+      </toc>
+      <toc-location>
+        <TCEforms>
+          <label>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_addcontent.toc-location</label>
+          <displayCond>FIELD:toc:=:1</displayCond>
+          <onChange>reload</onChange>
+          <config>
+            <type>select</type>
+            <items type="array">
+              <numIndex index="0" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_addcontent.toc-location.0</numIndex>
+                <numIndex index="1">0</numIndex>
+              </numIndex>
+              <numIndex index="1" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_addcontent.toc-location.1</numIndex>
+                <numIndex index="1">1</numIndex>
+              </numIndex>
+              <numIndex index="2" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_addcontent.toc-location.2</numIndex>
+                <numIndex index="1">2</numIndex>
+              </numIndex>
+            </items>
+            <default>0</default>
+            <maxitems>1</maxitems>
+            <size>1</size>
+          </config>
+        </TCEforms>
+      </toc-location>
+      <headerhtml>
+        <TCEforms>
+          <label>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_addcontent.headerhtml</label>
+          <config>
+            <type>text</type>
+            <cols>40</cols>
+            <rows>15</rows>
+            <wrap>off</wrap>
+          </config>
+        </TCEforms>
+      </headerhtml>
+      <footerhtml>
+        <TCEforms>
+          <label>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_addcontent.footerhtml</label>
+          <config>
+            <type>text</type>
+            <cols>40</cols>
+            <rows>15</rows>
+            <wrap>off</wrap>
+          </config>
+        </TCEforms>
+      </footerhtml>
+      <watermarkhtml>
+        <TCEforms>
+          <label>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_addcontent.watermarkhtml</label>
+          <config>
+            <type>text</type>
+            <cols>40</cols>
+            <rows>15</rows>
+            <wrap>off</wrap>
+          </config>
+        </TCEforms>
+      </watermarkhtml>
+    </el>
+  </ROOT>
+</T3DataStructure>

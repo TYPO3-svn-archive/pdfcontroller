@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+  <meta type="array">
+    <type>module</type>
+    <description>Language labels for plugin &quot;tx_pdfcontroller_pi1&quot;</description>
+  </meta>
+  <data type="array">
+    <languageKey index="default" type="array">
+      <label index="pdfcontroller_ll_debug_container_h1"><![CDATA[Rechenformel Debugging]]></label>
+      <label index="pdfcontroller_ll_debug_error_investmentgroup_undefined"><![CDATA[Die Gruppe der Investition ist nicht definiert. Wert:]]></label>
+      <label index="pdfcontroller_ll_debug_info_no_prompt"><![CDATA[Keine Nachricht vorhanden.]]></label>
+      <label index="pdfcontroller_ll_debug_info_equity_current"><![CDATA[Eigenkapital:]]></label>
+      <label index="pdfcontroller_ll_debug_info_investment_current"><![CDATA[Investition:]]></label>
+      <label index="pdfcontroller_ll_debug_info_sector_current"><![CDATA[Ausgewählte Branche:]]></label>
+      <label index="pdfcontroller_ll_debug_info_investments_wi_grants_by_euth"><![CDATA[EU/Thüringen (GRW-Mittel) für:]]></label>
+      <label index="pdfcontroller_ll_debug_info_investments_wi_grants_by_fedrepubl"><![CDATA[Bund (I-Zulage) für:]]></label>
+      <label index="pdfcontroller_ll_debug_info_mobile_fedrepubl"><![CDATA[Bund (I-Zulage) mobile Investitionen:]]></label>
+      <label index="pdfcontroller_ll_debug_info_sectors_wi_grants_by_euth"><![CDATA[EU/Thüringen (GRW-Mittel) für:]]></label>
+      <label index="pdfcontroller_ll_debug_info_sectors_wi_grants_by_fedrepubl"><![CDATA[Bund (I-Zulage) für:]]></label>
+      <label index="pdfcontroller_ll_debug_level"><![CDATA[Debug-Modus]]></label>
+      <label index="pdfcontroller_ll_debug_level_1"><![CDATA[Fehler]]></label>
+      <label index="pdfcontroller_ll_debug_level_2"><![CDATA[Fehler, Warnung]]></label>
+      <label index="pdfcontroller_ll_debug_level_3"><![CDATA[Fehler, Warnung, Ok]]></label>
+      <label index="pdfcontroller_ll_debug_level_4"><![CDATA[Fehler, Warnung, Ok, Info]]></label>
+      <label index="pdfcontroller_ll_debug_level_5"><![CDATA[Fehler, Warnung, Ok, Info, Development]]></label>
+      <label index="pdfcontroller_ll_debug_level_edit"><![CDATA[Sie können den Debug-Modus in der Flexform im Reiter [Debugging] ausschalten.]]></label>
+      <label index="pdfcontroller_ll_debug_level_short_1"><![CDATA[FEHLER]]></label>
+      <label index="pdfcontroller_ll_debug_level_short_2"><![CDATA[WARNUNG]]></label>
+      <label index="pdfcontroller_ll_debug_level_short_3"><![CDATA[OK]]></label>
+      <label index="pdfcontroller_ll_debug_level_short_4"><![CDATA[INFO]]></label>
+      <label index="pdfcontroller_ll_debug_level_short_5"><![CDATA[DEV]]></label>
+      <label index="pdfcontroller_ll_debug_method_calcequity"><![CDATA[Kalkulation Eigenkapital]]></label>
+      <label index="pdfcontroller_ll_debug_method_calcgrants_by_euth_01"><![CDATA[Kalkulation der GRW-Mittel (EU/Thüringen) - Schritt 1/2]]></label>
+      <label index="pdfcontroller_ll_debug_method_calcgrants_by_euth_02"><![CDATA[Kalkulation der GRW-Mittel (EU/Thüringen) - Schritt 2/2]]></label>
+      <label index="pdfcontroller_ll_debug_method_calcgrants_by_fedrepubl"><![CDATA[Kalkulation Bund (I-Zulage)]]></label>
+      <label index="pdfcontroller_ll_debug_method_getinvestments"><![CDATA[Sind die Investitionen förderfähig?]]></label>
+      <label index="pdfcontroller_ll_debug_method_getsector"><![CDATA[Ist die Branche förderfähig?]]></label>
+      <label index="pdfcontroller_ll_debug_ok_calc_grants_by_euth"><![CDATA[EU/Thüringen (GRW-Mittel)]]></label>
+      <label index="pdfcontroller_ll_debug_ok_calc_grants_by_fedrepubl"><![CDATA[Bund (I-Zulage)]]></label>
+      <label index="pdfcontroller_ll_debug_ok_investment_wi_grants_by_euth"><![CDATA[EU/Thüringen (GRW-Mittel): Förderung der Investition möglich]]></label>
+      <label index="pdfcontroller_ll_debug_ok_investment_wi_grants_by_fedrepubl"><![CDATA[Bund (I-Zulage): Förderung der Investition möglich]]></label>
+      <label index="pdfcontroller_ll_debug_ok_mobile_fedrepubl"><![CDATA[Bund (I-Zulage): Die Investition ist mobil]]></label>
+      <label index="pdfcontroller_ll_debug_ok_investment_wo_grants_by_euth"><![CDATA[EU/Thüringen (GRW-Mittel): Keine Förderung der Investition möglich]]></label>
+      <label index="pdfcontroller_ll_debug_ok_investment_wo_grants_by_fedrepubl"><![CDATA[Bund (I-Zulage): Keine Förderung der Investition möglich]]></label>
+      <label index="pdfcontroller_ll_debug_ok_mobile_fedrepubl_not"><![CDATA[Bund (I-Zulage): Die Investition ist immobil]]></label>
+      <label index="pdfcontroller_ll_debug_ok_sector_wi_grants_by_euth"><![CDATA[EU/Thüringen (GRW-Mittel): Förderung der Branche möglich]]></label>
+      <label index="pdfcontroller_ll_debug_ok_sector_wi_grants_by_fedrepubl"><![CDATA[Bund (I-Zulage): Förderung der Branche möglich]]></label>
+      <label index="pdfcontroller_ll_debug_ok_sector_wo_grants_by_all"><![CDATA[Keine Förderung der Branche möglich]]></label>
+      <label index="pdfcontroller_ll_debug_ok_sector_wo_grants_by_euth"><![CDATA[EU/Thüringen (GRW-Mittel): Keine Förderung der Branche möglich]]></label>
+      <label index="pdfcontroller_ll_debug_ok_sector_wo_grants_by_fedrepubl"><![CDATA[Bund (I-Zulage): Keine Förderung der Branche möglich]]></label>
+      <label index="pdfcontroller_ll_debug_warn_no_investment_wi_grants_by_euth"><![CDATA[GRW-Mittel: EU und Thüringen fördern keine einzige Investition. Kann das sein?]]></label>
+      <label index="pdfcontroller_ll_debug_warn_no_investment_wi_grants_by_fedrepubl"><![CDATA[Investitions-Zulage: Der Bund fördert keine einzige Investition. Kann das sein?]]></label>
+      <label index="pdfcontroller_ll_debug_warn_no_mobile_fedrepubl"><![CDATA[Bund (I-Zulage): Keine einzige Investition ist mobil. Kann das sein?]]></label>
+      <label index="pdfcontroller_ll_debug_warn_no_sector_wi_grants_by_euth"><![CDATA[GRW-Mittel: EU und Thüringen fördern keine einzige Branche. Kann das sein?]]></label>
+      <label index="pdfcontroller_ll_debug_warn_no_sector_wi_grants_by_fedrepubl"><![CDATA[Investitions-Zulage: Der Bund fördert keine einzige Branche. Kann das sein?]]></label>
+      <label index="pdfcontroller_ll_library_please_click_next_tab"><![CDATA[Wenn Sie mit den Eingaben fertig sind, klicken Sie bitte auf den nächsten Reiter.]]></label>
+      <label index="error_flexform_p"><![CDATA[Please save the flexform (plugin) one time at least.]]></label>
+      <label index="error_flexform_h1"><![CDATA[ERROR: flexform is empty]]></label>
+      <label index="error_flexform_p"><![CDATA[Please save the flexform (plugin) one time at least.]]></label>
+      <label index="error_template_h1"><![CDATA[ERROR: no template found]]></label>
+      <label index="error_template_p"><![CDATA[The given template is missing. Path: ###PATH###]]></label>
+    </languageKey>
+    <languageKey index="de" type="array">
+      <label index="error_flexform_h1"><![CDATA[FEHLER: Die Flexform ist leer.]]></label>
+      <label index="error_flexform_p"><![CDATA[Speichere die Flexform (Plugin) bitte ein Mal.]]></label>
+      <label index="error_template_h1"><![CDATA[FEHLER: Kein Template]]></label>
+      <label index="error_template_p"><![CDATA[Das Template kann nicht gefunden werden. Pfad: ###PATH###]]></label>
+    </languageKey>
+  </data>
+</T3locallang>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3DataStructure>
+  <ROOT>
+    <TCEforms>
+      <sheetTitle>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input</sheetTitle>
+    </TCEforms>
+    <type>array</type>
+    <el>
+      <pixels>
+        <TCEforms>
+          <label>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.pixels</label>
+          <config>
+            <type>select</type>
+            <items type="array">
+              <numIndex index="0" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.pixels.0</numIndex>
+                <numIndex index="1">0</numIndex>
+              </numIndex>
+              <numIndex index="1" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.pixels.1</numIndex>
+                <numIndex index="1">1</numIndex>
+              </numIndex>
+              <numIndex index="2" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.pixels.2</numIndex>
+                <numIndex index="1">2</numIndex>
+              </numIndex>
+              <numIndex index="3" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.pixels.3</numIndex>
+                <numIndex index="1">3</numIndex>
+              </numIndex>
+            </items>
+            <default>3</default>
+            <maxitems>1</maxitems>
+            <size>1</size>
+          </config>
+        </TCEforms>
+      </pixels>
+      <encoding>
+        <TCEforms>
+          <label>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.encoding</label>
+          <config>
+            <type>select</type>
+            <items type="array">
+              <numIndex index="0" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.encoding.0</numIndex>
+                <numIndex index="1">0</numIndex>
+              </numIndex>
+              <numIndex index="1" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.encoding.1</numIndex>
+                <numIndex index="1">1</numIndex>
+              </numIndex>
+              <numIndex index="2" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.encoding.2</numIndex>
+                <numIndex index="1">2</numIndex>
+              </numIndex>
+              <numIndex index="3" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.encoding.3</numIndex>
+                <numIndex index="1">3</numIndex>
+              </numIndex>
+              <numIndex index="4" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.encoding.4</numIndex>
+                <numIndex index="1">4</numIndex>
+              </numIndex>
+              <numIndex index="5" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.encoding.5</numIndex>
+                <numIndex index="1">5</numIndex>
+              </numIndex>
+              <numIndex index="6" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.encoding.6</numIndex>
+                <numIndex index="1">6</numIndex>
+              </numIndex>
+              <numIndex index="7" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.encoding.7</numIndex>
+                <numIndex index="1">7</numIndex>
+              </numIndex>
+              <numIndex index="8" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.encoding.8</numIndex>
+                <numIndex index="1">8</numIndex>
+              </numIndex>
+              <numIndex index="9" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.encoding.9</numIndex>
+                <numIndex index="1">9</numIndex>
+              </numIndex>
+              <numIndex index="10" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.encoding.10</numIndex>
+                <numIndex index="1">10</numIndex>
+              </numIndex>
+              <numIndex index="11" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.encoding.11</numIndex>
+                <numIndex index="1">11</numIndex>
+              </numIndex>
+              <numIndex index="12" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.encoding.12</numIndex>
+                <numIndex index="1">12</numIndex>
+              </numIndex>
+              <numIndex index="13" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.encoding.13</numIndex>
+                <numIndex index="1">13</numIndex>
+              </numIndex>
+              <numIndex index="14" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.encoding.14</numIndex>
+                <numIndex index="1">14</numIndex>
+              </numIndex>
+              <numIndex index="15" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.encoding.15</numIndex>
+                <numIndex index="1">15</numIndex>
+              </numIndex>
+              <numIndex index="16" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.encoding.16</numIndex>
+                <numIndex index="1">16</numIndex>
+              </numIndex>
+              <numIndex index="17" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.encoding.17</numIndex>
+                <numIndex index="1">17</numIndex>
+              </numIndex>
+              <numIndex index="18" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.encoding.18</numIndex>
+                <numIndex index="1">18</numIndex>
+              </numIndex>
+            </items>
+            <default>0</default>
+            <maxitems>1</maxitems>
+            <size>1</size>
+          </config>
+        </TCEforms>
+      </encoding>
+      <cssmedia>
+        <TCEforms>
+          <label>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.cssmedia</label>
+          <config>
+            <type>select</type>
+            <items type="array">
+              <numIndex index="0" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.cssmedia.0</numIndex>
+                <numIndex index="1">0</numIndex>
+              </numIndex>
+              <numIndex index="1" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.cssmedia.1</numIndex>
+                <numIndex index="1">1</numIndex>
+              </numIndex>
+              <numIndex index="2" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.cssmedia.2</numIndex>
+                <numIndex index="1">2</numIndex>
+              </numIndex>
+              <numIndex index="3" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.cssmedia.3</numIndex>
+                <numIndex index="1">3</numIndex>
+              </numIndex>
+              <numIndex index="4" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.cssmedia.4</numIndex>
+                <numIndex index="1">4</numIndex>
+              </numIndex>
+              <numIndex index="5" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.cssmedia.5</numIndex>
+                <numIndex index="1">5</numIndex>
+              </numIndex>
+            </items>
+            <default>3</default>
+            <maxitems>1</maxitems>
+            <size>1</size>
+          </config>
+        </TCEforms>
+      </cssmedia>
+      <scalepoints>
+        <TCEforms>
+          <label>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.scalepoints</label>
+          <config>
+            <type>select</type>
+            <items type="array">
+              <numIndex index="0" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.scalepoints.0</numIndex>
+                <numIndex index="1">0</numIndex>
+              </numIndex>
+              <numIndex index="1" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_input.scalepoints.1</numIndex>
+                <numIndex index="1">1</numIndex>
+              </numIndex>
+            </items>
+            <default>1</default>
+            <maxitems>1</maxitems>
+            <size>1</size>
+          </config>
+        </TCEforms>
+      </scalepoints>
+    </el>
+  </ROOT>
+</T3DataStructure>

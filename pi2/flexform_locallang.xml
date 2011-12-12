@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+  <meta type="array">
+    <type>database</type>
+    <description>Language labels for database tables/fields belonging to extension 'pdfcontroller'</description>
+  </meta>
+  <data type="array">
+    <languageKey index="default" type="array">
+      <label index="sheet_sDEF">PDF Converter</label>
+      <label index="sheet_sDEF.wrap_in_pibase"><![CDATA[piBase wrap <div class="tx-pdfcontroller-pi2">|</div>]]></label>
+      <label index="sheet_sDEF.wrap_in_pibase.0">Don't use it (recommended)</label>
+      <label index="sheet_sDEF.wrap_in_pibase.1">Use it</label>
+      <label index="sheet_sDEF.handleimage">Button</label>
+      <label index='sheet_sDEF.handleimage.0'>PDF icon (default)</label>
+      <label index='sheet_sDEF.handleimage.1'>Own icon</label>
+      <label index='sheet_sDEF.imagepath'>Own icon</label>
+      <label index="sheet_sDEF.pid_converter">Page with the PDF Controller User Interface</label>
+    </languageKey>
+    <languageKey index="de" type="array">
+      <label index="sheet_sDEF">PDF-Konverter</label>
+      <label index="sheet_sDEF.wrap_in_pibase"><![CDATA[piBase-Wrap <div class="tx-pdfcontroller-pi2">|</div>]]></label>
+      <label index="sheet_sDEF.wrap_in_pibase.0">Nicht verwenden (empfohlen)</label>
+      <label index="sheet_sDEF.wrap_in_pibase.1">Verwenden</label>
+      <label index="sheet_sDEF.handleimage">Button</label>
+      <label index='sheet_sDEF.handleimage.0'>PDF Icon (Standard)</label>
+      <label index='sheet_sDEF.handleimage.1'>Eigenes Icon</label>
+      <label index='sheet_sDEF.imagepath'>Eigenes Icon</label>
+      <label index="sheet_sDEF.pid_converter">Seite mit dem User-Interface des PDF-Controllers</label>
+    </languageKey>
+  </data>
+</T3locallang>
