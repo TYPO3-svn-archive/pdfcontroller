@@ -544,7 +544,7 @@ class CheckPermissionsFonts extends CheckBinaryRequired {
 
   function run() {
       // dwildt, 110919+
-    $path_to_fonts = HTML2PS_DIR."/fonts/";
+    $path_to_fonts = HTML2PS_DIR."fonts/";
     $path_to_fonts = str_replace('pdfcontroller', 'pdfcontroller_fonts', $path_to_fonts);
       // dwildt, 110919+
 
@@ -608,7 +608,15 @@ class CheckPermissionsType1 extends CheckBinaryRecommended {
       return;
     };
 
-    if (!is_executable(HTML2PS_DIR.'/fonts/') && PHP_OS != "WINNT") {
+      // dwildt, 111213+
+    $path_to_fonts = HTML2PS_DIR."fonts/";
+    $path_to_fonts = str_replace('pdfcontroller', 'pdfcontroller_fonts', $path_to_fonts);
+      // dwildt, 111213+
+
+      // dwildt, 111213-
+    //if (!is_executable(HTML2PS_DIR.'/fonts/') && PHP_OS != "WINNT") {
+      // dwildt, 111213+
+    if (!is_executable( $path_to_fonts ) && PHP_OS != "WINNT") {
       $this->setMessage("Type1 fonts directory (".TYPE1_FONTS_REPOSITORY.") is not executable. You will not be able to generate postscript files.");
       $this->setSuccess(false);
       return;
@@ -639,9 +647,17 @@ class CheckPresenceTTF extends CheckBinaryRecommended {
     $message = "";
     $this->setSuccess(true);
 
+      // dwildt, 111213+
+    $path_to_fonts = HTML2PS_DIR."fonts/";
+    $path_to_fonts = str_replace('pdfcontroller', 'pdfcontroller_fonts', $path_to_fonts);
+      // dwildt, 111213+
+
     global $g_font_resolver_pdf;
     foreach ($g_font_resolver_pdf->ttf_mappings as $file) {
-      $fullname = HTML2PS_DIR.'/fonts/'.$file;
+        // dwildt, 111213-
+      //$fullname = HTML2PS_DIR.'/fonts/'.$file;
+        // dwildt, 111213+
+      $fullname = $path_to_fonts.$file;
 
       if (!file_exists($fullname)) {
         $message .= "Font ".$fullname." is missing. You will not be able to generate PDF files with this font.\n";

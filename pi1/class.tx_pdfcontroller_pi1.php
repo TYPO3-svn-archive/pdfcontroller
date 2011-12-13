@@ -362,9 +362,6 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
     $params = null;
     foreach( $_REQUEST as $key => $value )
     {
-//      $params = $params . '&' . $key . '=' . $value;
-// REJECTED! 111213: dwildt
-// This code generated the bug: Without RealUrl no PDF generating!
         // #31190, 111213: Borries Jensen-
       //$params = $params . '&' . $key . '=' . $value;
         // #31190, 111213: Borries Jensen+
