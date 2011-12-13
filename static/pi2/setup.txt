@@ -56,7 +56,7 @@ plugin.tx_pdfcontroller_pi2 {
               wrap = &tx_pdfcontroller_pi1[URL]={getIndpEnv:TYPO3_SITE_URL}|
               insertData = 1
               typolink {
-                parameter = {page:uid},98
+                parameter = {page:uid},{$plugin.tx_pdfcontroller_pi2.typeNum.print}
                 parameter {
                   insertData = 1
                 }
@@ -87,7 +87,7 @@ plugin.tx_pdfcontroller_pi2 {
         imageLinkWrap {
           enable = 1
           typolink {
-            parameter = {page:uid},98
+            parameter = {page:uid},{$plugin.tx_pdfcontroller_pi2.typeNum.print}
             parameter {
               insertData = 1
             }

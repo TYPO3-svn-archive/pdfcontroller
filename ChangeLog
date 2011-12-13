@@ -1,7 +1,9 @@
 1.0.1
   11-12-13
   Improvements
-  * 32482: PDF Controller should suggest to install Fonts
+  * #32482: PDF Controller suggests to install Fonts
+  * #32513: typeNum print template is configurable by the TypoScript constant editor
+
   Bugfixes
   * #31191: Missing folders temp and out. Thanks to Borries Jensen
   * #31190: Parameter are missing - without RealURL only. Thanks to Borries Jensen
