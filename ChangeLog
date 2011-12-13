@@ -4,7 +4,6 @@
   * 32482: PDF Controller should suggest to install Fonts
   Bugfixes
   * #31191: Missing folders temp and out. Thanks to Borries Jensen
-  * #31190: Parameter are missing - without RealURL only. Thanks to Borries Jensen
 
 1.0.0
   11-09-19
