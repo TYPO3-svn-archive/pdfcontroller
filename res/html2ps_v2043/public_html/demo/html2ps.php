@@ -4,7 +4,9 @@
 // 110725, dwildt
 //var_dump($_GET);
 //return;
-error_reporting(E_ALL);
+//  uherrmann, 111213: #32509 (PHP 5.3 compatibility)
+error_reporting(E_ALL ^ E_DEPRECATED);
+//  /#32509
 ini_set("display_errors","1");
 if (ini_get("pcre.backtrack_limit") < 1000000) { ini_set("pcre.backtrack_limit",1000000); };
 @set_time_limit(10000);
