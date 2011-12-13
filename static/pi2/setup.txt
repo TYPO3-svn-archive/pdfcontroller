@@ -60,6 +60,9 @@ plugin.tx_pdfcontroller_pi2 {
                   insertData = 1
                 }
                 addQueryString  = 1
+                addQueryString {
+                  exclude = id
+                }
                 returnLast      = url
               }
             }
