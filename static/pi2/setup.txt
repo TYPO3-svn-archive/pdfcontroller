@@ -1,3 +1,4 @@
+<<<<<<< .mine
 plugin.tx_pdfcontroller_pi2 {
   button = IMAGE
   button {
@@ -113,4 +114,121 @@ plugin.tx_pdfcontroller_pi2 {
       padding-left:.6em;
     }
   )
+=======
+plugin.tx_pdfcontroller_pi2 {
+  button = IMAGE
+  button {
+    wrap = |&nbsp;
+    file = ###IMAGEFILE###
+    altText = TEXT
+    altText {
+      value = Download content as PDF file
+      lang {
+        de = Inhalt als PDF-Datei herunterladen
+      }
+    }
+    titleText < .altText
+    imageLinkWrap = 1
+    imageLinkWrap {
+      enable = 1
+      typolink {
+        parameter         = ###PARAMETER###
+        additionalParams  = ###ADDITIONALPARAMS###
+      }
+    }
+  }
+  flexform {
+    sDEF {
+      imagefile = TEXT
+      imagefile {
+        value = EXT:pdfcontroller/res/images/pdf.png
+      }
+    }
+  }
+  master_templates {
+    pdf_and_print_button = COA
+    pdf_and_print_button {
+      wrap = <div class="tx-pdfcontroller-pi2"><ul> | </ul></div>
+        // PDF icon
+      10 = IMAGE
+      10 {
+        wrap = <li>|</li>
+        file = typo3conf/ext/pdfcontroller/res/images/pdf.png
+        altText = TEXT
+        altText {
+          value = Download content as PDF file
+          lang {
+            de = Inhalt als PDF-Datei herunterladen
+          }
+        }
+        titleText < .altText
+        imageLinkWrap = 1
+        imageLinkWrap {
+          enable = 1
+          typolink {
+            parameter         = {$plugin.tx_pdfcontroller_pi2.page.pdf_controller}
+            additionalParams  = TEXT
+            additionalParams {
+              wrap = &tx_pdfcontroller_pi1[URL]={getIndpEnv:TYPO3_SITE_URL}|
+              insertData = 1
+              typolink {
+                parameter = {page:uid},98
+                parameter {
+                  insertData = 1
+                }
+                addQueryString  = 1
+                addQueryString {
+                  exclude = id
+                }
+                returnLast      = url
+              }
+            }
+          }
+        }
+      }
+        // Print icon
+      20 = IMAGE
+      20 {
+        wrap = <li>|</li>
+        file = typo3conf/ext/pdfcontroller/res/images/printer.png
+        altText = TEXT
+        altText {
+          value = Optimized printing
+          lang {
+            de = Optimierter Druck
+          }
+        }
+        titleText < .altText
+        imageLinkWrap = 1
+        imageLinkWrap {
+          enable = 1
+          typolink {
+            parameter = {page:uid},98
+            parameter {
+              insertData = 1
+            }
+            addQueryString  = 1
+            //returnLast      = url
+          }
+        }
+      }
+    }
+  }
+  _CSS_DEFAULT_STYLE (
+    .tx-pdfcontroller-pi2 {
+      text-align: right;
+    }
+    .tx-pdfcontroller-pi2 ul {
+      font-weight: bold;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    .tx-pdfcontroller-pi2 ul li {
+      display:inline;
+      margin: 0;
+      padding-left:.6em;
+    }
+  )
+>>>>>>> .r55447
 }
