@@ -6,10 +6,10 @@
     </TCEforms>
     <type>array</type>
     <el>
-      <proxi>
+      <proxy>
         <TCEforms>
           <exclude>0</exclude>
-          <label>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_sDEF.proxi</label>
+          <label>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_sDEF.proxy</label>
           <config>
             <type>input</type>
             <size>80</size>
@@ -17,7 +17,7 @@
             <eval>trim</eval>
           </config>
         </TCEforms>
-      </proxi>
+      </proxy>
 
     </el>
   </ROOT>

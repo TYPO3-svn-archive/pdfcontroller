@@ -1,12 +1,12 @@
 1.0.1
   11-12-13
   Improvements
-  * #32482: PDF Controller suggests to install Fonts
-  * #32513: typeNum print template is configurable by the TypoScript constant editor
   * #32516: Systemcheck should check fonts in directory of pdfcontroller_fonts
-
+  * #32513: typeNum print template is configurable by the TypoScript constant editor
+  * #32482: PDF Controller suggests to install Fonts
 
   Bugfixes
+  * #32518: Wrong field name for proxy in the flexform. Thanks to Borries Jensen
   * #31191: Missing folders temp and out. Thanks to Borries Jensen
   * #31190: Parameter are missing - without RealURL only. Thanks to Borries Jensen
 

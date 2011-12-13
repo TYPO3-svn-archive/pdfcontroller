@@ -136,7 +136,7 @@
       <label index="sheet_output.topmargin">Top margin (mm)</label>
 
       <label index="sheet_sDEF">Safety</label>
-      <label index="sheet_sDEF.proxi">Use proxi</label>
+      <label index="sheet_sDEF.proxy">Use proxy</label>
 
     </languageKey>
     <languageKey index="de" type="array">
@@ -268,7 +268,7 @@
       <label index="sheet_output.topmargin">Seitenrand oben (mm)</label>
 
       <label index="sheet_sDEF">Sicherheit</label>
-      <label index="sheet_sDEF.proxi">Verwende folgenden Proxi</label>
+      <label index="sheet_sDEF.proxy">Verwende folgenden Proxy</label>
 
     </languageKey>
   </data>
