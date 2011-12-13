@@ -362,22 +362,22 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
     $params = null;
     foreach( $_REQUEST as $key => $value )
     {
-//      $params = $params . '&' . $key . '=' . $value;
+      $params = $params . '&' . $key . '=' . $value;
 // REJECTED! 111213: dwildt
 // This code generated the bug: Without RealUrl no PDF generating!
-        // #31190, 111213: Borries Jensen-
-      //$params = $params . '&' . $key . '=' . $value;
-        // #31190, 111213: Borries Jensen+
-      switch( true )
-      {
-        case( $key === 'URL' ):
-          $params = $params . '&' . $key . '=' . rawurlencode($value);
-          break;
-        default:
-          $params = $params . '&' . $key . '=' . $value;
-          break;
-      }
-        // #31190, 111213: Borries Jensen+
+//        // #31190, 111213: Borries Jensen-
+//      //$params = $params . '&' . $key . '=' . $value;
+//        // #31190, 111213: Borries Jensen+
+//      switch( true )
+//      {
+//        case( $key === 'URL' ):
+//          $params = $params . '&' . $key . '=' . rawurlencode($value);
+//          break;
+//        default:
+//          $params = $params . '&' . $key . '=' . $value;
+//          break;
+//      }
+//        // #31190, 111213: Borries Jensen+
     }
     $str_url = t3lib_div::getIndpEnv('TYPO3_SITE_URL') . 
       'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/demo/html2ps.php?';
