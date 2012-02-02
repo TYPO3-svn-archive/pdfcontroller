@@ -220,8 +220,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
     {
       define( 'HTML2PS_DIR', $_SERVER['DOCUMENT_ROOT'] . 'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/' );
     };
-    //$this->bool_access = $this->access( );
-    var_dump( __METHOD__ . ' (' . __LINE__ . ')', $_COOKIE["be_typo_user"] );
+    $this->access( );
 
       // 120202, security, dwildt+
 
@@ -691,6 +690,54 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
     }
       // Set the DRS mode
 
+  }
+
+
+
+
+
+
+
+
+  /**
+ * access( ): 
+ *
+ * @return  void
+ * @version 1.0.2
+ * @since 1.02
+ */
+  private function access( )
+  {
+    $this->bool_access = false;
+
+    // RETURN no session because cookie is missing
+    if( ! isset( $_COOKIE["be_typo_user"] ) )
+    {
+      return;
+    }
+      // RETURN no session because cookie is missing
+
+      // RETURN no session because cookie element is empty
+    if( empty( $_COOKIE["be_typo_user"] ) )
+    {
+      return;
+    }
+      // RETURN no session because cookie element is empty
+
+      // Get backend user id
+    $select_fields  = 'ses_userid';
+    $from_table     = 'be_sessions';
+    $where_clause   = 'AND ses_id = \'' . $_COOKIE["be_typo_user"] . '\'';
+    $groupBy        = '';
+    $orderBy        = '';
+    $limit          = '';
+
+    $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $select_fields, $from_table, $where_clause, $groupBy, $orderBy, $limit );
+    $row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc( $res );
+      // Get backend user id
+
+    var_dump( __METHOD__ . ' (' . __LINE__ . ')', $_COOKIE["be_typo_user"], $row );
+    //$this->bool_access = true;
   }
 
 

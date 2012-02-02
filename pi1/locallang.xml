@@ -27,7 +27,7 @@
       <label index="error_access_h1">FEHLER: Zugriffsrechte</label>
       <label index="error_access_p">
         <![CDATA[<p>]]>
-          Du hast keine ausreichenden Zugangsrechte.
+          Du hast keine ausreichenden Rechte.
         <![CDATA[</p>]]>
         <![CDATA[<ul>]]>
           <![CDATA[<li>]]>
