@@ -1,22 +1,17 @@
 <?php
 
   // 111216, security, dwildt+
-if( ! isset ( $_COOKIE["be_typo_user"] ) )
+if( ! $this->bool_access )
 {
-  die( '
-     <h1>TYPO3 PDF Controller: no access!</h1>
-     <p>Sorry, the content of the current page is accessible only, if you are logged on the backend of TYPO3.</p>
-     <h1>TYPO3 PDF Controller: kein Zugangsrecht!</h1>
-     <p>Sorry, der Inhalt dieser Seite wird nur ausgeliefert, wenn Du im Backend von TYPO3 angemeldet bist.</p>
-    ' );
+  die(  '
+        <h1>TYPO3 PDF Controller: no access!</h1>
+        <p>Sorry, the content of the current page is accessible only, if you are logged on the backend of TYPO3 and if your are an administrator.</p>
+        <h1>TYPO3 PDF Controller: kein Zugangsrecht!</h1>
+        <p>Sorry, der Inhalt dieser Seite wird nur ausgeliefert, wenn Du im Backend von TYPO3 angemeldet und Administrator bist.</p>
+        '
+      );
 }
   // 111216, security, dwildt+
-
-  // 120202, security, dwildt+
-//var_dump( __METHOD__ . ' (' . __LINE__ . ')', $_COOKIE["be_typo_user"], $_SESSION, TYPO3_MODE );
-//if( ! defined( 'TYPO3_MODE' ) )  die ( 'TYPO3_MODE isn\'t defined: access denied.' );
-//if( TYPO3_MODE != 'BE' ) die ('TYPO3_MODE isn\'t BE: access denied');
-  // 120202, security, dwildt+
 
   // 120202, security, dwildt-
 //require_once('../config.inc.php');

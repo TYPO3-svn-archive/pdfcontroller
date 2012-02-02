@@ -100,6 +100,9 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
   var $param_typeNum  = 0;
     // [string] current page object: page | print | pdf
   var $str_pageObject = 'page';
+
+    // [boolean] Have the user access?
+  var $bool_access = false;
   
 
 
@@ -212,31 +215,28 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       //
       // Debugging tools - part 1 of 2
 
+      // 120202, security, dwildt+
+    if (!defined('HTML2PS_DIR')) {
+      define('HTML2PS_DIR', $_SERVER['DOCUMENT_ROOT'] . 'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/');
+    };
+    //$this->bool_access = $this->access( );
+    var_dump( __METHOD__ . ' (' . __LINE__ . ')', $_COOKIE["be_typo_user"], $_SESSION, TYPO3_MODE );
+
+      // 120202, security, dwildt+
+
     $str_tool = $this->objFlexform->get_sheet_field($sheet='debugging', $field='debug_tools');
     switch($str_tool)
     {
       case(1):
           // 120202, security, dwildt+
-if (!defined('HTML2PS_DIR')) {
-  define('HTML2PS_DIR', $_SERVER['DOCUMENT_ROOT'] . 'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/');
-};
-        $pathToSystemcheck = 'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/demo/systemcheck.php';
-        $str_url = t3lib_div::getIndpEnv('TYPO3_SITE_URL') .
-          'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/demo/systemcheck.php';
+        $pathToSystemcheck = 'demo/systemcheck.php';
         if ($this->b_drs_all)
         {
           $endTime = $this->TT->getDifferenceToStarttime();
           t3lib_div::devLog('[INFO/ALL] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
         }
-//var_dump( __METHOD__ . ' (' . __LINE__ . '): ' . $_SERVER['DOCUMENT_ROOT'] . $pathToSystemcheck );
-require_once( $_SERVER['DOCUMENT_ROOT'] . $pathToSystemcheck );
-//var_dump( __METHOD__ . ' (' . __LINE__ . '): exit' );
-//while (@ob_end_flush());
-exit;
-//return ob_get_contents();
-        header('Location: ' . $str_url);
+        require_once( $_SERVER['DOCUMENT_ROOT'] . $pathToSystemcheck );
         exit;
-        break;
       case(2):
         $str_url = t3lib_div::getIndpEnv('TYPO3_SITE_URL') . 
           'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/demo/';
