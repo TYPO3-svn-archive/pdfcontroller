@@ -241,8 +241,8 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
           require_once( $_SERVER['DOCUMENT_ROOT'] . HTML2PS_DIR . $pathToSystemcheck );
           exit;
         }
-        $content = $content . '<h1 style="color:red;">'.$this->pObj->pi_getLL('error_flexform_h1').'</h1>';
-        $content = $content . '<p style="color:red;font-weight:bold;">'.$this->pObj->pi_getLL('error_flexform_p').'</p>';
+        $content = $content . '<h1 style="color:red;">'.$this->pi_getLL('error_flexform_h1').'</h1>';
+        $content = $content . '<p style="color:red;font-weight:bold;">'.$this->pi_getLL('error_flexform_p').'</p>';
         return $content;
       case(2):
         $str_url = t3lib_div::getIndpEnv('TYPO3_SITE_URL') . 
