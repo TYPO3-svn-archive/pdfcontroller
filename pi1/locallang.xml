@@ -7,7 +7,10 @@
   <data type="array">
     <languageKey index="default" type="array">
       <label index="error_access_h1">ERROR: Access</label>
-      <label index="error_access_p">You don't have access.
+      <label index="error_access_p">
+        <![CDATA[<p>]]>
+          You don't have access.
+        <![CDATA[</p>]]>
         <![CDATA[<ul>]]>
           <![CDATA[<li>]]>
             You must logged on the TYPO3 backend.
@@ -22,7 +25,10 @@
     </languageKey>
     <languageKey index="de" type="array">
       <label index="error_access_h1">FEHLER: Zugriffsrechte</label>
-      <label index="error_access_p">Du hast keine ausreichenden Zugangsrechte.
+      <label index="error_access_p">
+        <![CDATA[<p>]]>
+          Du hast keine ausreichenden Zugangsrechte.
+        <![CDATA[</p>]]>
         <![CDATA[<ul>]]>
           <![CDATA[<li>]]>
             Du musst im TYPO3-Backend angemeldet sein.
