@@ -221,7 +221,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       define( 'HTML2PS_DIR', $_SERVER['DOCUMENT_ROOT'] . 'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/' );
     };
     //$this->bool_access = $this->access( );
-    var_dump( __METHOD__ . ' (' . __LINE__ . ')', $_COOKIE["be_typo_user"], $_SESSION, TYPO3_MODE );
+    var_dump( __METHOD__ . ' (' . __LINE__ . ')', $_COOKIE["be_typo_user"] );
 
       // 120202, security, dwildt+
 
