@@ -242,7 +242,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
           exit;
         }
         $content = $content . '<h1 style="color:red;">'.$this->pi_getLL('error_access_h1').'</h1>';
-        $content = $content . '<p style="color:red;font-weight:bold;">'.$this->pi_getLL('error_access_p').'</p>';
+        $content = $content . '<div style="color:red;font-weight:bold;">'.$this->pi_getLL('error_access_p').'</div>';
         return $content;
       case(2):
         $str_url = t3lib_div::getIndpEnv('TYPO3_SITE_URL') . 
