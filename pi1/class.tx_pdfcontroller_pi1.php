@@ -216,8 +216,9 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       // Debugging tools - part 1 of 2
 
       // 120202, security, dwildt+
-    if (!defined('HTML2PS_DIR')) {
-      define('HTML2PS_DIR', $_SERVER['DOCUMENT_ROOT'] . 'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/');
+    if( ! defined( 'HTML2PS_DIR' ) )
+    {
+      define( 'HTML2PS_DIR', $_SERVER['DOCUMENT_ROOT'] . 'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/' );
     };
     //$this->bool_access = $this->access( );
     var_dump( __METHOD__ . ' (' . __LINE__ . ')', $_COOKIE["be_typo_user"], $_SESSION, TYPO3_MODE );
@@ -235,8 +236,12 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
           $endTime = $this->TT->getDifferenceToStarttime();
           t3lib_div::devLog('[INFO/ALL] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
         }
-        require_once( $_SERVER['DOCUMENT_ROOT'] . $pathToSystemcheck );
-        exit;
+        if( $this->bool_access )
+        {
+          require_once( $_SERVER['DOCUMENT_ROOT'] . HTML2PS_DIR . $pathToSystemcheck );
+          exit;
+        }
+        return 'Error';
       case(2):
         $str_url = t3lib_div::getIndpEnv('TYPO3_SITE_URL') . 
           'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/demo/';
