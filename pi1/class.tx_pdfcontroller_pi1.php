@@ -216,13 +216,24 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
     switch($str_tool)
     {
       case(1):
-        $str_url = t3lib_div::getIndpEnv('TYPO3_SITE_URL') . 
+          // 120202, security, dwildt+
+if (!defined('HTML2PS_DIR')) {
+  define('HTML2PS_DIR', $_SERVER['DOCUMENT_ROOT'] . 'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/');
+};
+        $pathToSystemcheck = 'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/demo/systemcheck.php';
+        $str_url = t3lib_div::getIndpEnv('TYPO3_SITE_URL') .
           'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/demo/systemcheck.php';
         if ($this->b_drs_all)
         {
           $endTime = $this->TT->getDifferenceToStarttime();
           t3lib_div::devLog('[INFO/ALL] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
         }
+//var_dump( __METHOD__ . ' (' . __LINE__ . '): ' . $_SERVER['DOCUMENT_ROOT'] . $pathToSystemcheck );
+require_once( $_SERVER['DOCUMENT_ROOT'] . $pathToSystemcheck );
+//var_dump( __METHOD__ . ' (' . __LINE__ . '): exit' );
+//while (@ob_end_flush());
+exit;
+//return ob_get_contents();
         header('Location: ' . $str_url);
         exit;
         break;

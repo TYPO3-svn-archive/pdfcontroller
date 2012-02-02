@@ -13,17 +13,33 @@ if( ! isset ( $_COOKIE["be_typo_user"] ) )
   // 111216, security, dwildt+
 
   // 120202, security, dwildt+
-if( ! defined( 'TYPO3_MODE' ) )  die ( 'TYPO3_MODE isn\'t defined: access denied.' );
-if( TYPO3_MODE != 'BE' ) die ('TYPO3_MODE isn\'t BE: access denied');
+//var_dump( __METHOD__ . ' (' . __LINE__ . ')', $_COOKIE["be_typo_user"], $_SESSION, TYPO3_MODE );
+//if( ! defined( 'TYPO3_MODE' ) )  die ( 'TYPO3_MODE isn\'t defined: access denied.' );
+//if( TYPO3_MODE != 'BE' ) die ('TYPO3_MODE isn\'t BE: access denied');
   // 120202, security, dwildt+
 
-require_once('../config.inc.php');
+  // 120202, security, dwildt-
+//require_once('../config.inc.php');
+  // 120202, security, dwildt+
+switch( true )
+{
+  case( ! defined( 'HTML2PS_DIR' ) ):
+    require_once('../config.inc.php');
+    break;
+  case( defined( 'HTML2PS_DIR' ) ):
+    require_once(HTML2PS_DIR . 'config.inc.php');
+    break;
+}
+  // 120202, security, dwildt+
 
 require_once(HTML2PS_DIR.'stubs.common.inc.php');
 require_once(HTML2PS_DIR.'error.php');
 require_once(HTML2PS_DIR.'config.parse.php');
 
-parse_config_file('../html2ps.config');
+  // 120202, security, dwildt-
+//parse_config_file('../html2ps.config');
+  // 120202, security, dwildt-
+parse_config_file(HTML2PS_DIR . 'html2ps.config');
 
 define('CHECK_STATUS_FAILED',  0);
 define('CHECK_STATUS_WARNING', 1);
@@ -35,11 +51,17 @@ ini_set("display_errors","1");
 $__g_registered_checks = array();
 
 function out_header() {
-  readfile('systemcheck.header.tpl');
+    // 120202, security, dwildt-
+  //readfile('systemcheck.header.tpl');
+    // 120202, security, dwildt+
+  require_once('systemcheck.header.tpl');
 }
 
 function out_footer() {
-  readfile('systemcheck.footer.tpl');
+    // 120202, security, dwildt-
+  //readfile('systemcheck.footer.tpl');
+    // 120202, security, dwildt+
+  require_once('systemcheck.footer.tpl');
 }
 
 function status2class($status) {
