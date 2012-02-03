@@ -2,11 +2,25 @@
 
   // 120202, security, dwildt+
 $prompt = '
-            <h1>TYPO3 PDF Controller: no script access!</h1>
-            <p>Sorry, the current script won\'t executed without TYPO3.</p>
-            <h1>TYPO3 PDF Controller: kein Zugriff auf das Skript</h1>
-            <p>Sorry, das Skript wird ohne TYPO3 nicht ausgef&uuml;hrt.</p>
+            <div style="border:1em solid red;color:red;padding:1em;text-align:center;">
+              <h1>
+                TYPO3 PDF Controller: Error
+              </h1>
+              <h2>
+                No access to the script
+              </h2>
+              <p>
+                Sorry, the current PHP code won\'t executed without TYPO3.
+              </p>
+              <h2>
+                Kein Zugriff auf das Skript
+              </h2>
+              <p>
+                Sorry, das PHP-Code wird ohne TYPO3 nicht ausgef&uuml;hrt.
+              </p>
+            </div>
           ';
+
 
 if( ! defined( 'PDFCONTROLLER_ACCESS' ) )
 {
