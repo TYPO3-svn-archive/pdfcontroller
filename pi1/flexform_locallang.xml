@@ -20,7 +20,7 @@
       <label index="sheet_addcontent.watermarkhtml">Watermark (HTML code)</label>
 
       <label index="sheet_debugging">Debugging</label>
-      <label index="sheet_debugging.debug_tools">Debugging tools (the tools will displayed in the frontend, a PDF file won't generated)</label>
+      <label index="sheet_debugging.debug_tools">Debugging tools (the tools will displayed in the frontend, a PDF file won't generated) - for admins only!</label>
       <label index="sheet_debugging.debug_tools.0">No tool (default)</label>
       <label index="sheet_debugging.debug_tools.1">Frontend: Check system requirements</label>
       <label index="sheet_debugging.debug_tools.2">Frontend: Test form for your URL and your parameters</label>
@@ -154,7 +154,7 @@
       <label index="sheet_addcontent.watermarkhtml">Wasserzeichen (HTML)</label>
 
       <label index="sheet_debugging">Debugging</label>
-      <label index="sheet_debugging.debug_tools">Werkzeuge (werden im Frontend angezeigt, ein PDF wird dann nicht generiert)</label>
+      <label index="sheet_debugging.debug_tools">Werkzeuge (werden im Frontend angezeigt, ein PDF wird dann nicht generiert) - nur f<![CDATA[&uuml;]]>r Administratoren!</label>
       <label index="sheet_debugging.debug_tools.0">Kein Werkzeug verwenden (Standardeinstellung)</label>
       <label index="sheet_debugging.debug_tools.1">Frontend: System-Voraussetzungen prüfen</label>
       <label index="sheet_debugging.debug_tools.2">Frontend: Test-Formular für Deine URL mit Deinen Parametern</label>
