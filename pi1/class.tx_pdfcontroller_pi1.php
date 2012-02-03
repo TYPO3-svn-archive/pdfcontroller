@@ -727,7 +727,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       // Get backend user id
     $select_fields  = 'ses_userid';
     $from_table     = 'be_sessions';
-    $where_clause   = 'AND ses_id = \'' . $_COOKIE["be_typo_user"] . '\'';
+    $where_clause   = 'ses_id = \'' . $_COOKIE["be_typo_user"] . '\'';
     $groupBy        = '';
     $orderBy        = '';
     $limit          = '';
