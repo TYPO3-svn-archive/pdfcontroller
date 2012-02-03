@@ -16,7 +16,7 @@ $prompt = '
                 Kein Zugriff auf das Skript
               </h2>
               <p>
-                Sorry, das PHP-Code wird ohne TYPO3 nicht ausgef&uuml;hrt.
+                Sorry, der PHP-Code wird ohne TYPO3 nicht ausgef&uuml;hrt.
               </p>
             </div>
           ';
