@@ -485,8 +485,9 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       }
         // #31190, 111213: Borries Jensen+
     }
-    $pathToHtml2ps  = 'demo/html2ps.php?';
-    $str_url        = HTML2PS_DIR . $pathToHtml2ps . $params;
+    $str_url  = t3lib_div::getIndpEnv( 'TYPO3_SITE_URL' ) .
+      'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/demo/html2ps.php?';
+    $str_url  = $str_url . $params;
       // Build URL query
 
 
