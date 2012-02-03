@@ -238,7 +238,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
         }
         if( $this->bool_access )
         {
-          require_once( $_SERVER['DOCUMENT_ROOT'] . HTML2PS_DIR . $pathToSystemcheck );
+          require_once( HTML2PS_DIR . $pathToSystemcheck );
           exit;
         }
         $content = $content . '<h1 style="color:red;">'.$this->pi_getLL('error_access_h1').'</h1>';
