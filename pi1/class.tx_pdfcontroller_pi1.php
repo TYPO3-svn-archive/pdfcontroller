@@ -256,7 +256,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
         $pathToForm = 'demo/index.php';
         if( $this->bool_access )
         {
-          echo t3lib_div::_GP( 'skript' );
+          var_dump( t3lib_div::_GP( 'script' ) );
           require_once( HTML2PS_DIR . $pathToForm );
           exit;
         }
