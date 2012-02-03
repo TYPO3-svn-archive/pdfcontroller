@@ -12,7 +12,10 @@ if (ini_get("pcre.backtrack_limit") < 1000000) { ini_set("pcre.backtrack_limit",
 @set_time_limit(10000);
 
 require_once('generic.param.php');
-require_once('../config.inc.php');
+  // 120202, security, dwildt-
+//require_once('../config.inc.php');
+  // 120202, security, dwildt+
+require_once(HTML2PS_DIR . 'config.inc.php');
 require_once(HTML2PS_DIR.'pipeline.factory.class.php');
 
 ini_set("user_agent", DEFAULT_USER_AGENT);
