@@ -8,20 +8,7 @@ $prompt = '
             <p>Sorry, das Skript wird au&szlig;erhalb von TYPO3 nicht ausgef&uuml;hrt.</p>
           ';
 
-switch( true )
-{
-  case( ! defined( 'PDFCONTROLLER_ACCESS' ) ):
-    die( $prompt );
-    break;
-  case( ! PDFCONTROLLER_ACCESS ):
-    die( $prompt );
-    break;
-}
-if( ! is_object ( $this ) )
-{
-}
-
-if( ! $this->bool_access )
+if( ! defined( 'PDFCONTROLLER_ACCESS' ) )
 {
   die( $prompt );
 }

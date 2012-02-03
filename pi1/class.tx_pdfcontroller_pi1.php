@@ -101,8 +101,6 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
     // [string] current page object: page | print | pdf
   var $str_pageObject = 'page';
 
-    // [boolean] Have the user access?
-  var $bool_access = false;
   
 
 
@@ -233,7 +231,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       case( 1 ):
           // 120202, security, dwildt+
         $pathToSystemcheck = 'demo/systemcheck.php';
-        if( $this->bool_access )
+        if( defined( 'PDFCONTROLLER_ACCESS' ) )
         {
           require_once( HTML2PS_DIR . $pathToSystemcheck );
           exit;
@@ -254,7 +252,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
           t3lib_div::devLog('[INFO/ALL] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
         }
         $pathToForm = 'demo/index.php';
-        if( $this->bool_access )
+        if( defined( 'PDFCONTROLLER_ACCESS' ) )
         {
           if( t3lib_div::_GP( 'script' ) == 'html2ps.php')
           {
@@ -269,7 +267,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
         $content = $content . '<div style="color:red;font-weight:bold;">'.$this->pi_getLL('error_access_p').'</div>';
         return $content;
       case(3):
-        if( $this->bool_access )
+        if( defined( 'PDFCONTROLLER_ACCESS' ) )
         {
           $str_url = 'http://www.tufat.com/docs/html2ps/index.html';
           header('Location: ' . $str_url);
@@ -618,7 +616,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
   /**
  * access( ): The method checks, if current user is logged on the TYPO3 backend7
  *            and if user is an administrator.
- *            If it is, the global $bool_access will set to true
+ *            If it is, the method defines the constant PDFCONTROLLER_ACCESS
  *
  * @return  void
  * @version 1.0.2
@@ -626,7 +624,6 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
  */
   private function access( )
   {
-    $this->bool_access = false;
 
     // RETURN no session because cookie is missing
     if( ! isset( $_COOKIE['be_typo_user'] ) )
@@ -739,7 +736,6 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
           $prompt = 'User ' . $row['realName'] . ' (' . $row['username'] . ') has administrator access!';
           t3lib_div::devlog('[OK/SECURITY] ' . $prompt, $this->extKey, -1);
         }
-        $this->bool_access = true;
         define( 'PDFCONTROLLER_ACCESS', true );
         break;
       default:
