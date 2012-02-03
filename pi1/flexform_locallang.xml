@@ -154,7 +154,7 @@
       <label index="sheet_addcontent.watermarkhtml">Wasserzeichen (HTML)</label>
 
       <label index="sheet_debugging">Debugging</label>
-      <label index="sheet_debugging.debug_tools">Werkzeuge (werden im Frontend angezeigt, ein PDF wird dann nicht generiert) - nur f<![CDATA[&uuml;]]>r Administratoren!</label>
+      <label index="sheet_debugging.debug_tools">Werkzeuge (werden im Frontend angezeigt, ein PDF wird dann nicht generiert) - nur für Administratoren!</label>
       <label index="sheet_debugging.debug_tools.0">Kein Werkzeug verwenden (Standardeinstellung)</label>
       <label index="sheet_debugging.debug_tools.1">Frontend: System-Voraussetzungen prüfen</label>
       <label index="sheet_debugging.debug_tools.2">Frontend: Test-Formular für Deine URL mit Deinen Parametern</label>
