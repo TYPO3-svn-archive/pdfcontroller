@@ -1,6 +1,17 @@
 <?php
 
   // 111216, security, dwildt+
+if( ! is_object ( $this ) )
+{
+  die(  '
+        <h1>TYPO3 PDF Controller: no access!</h1>
+        <p>Sorry, the current file isn\'t accessible without TYPO3.</p>
+        <h1>TYPO3 PDF Controller: kein Zugangsrecht!</h1>
+        <p>Sorry, der Inhalt dieser Seite wird ohne TYPO3 nicht ausgeliefert.</p>
+        '
+      );
+}
+
 if( ! $this->bool_access )
 {
   die(  '
