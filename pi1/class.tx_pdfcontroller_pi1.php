@@ -261,31 +261,9 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
         $content = $content . '<div style="color:red;font-weight:bold;">'.$this->pi_getLL('error_access_p').'</div>';
         return $content;
       case(3):
-//        $str_url = t3lib_div::getIndpEnv('TYPO3_SITE_URL') .
-//          'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/help/index.html';
-//        if ($this->b_drs_all)
-//        {
-//          $endTime = $this->TT->getDifferenceToStarttime();
-//          t3lib_div::devLog('[INFO/ALL] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
-//        }
-//        header('Location: ' . $str_url);
-//        exit;
-//        break;
-          // 120202, security, dwildt+
-        $pathToHelp = 'help/index.html';
-        if ($this->b_drs_all)
-        {
-          $endTime = $this->TT->getDifferenceToStarttime();
-          t3lib_div::devLog('[INFO/ALL] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
-        }
-        if( $this->bool_access )
-        {
-          require_once( HTML2PS_DIR . $pathToHelp );
-          exit;
-        }
-        $content = $content . '<h1 style="color:red;">'.$this->pi_getLL('error_access_h1').'</h1>';
-        $content = $content . '<div style="color:red;font-weight:bold;">'.$this->pi_getLL('error_access_p').'</div>';
-        return $content;
+        $str_url = 'http://www.tufat.com/docs/html2ps/index.html';
+        header('Location: ' . $str_url);
+        exit;
       case(0):
       case(4):
       default:
