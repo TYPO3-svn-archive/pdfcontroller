@@ -131,6 +131,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
   var $b_drs_info         = false;
   var $b_drs_flexform     = false;
   var $b_drs_perform      = false;
+  var $b_drs_security     = false;
     // Booleans for DRS - Development Reporting System
 
 
@@ -669,9 +670,8 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       $this->b_drs_warn         = true;
       $this->b_drs_info         = true;
       $this->b_drs_flexform     = true;
-      $this->b_drs_javascript   = true;
       $this->b_drs_perform      = true;
-      $this->b_drs_templating   = true;
+      $this->b_drs_security     = true;
       t3lib_div::devlog('[INFO/DRS] DRS - Development Reporting System:<br />'.$this->arr_extConf['drs_mode'], $this->extKey, 0);
     }
     if ($this->arr_extConf['drs_mode'] == 'Flexform')
@@ -680,12 +680,19 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       $this->b_drs_warn       = true;
       $this->b_drs_info       = true;
       $this->b_drs_flexform   = true;
-      $this->b_drs_perform    = true;
       t3lib_div::devlog('[INFO/DRS] DRS - Development Reporting System:<br />'.$this->arr_extConf['drs_mode'], $this->extKey, 0);
     }
     if ($this->arr_extConf['drs_mode'] == 'Performance')
     {
       $this->b_drs_perform    = true;
+      t3lib_div::devlog('[INFO/DRS] DRS - Development Reporting System:<br />'.$this->arr_extConf['drs_mode'], $this->extKey, 0);
+    }
+    if ($this->arr_extConf['drs_mode'] == 'Security')
+    {
+      $this->b_drs_error      = true;
+      $this->b_drs_warn       = true;
+      $this->b_drs_info       = true;
+      $this->b_drs_security   = true;
       t3lib_div::devlog('[INFO/DRS] DRS - Development Reporting System:<br />'.$this->arr_extConf['drs_mode'], $this->extKey, 0);
     }
       // Set the DRS mode
@@ -711,8 +718,13 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
     $this->bool_access = false;
 
     // RETURN no session because cookie is missing
-    if( ! isset( $_COOKIE["be_typo_user"] ) )
+    if( ! isset( $_COOKIE['be_typo_user'] ) )
     {
+      if ($this->b_drs_security)
+      {
+        $prompt = 'No cookie with element be_typo_user.';
+        t3lib_div::devlog('[INFO/SECURITY] ' . $prompt, $this->extKey, 0);
+      }
       return;
     }
       // RETURN no session because cookie is missing
@@ -720,12 +732,17 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       // RETURN no session because cookie element is empty
     if( empty( $_COOKIE["be_typo_user"] ) )
     {
+      if ($this->b_drs_security)
+      {
+        $prompt = 'Cookie element be_typo_user is empty.';
+        t3lib_div::devlog('[INFO/SECURITY] ' . $prompt, $this->extKey, 0);
+      }
       return;
     }
       // RETURN no session because cookie element is empty
 
       // Get backend user id
-    $select_fields  = 'ses_userid';
+    $select_fields  = '*';
     $from_table     = 'be_sessions';
     $where_clause   = 'ses_id = \'' . $_COOKIE["be_typo_user"] . '\'';
     $groupBy        = '';
@@ -737,7 +754,48 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
     $row    = $GLOBALS['TYPO3_DB']->sql_fetch_assoc( $res );
       // Get backend user id
 
-    var_dump( __METHOD__ . ' (' . __LINE__ . ')', $_COOKIE["be_typo_user"], $query, $row );
+      // RETURN row is empty
+    if( ! is_array( $row ) )
+    {
+      if ($this->b_drs_security)
+      {
+        $prompt = 'Row is empty. Maybe the cookie is a fake!';
+        t3lib_div::devlog('[WARN/SECURITY] ' . $prompt, $this->extKey, 2);
+        $prompt = 'Query: ' . $query;
+        t3lib_div::devlog('[INFO/SECURITY] ' . $prompt, $this->extKey, 0);
+      }
+      return;
+    }
+      // RETURN row is empty
+
+      // RETURN ses_userid is empty
+    if( empty( $row['ses_userid'] ) )
+    {
+      if ($this->b_drs_security)
+      {
+        $prompt = 'ses_userid of current row is empty. Maybe someone try to screw the system!';
+        t3lib_div::devlog('[WARN/SECURITY] ' . $prompt, $this->extKey, 2);
+        $prompt = 'Query: ' . $query;
+        t3lib_div::devlog('[INFO/SECURITY] ' . $prompt, $this->extKey, 0);
+      }
+      return;
+    }
+      // RETURN ses_userid is empty
+
+      // Get backend user
+    $select_fields  = '*';
+    $from_table     = 'be_users';
+    $where_clause   = 'uid = ' . ( int ) $row['ses_userid'];
+    $groupBy        = '';
+    $orderBy        = '';
+    $limit          = '';
+
+    $query  = $GLOBALS['TYPO3_DB']->SELECTquery( $select_fields, $from_table, $where_clause, $groupBy, $orderBy, $limit );
+    $res    = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $select_fields, $from_table, $where_clause, $groupBy, $orderBy, $limit );
+    $row    = $GLOBALS['TYPO3_DB']->sql_fetch_assoc( $res );
+      // Get backend user id
+
+    var_dump( __METHOD__ . ' (' . __LINE__ . ')', $query, $row );
     //$this->bool_access = true;
   }
 

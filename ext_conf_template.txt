@@ -13,7 +13,7 @@ LLstatic = English
   # cat=basic/enable/130;             type=options[always (recommended),never]; label= Clean up html2ps cache level 2: Remove all files (LINUX only, PHP safemode off!)
 rmCacheAll = always (recommended)
 
-  # cat=basic/dev/930;                type=options[Don't log anything,--------------------,Flexform,Performance,--------------------,All]; label= DRS - Development Reporting System: Messages will be written to DevLog (you need the extension devlog).
+  # cat=basic/dev/930;                type=options[Don't log anything,--------------------,Flexform,Performance,Security,--------------------,All]; label= DRS - Development Reporting System: Messages will be written to DevLog (you need the extension devlog).
 drs_mode = Don't log anything
 
   # cat=basic/others/999;             type=user[EXT:pdfcontroller/lib/class.tx_pdfcontroller_extmanager.php:tx_pdfcontroller_extmanager->promptExternalLinks]; label=External Links
