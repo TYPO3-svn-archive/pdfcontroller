@@ -272,7 +272,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
 //        exit;
 //        break;
           // 120202, security, dwildt+
-        $pathToHelp = 'help/index.php';
+        $pathToHelp = 'help/index.html';
         if ($this->b_drs_all)
         {
           $endTime = $this->TT->getDifferenceToStarttime();
