@@ -732,11 +732,12 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
     $orderBy        = '';
     $limit          = '';
 
-    $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $select_fields, $from_table, $where_clause, $groupBy, $orderBy, $limit );
-    $row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc( $res );
+    $query  = $GLOBALS['TYPO3_DB']->SELECTquery( $select_fields, $from_table, $where_clause, $groupBy, $orderBy, $limit );
+    $res    = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $select_fields, $from_table, $where_clause, $groupBy, $orderBy, $limit );
+    $row    = $GLOBALS['TYPO3_DB']->sql_fetch_assoc( $res );
       // Get backend user id
 
-    var_dump( __METHOD__ . ' (' . __LINE__ . ')', $_COOKIE["be_typo_user"], $row );
+    var_dump( __METHOD__ . ' (' . __LINE__ . ')', $_COOKIE["be_typo_user"], $query, $row );
     //$this->bool_access = true;
   }
 
