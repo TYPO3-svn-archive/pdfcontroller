@@ -112,7 +112,10 @@ $GLOBALS['g_config'] = array(
 $proxy = get_var('proxy', $_REQUEST, 255, '');
 
 // ========== Entry point
-parse_config_file('../html2ps.config');
+  // 120202, security, dwildt-
+//parse_config_file('../html2ps.config');
+  // 120202, security, dwildt+
+parse_config_file(HTML2PS_DIR . 'html2ps.config');
 
 // validate input data
 if ($GLOBALS['g_config']['pagewidth'] == 0) {
