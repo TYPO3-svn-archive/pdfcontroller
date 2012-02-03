@@ -261,9 +261,13 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
         $content = $content . '<div style="color:red;font-weight:bold;">'.$this->pi_getLL('error_access_p').'</div>';
         return $content;
       case(3):
-        $str_url = 'http://www.tufat.com/docs/html2ps/index.html';
-        header('Location: ' . $str_url);
-        exit;
+        if( $this->bool_access )
+        {
+          $str_url = 'http://www.tufat.com/docs/html2ps/index.html';
+          header('Location: ' . $str_url);
+          exit;
+        }
+        break;
       case(0):
       case(4):
       default:
