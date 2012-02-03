@@ -1,19 +1,41 @@
 <?php
-  // 111216, security, dwildt+
-if( ! isset ( $_COOKIE["be_typo_user"] ) )
-{
-  die( '
-     <h1>TYPO3 PDF Controller: no access!</h1>
-     <p>Sorry, the content of the current page is accessible only, if you are logged on the backend of TYPO3.</p>
-     <h1>TYPO3 PDF Controller: kein Zugangsrecht!</h1>
-     <p>Sorry, der Inhalt dieser Seite wird nur ausgeliefert, wenn Du im Backend von TYPO3 angemeldet bist.</p>
-    ' );
-}
-  // 111216, security, dwildt+
+  // 120202, security, dwildt+
+$prompt = '
+            <div style="border:1em solid red;color:red;padding:1em;text-align:center;">
+              <h1>
+                TYPO3 PDF Controller: Error
+              </h1>
+              <h2>
+                No access to the script
+              </h2>
+              <p>
+                Sorry, the current PHP code won\'t executed without TYPO3.
+              </p>
+              <h2>
+                Kein Zugriff auf das Skript
+              </h2>
+              <p>
+                Sorry, der PHP-Code wird ohne TYPO3 nicht ausgef&uuml;hrt.
+              </p>
+            </div>
+          ';
 
-require_once('../config.inc.php');
-require_once('../pipeline.factory.class.php');
-parse_config_file('../html2ps.config');
+if( ! defined( 'PDFCONTROLLER_ACCESS' ) )
+{
+  die( $prompt );
+}
+  // 120202, security, dwildt+
+
+  // 120202, security, dwildt-
+//require_once('../config.inc.php');
+//require_once('../pipeline.factory.class.php');
+//parse_config_file('../html2ps.config');
+  // 120202, security, dwildt-
+  // 120202, security, dwildt+
+require_once(HTML2PS_DIR . 'config.inc.php');
+require_once(HTML2PS_DIR . 'pipeline.factory.class.php');
+parse_config_file(HTML2PS_DIR . 'html2ps.config');
+  // 120202, security, dwildt+
 
 function convert_to_pdf($pdf) {
 
