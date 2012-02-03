@@ -18,6 +18,9 @@
           <![CDATA[<li>]]>
             You must be an administrator.
           <![CDATA[</li>]]>
+          <![CDATA[<li>]]>
+            Cookies must be enabled.
+          <![CDATA[</li>]]>
         <![CDATA[</ul>]]>
       </label>
       <label index="error_flexform_h1">ERROR: flexform is empty</label>
@@ -35,6 +38,9 @@
           <![CDATA[</li>]]>
           <![CDATA[<li>]]>
             Du ben<![CDATA[&ouml;]]>tigst Administratorrechte.
+          <![CDATA[</li>]]>
+          <![CDATA[<li>]]>
+            Cookies m<![CDATA[&uuml;]]>ssen erlaubt sein.
           <![CDATA[</li>]]>
         <![CDATA[</ul>]]>
       </label>
