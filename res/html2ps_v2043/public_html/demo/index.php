@@ -198,7 +198,10 @@ div.comment {
 <div style="width:500px;">
 <!-- 120202, dwildt- //-->
 <!-- <form action="html2ps.php" method="get" style="margin-top:12px"> //-->
+<!-- 120202, dwildt+ //-->
 <form action="" method="get" style="margin-top:12px">
+<input type="hidden" name="script" value="html2ps.php"/>
+<!-- 120202, dwildt+ //-->
 <fieldset>
 <legend>&nbsp;Source&nbsp;</legend>
 
