@@ -605,9 +605,8 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
 //    exit;
       // Send data to html2ps
 
-        $pathToHtml2ps = 'demo/html2ps.php';
-        if( defined( 'PDFCONTROLLER_ACCESS' ) )
-        {
+//        if( defined( 'PDFCONTROLLER_ACCESS' ) )
+//        {
             // DRS - Development Reporting System
           if ($this->b_drs_all)
           {
@@ -616,10 +615,11 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
           }
             // DRS - Development Reporting System
             // EXIT
+          $pathToHtml2ps = 'demo/html2ps.php';
           require_once( HTML2PS_DIR . $pathToHtml2ps );
           exit;
             // EXIT
-        }
+//        }
   }
 
 
