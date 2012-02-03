@@ -8,14 +8,9 @@ $prompt = '
             <p>Sorry, das Skript wird au&szlig;erhalb von TYPO3 nicht ausgef&uuml;hrt.</p>
           ';
 
-switch( true )
+if( ! defined( 'PDFCONTROLLER_ACCESS' ) )
 {
-  case( ! defined( 'PDFCONTROLLER_ACCESS' ) ):
-    die( $prompt );
-    break;
-  case( ! PDFCONTROLLER_ACCESS ):
-    die( $prompt );
-    break;
+  die( $prompt );
 }
   // 120202, security, dwildt+
 
@@ -198,7 +193,7 @@ div.comment {
 <!-- <form action="html2ps.php" method="get" style="margin-top:12px"> //-->
 <!-- 120202, dwildt+ //-->
 <form action="" method="get" style="margin-top:12px">
-<input type="hidden" name="script" value="html2ps.php"/>
+<input type="hidden" name="use_pdfcontroller" value="1"/>
 <!-- 120202, dwildt+ //-->
 <fieldset>
 <legend>&nbsp;Source&nbsp;</legend>

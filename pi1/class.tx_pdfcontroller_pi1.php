@@ -218,24 +218,43 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       // DEFINE HTML2PS_DIR
     if( ! defined( 'HTML2PS_DIR' ) )
     {
-      define( 'HTML2PS_DIR', $_SERVER['DOCUMENT_ROOT'] . 'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/' );
+      //define( 'HTML2PS_DIR', $_SERVER['DOCUMENT_ROOT'] . 'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/' );
+      define( 'HTML2PS_DIR', t3lib_extMgm::extPath( 'pdfcontroller' ) . 'res/html2ps_v2043/public_html/' );
     };
       // DEFINE HTML2PS_DIR
-      // Set global $access
+
+      // Define PDFCONTROLLER_ACCESS
     $this->access( );
       // 120202, security, dwildt+
 
+      // Get the selected tool out of the flexform
     $str_tool = $this->objFlexform->get_sheet_field( $sheet = 'debugging', $field = 'debug_tools' );
+
+      // SWITCH debugging tool
     switch( $str_tool )
     {
       case( 1 ):
           // 120202, security, dwildt+
+
+          // EXIT execute the script systemcheck.php
         $pathToSystemcheck = 'demo/systemcheck.php';
         if( defined( 'PDFCONTROLLER_ACCESS' ) )
         {
+            // DRS - Development Reporting System
+          if ($this->b_drs_all)
+          {
+            $endTime = $this->TT->getDifferenceToStarttime();
+            t3lib_div::devLog('[INFO/ALL] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
+          }
+            // DRS - Development Reporting System
+            // EXIT
           require_once( HTML2PS_DIR . $pathToSystemcheck );
           exit;
+            // EXIT
         }
+          // EXIT execute the script systemcheck.php
+
+          // RETURN error message
         $content = $content . '<h1 style="color:red;">'.$this->pi_getLL('error_access_h1').'</h1>';
         $content = $content . '<div style="color:red;font-weight:bold;">'.$this->pi_getLL('error_access_p').'</div>';
         if ($this->b_drs_all)
@@ -244,41 +263,74 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
           t3lib_div::devLog('[INFO/ALL] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
         }
         return $content;
+          // RETURN error message
       case(2):
           // 120202, security, dwildt+
-        if ($this->b_drs_all)
-        {
-          $endTime = $this->TT->getDifferenceToStarttime();
-          t3lib_div::devLog('[INFO/ALL] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
-        }
+
+          // BREAK or EXIT
         $pathToForm = 'demo/index.php';
         if( defined( 'PDFCONTROLLER_ACCESS' ) )
         {
-          if( t3lib_div::_GP( 'script' ) == 'html2ps.php')
+            // BREAK follow the workflow
+          if( t3lib_div::_GP( 'use_pdfcontroller' ) == true )
           {
-//            var_dump( $_REQUEST );
-//            exit;
             break;
           }
+            // BREAK follow the workflow
+
+            // DRS - Development Reporting System
+          if ($this->b_drs_all)
+          {
+            $endTime = $this->TT->getDifferenceToStarttime();
+            t3lib_div::devLog('[INFO/ALL] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
+          }
+            // DRS - Development Reporting System
+
+            // EXIT execute the demo form
           require_once( HTML2PS_DIR . $pathToForm );
           exit;
+            // EXIT execute the demo form
         }
+          // BREAK or EXIT
+
+          // RETURN error message
         $content = $content . '<h1 style="color:red;">'.$this->pi_getLL('error_access_h1').'</h1>';
         $content = $content . '<div style="color:red;font-weight:bold;">'.$this->pi_getLL('error_access_p').'</div>';
+        if ($this->b_drs_all)
+        {
+          $endTime = $this->TT->getDifferenceToStarttime();
+          t3lib_div::devLog('[INFO/ALL] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
+        }
         return $content;
+          // RETURN error message
       case(3):
+          // EXIT locate to the online documentation of html2ps
         if( defined( 'PDFCONTROLLER_ACCESS' ) )
         {
+            // DRS - Development Reporting System
+          if ($this->b_drs_all)
+          {
+            $endTime = $this->TT->getDifferenceToStarttime();
+            t3lib_div::devLog('[INFO/ALL] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
+          }
+            // DRS - Development Reporting System
+
+            // EXIT
           $str_url = 'http://www.tufat.com/docs/html2ps/index.html';
           header('Location: ' . $str_url);
           exit;
+            // EXIT
         }
+          // EXIT locate to the online documentation of html2ps
+
+          // BREAK follow the workflow
         break;
       case(0):
       case(4):
       default:
-        // Continue process
+        // Follow the workflow
     }
+      // SWITCH debugging tool
       // Debugging tools - part 1 of 2
 
 
@@ -287,52 +339,61 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       //
       // RETURN piVars requirements failed
 
+      // IF no debugging tool
     if( ! $str_tool )
     {
-      switch( true )
+        // RETURN piVars isn't set
+      if( ! ( isset( $this->piVars ) ) )
       {
-        case( ! ( isset( $this->piVars ) ) ):
-          $this->content = 'WARNING: piVars aren\'t set. But there isn\'t any PDF generating possible without piVars.<br />' .
-            '<br />' . 
-            'Please read the manual.<br />' . 
-            'See: Warning #1';
-          if ($this->b_drs_all)
-          {
-            $endTime = $this->TT->getDifferenceToStarttime();
-            t3lib_div::devLog('[INFO/WARN] piVars aren\'t set', $this->extKey, 2);
-            t3lib_div::devLog('[INFO/ALL] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
-          }
-          return $this->pi_wrapInBaseClass($this->content);
-          break;
-        case(!(isset($this->piVars['URL']))):
-          $this->content = 'WARNING: piVars[URL] isn\'t set. But there isn\'t any PDF generating possible without this piVar.<br />' .
-            '<br />' . 
-            'Please read the manual.<br />' . 
-            'See: Warning #2';
-          if ($this->b_drs_all)
-          {
-            $endTime = $this->TT->getDifferenceToStarttime();
-            t3lib_div::devLog('[INFO/WARN] piVars[URL] isn\'t set', $this->extKey, 2);
-            t3lib_div::devLog('[INFO/ALL] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
-          }
-          return $this->pi_wrapInBaseClass($this->content);
-          break;
-        case(empty($this->piVars['URL'])):
-          $this->content = 'WARNING: piVars[URL] is empty. But it isn\'t possible to generate PDF without this piVar..<br />' .
-            '<br />' . 
-            'Please read the manual.<br />' . 
-            'See: Warning #3';
-          if ($this->b_drs_all)
-          {
-            $endTime = $this->TT->getDifferenceToStarttime();
-            t3lib_div::devLog('[INFO/WARN] piVars[URL] is empty', $this->extKey, 2);
-            t3lib_div::devLog('[INFO/ALL] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
-          }
-          return $this->pi_wrapInBaseClass($this->content);
-          break;
-        default:
-          // Continue the process
+        $this->content = 'WARNING: piVars aren\'t set. But there isn\'t any PDF generating possible without piVars.<br />' .
+          '<br />' .
+          'Please read the manual.<br />' .
+          'See: Warning #1';
+        if ($this->b_drs_all)
+        {
+          $endTime = $this->TT->getDifferenceToStarttime();
+          t3lib_div::devLog('[INFO/WARN] piVars aren\'t set', $this->extKey, 2);
+          t3lib_div::devLog('[INFO/ALL] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
+        }
+        return $this->pi_wrapInBaseClass($this->content);
       }
+        // RETURN piVars isn't set
+
+        // RETURN piVars['URL'] isn't set
+      if( ! ( isset( $this->piVars['URL'] ) ) )
+      {
+        $this->content = 'WARNING: piVars[URL] isn\'t set. But there isn\'t any PDF generating possible without this piVar.<br />' .
+          '<br />' .
+          'Please read the manual.<br />' .
+          'See: Warning #2';
+        if ($this->b_drs_all)
+        {
+          $endTime = $this->TT->getDifferenceToStarttime();
+          t3lib_div::devLog('[INFO/WARN] piVars[URL] isn\'t set', $this->extKey, 2);
+          t3lib_div::devLog('[INFO/ALL] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
+        }
+        return $this->pi_wrapInBaseClass($this->content);
+      }
+        // RETURN piVars['URL'] isn't set
+
+        // RETURN piVars['URL'] is empty
+      if( empty( $this->piVars['URL'] ) )
+      {
+        $this->content = 'WARNING: piVars[URL] is empty. But it isn\'t possible to generate PDF without this piVar..<br />' .
+          '<br />' .
+          'Please read the manual.<br />' .
+          'See: Warning #3';
+        if ($this->b_drs_all)
+        {
+          $endTime = $this->TT->getDifferenceToStarttime();
+          t3lib_div::devLog('[INFO/WARN] piVars[URL] is empty', $this->extKey, 2);
+          t3lib_div::devLog('[INFO/ALL] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
+        }
+        return $this->pi_wrapInBaseClass($this->content);
+      }
+        // RETURN piVars['URL'] is empty
+
+        // DRS - Development Reporting System
       if ($this->b_drs_all)
       {
         foreach($this->piVars as $key => $value)
@@ -340,7 +401,9 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
           t3lib_div::devLog('[INFO/ALL] piVars[' . $key . ']: ' . $value, $this->extKey, 0);
         }
       }
+        // DRS - Development Reporting System
     }
+      // IF no debugging tool
       // RETURN piVars requirements failed
 
 
@@ -352,9 +415,9 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       // 120202, security, dwildt-
 //    $_REQUEST                 = $this->objFlexform->defaultValues();
       // 120202, security, dwildt+
-    if( t3lib_div::_GP( 'script' ) != 'html2ps.php')
+    if( t3lib_div::_GP( 'use_pdfcontroller' ) != true )
     {
-      $_REQUEST                 = $this->objFlexform->defaultValues();
+      $_REQUEST = $this->objFlexform->defaultValues();
     }
       // 120202, security, dwildt+
       // Get default $_REQUEST values from the Plugin (Flexform)
@@ -369,20 +432,33 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
     $this->piVars['process_mode']   = 'single';
     
     
-    $this->piVars['encoding'] = '';
-    $this->piVars['headerhtml'] = '';
-    $this->piVars['footerhtml'] = '';
-    $this->piVars['toc-location'] = 'before';
-    $this->piVars['pslevel'] = '3';
-    $this->piVars['output'] = '0';
+    $this->piVars['encoding']       = '';
+    $this->piVars['headerhtml']     = '';
+    $this->piVars['footerhtml']     = '';
+    $this->piVars['toc-location']   = 'before';
+    $this->piVars['pslevel']        = '3';
+    $this->piVars['output']         = '0';
     foreach($this->piVars as $key => $value)
     {
-      $_REQUEST[$key] = $value;
-      
-      if ($this->b_drs_all)
+        // $key is set: don't override the value
+      if( isset( $_REQUEST[$key] ) )
       {
-        t3lib_div::devLog('[INFO/ALL] $_REQUEST[' . $key . '] is set to: ' . $value, $this->extKey, 0);
+        if ($this->b_drs_all)
+        {
+          t3lib_div::devLog('[INFO/ALL] $_REQUEST[' . $key . '] is: \'' . $_REQUEST[$key] . '\'', $this->extKey, 0);
+        }
       }
+        // $key is set: don't override the value
+        // $key isn't set: override the value
+      if( ! isset( $_REQUEST[$key] ) )
+      {
+        if ($this->b_drs_all)
+        {
+          t3lib_div::devLog('[INFO/ALL] $_REQUEST[' . $key . '] is set to: \'' . $value . '\'', $this->extKey, 0);
+        }
+        $_REQUEST[$key] = $value;
+      }
+        // $key isn't set: override the value
     }
       // Add to $_REQUEST piVars
 
@@ -409,9 +485,8 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       }
         // #31190, 111213: Borries Jensen+
     }
-    $str_url = t3lib_div::getIndpEnv('TYPO3_SITE_URL') . 
-      'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/demo/html2ps.php?';
-    $str_url = $str_url . $params;
+    $pathToHtml2ps  = 'demo/html2ps.php?';
+    $str_url        = HTML2PS_DIR . $pathToHtml2ps . $params;
       // Build URL query
 
 
@@ -420,24 +495,28 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       //
       // Debugging tools - part 2 of 2
 
-    switch($str_tool)
+      // SWITCH debugging tool
+    switch( $str_tool )
     {
-      case(4):
+      case( 4 ):
+          // RETURN list of params and full qualified URL
         $this->content = $this->content . '<h3>List of parameters for html2ps</h3>';
-        $this->content = $this->content . '<pre>' . var_export($_REQUEST , true) . '</pre>';
+        $this->content = $this->content . '<pre>' . var_export( $_REQUEST, true ) . '</pre>';
         $this->content = $this->content . '<h3>Full qualified URL</h3>';
         $this->content = $this->content . '<p>Copy and paste to your browser.</p>';
         $this->content = $this->content . '<p>' . $str_url . '</p>';
-        if ($this->b_drs_all)
+        if ( $this->b_drs_all )
         {
-          $endTime = $this->TT->getDifferenceToStarttime();
-          t3lib_div::devLog('[INFO/ALL] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
+          $endTime = $this->TT->getDifferenceToStarttime( );
+          t3lib_div::devLog( '[INFO/ALL] end: ' . ( $endTime - $this->startTime ) . ' ms', $this->extKey, 0 );
         }
-        return $this->pi_wrapInBaseClass($this->content);
+        return $this->pi_wrapInBaseClass( $this->content );
         break;
+          // RETURN list of params and full qualified URL
       default:
-        // Continue process
+        // follow the workflow
     }
+      // SWITCH debugging tool
       // Debugging tools - part 1 of 2
 
 
@@ -446,64 +525,67 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       //
       // Remove all files in the html2ps cache
 
-    $path_to_html2ps        = t3lib_extMgm::extPath('pdfcontroller') . 'res/html2ps_v2043/public_html/';
-    $path_to_html2ps_cache  = $path_to_html2ps . 'cache/';
-    $path_to_html2ps_out    = $path_to_html2ps . 'out/';
-    $path_to_html2ps_temp   = $path_to_html2ps . 'temp/';
+    //$path_to_html2ps        = t3lib_extMgm::extPath( 'pdfcontroller' ) . 'res/html2ps_v2043/public_html/';
+    $path_to_html2ps_cache  = HTML2PS_DIR . 'cache/';
+    $path_to_html2ps_out    = HTML2PS_DIR . 'out/';
+    $path_to_html2ps_temp   = HTML2PS_DIR . 'temp/';
+    $arr_pathToDir          = array( $path_to_html2ps_cache, $path_to_html2ps_out, $path_to_html2ps_temp);
     // find /home/www/htdocs/typo3/typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/cache/* | xargs /bin/rm
     // find /home/www/htdocs/typo3/typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/cache/* -mtime -0,2
+
+      // Set rmCacheAll
     $rmCacheAll = $this->arr_extConf['rmCacheAll'];
-    switch(true)
+    switch( true )
     {
-      case(substr($rmCacheAll, 0 , 3) == '---'):
-      case(empty($rmCacheAll)):
+      case( substr( $rmCacheAll, 0 , 3 ) == '---' ):
+      case( empty( $rmCacheAll ) ):
         $rmCacheAll = 'always (recommended)';
         break;
     }
+      // Set rmCacheAll
+
+      // DRS - Development Reporting System
     if ($this->b_drs_all)
     {
       t3lib_div::devLog('[INFO/ALL] rmCacheAll: '. $rmCacheAll, $this->extKey, 0);
     }
-    switch($rmCacheAll)
+      // DRS - Development Reporting System
+
+      // SWITCH rmCacheAll
+    switch( $rmCacheAll )
     {
       case('always (recommended)'):
           // Remove all files
-          // #31191, 111213: Borries Jensen-
-        //$str_exec = 'find ' . $path_to_html2ps_cache . '* -type f | xargs /bin/rm -f';
-          // #31191, 111213: Borries Jensen+
-        $str_exec = 'find ' . $path_to_html2ps_cache . ' -type f | xargs /bin/rm -f';
-        if ($this->b_drs_all)
+          // LOOP directories
+        foreach( $arr_pathToDir as $pathToDir )
         {
-          t3lib_div::devLog('[INFO/ALL] exec(' . $str_exec . ')', $this->extKey, 0);
+            // #31191, 111213: Borries Jensen-
+          //$str_exec = 'find ' . $pathToDir . '* -type f | xargs /bin/rm -f';
+            // #31191, 111213: Borries Jensen+
+          $str_exec = 'find ' . $pathToDir . ' -type f | xargs /bin/rm -f';
+          if ($this->b_drs_all)
+          {
+            t3lib_div::devLog('[INFO/ALL] exec(' . $str_exec . ')', $this->extKey, 0);
+          }
+          exec($str_exec);
         }
-        exec($str_exec);
-          // #31191, 111213: Borries Jensen-
-        //$str_exec   = 'find ' . $path_to_html2ps_out . '* -type f | xargs /bin/rm -f';
-          // #31191, 111213: Borries Jensen+
-        $str_exec   = 'find ' . $path_to_html2ps_out . ' -type f | xargs /bin/rm -f';
-        if ($this->b_drs_all)
-        {
-          t3lib_div::devLog('[INFO/ALL] exec(' . $str_exec . ')', $this->extKey, 0);
-        }
-        exec($str_exec);
-        $str_exec   = 'find ' . $path_to_html2ps_temp . '* -type f | xargs /bin/rm -f';
-        if ($this->b_drs_all)
-        {
-          t3lib_div::devLog('[INFO/ALL] exec(' . $str_exec . ')', $this->extKey, 0);
-        }
-        exec($str_exec);
+          // LOOP directories
         break;
+          // Remove all files
       case('never'):
-        // Don't remove anything
+          // Don't remove anything
         break;
       default:
+          // RETURN error message
         $this->content =  'UNDEFINED ERROR<br />' .
                           'Sorry, this should never happen.<br />' .
                           'rmCacheAll has an undefined value: \'' . $rmCacheAll . '\'<br />' .
                           'Please send a report to the developer. <br />' .
                            __METHOD__ . ' (' . __LINE__ .')';
-        return $this->pi_wrapInBaseClass($this->content);
+        return $this->pi_wrapInBaseClass( $this->content );
+          // RETURN error message
     }
+      // SWITCH rmCacheAll
       // Remove all files in the html2ps cache
 
 
@@ -518,7 +600,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       t3lib_div::devLog('[INFO/PERFORMANCE] before leaving to html2ps', $this->extKey, 0);
       t3lib_div::devLog('[INFO/PERFORMANCE] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
     }
-    header('Location: ' . $str_url);
+    header( 'Location: ' . $str_url );
     exit;
       // Send data to html2ps
 
@@ -614,7 +696,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
 
 
   /**
- * access( ): The method checks, if current user is logged on the TYPO3 backend7
+ * access( ): The method checks, if current user is logged on the TYPO3 backend
  *            and if user is an administrator.
  *            If it is, the method defines the constant PDFCONTROLLER_ACCESS
  *
@@ -727,28 +809,30 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
     }
       // RETURN row is empty
 
-      // SWITCH admin
-    switch( true )
+      // RETURN be_user isn't admin
+    if( ! ( $row['admin'] == 1 ) )
     {
-      case( $row['admin'] == 1 ):
-        if ($this->b_drs_security)
-        {
-          $prompt = 'User ' . $row['realName'] . ' (' . $row['username'] . ') has administrator access!';
-          t3lib_div::devlog('[OK/SECURITY] ' . $prompt, $this->extKey, -1);
-        }
-        define( 'PDFCONTROLLER_ACCESS', true );
-        break;
-      default:
-        if ($this->b_drs_security)
-        {
-          $prompt = 'User ' . $row['realname'] . ' (' . $row['username'] . ') hasn\'t administrator access!';
-          t3lib_div::devlog('[INFO/SECURITY] ' . $prompt, $this->extKey, 0);
-          $prompt = 'User doesn\'t get access.';
-          t3lib_div::devlog('[OK/SECURITY] ' . $prompt, $this->extKey, -1);
-        }
+      if ($this->b_drs_security)
+      {
+        $prompt = 'User ' . $row['realname'] . ' (' . $row['username'] . ') hasn\'t administrator access!';
+        t3lib_div::devlog('[INFO/SECURITY] ' . $prompt, $this->extKey, 0);
+        $prompt = 'User doesn\'t get access.';
+        t3lib_div::devlog('[OK/SECURITY] ' . $prompt, $this->extKey, -1);
+      }
+      return;
     }
-      // SWITCH admin
+      // RETURN be_user isn't admin
 
+      // DRS - Devleopment Reporting System
+    if ($this->b_drs_security)
+    {
+      $prompt = 'User ' . $row['realName'] . ' (' . $row['username'] . ') has administrator access!';
+      t3lib_div::devlog('[OK/SECURITY] ' . $prompt, $this->extKey, -1);
+    }
+      // DRS - Devleopment Reporting System
+
+      // SUCCESS: PDFCONTROLLER_ACCESS will defined
+    define( 'PDFCONTROLLER_ACCESS', true );
     return;
   }
 
