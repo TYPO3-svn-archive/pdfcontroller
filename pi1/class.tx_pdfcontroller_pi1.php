@@ -217,25 +217,22 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       // Debugging tools - part 1 of 2
 
       // 120202, security, dwildt+
+      // DEFINE HTML2PS_DIR
     if( ! defined( 'HTML2PS_DIR' ) )
     {
       define( 'HTML2PS_DIR', $_SERVER['DOCUMENT_ROOT'] . 'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/' );
     };
+      // DEFINE HTML2PS_DIR
+      // Set global $access
     $this->access( );
-
       // 120202, security, dwildt+
 
-    $str_tool = $this->objFlexform->get_sheet_field($sheet='debugging', $field='debug_tools');
-    switch($str_tool)
+    $str_tool = $this->objFlexform->get_sheet_field( $sheet = 'debugging', $field = 'debug_tools' );
+    switch( $str_tool )
     {
-      case(1):
+      case( 1 ):
           // 120202, security, dwildt+
         $pathToSystemcheck = 'demo/systemcheck.php';
-        if ($this->b_drs_all)
-        {
-          $endTime = $this->TT->getDifferenceToStarttime();
-          t3lib_div::devLog('[INFO/ALL] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
-        }
         if( $this->bool_access )
         {
           require_once( HTML2PS_DIR . $pathToSystemcheck );
@@ -243,15 +240,20 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
         }
         $content = $content . '<h1 style="color:red;">'.$this->pi_getLL('error_access_h1').'</h1>';
         $content = $content . '<div style="color:red;font-weight:bold;">'.$this->pi_getLL('error_access_p').'</div>';
-        return $content;
-      case(2):
-          // 120202, security, dwildt+
-        $pathToForm = 'demo/index.php';
         if ($this->b_drs_all)
         {
           $endTime = $this->TT->getDifferenceToStarttime();
           t3lib_div::devLog('[INFO/ALL] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
         }
+        return $content;
+      case(2):
+          // 120202, security, dwildt+
+        if ($this->b_drs_all)
+        {
+          $endTime = $this->TT->getDifferenceToStarttime();
+          t3lib_div::devLog('[INFO/ALL] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
+        }
+        $pathToForm = 'demo/index.php';
         if( $this->bool_access )
         {
           require_once( HTML2PS_DIR . $pathToForm );
@@ -281,11 +283,11 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       //
       // RETURN piVars requirements failed
 
-    if(!$str_tool)
+    if( ! $str_tool )
     {
-      switch(true)
+      switch( true )
       {
-        case(!(isset($this->piVars))):
+        case( ! ( isset( $this->piVars ) ) ):
           $this->content = 'WARNING: piVars aren\'t set. But there isn\'t any PDF generating possible without piVars.<br />' .
             '<br />' . 
             'Please read the manual.<br />' . 
@@ -509,114 +511,6 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
     exit;
       // Send data to html2ps
 
-
-
-//////////////////////////////////////////////////////////////////////
-//
-// Fomer Code
-
-      //////////////////////////////////////////////////////////////////////
-      //
-      // Process html2ps
-
-      // Buffer output
-    ob_start();
-    require_once(t3lib_extMgm::extPath('pdfcontroller') . 'lib/html2ps.php');
-      // Process html2ps
-
-
-
-      //////////////////////////////////////////////////////////////////////
-      //
-      // Handle the result
-
-      // Try to get the PDF data
-    if ($this->b_drs_perform)
-    {
-      $endTime = $this->TT->getDifferenceToStarttime();
-      t3lib_div::devLog('[INFO/PERFORMANCE] Before $pipeline->destination->getContent(): '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
-      t3lib_div::devLog('[INFO/PERFORMANCE] This is the last prompt in case of success.', $this->extKey, 0);
-    }
-    $str_pdfData = $pipeline->destination->getContent();
-      // Try to get the PDF data
-
-      /***************************************************************
-       * 
-       *  Script will end below in case of success: The download dialog will open
-       * 
-      ***************************************************************/
-      // Handle the result
-
-
-
-      //////////////////////////////////////////////////////////////////////
-      //
-      // Error management (defined errors)
-
-      // RETURN ouptut buffer contains content
-    if (ob_get_length())
-    {
-        // Allocate the output buffer
-      $this->content = ob_get_contents();
-        // Stop to buffer the output and remove output buffer
-      ob_end_clean();
-      if ($this->b_drs_perform)
-      {
-        $endTime = $this->TT->getDifferenceToStarttime();
-        t3lib_div::devLog('[INFO/PERFORMANCE] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
-      }
-      return $this->pi_wrapInBaseClass($this->content);
-    }
-      // RETURN ouptut buffer contains content
-
-      // RETURN: PDF data isn't PDF data
-    if (substr($str_pdfData,0,4) != '%PDF')
-    {
-        // Stop to buffer the output and remove output buffer
-      ob_end_clean();
-        // Don't cache errors
-      $GLOBALS['TSFE']->set_no_cache();
-      $this->content = 'ERROR: html2ps delivers no PDF data.';
-      if ($this->b_drs_perform)
-      {
-        $endTime = $this->TT->getDifferenceToStarttime();
-        t3lib_div::devLog('[INFO/PERFORMANCE] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
-      }
-      return $this->pi_wrapInBaseClass($this->content);
-    }
-      // RETURN: PDF data isn't PDF data
-      // Error management (defined errors)
-
-
-
-      //////////////////////////////////////////////////////////////////////
-      //
-      // Error management (undefined error)
-
-      /***************************************************************
-       * 
-       *  If script will reach this point, an undefined error occurred!
-       * 
-      ***************************************************************/
-
-      // Stop to buffer the output and remove output buffer
-    ob_end_clean();
-
-    $this->content = 'UNDEFINED ERROR<br />' .
-                      'Sorry, this should never happen.<br />' . 
-                      'Please send a report to the developer. <br />' .
-                       __METHOD__ . ' (' . __LINE__ .')';
-
-      // DRS - Performance
-    if ($this->b_drs_perform)
-    {
-      $endTime = $this->TT->getDifferenceToStarttime();
-      t3lib_div::devLog('[INFO/PERFORMANCE] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
-    }
-      // DRS - Performance
-      // Error management (undefined error)
-
-    return $this->pi_wrapInBaseClass($this->content);
   }
 
 

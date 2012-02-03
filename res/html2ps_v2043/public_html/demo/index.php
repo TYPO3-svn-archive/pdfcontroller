@@ -196,7 +196,9 @@ div.comment {
 </p>
 
 <div style="width:500px;">
-<form action="html2ps.php" method="get" style="margin-top:12px">
+<!-- 120202, dwildt- //-->
+<!-- <form action="html2ps.php" method="get" style="margin-top:12px"> //-->
+<form action="" method="get" style="margin-top:12px">
 <fieldset>
 <legend>&nbsp;Source&nbsp;</legend>
 
