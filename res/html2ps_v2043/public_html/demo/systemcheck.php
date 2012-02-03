@@ -7,7 +7,7 @@ if( ! is_object ( $this ) )
         <h1>TYPO3 PDF Controller: no access!</h1>
         <p>Sorry, the current script won\'t executed without TYPO3.</p>
         <h1>TYPO3 PDF Controller: kein Zugangsrecht!</h1>
-        <p>Sorry, das Skript wird a&szlig;erhalb von TYPO3 nicht ausgef&uuml;hrt.</p>
+        <p>Sorry, das Skript wird au&szlig;erhalb von TYPO3 nicht ausgef&uuml;hrt.</p>
         '
       );
 }
