@@ -707,11 +707,13 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
 
 
   /**
- * access( ): 
+ * access( ): The method checks, if current user is logged on the TYPO3 backend7
+ *            and if user is an administrator.
+ *            If it is, the global $bool_access will set to true
  *
  * @return  void
  * @version 1.0.2
- * @since 1.02
+ * @since   1.0.2
  */
   private function access( )
   {
@@ -724,6 +726,8 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       {
         $prompt = 'No cookie with element be_typo_user.';
         t3lib_div::devlog('[INFO/SECURITY] ' . $prompt, $this->extKey, 0);
+        $prompt = 'User doesn\'t get access.';
+        t3lib_div::devlog('[OK/SECURITY] ' . $prompt, $this->extKey, -1);
       }
       return;
     }
@@ -736,6 +740,8 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       {
         $prompt = 'Cookie element be_typo_user is empty.';
         t3lib_div::devlog('[INFO/SECURITY] ' . $prompt, $this->extKey, 0);
+        $prompt = 'User doesn\'t get access.';
+        t3lib_div::devlog('[OK/SECURITY] ' . $prompt, $this->extKey, -1);
       }
       return;
     }
@@ -754,29 +760,33 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
     $row    = $GLOBALS['TYPO3_DB']->sql_fetch_assoc( $res );
       // Get backend user id
 
-      // RETURN row is empty
+      // RETURN user isn't logged on the backend
     if( ! is_array( $row ) )
     {
       if ($this->b_drs_security)
       {
-        $prompt = 'Row is empty. Maybe the cookie is a fake!';
+        $prompt = 'Row is empty. User isn\'t logged on the backend';
         t3lib_div::devlog('[WARN/SECURITY] ' . $prompt, $this->extKey, 2);
         $prompt = 'Query: ' . $query;
         t3lib_div::devlog('[INFO/SECURITY] ' . $prompt, $this->extKey, 0);
+        $prompt = 'User doesn\'t get access.';
+        t3lib_div::devlog('[OK/SECURITY] ' . $prompt, $this->extKey, -1);
       }
       return;
     }
-      // RETURN row is empty
+      // RETURN user isn't logged on the backend
 
       // RETURN ses_userid is empty
     if( empty( $row['ses_userid'] ) )
     {
       if ($this->b_drs_security)
       {
-        $prompt = 'ses_userid of current row is empty. Maybe someone try to screw the system!';
-        t3lib_div::devlog('[WARN/SECURITY] ' . $prompt, $this->extKey, 2);
+        $prompt = 'Undefined error: field ses_userid of current row is empty.';
+        t3lib_div::devlog('[ERROR/SECURITY] ' . $prompt, $this->extKey, 3);
         $prompt = 'Query: ' . $query;
         t3lib_div::devlog('[INFO/SECURITY] ' . $prompt, $this->extKey, 0);
+        $prompt = 'User doesn\'t get access.';
+        t3lib_div::devlog('[OK/SECURITY] ' . $prompt, $this->extKey, -1);
       }
       return;
     }
@@ -804,6 +814,8 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
         t3lib_div::devlog('[ERROR/SECURITY] ' . $prompt, $this->extKey, 3);
         $prompt = 'Query: ' . $query;
         t3lib_div::devlog('[INFO/SECURITY] ' . $prompt, $this->extKey, 0);
+        $prompt = 'User doesn\'t get access.';
+        t3lib_div::devlog('[OK/SECURITY] ' . $prompt, $this->extKey, -1);
       }
       return;
     }
@@ -825,6 +837,8 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
         {
           $prompt = 'User ' . $row['realname'] . ' (' . $row['username'] . ') hasn\'t administrator access!';
           t3lib_div::devlog('[INFO/SECURITY] ' . $prompt, $this->extKey, 0);
+          $prompt = 'User doesn\'t get access.';
+          t3lib_div::devlog('[OK/SECURITY] ' . $prompt, $this->extKey, -1);
         }
     }
       // SWITCH admin
