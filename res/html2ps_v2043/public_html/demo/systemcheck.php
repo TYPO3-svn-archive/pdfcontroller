@@ -1,28 +1,31 @@
 <?php
 
-  // 111216, security, dwildt+
+  // 120202, security, dwildt+
+$prompt = '
+            <h1>TYPO3 PDF Controller: no script access!</h1>
+            <p>Sorry, the current script won\'t executed without TYPO3.</p>
+            <h1>TYPO3 PDF Controller: kein Zugriff auf das Skript</h1>
+            <p>Sorry, das Skript wird au&szlig;erhalb von TYPO3 nicht ausgef&uuml;hrt.</p>
+          ';
+
+switch( true )
+{
+  case( ! defined( 'PDFCONTROLLER_ACCESS' ) ):
+    die( $prompt );
+    break;
+  case( ! PDFCONTROLLER_ACCESS ):
+    die( $prompt );
+    break;
+}
 if( ! is_object ( $this ) )
 {
-  die(  '
-        <h1>TYPO3 PDF Controller: no access!</h1>
-        <p>Sorry, the current script won\'t executed without TYPO3.</p>
-        <h1>TYPO3 PDF Controller: kein Zugangsrecht!</h1>
-        <p>Sorry, das Skript wird au&szlig;erhalb von TYPO3 nicht ausgef&uuml;hrt.</p>
-        '
-      );
 }
 
 if( ! $this->bool_access )
 {
-  die(  '
-        <h1>TYPO3 PDF Controller: no access!</h1>
-        <p>Sorry, the current script will executed  only, if you are logged on the backend of TYPO3 and if your are an administrator.</p>
-        <h1>TYPO3 PDF Controller: kein Zugangsrecht!</h1>
-        <p>Sorry, das Skript wird nur ausgef&uuml;hrt, wenn Du im Backend von TYPO3 angemeldet bist und wenn Du Administrator-Rechte hast.</p>
-        '
-      );
+  die( $prompt );
 }
-  // 111216, security, dwildt+
+  // 120202, security, dwildt+
 
   // 120202, security, dwildt-
 //require_once('../config.inc.php');

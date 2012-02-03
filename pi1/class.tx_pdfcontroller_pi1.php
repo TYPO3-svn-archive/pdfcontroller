@@ -740,6 +740,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
           t3lib_div::devlog('[OK/SECURITY] ' . $prompt, $this->extKey, -1);
         }
         $this->bool_access = true;
+        define( 'PDFCONTROLLER_ACCESS', true );
         break;
       default:
         if ($this->b_drs_security)
