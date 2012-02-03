@@ -1,18 +1,42 @@
 <?php
   // 111216, security, dwildt+
-if( ! isset ( $_COOKIE["be_typo_user"] ) )
+if( ! is_object ( $this ) )
 {
-  die( '
-     <h1>TYPO3 PDF Controller: no access!</h1>
-     <p>Sorry, the content of the current page is accessible only, if you are logged on the backend of TYPO3.</p>
-     <h1>TYPO3 PDF Controller: kein Zugangsrecht!</h1>
-     <p>Sorry, der Inhalt dieser Seite wird nur ausgeliefert, wenn Du im Backend von TYPO3 angemeldet bist.</p>
-    ' );
+  die(  '
+        <h1>TYPO3 PDF Controller: no access!</h1>
+        <p>Sorry, the current script won\'t executed without TYPO3.</p>
+        <h1>TYPO3 PDF Controller: kein Zugangsrecht!</h1>
+        <p>Sorry, das Skript wird au&szlig;erhalb von TYPO3 nicht ausgef&uuml;hrt.</p>
+        '
+      );
+}
+
+if( ! $this->bool_access )
+{
+  die(  '
+        <h1>TYPO3 PDF Controller: no access!</h1>
+        <p>Sorry, the current script will executed  only, if you are logged on the backend of TYPO3 and if your are an administrator.</p>
+        <h1>TYPO3 PDF Controller: kein Zugangsrecht!</h1>
+        <p>Sorry, das Skript wird nur ausgef&uuml;hrt, wenn Du im Backend von TYPO3 angemeldet bist und wenn Du Administrator-Rechte hast.</p>
+        '
+      );
 }
   // 111216, security, dwildt+
 
-// $Header: /cvsroot/html2ps/demo/index.php,v 1.5 2007/05/06 18:49:30 Konstantin Exp $
-  require_once('../config.inc.php');
+  // 120202, security, dwildt-
+//require_once('../config.inc.php');
+  // 120202, security, dwildt+
+switch( true )
+{
+  case( ! defined( 'HTML2PS_DIR' ) ):
+    require_once('../config.inc.php');
+    break;
+  case( defined( 'HTML2PS_DIR' ) ):
+    require_once(HTML2PS_DIR . 'config.inc.php');
+    break;
+}
+  // 120202, security, dwildt+
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
