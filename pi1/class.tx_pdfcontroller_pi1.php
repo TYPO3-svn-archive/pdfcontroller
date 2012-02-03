@@ -593,33 +593,26 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
 
       //////////////////////////////////////////////////////////////////////
       //
-      // Send data to html2ps
+      // Require html2ps
 
-    if ($this->b_drs_perform)
+    if ($this->b_drs_all)
     {
       $endTime = $this->TT->getDifferenceToStarttime();
-      t3lib_div::devLog('[INFO/PERFORMANCE] before leaving to html2ps', $this->extKey, 0);
+      t3lib_div::devLog('[INFO/PERFORMANCE] before requiring html2ps', $this->extKey, 0);
       t3lib_div::devLog('[INFO/PERFORMANCE] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
     }
-//    header( 'Location: ' . $str_url );
-//    exit;
       // Send data to html2ps
 
-//        if( defined( 'PDFCONTROLLER_ACCESS' ) )
-//        {
-            // DRS - Development Reporting System
-          if ($this->b_drs_all)
-          {
-            $endTime = $this->TT->getDifferenceToStarttime();
-            t3lib_div::devLog('[INFO/ALL] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
-          }
-            // DRS - Development Reporting System
-            // EXIT
-          $pathToHtml2ps = 'demo/html2ps.php';
-          require_once( HTML2PS_DIR . $pathToHtml2ps );
-          exit;
-            // EXIT
-//        }
+      // EXIT
+    if( ! defined( 'PDFCONTROLLER_ACCESS' ) )
+    {
+      define( 'PDFCONTROLLER_ACCESS', true );
+    }
+    $pathToHtml2ps = 'demo/html2ps.php';
+    require_once( HTML2PS_DIR . $pathToHtml2ps );
+    exit;
+      // EXIT
+      // Require html2ps
   }
 
 

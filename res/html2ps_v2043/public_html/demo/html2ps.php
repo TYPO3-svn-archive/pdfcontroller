@@ -7,6 +7,21 @@
 //  uherrmann, 111213: #32509 (PHP 5.3 compatibility)
 error_reporting(E_ALL ^ E_DEPRECATED);
 //  /#32509
+
+  // 120202, security, dwildt+
+$prompt = '
+            <h1>TYPO3 PDF Controller: no script access!</h1>
+            <p>Sorry, the current script won\'t executed without TYPO3.</p>
+            <h1>TYPO3 PDF Controller: kein Zugriff auf das Skript</h1>
+            <p>Sorry, das Skript wird au&szlig;erhalb von TYPO3 ausgef&uuml;hrt.</p>
+          ';
+
+if( ! defined( 'PDFCONTROLLER_ACCESS' ) )
+{
+  die( $prompt );
+}
+  // 120202, security, dwildt+
+
 ini_set("display_errors","1");
 if (ini_get("pcre.backtrack_limit") < 1000000) { ini_set("pcre.backtrack_limit",1000000); };
 @set_time_limit(10000);

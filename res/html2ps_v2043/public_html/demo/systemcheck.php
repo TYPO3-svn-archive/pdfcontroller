@@ -5,7 +5,7 @@ $prompt = '
             <h1>TYPO3 PDF Controller: no script access!</h1>
             <p>Sorry, the current script won\'t executed without TYPO3.</p>
             <h1>TYPO3 PDF Controller: kein Zugriff auf das Skript</h1>
-            <p>Sorry, das Skript wird au&szlig;erhalb von TYPO3 nicht ausgef&uuml;hrt.</p>
+            <p>Sorry, das Skript wird au&szlig;erhalb von TYPO3 ausgef&uuml;hrt.</p>
           ';
 
 if( ! defined( 'PDFCONTROLLER_ACCESS' ) )
