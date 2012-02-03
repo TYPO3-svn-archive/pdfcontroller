@@ -742,7 +742,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       // RETURN no session because cookie element is empty
 
       // Get backend user id
-    $select_fields  = '*';
+    $select_fields  = 'ses_userid';
     $from_table     = 'be_sessions';
     $where_clause   = 'ses_id = \'' . $_COOKIE["be_typo_user"] . '\'';
     $groupBy        = '';
@@ -783,7 +783,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       // RETURN ses_userid is empty
 
       // Get backend user
-    $select_fields  = '*';
+    $select_fields  = 'username, realName, admin';
     $from_table     = 'be_users';
     $where_clause   = 'uid = ' . ( int ) $row['ses_userid'];
     $groupBy        = '';
@@ -795,8 +795,41 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
     $row    = $GLOBALS['TYPO3_DB']->sql_fetch_assoc( $res );
       // Get backend user id
 
-    var_dump( __METHOD__ . ' (' . __LINE__ . ')', $query, $row );
-    //$this->bool_access = true;
+      // RETURN row is empty
+    if( ! is_array( $row ) )
+    {
+      if ($this->b_drs_security)
+      {
+        $prompt = 'Undefined error: row is empty.';
+        t3lib_div::devlog('[ERROR/SECURITY] ' . $prompt, $this->extKey, 3);
+        $prompt = 'Query: ' . $query;
+        t3lib_div::devlog('[INFO/SECURITY] ' . $prompt, $this->extKey, 0);
+      }
+      return;
+    }
+      // RETURN row is empty
+
+      // SWITCH admin
+    switch( true )
+    {
+      case( $row['admin'] == 1 ):
+        if ($this->b_drs_security)
+        {
+          $prompt = 'User ' . $row['realName'] . ' (' . $row['username'] . ') has administrator access!';
+          t3lib_div::devlog('[OK/SECURITY] ' . $prompt, $this->extKey, -1);
+        }
+        $this->bool_access = true;
+        break;
+      default:
+        if ($this->b_drs_security)
+        {
+          $prompt = 'User ' . $row['realname'] . ' (' . $row['username'] . ') hasn\'t administrator access!';
+          t3lib_div::devlog('[INFO/SECURITY] ' . $prompt, $this->extKey, 0);
+        }
+    }
+      // SWITCH admin
+
+    return;
   }
 
 
