@@ -258,6 +258,8 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
         {
           if( t3lib_div::_GP( 'script' ) == 'html2ps.php')
           {
+            var_dump( $_REQUEST );
+            exit;
             break;
           }
           require_once( HTML2PS_DIR . $pathToForm );
