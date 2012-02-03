@@ -22,6 +22,9 @@
             Cookies must be enabled.
           <![CDATA[</li>]]>
         <![CDATA[</ul>]]>
+        <![CDATA[<p>]]>
+          TYPO3 PDF Controller
+        <![CDATA[</p>]]>
       </label>
       <label index="error_flexform_h1">ERROR: flexform is empty</label>
       <label index="error_flexform_p">Please save the flexform (plugin) one time at least.</label>
@@ -43,6 +46,9 @@
             Cookies m<![CDATA[&uuml;]]>ssen erlaubt sein.
           <![CDATA[</li>]]>
         <![CDATA[</ul>]]>
+        <![CDATA[<p>]]>
+          TYPO3 PDF Controller
+        <![CDATA[</p>]]>
       </label>
       <label index="error_flexform_h1">FEHLER: Die Flexform ist leer.</label>
       <label index="error_flexform_p">Speichere die Flexform (Plugin) bitte ein Mal.</label>
