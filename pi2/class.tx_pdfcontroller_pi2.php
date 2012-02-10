@@ -2,7 +2,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2011 Dirk Wildt <http://wildt.at.die-netzmacher.de>
+ *  (c) 2011-2012 - Dirk Wildt <http://wildt.at.die-netzmacher.de>
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -63,7 +63,7 @@ require_once(PATH_tslib.'class.tslib_pibase.php');
  * @package    TYPO3
  * @subpackage    pdfcontroller
  *
- * @version 0.0.2
+ * @version 1.1.1
  */
 
 /**
@@ -155,7 +155,7 @@ class tx_pdfcontroller_pi2 extends tslib_pibase {
  * @param string    $content: The content of the PlugIn
  * @param array   $conf: The PlugIn Configuration
  * @return  string    The content that should be displayed on the website
- * @version 0.0.1
+ * @version 1.1.1
  * @since 0.0.1
  */
   public function main($content, $conf)
@@ -259,14 +259,15 @@ class tx_pdfcontroller_pi2 extends tslib_pibase {
       // Get flexform values
 
     $pid_converter  = $this->pi_flexform['data']['sDEF']['lDEF']['pid_converter']['vDEF'];
+
     $handleimage    = $this->pi_flexform['data']['sDEF']['lDEF']['handleimage']['vDEF'];
-    switch($handleimage)
+    switch( $handleimage )
     {
-      case(1):
+      case( 1 ):
         $imagefile = $this->pi_flexform['data']['sDEF']['lDEF']['imagepath']['vDEF'];
         $imagefile = 'uploads/tx_pdfcontroller/' . $imagefile;
         break;
-      case(0):
+      case( 0 ):
       default:
           // Take path for imagefile from TypoScript 
         $imagefile = $this->cObj->cObjGetSingle
@@ -275,6 +276,43 @@ class tx_pdfcontroller_pi2 extends tslib_pibase {
           $this->conf['flexform.']['sDEF.']['imagefile.']
         );
     }
+
+//    $buttonseo  = ( int ) $this->pi_flexform['data']['sDEF']['lDEF']['buttonseo']['vDEF'];
+//    $ts_value   = $this->conf['flexform.']['sDEF.']['buttonseo.']['value'];
+//    switch( $buttonseo )
+//    {
+//      case( 0 ):
+//      case( 1 ):
+//          // Overwrite TypoScript
+//        $this->conf['flexform.']['sDEF.']['buttonseo.']['value'] = $buttonseo;
+//        if( $this->b_drs_flexform || $this->b_drs_typoscript )
+//        {
+//          $prompt = 'sDEF.buttonseo is: ' . $buttonseo;
+//          t3lib_div::devLog('[FLEXFORM/INFO] ' . $prompt, $this->extKey, 0 );
+//          $prompt = 'flexform.sDEF.buttonseo.value is overwritten: ' . $buttonseo;
+//          t3lib_div::devLog('[TYPOSCRIPT/INFO] ' . $prompt, $this->extKey, 0 );
+//        }
+//        break;
+//      case( 2 ):
+//      default:
+//          // Do nothing
+//        if( $this->b_drs_flexform || $this->b_drs_typoscript )
+//        {
+//          $prompt = 'sDEF.buttonseo is: ' . $buttonseo;
+//          t3lib_div::devLog( '[FLEXFORM/INFO] ' . $prompt, $this->extKey, 0 );
+//          $prompt = 'flexform.sDEF.buttonseo.value is untouched: ' . $ts_value;
+//          t3lib_div::devLog( '[TYPOSCRIPT/INFO] ' . $prompt, $this->extKey, 0 );
+//        }
+//    }
+//    $ts_name   = $this->conf['flexform.']['sDEF.']['buttonseo'];
+//    $ts_conf   = $this->conf['flexform.']['sDEF.']['buttonseo.'];
+//    $buttonseo = $this->cObj->cObjGetSingle( $ts_name, $ts_conf );
+//    if( $this->b_drs_typoscript )
+//    {
+//      $prompt = '->cObjGetSingle( buttonseo ) is: ' . $buttonseo;
+//      t3lib_div::devLog( '[TYPOSCRIPT/INFO] ' . $prompt, $this->extKey, 0 );
+//    }
+
     $wrap_in_pibase = $this->pi_flexform['data']['sDEF']['lDEF']['wrap_in_pibase']['vDEF'];
       // Get flexform values
 
@@ -297,13 +335,13 @@ class tx_pdfcontroller_pi2 extends tslib_pibase {
       // Get TypoScript configuration as one dimensional array
       // 100921, dwildt, Bugfix in t3lib_BEfunc::implodeTSParams
       // See http://bugs.typo3.org/view.php?id=15757 implodeTSParams(): numeric keys will be renumbered
-    $conf_oneDim      = t3lib_BEfunc::implodeTSParams($this->conf);
+    $conf_oneDim      = t3lib_BEfunc::implodeTSParams( $this->conf );
       // Get TypoScript configuration as one dimensional array
 
       // Replacement
     $marker       = array('###IMAGEFILE###',  '###PARAMETER###',  '###ADDITIONALPARAMS###');
     $values       = array($imagefile,         $pid_converter,     $additionalParams);
-    $conf_oneDim  = str_replace($marker, $values, $conf_oneDim);
+    $conf_oneDim  = str_replace( $marker, $values, $conf_oneDim );
 //      // Debugging
 //    $this->content = '<pre style="text-align:left;">' . var_export($conf_oneDim, 1) . '</pre>';
 //    return $this->pi_wrapInBaseClass($this->content);
@@ -313,11 +351,73 @@ class tx_pdfcontroller_pi2 extends tslib_pibase {
 
 
 
+//      ////////////////////////////////////////////////////////////////////////
+//      //
+//      // Add rel="nofollow"
+//
+//    $ATagParamsNew  = null;
+//    $ATagParamsCur  = null;
+//    if( isset ( $this->conf['button.']['imageLinkWrap.']['typolink.']['ATagParams'] ) )
+//    {
+//      $ATagParamsCur = $this->conf['button.']['imageLinkWrap.']['typolink.']['ATagParams'];
+//    }
+//    $rel_nofollow = 'rel="nofollow"';
+//    if( $buttonseo )
+//    {
+//      if( $this->b_drs_typoscript )
+//      {
+//        $prompt = 'buttonseo is true.';
+//        t3lib_div::devLog( '[TYPOSCRIPT/INFO] ' . $prompt, $this->extKey, 0 );
+//      }
+//      if( ! empty( $ATagParamsCur ) )
+//      {
+//        $pos = strpos( $ATagParamsCur, $rel_nofollow );
+//        if ( $pos === false )
+//        {
+//          $ATagParamsNew = $ATagParamsCur . ' ' . $rel_nofollow;
+//        }
+//      }
+//      if( empty( $ATagParamsCur ) )
+//      {
+//        $ATagParamsNew = $rel_nofollow;
+//      }
+//      if( $ATagParamsCur != $ATagParamsNew )
+//      {
+//        $this->conf['button.']['imageLinkWrap.']['typolink.']['ATagParams'] = $ATagParamsNew;
+//        if( $this->b_drs_typoscript )
+//        {
+//          $prompt = 'button.imageLinkWrap.typolink.ATagParams is moved from ' .
+//                    '\'' . $ATagParamsCur . '\' to \'' . $ATagParamsNew . '\'';
+//          t3lib_div::devLog( '[TYPOSCRIPT/INFO] ' . $prompt, $this->extKey, 0 );
+//        }
+//      }
+//      if( $ATagParamsCur == $ATagParamsNew )
+//      {
+//        if( $this->b_drs_typoscript )
+//        {
+//          $prompt = 'button.imageLinkWrap.typolink.ATagParams is untouched: ' .
+//                    '\'' . $ATagParamsCur . '\'';
+//          t3lib_div::devLog( '[TYPOSCRIPT/INFO] ' . $prompt, $this->extKey, 0 );
+//        }
+//      }
+//    }
+//    if( ! $buttonseo )
+//    {
+//      if( $this->b_drs_typoscript )
+//      {
+//        $prompt = 'buttonseo is false. Nothing will do.';
+//        t3lib_div::devLog( '[TYPOSCRIPT/INFO] ' . $prompt, $this->extKey, 0 );
+//      }
+//    }
+//      // Add rel="nofollow"
+
+    
+
       ////////////////////////////////////////////////////////////////////////
       //
       // Wrap the Pdf Controller button
 
-    $conf_button = $this->cObj->cObjGetSingle($this->conf['button'], $this->conf['button.']);
+    $conf_button = $this->cObj->cObjGetSingle( $this->conf['button'], $this->conf['button.'] );
       // Wrap the Pdf Controller button
 
 
@@ -372,7 +472,7 @@ class tx_pdfcontroller_pi2 extends tslib_pibase {
  * Set the booleans for Warnings, Errors and DRS - Development Reporting System
  *
  * @return  void
- * @version 0.0.2
+ * @version 1.1.1
  * @since 0.0.2
  */
   private function init_drs()
@@ -400,14 +500,15 @@ class tx_pdfcontroller_pi2 extends tslib_pibase {
 
     if ($this->arr_extConf['drs_mode'] == 'All')
     {
-      $this->b_drs_all          = true;
-      $this->b_drs_error        = true;
-      $this->b_drs_warn         = true;
-      $this->b_drs_info         = true;
-      $this->b_drs_flexform     = true;
-      $this->b_drs_javascript   = true;
-      $this->b_drs_perform      = true;
-      $this->b_drs_templating   = true;
+      $this->b_drs_all        = true;
+      $this->b_drs_error      = true;
+      $this->b_drs_warn       = true;
+      $this->b_drs_info       = true;
+      $this->b_drs_flexform   = true;
+      $this->b_drs_javascript = true;
+      $this->b_drs_perform    = true;
+      $this->b_drs_templating = true;
+      $this->b_drs_typoscript = true;
       t3lib_div::devlog('[INFO/DRS] DRS - Development Reporting System:<br />'.$this->arr_extConf['drs_mode'], $this->extKey, 0);
     }
     if ($this->arr_extConf['drs_mode'] == 'Flexform')
@@ -417,6 +518,7 @@ class tx_pdfcontroller_pi2 extends tslib_pibase {
       $this->b_drs_info       = true;
       $this->b_drs_flexform   = true;
       $this->b_drs_perform    = true;
+      $this->b_drs_typoscript = true;
       t3lib_div::devlog('[INFO/DRS] DRS - Development Reporting System:<br />'.$this->arr_extConf['drs_mode'], $this->extKey, 0);
     }
     if ($this->arr_extConf['drs_mode'] == 'Performance')

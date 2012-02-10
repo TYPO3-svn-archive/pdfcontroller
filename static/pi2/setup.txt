@@ -17,14 +17,22 @@ plugin.tx_pdfcontroller_pi2 {
       typolink {
         parameter         = ###PARAMETER###
         additionalParams  = ###ADDITIONALPARAMS###
+        ATagParams        = rel="nofollow"
       }
     }
   }
   flexform {
     sDEF {
+        // Path to the image file with the PDF icon
       imagefile = TEXT
       imagefile {
         value = EXT:pdfcontroller/res/images/pdf.png
+      }
+        // SEO for the button link
+      buttonseo = TEXT
+      buttonseo {
+          // [Boolean] 1 (default): <a rel="nofollow" ... 0: <a ...
+        value = 1
       }
     }
   }
@@ -66,6 +74,7 @@ plugin.tx_pdfcontroller_pi2 {
                 returnLast      = url
               }
             }
+            ATagParams = rel="nofollow"
           }
         }
       }
@@ -91,6 +100,7 @@ plugin.tx_pdfcontroller_pi2 {
               insertData = 1
             }
             addQueryString  = 1
+            ATagParams      = rel="nofollow"
             //returnLast      = url
           }
         }

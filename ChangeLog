@@ -1,5 +1,7 @@
 1.1.1
   12-02-10
+  New Feature
+  * #33851: SEO rel="nofollow"
   Improvements
   * #00000: pi1/flexform_locallang.xml
 
