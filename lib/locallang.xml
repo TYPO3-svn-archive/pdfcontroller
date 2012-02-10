@@ -19,8 +19,16 @@
         </div>
         <ul style="list-style:outside;">
           <li>
+            PDF controller: homepage<br />
+            <a href="http://typo3-pdfcontroller.de/en/"
+              style="text-decoration:underline;"
+              alt="TYPO3 PDF Controller"
+              title="TYPO3 PDF Controller"
+              target="_blank">Homepage and forum</a>
+          </li>
+          <li>
             PDF controller: the developer<br />
-            <a href="http://die-netzmacher.de/" 
+            <a href="http://die-netzmacher.de/"
               style="text-decoration:underline;"
               alt="Die Netzmacher - Internet ist Handwerk"
               title="Die Netzmacher - Internet ist Handwerk"
@@ -43,6 +51,14 @@
               alt="Die Netzmacher - Internet ist Handwerk" /></a>
         </div>
         <ul style="list-style:outside;">
+          <li>
+            PDF Controller: Website<br />
+            <a href="http://typo3-pdfcontroller.de/"
+              style="text-decoration:underline;"
+              alt="TYPO3 PDF Controller"
+              title="TYPO3 PDF Controller"
+              target="_blank">Website und Forum</a>
+          </li>
           <li>
             PDF-Controller: die Entwickler<br />
             <a href="http://die-netzmacher.de/" 
