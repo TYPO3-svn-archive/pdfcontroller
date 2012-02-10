@@ -28,12 +28,6 @@ plugin.tx_pdfcontroller_pi2 {
       imagefile {
         value = EXT:pdfcontroller/res/images/pdf.png
       }
-        // SEO for the button link
-      buttonseo = TEXT
-      buttonseo {
-          // [Boolean] 1 (default): <a rel="nofollow" ... 0: <a ...
-        value = 1
-      }
     }
   }
   master_templates {
@@ -101,7 +95,6 @@ plugin.tx_pdfcontroller_pi2 {
             }
             addQueryString  = 1
             ATagParams      = rel="nofollow"
-            //returnLast      = url
           }
         }
       }
