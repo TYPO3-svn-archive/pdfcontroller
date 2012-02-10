@@ -8,8 +8,8 @@
     <languageKey index="default" type="array">
 
       <label index="sheet_addcontent">Extra content</label>
-      <label index="sheet_addcontent.headerhtml">Header (HTML code)</label>
-      <label index="sheet_addcontent.footerhtml">Footer (HTML code)</label>
+      <label index="sheet_addcontent.headerhtml">Header (HTML/XHTML: please close every tag)</label>
+      <label index="sheet_addcontent.footerhtml">Footer (HTML/XHTML: please close every tag)</label>
       <label index="sheet_addcontent.toc">Table of contents</label>
       <label index="sheet_addcontent.toc.0">Disabled</label>
       <label index="sheet_addcontent.toc.1">Add it!</label>
@@ -17,7 +17,7 @@
       <label index="sheet_addcontent.toc-location.0">First page</label>
       <label index="sheet_addcontent.toc-location.1">Last page</label>
       <label index="sheet_addcontent.toc-location.2">Placeholder</label>
-      <label index="sheet_addcontent.watermarkhtml">Watermark (HTML code)</label>
+      <label index="sheet_addcontent.watermarkhtml">Watermark (string)</label>
 
       <label index="sheet_debugging">Debugging</label>
       <label index="sheet_debugging.debug_tools">Debugging tools (the tools will displayed in the frontend, a PDF file won't generated) - for admins only!</label>
@@ -141,23 +141,23 @@
     </languageKey>
     <languageKey index="de" type="array">
 
-      <label index="sheet_addcontent">Inhalt hinzufügen</label>
-      <label index="sheet_addcontent.headerhtml">Kopfzeile (HTML)</label>
-      <label index="sheet_addcontent.footerhtml">Fußzeile (HTML)</label>
+      <label index="sheet_addcontent">Inhalt hinzuf<![CDATA[&uuml;]]>gen</label>
+      <label index="sheet_addcontent.headerhtml">Kopfzeile (HTML/XHTML: Bitte jeden Tag schlie<![CDATA[&szlig;]]>en)</label>
+      <label index="sheet_addcontent.footerhtml">Fu<![CDATA[&szlig;]]>zeile (HTML/XHTML: Bitte jeden Tag schließen)</label>
       <label index="sheet_addcontent.toc">Inhaltsverzeichnis</label>
       <label index="sheet_addcontent.toc.0">Deaktiviert</label>
-      <label index="sheet_addcontent.toc.1">Hinzufügen</label>
+      <label index="sheet_addcontent.toc.1">Hinzuf<![CDATA[&uuml;]]>gen</label>
       <label index="sheet_addcontent.toc-location">Position</label>
       <label index="sheet_addcontent.toc-location.0">Erste Seite</label>
       <label index="sheet_addcontent.toc-location.1">Letzte Seite</label>
       <label index="sheet_addcontent.toc-location.2">Platzhalter</label>
-      <label index="sheet_addcontent.watermarkhtml">Wasserzeichen (HTML)</label>
+      <label index="sheet_addcontent.watermarkhtml">Wasserzeichen (Zeichenkette)</label>
 
       <label index="sheet_debugging">Debugging</label>
-      <label index="sheet_debugging.debug_tools">Werkzeuge (werden im Frontend angezeigt, ein PDF wird dann nicht generiert) - nur für Administratoren!</label>
+      <label index="sheet_debugging.debug_tools">Werkzeuge (werden im Frontend angezeigt, ein PDF wird dann nicht generiert) - nur f<![CDATA[&uuml;]]>r Administratoren!</label>
       <label index="sheet_debugging.debug_tools.0">Kein Werkzeug verwenden (Standardeinstellung)</label>
-      <label index="sheet_debugging.debug_tools.1">Frontend: System-Voraussetzungen prüfen</label>
-      <label index="sheet_debugging.debug_tools.2">Frontend: Test-Formular für Deine URL mit Deinen Parametern</label>
+      <label index="sheet_debugging.debug_tools.1">Frontend: System-Voraussetzungen pr<![CDATA[&uuml;]]>fen</label>
+      <label index="sheet_debugging.debug_tools.2">Frontend: Test-Formular f<![CDATA[&uuml;]]>r Deine URL mit Deinen Parametern</label>
       <label index="sheet_debugging.debug_tools.3">Frontend: html2ps Dokumentation</label>
       <label index="sheet_debugging.debug_tools.4">Frontend: Liste der Parameter, die an html2ps gesendet werden</label>
       <label index="sheet_debugging.debugbox">Zeige Rahmen um PDF Inhaltszellen</label>
@@ -166,11 +166,11 @@
       <label index="sheet_debugging.debugnoclip">Clipping</label>
       <label index="sheet_debugging.debugnoclip.0">Aktiviert (Standardeinstellung)</label>
       <label index="sheet_debugging.debugnoclip.1">Deaktiviert (Debug-Modus)</label>
-      <label index="sheet_debugging.smartpagebreak">Algorythmus für "intelligenten" Seitenumbruch</label>
+      <label index="sheet_debugging.smartpagebreak">Algorythmus f<![CDATA[&uuml;]]>r "intelligenten" Seitenumbruch</label>
       <label index="sheet_debugging.smartpagebreak.0">Deaktiviert (Standardeinstellung)</label>
       <label index="sheet_debugging.smartpagebreak.1">Aktiviert (Debug-Modus)</label>
-      <label index="sheet_debugging.imagequality_workaround">PS2PDF-Problem mit der Bildqualität</label>
-      <label index="sheet_debugging.imagequality_workaround.0">Ich habe kein Problem mit der Bildqualität (Standardeinstellung)</label>
+      <label index="sheet_debugging.imagequality_workaround">PS2PDF-Problem mit der Bildqualit<![CDATA[&auml;]]>t</label>
+      <label index="sheet_debugging.imagequality_workaround.0">Ich habe kein Problem mit der Bildqualit<![CDATA[&auml;]]>t (Standardeinstellung)</label>
       <label index="sheet_debugging.imagequality_workaround.1">Ich versuche es mit dem Workaround (Debug-Modus)</label>
       <label index="sheet_debugging.pageborder">Zeige Seiten-Rahmen</label>
       <label index="sheet_debugging.pageborder.0">Deaktiviert (Standardeinstellung)</label>
@@ -212,8 +212,8 @@
       <label index="sheet_input.pixels.1">800 Pixel</label>
       <label index="sheet_input.pixels.2">1024 Pixel</label>
       <label index="sheet_input.pixels.3">1280 Pixel</label>
-      <label index="sheet_input.scalepoints">Verhältnis Pixel zu Point</label>
-      <label index="sheet_input.scalepoints.0">Lass es unverändert (empfohlen)</label>
+      <label index="sheet_input.scalepoints">Verh<![CDATA[&auml;]]>ltnis Pixel zu Point</label>
+      <label index="sheet_input.scalepoints.0">Lass es unver<![CDATA[&auml;]]>ndert (empfohlen)</label>
 
       <label index="sheet_properties">Einstellungen</label>
       <label index="sheet_properties.renderimages">Bilder</label>
@@ -253,11 +253,11 @@
       <label index='sheet_output.method.1'>PDF (PDFLIB)</label>
       <label index='sheet_output.method.2'>PDF (FPDF) (empfohlen)</label>
       <label index='sheet_output.method.3'>Bild (PNG) - beta</label>
-      <label index="sheet_output.landscape">Seitenverhältnis</label>
+      <label index="sheet_output.landscape">Seitenverh<![CDATA[&auml;]]>ltnis</label>
       <label index='sheet_output.landscape.0'>Hochformat</label>
       <label index='sheet_output.landscape.1'>Querformat</label>
       <label index="sheet_output.pdfversion">PDF Version</label>
-      <label index='sheet_output.pdfversion.0'>PDF 1.2 (wird von PDFLIB nicht unterstützt!)</label>
+      <label index='sheet_output.pdfversion.0'>PDF 1.2 (wird von PDFLIB nicht unterst<![CDATA[&uuml;]]>tzt!)</label>
       <label index='sheet_output.pdfversion.1'>PDF 1.3 / Acrobat Reader 4 (empfohlen)</label>
       <label index='sheet_output.pdfversion.2'>PDF 1.4 / Acrobat Reader 5</label>
       <label index='sheet_output.pdfversion.3'>PDF 1.5 / Acrobat Reader 6</label>
