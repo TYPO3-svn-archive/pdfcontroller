@@ -747,13 +747,35 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       // Get backend user id
     $select_fields  = 'ses_userid';
     $from_table     = 'be_sessions';
-    $where_clause   = 'ses_id = \'' . $GLOBALS['TYPO3_DB']->fullQuoteStr( $_COOKIE["be_typo_user"] ) . '\'';
+      // 120223, bjensen-
+    //$where_clause   = 'ses_id = \'' . $GLOBALS['TYPO3_DB']->fullQuoteStr( $_COOKIE["be_typo_user"] ) . '\'';
+      // 120223, bjensen+
+    $where_clause   = 'ses_id = ' . $GLOBALS['TYPO3_DB']->fullQuoteStr( $_COOKIE["be_typo_user"], $from_table );
     $groupBy        = '';
     $orderBy        = '';
     $limit          = '';
 
     $query  = $GLOBALS['TYPO3_DB']->SELECTquery( $select_fields, $from_table, $where_clause, $groupBy, $orderBy, $limit );
     $res    = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $select_fields, $from_table, $where_clause, $groupBy, $orderBy, $limit );
+
+      // 120223, dwildt+
+    $error = $GLOBALS['TYPO3_DB']->sql_error( );
+    if( $error )
+    {
+      $prompt = '
+                  <h1>SQL ERROR</h1>
+                  <h2>TYPO3 PDF Controller</h2>
+                  <p>SQL error message: ' . $error . '</p>
+                  <p>SQL query: ' . $query . '</p>
+                  <p>Please post the error in the
+                    <a href="http://typo3-pdfcontroller.de/">
+                      TYPO3 PDF Controller forum</a>
+                  </p>
+                ';
+      die( $prompt );
+    }
+      // 120223, dwildt+
+
     $row    = $GLOBALS['TYPO3_DB']->sql_fetch_assoc( $res );
       // Get backend user id
 

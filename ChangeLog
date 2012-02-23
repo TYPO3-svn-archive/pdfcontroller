@@ -1,3 +1,9 @@
+1.1.2
+  12-02-23
+  Bugfix
+  * #00000: SQL error in the query in context with development tools
+            Thanks to Borries Jensen, who send the Bugfix.
+
 1.1.1
   12-02-10
   New Feature
