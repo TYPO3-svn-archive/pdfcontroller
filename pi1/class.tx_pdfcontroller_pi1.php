@@ -569,6 +569,14 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
             t3lib_div::devLog('[INFO/ALL] exec(' . $str_exec . ')', $this->extKey, 0);
           }
           exec($str_exec);
+            // 120223, dwildt+
+          $str_exec = 'touch ' . $pathToDir . 'index.html';
+          if ($this->b_drs_all)
+          {
+            t3lib_div::devLog('[INFO/ALL] exec(' . $str_exec . ')', $this->extKey, 0);
+          }
+          exec($str_exec);
+            // 120223, dwildt+
         }
           // LOOP directories
         break;

@@ -3,6 +3,8 @@
   Bugfix
   * #00000: SQL error in the query in context with development tools
             Thanks to Borries Jensen, who send the Bugfix.
+  * #00000: After clearing the dirs cache, out and temp each folder get
+            a file index.html
 
 1.1.1
   12-02-10
