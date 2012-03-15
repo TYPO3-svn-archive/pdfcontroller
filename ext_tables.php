@@ -109,8 +109,15 @@ if (!defined ('TYPO3_MODE'))  die ('Access denied.');
       $TCA['pages']['columns']['module']['config']['items'][] =
          array('PDF Controller: Button', 'pdfctrlb', t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon.gif');
   }
-  $ICON_TYPES['pdfctrlg'] = array('icon' => t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon.gif');
-  $ICON_TYPES['pdfctrlb'] = array('icon' => t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon.gif');
+  // #34858, 120315, Rene Staecker-
+  //$ICON_TYPES['pdfctrlg'] = array('icon' => t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon.gif');
+  //$ICON_TYPES['pdfctrlb'] = array('icon' => t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon.gif');
+  // #34858, 120315, Rene Staecker-
+  // #34858, 120315, Rene Staecker+
+  t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-pdfctrlg', '../typo3conf/ext/pdfcontroller/ext_icon.gif');
+  t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-pdfctrlb', '../typo3conf/ext/pdfcontroller/ext_icon.gif');
+  // #34858, 120315, Rene Staecker+
+
     // Add pagetree icons
 
 
