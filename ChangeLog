@@ -2,6 +2,7 @@
   12-03-16
   Bugfix
   * #34939: Get rid of PHP notice logs
+            Thanks to Alexander Krimm for the bug report.
 
 1.1.3
   12-03-15
