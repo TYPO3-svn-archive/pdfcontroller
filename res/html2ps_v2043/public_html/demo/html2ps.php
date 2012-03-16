@@ -5,7 +5,9 @@
 //var_dump($_GET);
 //return;
 //  uherrmann, 111213: #32509 (PHP 5.3 compatibility)
-error_reporting(E_ALL ^ E_DEPRECATED);
+// #34939, 120316, dwildt-
+//error_reporting(E_ALL ^ E_DEPRECATED);
+// #34939, 120316, dwildt-
 //  /#32509
 
   // 120202, security, dwildt+
