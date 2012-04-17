@@ -26,6 +26,7 @@
       <label index="sheet_debugging.debug_tools.2">Frontend: Test form for your URL and your parameters</label>
       <label index="sheet_debugging.debug_tools.3">Frontend: html2ps documentation</label>
       <label index="sheet_debugging.debug_tools.4">Frontend: list with parameters, which will send to html2ps</label>
+      <label index="sheet_debugging.debug_tools.5">Frontend: Don't suppress PHP error messages</label>
       <label index="sheet_debugging.debugbox">Show content boxes</label>
       <label index="sheet_debugging.debugbox.0">Disabled (default)</label>
       <label index="sheet_debugging.debugbox.1">Enabled (debugging)</label>
@@ -160,6 +161,7 @@
       <label index="sheet_debugging.debug_tools.2">Frontend: Test-Formular für Deine URL mit Deinen Parametern</label>
       <label index="sheet_debugging.debug_tools.3">Frontend: html2ps Dokumentation</label>
       <label index="sheet_debugging.debug_tools.4">Frontend: Liste der Parameter, die an html2ps gesendet werden</label>
+      <label index="sheet_debugging.debug_tools.5">Frontend: PHP-Fehlermeldungen nicht unterdrücken</label>
       <label index="sheet_debugging.debugbox">Zeige Rahmen um PDF Inhaltszellen</label>
       <label index="sheet_debugging.debugbox.0">Deaktiviert (Standardeinstellung)</label>
       <label index="sheet_debugging.debugbox.1">Aktiviert (Debug-Modus)</label>

@@ -32,6 +32,10 @@
                 <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_debugging.debug_tools.4</numIndex>
                 <numIndex index="1">4</numIndex>
               </numIndex>
+              <numIndex index="5" type="array">
+                <numIndex index="0">LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_debugging.debug_tools.5</numIndex>
+                <numIndex index="1">5</numIndex>
+              </numIndex>
             </items>
             <default>0</default>
             <maxitems>1</maxitems>

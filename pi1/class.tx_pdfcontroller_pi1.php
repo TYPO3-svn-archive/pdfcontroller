@@ -95,13 +95,13 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
   var $extKey = 'pdfcontroller';
     // The extension key.
   var $pi_checkCHash = true;
-  
+
     // [integer] The current typeNum given by the current URL
   var $param_typeNum  = 0;
     // [string] current page object: page | print | pdf
   var $str_pageObject = 'page';
 
-  
+
 
 
 
@@ -325,9 +325,18 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
 
           // BREAK follow the workflow
         break;
+          // 120202, #36228, uherrmann+
+      case(5):
+        break;
+          // 120202, #36228, uherrmann+
       case(0):
       case(4):
       default:
+          // 120202, #36228, uherrmann+
+        ini_set('display_errors', 0);
+        error_reporting(NONE);
+        break;
+          // 120202, #36228, uherrmann+
         // Follow the workflow
     }
       // SWITCH debugging tool
@@ -430,8 +439,8 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
 
     $this->piVars['convert']        = 'Convert File';
     $this->piVars['process_mode']   = 'single';
-    
-    
+
+
     $this->piVars['encoding']       = '';
     $this->piVars['headerhtml']     = '';
     $this->piVars['footerhtml']     = '';
@@ -518,7 +527,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
         // follow the workflow
     }
       // SWITCH debugging tool
-      // Debugging tools - part 1 of 2
+      // Debugging tools - part 2 of 2
 
 
 
