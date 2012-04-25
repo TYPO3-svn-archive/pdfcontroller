@@ -228,7 +228,9 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       // 120202, security, dwildt+
 
       // Get the selected tool out of the flexform
-    $str_tool = $this->objFlexform->get_sheet_field( $sheet = 'debugging', $field = 'debug_tools' );
+    $sheet    = 'debugging';
+    $field    = 'debug_tools';
+    $str_tool = $this->objFlexform->get_sheet_field( $sheet, $field );
 
       // SWITCH debugging tool
     switch( $str_tool )
@@ -369,7 +371,10 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
         // RETURN piVars isn't set
 
         // RETURN piVars['URL'] isn't set
-      if( ! ( isset( $this->piVars['URL'] ) ) )
+        // 120425, jgoetze, 1-
+      //if( ! ( isset( $this->piVars['URL'] ) ) )
+        // 120425, jgoetze, 1+
+      if( ! ( isset( $this->piVars['URL'] ) ) && ! ( isset( $this->piVars['batch'] ) ) )
       {
         $this->content = 'WARNING: piVars[URL] isn\'t set. But there isn\'t any PDF generating possible without this piVar.<br />' .
           '<br />' .
@@ -386,7 +391,10 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
         // RETURN piVars['URL'] isn't set
 
         // RETURN piVars['URL'] is empty
-      if( empty( $this->piVars['URL'] ) )
+        // 120425, jgoetze, 1-
+      //if( empty( $this->piVars['URL'] ) )
+        // 120425, jgoetze, 1+
+      if( empty( $this->piVars['URL'] ) && empty( $this->piVars['batch'] ) )
       {
         $this->content = 'WARNING: piVars[URL] is empty. But it isn\'t possible to generate PDF without this piVar..<br />' .
           '<br />' .
@@ -438,9 +446,12 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       // Add to $_REQUEST piVars
 
     $this->piVars['convert']        = 'Convert File';
-    $this->piVars['process_mode']   = 'single';
+      // 120425, jgoetze, 1-
+    //$this->piVars['process_mode']   = 'single';
+      // 120425, jgoetze, 1+
+    $this->piVars['process_mode']   = $this->piVars['process_mode'] ? $this->piVars['process_mode'] : 'single';
 
-
+    
     $this->piVars['encoding']       = '';
     $this->piVars['headerhtml']     = '';
     $this->piVars['footerhtml']     = '';
@@ -488,6 +499,14 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
         case( $key === 'URL' ):
           $params = $params . '&' . $key . '=' . rawurlencode($value);
           break;
+          // 120425, jgoetze, 6+, begin
+        case( $key === 'batch' ):
+          foreach($value as $batchUrl)
+          {
+            $params = $params . '&' . $key . '[]=' . rawurlencode($batchUrl);
+          }
+          break;
+          // 120425, jgoetze, 6+, end
         default:
           $params = $params . '&' . $key . '=' . $value;
           break;

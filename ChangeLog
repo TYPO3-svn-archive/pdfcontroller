@@ -1,9 +1,11 @@
-1.1.5
-  12-04-17
-  Bugfix
-  * #36228: Enabling displayErrors in Install Tool leads to an Uncaught TYPO3 Exception
-            Thanks to Thomas Kakuschke for the bug report.
-  Ulfried Herrmann  http://herrmann.at.die-netzmacher.de
+1.2.0
+  12-04-25
+  New features
+  * #36513: Enable Batch Processing
+            Coded by Jonas Goetze  http://forge.typo3.org/users/4345
+  * #36228: Display PHP error messages – configurable by the plugin / flexform
+            Thanks to Thomas Kakuschke for the suggestion.
+            Ulfried Herrmann  http://herrmann.at.die-netzmacher.de
 
 1.1.4
   12-03-16
