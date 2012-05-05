@@ -787,11 +787,34 @@ class CheckGDFormat extends CheckBinaryRequired {
     };
 
     $gd_info = gd_info();
-    if (!$gd_info[$this->_getInfoKey()]) {
-var_dump( __METHOD__, __LINE__,  $gd_info );
-      $this->setMessage("No ".$this->_getFormatName()." support, some images will not be displayed");
-      return;
-    };
+// #36857, dwildt, 120505, 20+
+    switch( true )
+    {
+      case( isset( $gd_info[$this->_getInfoKey( )] ) ):
+        if( ! ( $gd_info[$this->_getInfoKey( )] ) ) 
+        {
+          $this->setMessage("No ".$this->_getFormatName()." support, some images will not be displayed");
+          return;
+        }
+        break;
+      case( isset( $gd_info['JPEG Support'] ) ):
+        if( ! ( $gd_info[$this->_getInfoKey( )] ) ) 
+        {
+          $this->setMessage("No ".$this->_getFormatName()." support, some images will not be displayed");
+          return;
+        }
+        break;
+      default:
+          // Do nothing;
+        break;
+    }
+// #36857, dwildt, 120505, 20+
+// #36857, dwildt, 120505, 4-
+//    if (!$gd_info[$this->_getInfoKey()]) {
+//      $this->setMessage("No ".$this->_getFormatName()." support, some images will not be displayed");
+//      return;
+//    };
+// #36857, dwildt, 120505, 4-
 
     $this->setMessage($this->_getFormatName()." support enabled");
     $this->setSuccess(true);
