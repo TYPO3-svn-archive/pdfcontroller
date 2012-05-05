@@ -788,6 +788,7 @@ class CheckGDFormat extends CheckBinaryRequired {
 
     $gd_info = gd_info();
     if (!$gd_info[$this->_getInfoKey()]) {
+var_dump( __METHOD__, __LINE__,  $gd_info );
       $this->setMessage("No ".$this->_getFormatName()." support, some images will not be displayed");
       return;
     };
