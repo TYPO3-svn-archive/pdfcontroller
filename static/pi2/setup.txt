@@ -100,6 +100,7 @@ plugin.tx_pdfcontroller_pi2 {
       }
     }
     add_parameter {
+        // Parameter of mm_forum plugin 1
       tx_mmforum_pi1 = COA
       tx_mmforum_pi1 {
           // fid
@@ -132,11 +133,6 @@ plugin.tx_pdfcontroller_pi2 {
           dataWrap        = &tx_mmforum_pi1[pid]={GP:tx_mmforum_pi1|pid}
           if.isTrue.data  = GPvar:tx_mmforum_pi1|pid
         }
-      }
-    }
-    extensions {
-      mm_forum {
-        add
       }
     }
   }
