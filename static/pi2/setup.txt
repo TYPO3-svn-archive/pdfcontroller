@@ -52,24 +52,20 @@ plugin.tx_pdfcontroller_pi2 {
           enable = 1
           typolink {
             parameter         = {$plugin.tx_pdfcontroller_pi2.page.pdf_controller}
-            additionalParams  = COA
+            additionalParams  = TEXT
             additionalParams {
-                // URL for PDF rendering
-              10 = TEXT
-              10 {
-                wrap = &tx_pdfcontroller_pi1[URL]={getIndpEnv:TYPO3_SITE_URL}|
-                insertData = 1
-                typolink {
-                  parameter = {page:uid},{$plugin.tx_pdfcontroller_pi2.typeNum.print}
-                  parameter {
-                    insertData = 1
-                  }
-                  addQueryString  = 1
-                  addQueryString {
-                    exclude = id
-                  }
-                  returnLast      = url
+              wrap = &tx_pdfcontroller_pi1[URL]={getIndpEnv:TYPO3_SITE_URL}|
+              insertData = 1
+              typolink {
+                parameter = {page:uid},{$plugin.tx_pdfcontroller_pi2.typeNum.print}
+                parameter {
+                  insertData = 1
                 }
+                addQueryString  = 1
+                addQueryString {
+                  exclude = id
+                }
+                returnLast      = url
               }
             }
             ATagParams = rel="nofollow"
