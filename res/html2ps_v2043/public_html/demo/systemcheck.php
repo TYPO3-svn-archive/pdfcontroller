@@ -798,7 +798,7 @@ class CheckGDFormat extends CheckBinaryRequired {
         }
         break;
       case( isset( $gd_info['JPEG Support'] ) ):
-        if( ! ( $gd_info[$this->_getInfoKey( )] ) ) 
+        if( ! ( $gd_info['JPEG Support'] ) ) 
         {
           $this->setMessage("No ".$this->_getFormatName()." support, some images will not be displayed");
           return;
