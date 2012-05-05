@@ -99,6 +99,46 @@ plugin.tx_pdfcontroller_pi2 {
         }
       }
     }
+    add_parameter {
+      tx_mmforum_pi1 = COA
+      tx_mmforum_pi1 {
+          // fid
+        10 = TEXT
+        10 {
+          dataWrap        = &tx_mmforum_pi1[fid]={GP:tx_mmforum_pi1|fid}
+          if.isTrue.data  = GPvar:tx_mmforum_pi1|fid
+        }
+          // tid
+        20 = TEXT
+        20 {
+          dataWrap        = &tx_mmforum_pi1[tid]={GP:tx_mmforum_pi1|tid}
+          if.isTrue.data  = GPvar:tx_mmforum_pi1|tid
+        }
+          // quote
+        30 = TEXT
+        30 {
+          dataWrap        = &tx_mmforum_pi1[quote]={GP:tx_mmforum_pi1|quote}
+          if.isTrue.data  = GPvar:tx_mmforum_pi1|quote
+        }
+          // page
+        40 = TEXT
+        40 {
+          dataWrap        = &tx_mmforum_pi1[page]={GP:tx_mmforum_pi1|page}
+          if.isTrue.data  = GPvar:tx_mmforum_pi1|page
+        }
+          // pid
+        50 = TEXT
+        50 {
+          dataWrap        = &tx_mmforum_pi1[pid]={GP:tx_mmforum_pi1|pid}
+          if.isTrue.data  = GPvar:tx_mmforum_pi1|pid
+        }
+      }
+    }
+    extensions {
+      mm_forum {
+        add
+      }
+    }
   }
   _CSS_DEFAULT_STYLE (
     .tx-pdfcontroller-pi2 {
