@@ -1,11 +1,9 @@
 1.2.1
   12-05-05
-  New feature
-  * #36862: Draft for add mm_forum parameters
-  Improvements
-  * #00000: Update the manual
-            * add parameters
-            * templaVoila
+  Bugfix
+  * #36857: Missing index in systemcheck.php: JPG Support
+            Effected file:
+            * res/html2ps_v2043/public_html/demo/systemcheck.php
 
 1.2.0
   12-04-25
