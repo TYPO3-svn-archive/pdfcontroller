@@ -1,4 +1,4 @@
-includeLibs.user_tx_pdfcontroller = typo3conf/ext/pdfcontroller/lib/class.user_tx_pdfcontroller.php
+includeLibs.user_tx_pdfcontroller = EXT:pdfcontroller/lib/class.user_tx_pdfcontroller.php
 
 plugin.tx_pdfcontroller_pi2 {
   button = IMAGE
