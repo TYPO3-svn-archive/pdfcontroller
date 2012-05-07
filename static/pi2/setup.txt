@@ -64,6 +64,18 @@ plugin.tx_pdfcontroller_pi2 {
                   insertData = 1
                 }
                 userFunc = user_tx_pdfcontroller->addQueryStringUrlEncoded
+                userFunc {
+                  addQueryStringUrlEncoded = TEXT
+                  addQueryStringUrlEncoded {
+                    data          = getIndpEnv:TYPO3_REQUEST_URL
+                    rawUrlEncode  = 1
+                    wrap          = ?tipUrl=|
+                  }
+                  exclude = TEXT
+                  exclude {
+                    value = id
+                  }
+                }
                 addQueryString  = 1
                 addQueryString {
                   exclude = id

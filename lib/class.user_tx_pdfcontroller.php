@@ -74,6 +74,7 @@ class user_tx_pdfcontroller
 
 var_dump( __METHOD__, __LINE__, $content, $conf );
 
+    return 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
     return $content;
   }
 
