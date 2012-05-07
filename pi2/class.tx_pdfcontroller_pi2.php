@@ -127,7 +127,11 @@ class tx_pdfcontroller_pi2 extends tslib_pibase {
   var $b_drs_warn         = false;
   var $b_drs_info         = false;
   var $b_drs_flexform     = false;
+  var $b_drs_marker       = false;
   var $b_drs_perform      = false;
+  var $b_drs_security     = false;
+  var $b_drs_typolink     = false;
+  var $b_drs_typoscript   = false;
     // Booleans for DRS - Development Reporting System
 
 
@@ -155,10 +159,10 @@ class tx_pdfcontroller_pi2 extends tslib_pibase {
  * @param string    $content: The content of the PlugIn
  * @param array   $conf: The PlugIn Configuration
  * @return  string    The content that should be displayed on the website
- * @version 1.1.1
+ * @version 1.2.2
  * @since 0.0.1
  */
-  public function main($content, $conf)
+  public function main( $content, $conf )
   {
     $this->conf = $conf;
     $this->pi_loadLL();
@@ -258,6 +262,7 @@ class tx_pdfcontroller_pi2 extends tslib_pibase {
       //
       // Get flexform values
 
+      // Uid of the page with the PDF Controller
     $pid_converter  = $this->pi_flexform['data']['sDEF']['lDEF']['pid_converter']['vDEF'];
 
     $handleimage    = $this->pi_flexform['data']['sDEF']['lDEF']['handleimage']['vDEF'];
@@ -277,42 +282,6 @@ class tx_pdfcontroller_pi2 extends tslib_pibase {
         );
     }
 
-//    $buttonseo  = ( int ) $this->pi_flexform['data']['sDEF']['lDEF']['buttonseo']['vDEF'];
-//    $ts_value   = $this->conf['flexform.']['sDEF.']['buttonseo.']['value'];
-//    switch( $buttonseo )
-//    {
-//      case( 0 ):
-//      case( 1 ):
-//          // Overwrite TypoScript
-//        $this->conf['flexform.']['sDEF.']['buttonseo.']['value'] = $buttonseo;
-//        if( $this->b_drs_flexform || $this->b_drs_typoscript )
-//        {
-//          $prompt = 'sDEF.buttonseo is: ' . $buttonseo;
-//          t3lib_div::devLog('[FLEXFORM/INFO] ' . $prompt, $this->extKey, 0 );
-//          $prompt = 'flexform.sDEF.buttonseo.value is overwritten: ' . $buttonseo;
-//          t3lib_div::devLog('[TYPOSCRIPT/INFO] ' . $prompt, $this->extKey, 0 );
-//        }
-//        break;
-//      case( 2 ):
-//      default:
-//          // Do nothing
-//        if( $this->b_drs_flexform || $this->b_drs_typoscript )
-//        {
-//          $prompt = 'sDEF.buttonseo is: ' . $buttonseo;
-//          t3lib_div::devLog( '[FLEXFORM/INFO] ' . $prompt, $this->extKey, 0 );
-//          $prompt = 'flexform.sDEF.buttonseo.value is untouched: ' . $ts_value;
-//          t3lib_div::devLog( '[TYPOSCRIPT/INFO] ' . $prompt, $this->extKey, 0 );
-//        }
-//    }
-//    $ts_name   = $this->conf['flexform.']['sDEF.']['buttonseo'];
-//    $ts_conf   = $this->conf['flexform.']['sDEF.']['buttonseo.'];
-//    $buttonseo = $this->cObj->cObjGetSingle( $ts_name, $ts_conf );
-//    if( $this->b_drs_typoscript )
-//    {
-//      $prompt = '->cObjGetSingle( buttonseo ) is: ' . $buttonseo;
-//      t3lib_div::devLog( '[TYPOSCRIPT/INFO] ' . $prompt, $this->extKey, 0 );
-//    }
-
     $wrap_in_pibase = $this->pi_flexform['data']['sDEF']['lDEF']['wrap_in_pibase']['vDEF'];
       // Get flexform values
 
@@ -325,11 +294,30 @@ class tx_pdfcontroller_pi2 extends tslib_pibase {
     $TYPO3_REQUEST_URL  = t3lib_div::getIndpEnv('TYPO3_REQUEST_URL');
     $paramsEncode       = rawurlencode ( $TYPO3_REQUEST_URL );
     $additionalParams   = '&tx_pdfcontroller_pi1[URL]=' . $paramsEncode;
-var_dump( __METHOD__, __LINE__, $additionalParams );    
       // Generate additional paramater
 
 
 
+      ////////////////////////////////////////////////////////////////////////
+      //
+      // DRS
+
+    if ( $this->b_drs_typolink )
+    {
+      $prompt = 'Be aware of the configuration of additionalParams: If you aren\'t ' .
+                'using RealURL please use %26 in place of an &. If you are using RealURL ' .
+                'please use something like print.html in place of something like &type=98. ' .
+                'If you have any qeustion, please refer to the manual! ';
+      t3lib_div::devLog( '[WARN/TYPOLINK] '. $prompt, $this->extKey, 2 );
+      $prompt = 'Marker ###ADDITIONALPARAMS### will replaced with ' . $additionalParams;
+      t3lib_div::devLog( '[INFO/TYPOLINK] '. $prompt, $this->extKey, 0 );
+      $prompt = '###ADDITIONALPARAMS### is decoded: ' . rawurlencode( $additionalParams );
+      t3lib_div::devLog( '[INFO/TYPOLINK] '. $prompt, $this->extKey, 0 );
+    }
+      // DRS
+
+    
+    
       ////////////////////////////////////////////////////////////////////////
       //
       // Replace markers in the TypoScript configuration
@@ -344,76 +332,32 @@ var_dump( __METHOD__, __LINE__, $additionalParams );
     $marker       = array('###IMAGEFILE###',  '###PARAMETER###',  '###ADDITIONALPARAMS###');
     $values       = array($imagefile,         $pid_converter,     $additionalParams);
     $conf_oneDim  = str_replace( $marker, $values, $conf_oneDim );
-//      // Debugging
-//    $this->content = '<pre style="text-align:left;">' . var_export($conf_oneDim, 1) . '</pre>';
-//    return $this->pi_wrapInBaseClass($this->content);
-    $this->conf   = $this->objTyposcript->oneDim_to_tree($conf_oneDim);
       // Replacement
+
+
+
+      ////////////////////////////////////////////////////////////////////////
+      //
+      // DRS
+
+    if ( $this->b_drs_marker || $this->b_drs_typoscript )
+    {
+      foreach( $marker as $markerKey => $markerValue )
+      {
+        $prompt = $markerValue . ' becomes ' . $values[$markerKey];
+        t3lib_div::devLog( '[INFO/MARKER+TYPOSCRIPT] '. $prompt, $this->extKey, 0 );
+      }
+    }
+      // DRS
+    
+    
+    
+      // Reset the TypoScript
+    $this->conf   = $this->objTyposcript->oneDim_to_tree($conf_oneDim);
       // Replace markers in the TypoScript configuration
 
-
-
-//      ////////////////////////////////////////////////////////////////////////
-//      //
-//      // Add rel="nofollow"
-//
-//    $ATagParamsNew  = null;
-//    $ATagParamsCur  = null;
-//    if( isset ( $this->conf['button.']['imageLinkWrap.']['typolink.']['ATagParams'] ) )
-//    {
-//      $ATagParamsCur = $this->conf['button.']['imageLinkWrap.']['typolink.']['ATagParams'];
-//    }
-//    $rel_nofollow = 'rel="nofollow"';
-//    if( $buttonseo )
-//    {
-//      if( $this->b_drs_typoscript )
-//      {
-//        $prompt = 'buttonseo is true.';
-//        t3lib_div::devLog( '[TYPOSCRIPT/INFO] ' . $prompt, $this->extKey, 0 );
-//      }
-//      if( ! empty( $ATagParamsCur ) )
-//      {
-//        $pos = strpos( $ATagParamsCur, $rel_nofollow );
-//        if ( $pos === false )
-//        {
-//          $ATagParamsNew = $ATagParamsCur . ' ' . $rel_nofollow;
-//        }
-//      }
-//      if( empty( $ATagParamsCur ) )
-//      {
-//        $ATagParamsNew = $rel_nofollow;
-//      }
-//      if( $ATagParamsCur != $ATagParamsNew )
-//      {
-//        $this->conf['button.']['imageLinkWrap.']['typolink.']['ATagParams'] = $ATagParamsNew;
-//        if( $this->b_drs_typoscript )
-//        {
-//          $prompt = 'button.imageLinkWrap.typolink.ATagParams is moved from ' .
-//                    '\'' . $ATagParamsCur . '\' to \'' . $ATagParamsNew . '\'';
-//          t3lib_div::devLog( '[TYPOSCRIPT/INFO] ' . $prompt, $this->extKey, 0 );
-//        }
-//      }
-//      if( $ATagParamsCur == $ATagParamsNew )
-//      {
-//        if( $this->b_drs_typoscript )
-//        {
-//          $prompt = 'button.imageLinkWrap.typolink.ATagParams is untouched: ' .
-//                    '\'' . $ATagParamsCur . '\'';
-//          t3lib_div::devLog( '[TYPOSCRIPT/INFO] ' . $prompt, $this->extKey, 0 );
-//        }
-//      }
-//    }
-//    if( ! $buttonseo )
-//    {
-//      if( $this->b_drs_typoscript )
-//      {
-//        $prompt = 'buttonseo is false. Nothing will do.';
-//        t3lib_div::devLog( '[TYPOSCRIPT/INFO] ' . $prompt, $this->extKey, 0 );
-//      }
-//    }
-//      // Add rel="nofollow"
-
     
+
 
       ////////////////////////////////////////////////////////////////////////
       //
@@ -474,7 +418,7 @@ var_dump( __METHOD__, __LINE__, $additionalParams );
  * Set the booleans for Warnings, Errors and DRS - Development Reporting System
  *
  * @return  void
- * @version 1.1.1
+ * @version 1.2.2
  * @since 0.0.2
  */
   private function init_drs()
@@ -507,10 +451,17 @@ var_dump( __METHOD__, __LINE__, $additionalParams );
       $this->b_drs_warn       = true;
       $this->b_drs_info       = true;
       $this->b_drs_flexform   = true;
-      $this->b_drs_javascript = true;
+      $this->b_drs_marker     = true;
       $this->b_drs_perform    = true;
-      $this->b_drs_templating = true;
+      $this->b_drs_typolink   = true;
+      $this->b_drs_security   = true;
       $this->b_drs_typoscript = true;
+      t3lib_div::devlog('[INFO/DRS] DRS - Development Reporting System:<br />'.$this->arr_extConf['drs_mode'], $this->extKey, 0);
+    }
+    if ($this->arr_extConf['drs_mode'] == 'Errors and Warnings')
+    {
+      $this->b_drs_error      = true;
+      $this->b_drs_warn       = true;
       t3lib_div::devlog('[INFO/DRS] DRS - Development Reporting System:<br />'.$this->arr_extConf['drs_mode'], $this->extKey, 0);
     }
     if ($this->arr_extConf['drs_mode'] == 'Flexform')
@@ -523,9 +474,34 @@ var_dump( __METHOD__, __LINE__, $additionalParams );
       $this->b_drs_typoscript = true;
       t3lib_div::devlog('[INFO/DRS] DRS - Development Reporting System:<br />'.$this->arr_extConf['drs_mode'], $this->extKey, 0);
     }
+    if ($this->arr_extConf['drs_mode'] == 'Marker')
+    {
+      $this->b_drs_error      = true;
+      $this->b_drs_warn       = true;
+      $this->b_drs_info       = true;
+      $this->b_drs_marker     = true;
+      t3lib_div::devlog('[INFO/DRS] DRS - Development Reporting System:<br />'.$this->arr_extConf['drs_mode'], $this->extKey, 0);
+    }
     if ($this->arr_extConf['drs_mode'] == 'Performance')
     {
       $this->b_drs_perform    = true;
+      t3lib_div::devlog('[INFO/DRS] DRS - Development Reporting System:<br />'.$this->arr_extConf['drs_mode'], $this->extKey, 0);
+    }
+    if ($this->arr_extConf['drs_mode'] == 'TypoLink')
+    {
+      $this->b_drs_error      = true;
+      $this->b_drs_warn       = true;
+      $this->b_drs_info       = true;
+      $this->b_drs_marker     = true;
+      $this->b_drs_typolink   = true;
+      t3lib_div::devlog('[INFO/DRS] DRS - Development Reporting System:<br />'.$this->arr_extConf['drs_mode'], $this->extKey, 0);
+    }
+    if ($this->arr_extConf['drs_mode'] == 'Security')
+    {
+      $this->b_drs_error      = true;
+      $this->b_drs_warn       = true;
+      $this->b_drs_info       = true;
+      $this->b_drs_security   = true;
       t3lib_div::devlog('[INFO/DRS] DRS - Development Reporting System:<br />'.$this->arr_extConf['drs_mode'], $this->extKey, 0);
     }
       // Set the DRS mode

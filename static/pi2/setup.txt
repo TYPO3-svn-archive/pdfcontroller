@@ -31,44 +31,7 @@ plugin.tx_pdfcontroller_pi2 {
     }
   }
   master_templates {
-    pdf_and_print_button_46 = USER
-    pdf_and_print_button_46 {
-      userFunc = user_pdfcontroller->pdfAndPrintButton
-      userFunc {
-        pdfButton {
-          image = IMAGE
-          image {
-            wrap = <li>|</li>
-            file = typo3conf/ext/pdfcontroller/res/images/pdf.png
-            altText = TEXT
-            altText {
-              value = Download content as PDF file
-              lang {
-                de = Inhalt als PDF-Datei herunterladen
-              }
-            }
-            titleText < .altText
-          }
-          url_to_the_PdfController = TEXT
-          url_to_the_PdfController {
-            typolink {
-              parameter   = {$plugin.tx_pdfcontroller_pi2.page.pdf_controller}
-              returnLast  = url
-            }
-          }
-          url_for_the_PdfController {
-            host = TEXT
-            host {
-              data = getIndpEnv:TYPO3_SITE_URL
-              rawUrlEncode  = 1
-            }
-            additionalParams = TEXT
-            additionalParams {
-            }
-          }
-        }
-      }
-    }
+      // Example until TYPO3 4.5
     pdf_and_print_button = COA
     pdf_and_print_button {
       wrap = <div class="tx-pdfcontroller-pi2"><ul> | </ul></div>
@@ -141,6 +104,9 @@ plugin.tx_pdfcontroller_pi2 {
         }
       }
     }
+    pdf_and_print_button_realUrl = COA
+    pdf_and_print_button_realUrl {
+    }
   }
   _CSS_DEFAULT_STYLE (
     .tx-pdfcontroller-pi2 {
@@ -158,4 +124,39 @@ plugin.tx_pdfcontroller_pi2 {
       padding-left:.6em;
     }
   )
+}
+
+plugin.tx_pdfcontroller_pi2 {
+  master_templates {
+      // Example without realUrl
+    pdf_and_print_button_rawUrlEncode = COA
+    pdf_and_print_button_rawUrlEncode {
+      10 < plugin.tx_pdfcontroller_pi2.master_templates.pdf_and_print_button.10
+      10 {
+        imageLinkWrap {
+          typolink {
+            additionalParams >
+              // Example:  ###ADDITIONALPARAMS###%26type=98&tx_pdfcontroller_pi1[pixels]=580
+            additionalParams =  ###ADDITIONALPARAMS###%26type={$plugin.tx_pdfcontroller_pi2.typeNum.print}
+          }
+        }
+      }
+      20 < plugin.tx_pdfcontroller_pi2.master_templates.pdf_and_print_button.20
+    }
+      // Example with a realUrl configuration
+    pdf_and_print_button_realUrl = COA
+    pdf_and_print_button_realUrl {
+      10 < plugin.tx_pdfcontroller_pi2.master_templates.pdf_and_print_button.10
+      10 {
+        imageLinkWrap {
+          typolink {
+            additionalParams >
+              // Example:  ###ADDITIONALPARAMS###print.html&tx_pdfcontroller_pi1[pixels]=580
+            additionalParams =  ###ADDITIONALPARAMS###{$plugin.tx_pdfcontroller_pi2.realUrl.print}
+          }
+        }
+      }
+      20 < plugin.tx_pdfcontroller_pi2.master_templates.pdf_and_print_button.20
+    }
+  }
 }

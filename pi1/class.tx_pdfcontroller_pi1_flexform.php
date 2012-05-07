@@ -964,9 +964,9 @@ class tx_pdfcontroller_pi1_flexform
     if(isset($this->pObj->piVars[$field]))
     {
         // Do nothing
-      if ($this->pObj->b_drs_flexform || $this->pObj->b_drs_javascript)
+      if ($this->pObj->b_drs_flexform )
       {
-        t3lib_div::devlog('[INFO/FLEXFORM+JSS] '.
+        t3lib_div::devlog('[INFO/FLEXFORM] '.
           '$_REQUEST[' . $field . '] is set by GET params and won\'t be overriden.', $this->pObj->extKey, 0);
       }
       return;
@@ -997,11 +997,11 @@ class tx_pdfcontroller_pi1_flexform
       }
     }
 
-    if ($this->pObj->b_drs_flexform || $this->pObj->b_drs_javascript)
+    if ($this->pObj->b_drs_flexform )
     {
       if(isset($this->arr_request[$field]))
       {
-        t3lib_div::devlog('[INFO/FLEXFORM+JSS] '.
+        t3lib_div::devlog('[INFO/FLEXFORM] '.
           '$_REQUEST[' . $field . '] is set to : \'' . $this->arr_request[$field] . '\'', $this->pObj->extKey, 0);
       }
     }
@@ -1027,9 +1027,9 @@ class tx_pdfcontroller_pi1_flexform
  */
   public function prompt_drs($sheet, $field, $value)
   {
-    if ($this->pObj->b_drs_flexform || $this->pObj->b_drs_javascript)
+    if ($this->pObj->b_drs_flexform )
     {
-      t3lib_div::devlog('[INFO/FLEXFORM+JSS] '.
+      t3lib_div::devlog('[INFO/FLEXFORM] '.
         $sheet . '.' . $field . ': \'' . $value . '\'', $this->pObj->extKey, 0);
     }
   }

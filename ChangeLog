@@ -2,10 +2,13 @@
   12-05-07
   Bugfix
   * #36862: Additional Parameter has to encoded since TYPO 4.6
-            New property
-            plugin.tx_pdfcontroller_pi2.master_templates.pdf_and_print_button.10.imageLinkWrap.typolink.rawUrlEncode = 1
+            Marker ###ADDITIONALPARAMS### is handled by rawUrlEncode( )
             Effected file:
-            * static/pi2/setup.txt
+            * pi2/class.tx_pdfcontroller_pi2.php
+  Improvement
+  * #00000: Two master template are added. One for a rawUrlEncode case, one for a realUrl case.
+  * #00000: DRS got prompts for marker and typolink
+  * #00000: Manual is updated
 
 1.2.1
   12-05-05
