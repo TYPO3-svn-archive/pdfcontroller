@@ -1,3 +1,5 @@
+includeLibs.user_tx_pdfcontroller = typo3conf/ext/pdfcontroller/lib/class.user_tx_pdfcontroller.php
+
 plugin.tx_pdfcontroller_pi2 {
   button = IMAGE
   button {
@@ -61,6 +63,7 @@ plugin.tx_pdfcontroller_pi2 {
                 parameter {
                   insertData = 1
                 }
+                userFunc = user_tx_pdfcontroller->addQueryStringUrlEncoded
                 addQueryString  = 1
                 addQueryString {
                   exclude = id
