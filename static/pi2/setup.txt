@@ -54,6 +54,19 @@ plugin.tx_pdfcontroller_pi2 {
           enable = 1
           typolink {
             parameter         = {$plugin.tx_pdfcontroller_pi2.page.pdf_controller}
+            userFunc = user_tx_pdfcontroller->addQueryStringUrlEncoded
+            userFunc {
+              addQueryStringUrlEncoded = TEXT
+              addQueryStringUrlEncoded {
+                data          = getIndpEnv:TYPO3_REQUEST_URL
+                rawUrlEncode  = 1
+                wrap          = ?tipUrl=|
+              }
+              exclude = TEXT
+              exclude {
+                value = id
+              }
+            }
             additionalParams  = TEXT
             additionalParams {
               wrap = &tx_pdfcontroller_pi1[URL]={getIndpEnv:TYPO3_SITE_URL}|
