@@ -311,6 +311,9 @@ class tx_pdfcontroller_pi2 extends tslib_pibase {
                 'Please attend the three TypoScript templates in the masterTemplate section. ' .
                 'If you have any question, please refer to the manual! ';
       t3lib_div::devLog( '[WARN/TYPOLINK] '. $prompt, $this->extKey, 2 );
+    }
+    if ( $this->b_drs_typolink )
+    {
       $prompt = 'Marker ###ADDITIONALPARAMS### will replaced with ' . $additionalParams;
       t3lib_div::devLog( '[INFO/TYPOLINK] '. $prompt, $this->extKey, 0 );
       $prompt = '###ADDITIONALPARAMS### decoded: ' . rawurldecode( $additionalParams );
