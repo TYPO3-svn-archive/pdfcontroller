@@ -311,7 +311,7 @@ class tx_pdfcontroller_pi2 extends tslib_pibase {
       t3lib_div::devLog( '[WARN/TYPOLINK] '. $prompt, $this->extKey, 2 );
       $prompt = 'Marker ###ADDITIONALPARAMS### will replaced with ' . $additionalParams;
       t3lib_div::devLog( '[INFO/TYPOLINK] '. $prompt, $this->extKey, 0 );
-      $prompt = '###ADDITIONALPARAMS### is decoded: ' . rawurlencode( $additionalParams );
+      $prompt = '###ADDITIONALPARAMS### is decoded: ' . rawurldecode( $additionalParams );
       t3lib_div::devLog( '[INFO/TYPOLINK] '. $prompt, $this->extKey, 0 );
     }
       // DRS
