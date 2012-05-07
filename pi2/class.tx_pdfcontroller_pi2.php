@@ -325,6 +325,8 @@ class tx_pdfcontroller_pi2 extends tslib_pibase {
     $TYPO3_REQUEST_URL  = t3lib_div::getIndpEnv('TYPO3_REQUEST_URL');
     $additionalParams   = '&tx_pdfcontroller_pi1[URL]=' . $TYPO3_REQUEST_URL;
 var_dump( __METHOD__, __LINE__, $additionalParams );    
+    $additionalParams = rawurlencode ( $additionalParams );
+var_dump( __METHOD__, __LINE__, $additionalParams );    
       // Generate additional paramater
 
 
