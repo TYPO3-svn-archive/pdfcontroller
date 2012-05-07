@@ -57,13 +57,13 @@ plugin.tx_pdfcontroller_pi2 {
         }
         22 = TEXT
         22 {
-          wrap          = %22|
+          wrap          = %26|
           data          = getIndpEnv:TYPO3_REQUEST_URL
           rawUrlEncode  = 1
         }
         23 = TEXT
         23 {
-          wrap          = %22|
+          wrap          = %26|
           data          = {$plugin.tx_pdfcontroller_pi2.typeNum.print}
           rawUrlEncode  = 1
         }
