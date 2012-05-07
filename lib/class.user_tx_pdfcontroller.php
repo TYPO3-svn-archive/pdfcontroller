@@ -74,7 +74,7 @@ class user_tx_pdfcontroller
 
 var_dump( __METHOD__, __LINE__, $content, $conf );
 
-    return 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
+    return '<a href="http.//die-netzmacher.de/">Die Netzmacher</a>';
     return $content;
   }
 
