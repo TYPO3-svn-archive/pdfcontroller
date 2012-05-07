@@ -292,7 +292,8 @@ class tx_pdfcontroller_pi2 extends tslib_pibase {
       // Generate additional paramater
 
     $TYPO3_REQUEST_URL  = t3lib_div::getIndpEnv('TYPO3_REQUEST_URL');
-    $paramsEncode       = rawurlencode ( $TYPO3_REQUEST_URL );
+//    $paramsEncode       = rawurlencode ( $TYPO3_REQUEST_URL );
+    $paramsEncode       = str_replace ( '&', '%26', $TYPO3_REQUEST_URL );
     $additionalParams   = '&tx_pdfcontroller_pi1[URL]=' . $paramsEncode;
       // Generate additional paramater
 
@@ -311,7 +312,7 @@ class tx_pdfcontroller_pi2 extends tslib_pibase {
       t3lib_div::devLog( '[WARN/TYPOLINK] '. $prompt, $this->extKey, 2 );
       $prompt = 'Marker ###ADDITIONALPARAMS### will replaced with ' . $additionalParams;
       t3lib_div::devLog( '[INFO/TYPOLINK] '. $prompt, $this->extKey, 0 );
-      $prompt = '###ADDITIONALPARAMS### is decoded: ' . rawurldecode( $additionalParams );
+      $prompt = '###ADDITIONALPARAMS### decoded: ' . rawurldecode( $additionalParams );
       t3lib_div::devLog( '[INFO/TYPOLINK] '. $prompt, $this->extKey, 0 );
     }
       // DRS
