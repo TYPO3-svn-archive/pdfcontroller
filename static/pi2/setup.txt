@@ -31,6 +31,44 @@ plugin.tx_pdfcontroller_pi2 {
     }
   }
   master_templates {
+    pdf_and_print_button_46 = USER
+    pdf_and_print_button_46 {
+      userFunc = user_pdfcontroller->pdfAndPrintButton
+      userFunc {
+        pdfButton {
+          image = IMAGE
+          image {
+            wrap = <li>|</li>
+            file = typo3conf/ext/pdfcontroller/res/images/pdf.png
+            altText = TEXT
+            altText {
+              value = Download content as PDF file
+              lang {
+                de = Inhalt als PDF-Datei herunterladen
+              }
+            }
+            titleText < .altText
+          }
+          url_to_the_PdfController = TEXT
+          url_to_the_PdfController {
+            typolink {
+              parameter   = {$plugin.tx_pdfcontroller_pi2.page.pdf_controller}
+              returnLast  = url
+            }
+          }
+          url_for_the_PdfController {
+            host = TEXT
+            host {
+              data = getIndpEnv:TYPO3_SITE_URL
+              rawUrlEncode  = 1
+            }
+            additionalParams = TEXT
+            additionalParams {
+            }
+          }
+        }
+      }
+    }
     pdf_and_print_button = COA
     pdf_and_print_button {
       wrap = <div class="tx-pdfcontroller-pi2"><ul> | </ul></div>
@@ -100,42 +138,6 @@ plugin.tx_pdfcontroller_pi2 {
             }
             ATagParams      = rel="nofollow"
           }
-        }
-      }
-    }
-    add_parameter {
-        // Parameter of mm_forum plugin 1
-      tx_mmforum_pi1 = COA
-      tx_mmforum_pi1 {
-          // fid
-        10 = TEXT
-        10 {
-          dataWrap        = &tx_mmforum_pi1[fid]={GP:tx_mmforum_pi1|fid}
-          if.isTrue.data  = GPvar:tx_mmforum_pi1|fid
-        }
-          // tid
-        20 = TEXT
-        20 {
-          dataWrap        = &tx_mmforum_pi1[tid]={GP:tx_mmforum_pi1|tid}
-          if.isTrue.data  = GPvar:tx_mmforum_pi1|tid
-        }
-          // quote
-        30 = TEXT
-        30 {
-          dataWrap        = &tx_mmforum_pi1[quote]={GP:tx_mmforum_pi1|quote}
-          if.isTrue.data  = GPvar:tx_mmforum_pi1|quote
-        }
-          // page
-        40 = TEXT
-        40 {
-          dataWrap        = &tx_mmforum_pi1[page]={GP:tx_mmforum_pi1|page}
-          if.isTrue.data  = GPvar:tx_mmforum_pi1|page
-        }
-          // pid
-        50 = TEXT
-        50 {
-          dataWrap        = &tx_mmforum_pi1[pid]={GP:tx_mmforum_pi1|pid}
-          if.isTrue.data  = GPvar:tx_mmforum_pi1|pid
         }
       }
     }
