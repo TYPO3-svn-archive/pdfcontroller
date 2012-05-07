@@ -40,6 +40,7 @@ plugin.tx_pdfcontroller_pi2 {
       10 = COA
       10 {
         wrap = <li>|</li>
+          // Open the a-tag with href
         10 = TEXT
         10 {
           typolink {
@@ -49,6 +50,7 @@ plugin.tx_pdfcontroller_pi2 {
           }
           wrap = <a href="|
         }
+          // Add additional parameters to the href
         20 = TEXT
         20 {
           wrap  = ?tx_pdfcontroller_pi1[URL]=|">
@@ -56,8 +58,10 @@ plugin.tx_pdfcontroller_pi2 {
             parameter     = {page:uid},{getIndpEnv:TYPO3_REQUEST_URL},{$plugin.tx_pdfcontroller_pi2.typeNum.print}
             insertData    = 1
             rawUrlEncode  = 1
+            returnLast = url
           }
         }
+          // Label of the a-tag 
         30 = IMAGE
         30 {
           file = typo3conf/ext/pdfcontroller/res/images/pdf.png
@@ -70,13 +74,10 @@ plugin.tx_pdfcontroller_pi2 {
           }
           titleText < .altText
         }
+          // Close the a-tag
         40 = TEXT
         40 {
-          value = Download content as PDF file
-          lang {
-            de = Inhalt als PDF-Datei herunterladen
-          }
-          wrap    = |</a>
+          wrap = |</a>
         }
       }
         // Print icon
