@@ -1,3 +1,12 @@
+1.2.2
+  12-05-07
+  Bugfix
+  * #36862: Additional Parameter has to encoded since TYPO 4.6
+            New property
+            plugin.tx_pdfcontroller_pi2.master_templates.pdf_and_print_button.10.imageLinkWrap.typolink.rawUrlEncode = 1
+            Effected file:
+            * static/pi2/setup.txt
+
 1.2.1
   12-05-05
   Bugfix
