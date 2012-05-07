@@ -130,7 +130,7 @@ plugin.tx_pdfcontroller_pi2 {
 
 plugin.tx_pdfcontroller_pi2 {
   master_templates {
-      // Example without realUrl. See typolink.additionalParams below ...
+      // Example with rawUrlEncode. See typolink.additionalParams below ...
     pdf_and_print_button_rawUrlEncode = COA
     pdf_and_print_button_rawUrlEncode {
       wrap = <div class="tx-pdfcontroller-pi2"><ul> | </ul></div>
