@@ -53,13 +53,29 @@ plugin.tx_pdfcontroller_pi2 {
           // Add additional parameters to the href
         20 = TEXT
         20 {
-          wrap  = ?tx_pdfcontroller_pi1[URL]=|">
-          typolink {
-            parameter     = {page:uid},{getIndpEnv:TYPO3_REQUEST_URL},{$plugin.tx_pdfcontroller_pi2.typeNum.print}
-            insertData    = 1
-            rawUrlEncode  = 1
-            returnLast = url
-          }
+          value = ?tx_pdfcontroller_pi1[URL]=|
+        }
+        21 = TEXT
+        21 {
+          wrap          = http://typo3-browser-forum.de/?id=|
+          data          = page:uid
+          rawUrlEncode  = 1
+        }
+        22 = TEXT
+        22 {
+          wrap          = &|
+          data          = getIndpEnv:TYPO3_REQUEST_URL
+          rawUrlEncode  = 1
+        }
+        23 = TEXT
+        23 {
+          wrap          = &=|
+          data          = {$plugin.tx_pdfcontroller_pi2.typeNum.print}
+          rawUrlEncode  = 1
+        }
+        24 = TEXT
+        24 {
+          value = ">
         }
           // Label of the a-tag 
         30 = IMAGE
