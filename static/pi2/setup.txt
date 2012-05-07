@@ -53,23 +53,17 @@ plugin.tx_pdfcontroller_pi2 {
           // Add additional parameters to the href
         20 = TEXT
         20 {
-          value = ?tx_pdfcontroller_pi1[URL]=|
-        }
-        21 = TEXT
-        21 {
-          wrap          = http://typo3-browser-forum.de/?id=|
-          data          = page:uid
-          rawUrlEncode  = 1
+          value = ?tx_pdfcontroller_pi1[URL]=
         }
         22 = TEXT
         22 {
-          wrap          = &|
+          wrap          = %22|
           data          = getIndpEnv:TYPO3_REQUEST_URL
           rawUrlEncode  = 1
         }
         23 = TEXT
         23 {
-          wrap          = &=|
+          wrap          = %22|
           data          = {$plugin.tx_pdfcontroller_pi2.typeNum.print}
           rawUrlEncode  = 1
         }
