@@ -64,7 +64,7 @@ class user_tx_pdfcontroller
  * @since 3.6.1
  * @version 3.6.1
  */
-  function addQueryStringUrlEncoded( $conf, $content )
+  function addQueryStringUrlEncoded( $content, $conf  )
   {
 //.message-notice
 //.message-information
@@ -72,7 +72,7 @@ class user_tx_pdfcontroller
 //.message-warning
 //.message-error
 
-var_dump( __METHOD__, __LINE__, $conf, $content );
+var_dump( __METHOD__, __LINE__, $content, $conf );
 
     return $content;
   }
