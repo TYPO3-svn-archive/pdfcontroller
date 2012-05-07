@@ -303,12 +303,13 @@ class tx_pdfcontroller_pi2 extends tslib_pibase {
       //
       // DRS
 
-    if ( $this->b_drs_typolink )
+    if ( $this->b_drs_warn )
     {
       $prompt = 'Be aware of the configuration of additionalParams: If you aren\'t ' .
                 'using RealURL please use %26 in place of an &. If you are using RealURL ' .
                 'please use something like print.html in place of something like &type=98. ' .
-                'If you have any qeustion, please refer to the manual! ';
+                'Please attend the three TypoScript templates in the masterTemplate section. ' .
+                'If you have any question, please refer to the manual! ';
       t3lib_div::devLog( '[WARN/TYPOLINK] '. $prompt, $this->extKey, 2 );
       $prompt = 'Marker ###ADDITIONALPARAMS### will replaced with ' . $additionalParams;
       t3lib_div::devLog( '[INFO/TYPOLINK] '. $prompt, $this->extKey, 0 );
