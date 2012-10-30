@@ -1,8 +1,12 @@
 1.4.3
   12-10-30
   Manual
-  * #00000: Note frontend user sessions
   * #42527: Bugfix manual: rawUrlEncode configuration was confused with Real Url configuration in the manual
+
+1.4.2
+  12-05-09
+  Manual
+  * #00000: Note frontend user sessions
   Bugfix
   * #00000: Wrong TypoScript snippet is now proper at
             "Button for PDF download and for Printing" on page 15 above.
