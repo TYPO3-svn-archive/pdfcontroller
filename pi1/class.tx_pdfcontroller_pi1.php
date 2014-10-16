@@ -247,7 +247,6 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       //define( 'HTML2PS_DIR', $_SERVER['DOCUMENT_ROOT'] . 'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/' );
       define( 'HTML2PS_DIR', t3lib_extMgm::extPath( 'pdfcontroller' ) . 'res/html2ps_v2043/public_html/' );
     }
-var_dump(__METHOD__, __LINE__, HTML2PS_DIR);
       // DEFINE HTML2PS_DIR
 
       // Define PDFCONTROLLER_ACCESS
