@@ -377,6 +377,7 @@ var_dump( __METHOD__, __LINE__, $classMethods);
 $classMethods = get_class_methods( $this->pdf );
 sort($classMethods);
 var_dump( __METHOD__, __LINE__, $classMethods);
+var_dump( __METHOD__, __LINE__, get_parent_class('FPDF'), get_parent_class($this));
 
     if (defined('DEBUG_MODE')) {
       $this->pdf->SetCompression(false);
