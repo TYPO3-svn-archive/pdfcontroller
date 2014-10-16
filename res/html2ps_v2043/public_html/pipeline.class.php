@@ -924,7 +924,7 @@ class Pipeline {
     $this->destination =& $destination;
   }
 
-  private function set_output_driver(&$output_driver) {
+  function set_output_driver(&$output_driver) {
     $this->output_driver =& $output_driver;
   }
 

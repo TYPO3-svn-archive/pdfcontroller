@@ -369,6 +369,7 @@ class OutputDriverFPDF extends OutputDriverGenericPDF {
     parent::reset($media);
 
     $this->pdf = new FPDF('P','pt',array(mm2pt($media->width()), mm2pt($media->height())));
+var_dump( __METHOD__, __LINE__, get_class_methods ( $this->pdf ));
     if (defined('DEBUG_MODE')) {
       $this->pdf->SetCompression(false);
     } else {
