@@ -342,7 +342,7 @@ class tx_pdfcontroller_pi2 extends tslib_pibase
       // Wrap the Pdf Controller button
 
     $conf_button = $this->cObj->cObjGetSingle( $this->conf[ 'button' ], $this->conf[ 'button.' ] );
-var_dump(__METHOD__, __LINE__, $this->conf[ 'button' ], $this->conf[ 'button.' ], $conf_button );
+//var_dump(__METHOD__, __LINE__, $this->conf[ 'button' ], $this->conf[ 'button.' ], $conf_button );
     // Wrap the Pdf Controller button
     ////////////////////////////////////////////////////////////////////////
     //
