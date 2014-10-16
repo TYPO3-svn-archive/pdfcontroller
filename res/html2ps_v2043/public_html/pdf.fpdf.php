@@ -1090,442 +1090,442 @@ EOF
     var $_form_radios;
     var $_pages;
 
-    function moveto($x, $y) {
-      $this->_out(sprintf("%.2f %.2f m",
-                          $this->x_coord($x),
-                          $this->y_coord($y)));
-    }
-
-    function lineto($x, $y) {
-      $this->_out(sprintf("%.2f %.2f l",
-                          $this->x_coord($x),
-                          $this->y_coord($y)));
-    }
-
-    function closepath() {
-      $this->_out("h");
-    }
-
-    function stroke() {
-      $this->_out("S");
-    }
-
-    function is_object_written($id) {
-      return isset($this->offsets[$id]);
-    }
-
-    function x_coord($x) {
-      return $x * $this->k;
-    }
-
-    function y_coord($y) {
-      return ($this->h - $y)*$this->k;
-    }
-
-    // PDF specs:
-    // 3.2.9 Indirect Objects
-    // Any object in a PDF file may be labeled as an indirect object. This gives the object
-    // a unique object identifier by which other objects can refer to it (for example, as an
-    // element of an array or as the value of a dictionary entry). The object identifier
-    // consists of two parts:
-    // * A positive integer object number. Indirect objects are often numbered sequentially
-    //   within a PDF file, but this is not required; object numbers may be
-    //   assigned in any arbitrary order.
-    // * A non-negative integer generation number. In a newly created file, all indirect
-    //   objects have generation numbers of 0. Nonzero generation numbers may be introduced
-    //   when the file is later updated; see Sections 3.4.3, Cross-Reference
-    //   Table, and 3.4.5, Incremental Updates.
-    // Together, the combination of an object number and a generation number uniquely
-    // identifies an indirect object. The object retains the same object number and
-    // generation number throughout its existence, even if its value is modified.
-    //
-    function _indirect_object($object) {
-      $object_number = $object->get_object_id();
-      $generation_number = $object->get_generation_id();
-      $object_string = $object->pdf($this);
-
-      $this->offsets[$object_number] = strlen($this->buffer);
-
-      return "$object_number $generation_number obj\n${object_string}\nendobj";
-    }
-
-    function _stream($content) {
-      return "stream\n".$content."\nendstream";
-    }
-
-    /**
-     * @TODO check name for validity
-     */
-    function _name($name) {
-      return sprintf("/%s", $name);
-    }
-
-    function _dictionary($dict) {
-      $content = "";
-      foreach ($dict as $key => $value) {
-        $content .= "/$key $value\n";
-      }
-      return "<<\n".$content."\n>>";
-    }
-
-    function _array($array_str) {
-      return "[$array_str]";
-    }
-
-    function _reference(&$object) {
-      $object_id     = $object->get_object_id();
-      $generation_id = $object->get_generation_id();
-      return "$object_id $generation_id R";
-    }
-
-    function _reference_array($object_array) {
-      $array_str = "";
-      for ($i=0; $i<count($object_array); $i++) {
-        $array_str .= $this->_reference($object_array[$i])." ";
-      }
-      return $this->_array($array_str);
-    }
-
-    function _generate_new_object_number() {
-      $this->n++;
-      return $this->n;
-    }
-
-    function add_form($name) {
-      $form = new PDFFieldGroup($this,
-                                $this->_generate_new_object_number(),    // Object identifier
-                                0,
-                                $name);
-      $this->_forms[] =& $form;
-    }
-
-    function add_field_select($x, $y, $w, $h, $name, $value, $options) {
-      $field = new PDFFieldSelect($this,
-                                   $this->_generate_new_object_number(),    // Object identifier
-                                   0,                                       // Generation
-                                   new PDFRect($x, $y, $w, $h),             // Annotation rectangle
-                                   $name,                                   // Field name
-                                   $value,
-                                   $options);
-
-      $current_form =& $this->current_form();
-      $current_form->add_field($field);
-
-      $this->_pages[count($this->_pages)-1]->add_annotation($field);
-    }
-
-    /**
-     * Create new checkbox field object
-     *
-     * @param $x Integer Left coordinate of the widget bounding bog
-     * @param $y Integer Upper coordinate of the widget bounding bog
-     * @param $w Integer Widget width
-     * @param $h Integer Widget height
-     * @param $name String name of the field to be created
-     * @param $value String value to be posted for this checkbox
-     *
-     * @TODO check if fully qualified field name will be unique in PDF file
-     */
-    function add_field_checkbox($x, $y, $w, $h, $name, $value, $checked) {
-      $field = new PDFFieldCheckBox($this,
-                                     $this->_generate_new_object_number(),    // Object identifier
-                                     0,                                       // Generation
-                                     new PDFRect($x, $y, $w, $h),             // Annotation rectangle
-                                     $name,                                   // Field name
-                                     $value, $checked);                                 // Checkbox "on" value
-
-      $current_form =& $this->current_form();
-      $current_form->add_field($field);
-
-      $this->_pages[count($this->_pages)-1]->add_annotation($field);
-    }
-
-    function &current_form() {
-      if (count($this->_forms) == 0) {
-        /**
-         * Handle invalid HTML; if we've met an input control outside the form,
-         * generate a new form with random name
-         */
-
-        $id   = $this->_generate_new_object_number();
-        $name = sprintf("AnonymousFormObject_%u", $id);
-
-        error_log(sprintf("Anonymous form generated with name %s; check your HTML for validity",
-                          $name));
-
-        $form = new PDFFieldGroup($this,
-                                  $id,    // Object identifier
-                                  0,
-                                  $name);
-        $this->_forms[] =& $form;
-      }
-
-      return $this->_forms[count($this->_forms)-1];
-    }
-
-    function add_field_radio($x, $y, $w, $h, $group_name, $value, $checked) {
-      if (isset($this->_form_radios[$group_name])) {
-        $field =& $this->_form_radios[$group_name];
-      } else {
-        $field = new PDFFieldRadioGroup($this,
-                                         $this->_generate_new_object_number(),
-                                         0,
-                                         $group_name);
-
-        $current_form =& $this->current_form();
-        $current_form->add_field($field);
-
-        $this->_form_radios[$group_name] =& $field;
-      }
-
-      $radio = new PDFFieldRadio($this,
-                                  $this->_generate_new_object_number(),
-                                  0,
-                                  new PDFRect($x, $y, $w, $h),
-                                  $value);
-      $field->add_field($radio);
-      if ($checked) { $field->set_checked($value); }
-
-      $this->_pages[count($this->_pages)-1]->add_annotation($radio);
-    }
-
-    /**
-     * Create a new interactive text form
-     *
-     * @param $x Left coordinate of the widget bounding box
-     * @param $y Top coordinate of the widget bounding box
-     * @param $w Widget width
-     * @param $h Widget height
-     * @param $value Default widget value
-     * @param $field_name Field name
-     *
-     * @return Field number
-     */
-    function add_field_text($x, $y, $w, $h, $value, $field_name) {
-      $field = new PDFFieldText($this,
-                                 $this->_generate_new_object_number(),
-                                 0,
-                                 new PDFRect($x, $y, $w, $h),
-                                 $field_name,
-                                 $value,
-                                 $this->CurrentFont['i'],
-                                 $this->FontSizePt);
-
-      $current_form =& $this->current_form();
-      $current_form->add_field($field);
-
-      $this->_pages[count($this->_pages)-1]->add_annotation($field);
-    }
-
-    function add_field_multiline_text($x, $y, $w, $h, $value, $field_name) {
-      $field = new PDFFieldMultilineText($this,
-                                          $this->_generate_new_object_number(),
-                                          0,
-                                          new PDFRect($x, $y, $w, $h),
-                                          $field_name,
-                                          $value,
-                                          $this->CurrentFont['i'],
-                                          $this->FontSizePt);
-
-      $current_form =& $this->current_form();
-      $current_form->add_field($field);
-
-      $this->_pages[count($this->_pages)-1]->add_annotation($field);
-    }
-
-    /**
-     * Create a new interactive password input field
-     *
-     * @param $x Left coordinate of the widget bounding box
-     * @param $y Top coordinate of the widget bounding box
-     * @param $w Widget width
-     * @param $h Widget height
-     * @param $value Default widget value
-     * @param $field_name Field name
-     *
-     * @return Field number
-     */
-    function add_field_password($x, $y, $w, $h, $value, $field_name) {
-      $field = new PDFFieldPassword($this,
-                                     $this->_generate_new_object_number(),
-                                     0,
-                                     new PDFRect($x, $y, $w, $h),
-                                     $field_name,
-                                     $value,
-                                     $this->CurrentFont['i'],
-                                     $this->FontSizePt);
-
-      $current_form =& $this->current_form();
-      $current_form->add_field($field);
-
-      $this->_pages[count($this->_pages)-1]->add_annotation($field);
-    }
-
-    function add_field_pushbuttonimage($x, $y, $w, $h, $field_name, $value, $actionURL) {
-      $field = new PDFFieldPushButtonImage($this,
-                                            $this->_generate_new_object_number(),
-                                            0,
-                                            new PDFRect($x, $y, $w, $h),
-                                            $this->CurrentFont['i'],
-                                            $this->FontSizePt,
-                                            $field_name,
-                                            $value,
-                                            $actionURL);
-
-      $current_form =& $this->current_form();
-      $current_form->add_field($field);
-
-      $this->_pages[count($this->_pages)-1]->add_annotation($field);
-    }
-
-    function add_field_pushbuttonsubmit($x, $y, $w, $h, $field_name, $value, $actionURL) {
-      $field = new PDFFieldPushButtonSubmit($this,
-                                             $this->_generate_new_object_number(),
-                                             0,
-                                             new PDFRect($x, $y, $w, $h),
-                                             $this->CurrentFont['i'],
-                                             $this->FontSizePt,
-                                             $field_name,
-                                             $value,
-                                             $actionURL);
-
-      $current_form =& $this->current_form();
-      $current_form->add_field($field);
-
-      $this->_pages[count($this->_pages)-1]->add_annotation($field);
-    }
-
-    function add_field_pushbuttonreset($x, $y, $w, $h) {
-      $field = new PDFFieldPushButtonReset($this,
-                                            $this->_generate_new_object_number(),
-                                            0,
-                                            new PDFRect($x, $y, $w, $h),
-                                            null,
-                                            $this->CurrentFont['i'],
-                                            $this->FontSizePt);
-
-      $current_form =& $this->current_form();
-      $current_form->add_field($field);
-
-      $this->_pages[count($this->_pages)-1]->add_annotation($field);
-    }
-
-    function add_field_pushbutton($x, $y, $w, $h) {
-      $field = new PDFFieldPushButton($this,
-                                       $this->_generate_new_object_number(),
-                                       0,
-                                       new PDFRect($x, $y, $w, $h),
-                                       null,
-                                       $this->CurrentFont['i'],
-                                       $this->FontSizePt);
-
-      $current_form =& $this->current_form();
-      $current_form->add_field($field);
-
-      $this->_pages[count($this->_pages)-1]->add_annotation($field);
-    }
-
-
-    function SetDash($x, $y) {
-      $x = (int)$x;
-      $y = (int)$y;
-      $this->_out(sprintf("[%d %d] 0 d", $x*2, $y*2));
-    }
-
-    function _GetFontBBox() {
-      return preg_split("/[\[\]\s]+/", $this->CurrentFont['desc']['FontBBox']);
-    }
-
-    function _dounderline($x,$y,$txt) {
-      //Underline text
-      $up=$this->CurrentFont['up'];
-      $ut=$this->CurrentFont['ut'];
-      $w=$this->GetStringWidth($txt)+$this->ws*substr_count($txt,' ');
-
-      $content = sprintf('%.2f %.2f %.2f %.2f re f',
-                         $x*$this->k,
-                         ($this->h-($y-$up/1000*$this->FontSize))*$this->k,
-                         $w*$this->k,
-                         -$ut/1000*$this->FontSizePt);
-
-      return $content;
-    }
-
-    function _dooverline($x,$y,$txt) {
-      $bbox = $this->_GetFontBBox();
-      $up = round($bbox[3] * 0.8);
-
-      $ut=$this->CurrentFont['ut'];
-
-      $w=$this->GetStringWidth($txt)+$this->ws*substr_count($txt,' ');
-      return sprintf('%.2f %.2f %.2f %.2f re f',
-                     $x*$this->k,
-                     ($this->h-($y-$up/1000*$this->FontSize))*$this->k,
-                     $w*$this->k,
-                     -$ut/1000*$this->FontSizePt);
-    }
-
-    function _dostrikeout($x,$y,$txt) {
-      $bbox = $this->_GetFontBBox();
-      $up = round($bbox[3] * 0.25);
-
-      $ut=$this->CurrentFont['ut'];
-      $w=$this->GetStringWidth($txt)+$this->ws*substr_count($txt,' ');
-      return sprintf('%.2f %.2f %.2f %.2f re f',
-                     $x*$this->k,
-                     ($this->h-($y-$up/1000*$this->FontSize))*$this->k,
-                     $w*$this->k,
-                     -$ut/1000*$this->FontSizePt);
-    }
-
-    function SetDecoration($underline, $overline, $strikeout) {
-      $this->underline = $underline;
-      $this->overline  = $overline;
-      $this->strikeout = $strikeout;
-    }
-
-    function ClipPath($path) {
-      if (count($path) < 3) {
-        die("Attempt to clip on the path containing less than three points");
-      }
-
-      $this->MakePath($path);
-      $this->Clip();
-    }
-
-    function Clip() {
-      $this->_out("W n");
-    }
-
-    // TODO: more graceful custom encoding processing
-    function _LoadFont($fontkey, $family, $encoding) {
-      if (!isset($this->fonts[$fontkey])) {
-        global $g_font_resolver_pdf;
-        $file = $g_font_resolver_pdf->ttf_mappings[$family];
-
-        $embed = $g_font_resolver_pdf->embed[$family];
-
-        // Remove the '.ttf' suffix
-        $file = substr($file, 0, strlen($file) - 4);
-
-        // Generate (if required) PHP font description files
-        if (!file_exists($this->_getfontpath().$fontkey.'.php') ||
-            ManagerEncoding::is_custom_encoding($encoding)) {
-          // As MakeFont squeaks a lot, we'll need to capture and discard its output
-          MakeFont(TTF_FONTS_REPOSITORY.$file.'.ttf',
-                   TTF_FONTS_REPOSITORY.$file.'.afm',
-                   $this->_getfontpath(),
-                   $fontkey.'.php',
-                   $encoding);
-        }
-
-        $this->AddFont($fontkey, $family, $encoding, $fontkey.'.php', $embed);
-      }
-    }
-
-    function _MakeFontKey($family, $encoding) {
-      return $family.'-'.$encoding;
-    }
+//    function moveto($x, $y) {
+//      $this->_out(sprintf("%.2f %.2f m",
+//                          $this->x_coord($x),
+//                          $this->y_coord($y)));
+//    }
+//
+//    function lineto($x, $y) {
+//      $this->_out(sprintf("%.2f %.2f l",
+//                          $this->x_coord($x),
+//                          $this->y_coord($y)));
+//    }
+//
+//    function closepath() {
+//      $this->_out("h");
+//    }
+//
+//    function stroke() {
+//      $this->_out("S");
+//    }
+//
+//    function is_object_written($id) {
+//      return isset($this->offsets[$id]);
+//    }
+//
+//    function x_coord($x) {
+//      return $x * $this->k;
+//    }
+//
+//    function y_coord($y) {
+//      return ($this->h - $y)*$this->k;
+//    }
+//
+//    // PDF specs:
+//    // 3.2.9 Indirect Objects
+//    // Any object in a PDF file may be labeled as an indirect object. This gives the object
+//    // a unique object identifier by which other objects can refer to it (for example, as an
+//    // element of an array or as the value of a dictionary entry). The object identifier
+//    // consists of two parts:
+//    // * A positive integer object number. Indirect objects are often numbered sequentially
+//    //   within a PDF file, but this is not required; object numbers may be
+//    //   assigned in any arbitrary order.
+//    // * A non-negative integer generation number. In a newly created file, all indirect
+//    //   objects have generation numbers of 0. Nonzero generation numbers may be introduced
+//    //   when the file is later updated; see Sections 3.4.3, Cross-Reference
+//    //   Table, and 3.4.5, Incremental Updates.
+//    // Together, the combination of an object number and a generation number uniquely
+//    // identifies an indirect object. The object retains the same object number and
+//    // generation number throughout its existence, even if its value is modified.
+//    //
+//    function _indirect_object($object) {
+//      $object_number = $object->get_object_id();
+//      $generation_number = $object->get_generation_id();
+//      $object_string = $object->pdf($this);
+//
+//      $this->offsets[$object_number] = strlen($this->buffer);
+//
+//      return "$object_number $generation_number obj\n${object_string}\nendobj";
+//    }
+//
+//    function _stream($content) {
+//      return "stream\n".$content."\nendstream";
+//    }
+//
+//    /**
+//     * @TODO check name for validity
+//     */
+//    function _name($name) {
+//      return sprintf("/%s", $name);
+//    }
+//
+//    function _dictionary($dict) {
+//      $content = "";
+//      foreach ($dict as $key => $value) {
+//        $content .= "/$key $value\n";
+//      }
+//      return "<<\n".$content."\n>>";
+//    }
+//
+//    function _array($array_str) {
+//      return "[$array_str]";
+//    }
+//
+//    function _reference(&$object) {
+//      $object_id     = $object->get_object_id();
+//      $generation_id = $object->get_generation_id();
+//      return "$object_id $generation_id R";
+//    }
+//
+//    function _reference_array($object_array) {
+//      $array_str = "";
+//      for ($i=0; $i<count($object_array); $i++) {
+//        $array_str .= $this->_reference($object_array[$i])." ";
+//      }
+//      return $this->_array($array_str);
+//    }
+//
+//    function _generate_new_object_number() {
+//      $this->n++;
+//      return $this->n;
+//    }
+//
+//    function add_form($name) {
+//      $form = new PDFFieldGroup($this,
+//                                $this->_generate_new_object_number(),    // Object identifier
+//                                0,
+//                                $name);
+//      $this->_forms[] =& $form;
+//    }
+//
+//    function add_field_select($x, $y, $w, $h, $name, $value, $options) {
+//      $field = new PDFFieldSelect($this,
+//                                   $this->_generate_new_object_number(),    // Object identifier
+//                                   0,                                       // Generation
+//                                   new PDFRect($x, $y, $w, $h),             // Annotation rectangle
+//                                   $name,                                   // Field name
+//                                   $value,
+//                                   $options);
+//
+//      $current_form =& $this->current_form();
+//      $current_form->add_field($field);
+//
+//      $this->_pages[count($this->_pages)-1]->add_annotation($field);
+//    }
+//
+//    /**
+//     * Create new checkbox field object
+//     *
+//     * @param $x Integer Left coordinate of the widget bounding bog
+//     * @param $y Integer Upper coordinate of the widget bounding bog
+//     * @param $w Integer Widget width
+//     * @param $h Integer Widget height
+//     * @param $name String name of the field to be created
+//     * @param $value String value to be posted for this checkbox
+//     *
+//     * @TODO check if fully qualified field name will be unique in PDF file
+//     */
+//    function add_field_checkbox($x, $y, $w, $h, $name, $value, $checked) {
+//      $field = new PDFFieldCheckBox($this,
+//                                     $this->_generate_new_object_number(),    // Object identifier
+//                                     0,                                       // Generation
+//                                     new PDFRect($x, $y, $w, $h),             // Annotation rectangle
+//                                     $name,                                   // Field name
+//                                     $value, $checked);                                 // Checkbox "on" value
+//
+//      $current_form =& $this->current_form();
+//      $current_form->add_field($field);
+//
+//      $this->_pages[count($this->_pages)-1]->add_annotation($field);
+//    }
+//
+//    function &current_form() {
+//      if (count($this->_forms) == 0) {
+//        /**
+//         * Handle invalid HTML; if we've met an input control outside the form,
+//         * generate a new form with random name
+//         */
+//
+//        $id   = $this->_generate_new_object_number();
+//        $name = sprintf("AnonymousFormObject_%u", $id);
+//
+//        error_log(sprintf("Anonymous form generated with name %s; check your HTML for validity",
+//                          $name));
+//
+//        $form = new PDFFieldGroup($this,
+//                                  $id,    // Object identifier
+//                                  0,
+//                                  $name);
+//        $this->_forms[] =& $form;
+//      }
+//
+//      return $this->_forms[count($this->_forms)-1];
+//    }
+//
+//    function add_field_radio($x, $y, $w, $h, $group_name, $value, $checked) {
+//      if (isset($this->_form_radios[$group_name])) {
+//        $field =& $this->_form_radios[$group_name];
+//      } else {
+//        $field = new PDFFieldRadioGroup($this,
+//                                         $this->_generate_new_object_number(),
+//                                         0,
+//                                         $group_name);
+//
+//        $current_form =& $this->current_form();
+//        $current_form->add_field($field);
+//
+//        $this->_form_radios[$group_name] =& $field;
+//      }
+//
+//      $radio = new PDFFieldRadio($this,
+//                                  $this->_generate_new_object_number(),
+//                                  0,
+//                                  new PDFRect($x, $y, $w, $h),
+//                                  $value);
+//      $field->add_field($radio);
+//      if ($checked) { $field->set_checked($value); }
+//
+//      $this->_pages[count($this->_pages)-1]->add_annotation($radio);
+//    }
+//
+//    /**
+//     * Create a new interactive text form
+//     *
+//     * @param $x Left coordinate of the widget bounding box
+//     * @param $y Top coordinate of the widget bounding box
+//     * @param $w Widget width
+//     * @param $h Widget height
+//     * @param $value Default widget value
+//     * @param $field_name Field name
+//     *
+//     * @return Field number
+//     */
+//    function add_field_text($x, $y, $w, $h, $value, $field_name) {
+//      $field = new PDFFieldText($this,
+//                                 $this->_generate_new_object_number(),
+//                                 0,
+//                                 new PDFRect($x, $y, $w, $h),
+//                                 $field_name,
+//                                 $value,
+//                                 $this->CurrentFont['i'],
+//                                 $this->FontSizePt);
+//
+//      $current_form =& $this->current_form();
+//      $current_form->add_field($field);
+//
+//      $this->_pages[count($this->_pages)-1]->add_annotation($field);
+//    }
+//
+//    function add_field_multiline_text($x, $y, $w, $h, $value, $field_name) {
+//      $field = new PDFFieldMultilineText($this,
+//                                          $this->_generate_new_object_number(),
+//                                          0,
+//                                          new PDFRect($x, $y, $w, $h),
+//                                          $field_name,
+//                                          $value,
+//                                          $this->CurrentFont['i'],
+//                                          $this->FontSizePt);
+//
+//      $current_form =& $this->current_form();
+//      $current_form->add_field($field);
+//
+//      $this->_pages[count($this->_pages)-1]->add_annotation($field);
+//    }
+//
+//    /**
+//     * Create a new interactive password input field
+//     *
+//     * @param $x Left coordinate of the widget bounding box
+//     * @param $y Top coordinate of the widget bounding box
+//     * @param $w Widget width
+//     * @param $h Widget height
+//     * @param $value Default widget value
+//     * @param $field_name Field name
+//     *
+//     * @return Field number
+//     */
+//    function add_field_password($x, $y, $w, $h, $value, $field_name) {
+//      $field = new PDFFieldPassword($this,
+//                                     $this->_generate_new_object_number(),
+//                                     0,
+//                                     new PDFRect($x, $y, $w, $h),
+//                                     $field_name,
+//                                     $value,
+//                                     $this->CurrentFont['i'],
+//                                     $this->FontSizePt);
+//
+//      $current_form =& $this->current_form();
+//      $current_form->add_field($field);
+//
+//      $this->_pages[count($this->_pages)-1]->add_annotation($field);
+//    }
+//
+//    function add_field_pushbuttonimage($x, $y, $w, $h, $field_name, $value, $actionURL) {
+//      $field = new PDFFieldPushButtonImage($this,
+//                                            $this->_generate_new_object_number(),
+//                                            0,
+//                                            new PDFRect($x, $y, $w, $h),
+//                                            $this->CurrentFont['i'],
+//                                            $this->FontSizePt,
+//                                            $field_name,
+//                                            $value,
+//                                            $actionURL);
+//
+//      $current_form =& $this->current_form();
+//      $current_form->add_field($field);
+//
+//      $this->_pages[count($this->_pages)-1]->add_annotation($field);
+//    }
+//
+//    function add_field_pushbuttonsubmit($x, $y, $w, $h, $field_name, $value, $actionURL) {
+//      $field = new PDFFieldPushButtonSubmit($this,
+//                                             $this->_generate_new_object_number(),
+//                                             0,
+//                                             new PDFRect($x, $y, $w, $h),
+//                                             $this->CurrentFont['i'],
+//                                             $this->FontSizePt,
+//                                             $field_name,
+//                                             $value,
+//                                             $actionURL);
+//
+//      $current_form =& $this->current_form();
+//      $current_form->add_field($field);
+//
+//      $this->_pages[count($this->_pages)-1]->add_annotation($field);
+//    }
+//
+//    function add_field_pushbuttonreset($x, $y, $w, $h) {
+//      $field = new PDFFieldPushButtonReset($this,
+//                                            $this->_generate_new_object_number(),
+//                                            0,
+//                                            new PDFRect($x, $y, $w, $h),
+//                                            null,
+//                                            $this->CurrentFont['i'],
+//                                            $this->FontSizePt);
+//
+//      $current_form =& $this->current_form();
+//      $current_form->add_field($field);
+//
+//      $this->_pages[count($this->_pages)-1]->add_annotation($field);
+//    }
+//
+//    function add_field_pushbutton($x, $y, $w, $h) {
+//      $field = new PDFFieldPushButton($this,
+//                                       $this->_generate_new_object_number(),
+//                                       0,
+//                                       new PDFRect($x, $y, $w, $h),
+//                                       null,
+//                                       $this->CurrentFont['i'],
+//                                       $this->FontSizePt);
+//
+//      $current_form =& $this->current_form();
+//      $current_form->add_field($field);
+//
+//      $this->_pages[count($this->_pages)-1]->add_annotation($field);
+//    }
+//
+//
+//    function SetDash($x, $y) {
+//      $x = (int)$x;
+//      $y = (int)$y;
+//      $this->_out(sprintf("[%d %d] 0 d", $x*2, $y*2));
+//    }
+//
+//    function _GetFontBBox() {
+//      return preg_split("/[\[\]\s]+/", $this->CurrentFont['desc']['FontBBox']);
+//    }
+//
+//    function _dounderline($x,$y,$txt) {
+//      //Underline text
+//      $up=$this->CurrentFont['up'];
+//      $ut=$this->CurrentFont['ut'];
+//      $w=$this->GetStringWidth($txt)+$this->ws*substr_count($txt,' ');
+//
+//      $content = sprintf('%.2f %.2f %.2f %.2f re f',
+//                         $x*$this->k,
+//                         ($this->h-($y-$up/1000*$this->FontSize))*$this->k,
+//                         $w*$this->k,
+//                         -$ut/1000*$this->FontSizePt);
+//
+//      return $content;
+//    }
+//
+//    function _dooverline($x,$y,$txt) {
+//      $bbox = $this->_GetFontBBox();
+//      $up = round($bbox[3] * 0.8);
+//
+//      $ut=$this->CurrentFont['ut'];
+//
+//      $w=$this->GetStringWidth($txt)+$this->ws*substr_count($txt,' ');
+//      return sprintf('%.2f %.2f %.2f %.2f re f',
+//                     $x*$this->k,
+//                     ($this->h-($y-$up/1000*$this->FontSize))*$this->k,
+//                     $w*$this->k,
+//                     -$ut/1000*$this->FontSizePt);
+//    }
+//
+//    function _dostrikeout($x,$y,$txt) {
+//      $bbox = $this->_GetFontBBox();
+//      $up = round($bbox[3] * 0.25);
+//
+//      $ut=$this->CurrentFont['ut'];
+//      $w=$this->GetStringWidth($txt)+$this->ws*substr_count($txt,' ');
+//      return sprintf('%.2f %.2f %.2f %.2f re f',
+//                     $x*$this->k,
+//                     ($this->h-($y-$up/1000*$this->FontSize))*$this->k,
+//                     $w*$this->k,
+//                     -$ut/1000*$this->FontSizePt);
+//    }
+//
+//    function SetDecoration($underline, $overline, $strikeout) {
+//      $this->underline = $underline;
+//      $this->overline  = $overline;
+//      $this->strikeout = $strikeout;
+//    }
+//
+//    function ClipPath($path) {
+//      if (count($path) < 3) {
+//        die("Attempt to clip on the path containing less than three points");
+//      }
+//
+//      $this->MakePath($path);
+//      $this->Clip();
+//    }
+//
+//    function Clip() {
+//      $this->_out("W n");
+//    }
+//
+//    // TODO: more graceful custom encoding processing
+//    function _LoadFont($fontkey, $family, $encoding) {
+//      if (!isset($this->fonts[$fontkey])) {
+//        global $g_font_resolver_pdf;
+//        $file = $g_font_resolver_pdf->ttf_mappings[$family];
+//
+//        $embed = $g_font_resolver_pdf->embed[$family];
+//
+//        // Remove the '.ttf' suffix
+//        $file = substr($file, 0, strlen($file) - 4);
+//
+//        // Generate (if required) PHP font description files
+//        if (!file_exists($this->_getfontpath().$fontkey.'.php') ||
+//            ManagerEncoding::is_custom_encoding($encoding)) {
+//          // As MakeFont squeaks a lot, we'll need to capture and discard its output
+//          MakeFont(TTF_FONTS_REPOSITORY.$file.'.ttf',
+//                   TTF_FONTS_REPOSITORY.$file.'.afm',
+//                   $this->_getfontpath(),
+//                   $fontkey.'.php',
+//                   $encoding);
+//        }
+//
+//        $this->AddFont($fontkey, $family, $encoding, $fontkey.'.php', $embed);
+//      }
+//    }
+//
+//    function _MakeFontKey($family, $encoding) {
+//      return $family.'-'.$encoding;
+//    }
 
     function GetFontAscender($name, $encoding) {
       $fontkey = $this->_MakeFontKey($name, $encoding);
