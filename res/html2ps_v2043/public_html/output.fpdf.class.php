@@ -371,31 +371,12 @@ class OutputDriverFPDF extends OutputDriverGenericPDF {
     $this->pdf = new FPDF('P','pt',array(mm2pt($media->width()), mm2pt($media->height())));
 
 // 141016, dwildt
+$classMethods = get_class_methods( 'FPDF' );
+sort($classMethods);
+var_dump( __METHOD__, __LINE__, $classMethods);
 $classMethods = get_class_methods( $this->pdf );
 sort($classMethods);
 var_dump( __METHOD__, __LINE__, $classMethods);
-$rClass = new ReflectionClass($this->pdf);
-$array = NULL;
-
-foreach ($rClass->getMethods() as $rMethod)
-{
-    try
-    {
-        // attempt to find method in parent class
-        new ReflectionMethod($rClass->getParentClass()->getName(),
-                            $rMethod->getName());
-        // check whether method is explicitly defined in this class
-        if ($rMethod->getDeclaringClass()->getName()
-            == $rClass->getName())
-        {
-            // if so, then it is overriden, so add to array
-            $array[] .=  $rMethod->getName();
-        }
-    }
-    catch (exception $e)
-    {    /* was not in parent class! */    }
-}
-var_dump( __METHOD__, __LINE__, $array);
 
     if (defined('DEBUG_MODE')) {
       $this->pdf->SetCompression(false);
