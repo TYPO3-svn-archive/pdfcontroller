@@ -151,7 +151,29 @@ class OutputDriverFPDF extends OutputDriverGenericPDF {
   }
 
   function font_ascender($name, $encoding) {
-var_dump(__METHOD__, __LINE__, t3lib_utility_Debug::debugTrail());
+
+    $level = 1;
+    // Get the debug trail
+    $strDebugTrail = t3lib_utility_Debug::debugTrail();
+    // Get debug trail elements
+    $arrDebugTrail = explode( '//', $strDebugTrail );
+
+    // Get class, method
+    $classMethodLine = $arrDebugTrail[ count( $arrDebugTrail ) - ( $level + 2 ) ];
+    list( $classMethod ) = explode( '#', $classMethodLine );
+    list($class, $method ) = explode( '->', $classMethod );
+    // Get class, method
+    // Get line
+    $classMethodLine = $arrDebugTrail[ count( $arrDebugTrail ) - ( $level + 1 ) ];
+    list( $dummy, $line ) = explode( '#', $classMethodLine );
+    unset( $dummy );
+    // Get line
+    // RETURN content
+    $arr_return[ 'class' ] = trim( $class );
+    $arr_return[ 'method' ] = trim( $method );
+    $arr_return[ 'line' ] = trim( $line );
+    $arr_return[ 'prompt' ] = $arr_return[ 'class' ] . '::' . $arr_return[ 'method' ] . ' (' . $arr_return[ 'line' ] . ')';
+var_dump(__METHOD__, __LINE__, $arr_return);
         return $this->pdf->GetFontAscender($name, $encoding);
   }
 
