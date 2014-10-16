@@ -937,7 +937,7 @@ if (!class_exists('FPDF')) {
     }
   }
 
-  class FPDF {
+  class XXXFPDF {
     //Private properties
 
     var $page;               //current page number
