@@ -30,7 +30,7 @@ class OutputDriverFPDF extends OutputDriverGenericPDF {
       $this->pdf->SetLink($this->locallinks[$anchor->name],
                           $y - 20,
                           $anchor->page);
-    };
+    }
 
     $x = $left;
     $y = $top - $this->offset;
@@ -130,7 +130,7 @@ class OutputDriverFPDF extends OutputDriverGenericPDF {
     if (is_null($groupname)) {
       $generated_group_index ++;
       $groupname = "__generated_group_".$generated_group_index;
-    };
+    }
 
     $this->_coords2pdf_annotation($x, $y);
     $this->pdf->add_field_radio($x, $y, $w, $h, $groupname, $value, $checked);
@@ -222,7 +222,7 @@ class OutputDriverFPDF extends OutputDriverGenericPDF {
       $this->_coords2pdf($tx, $ty);
       $this->pdf->Image($tmpname, $tx, $ty, $image->sx() * $scale, $image->sy() * $scale, "png");
       $cx += $width;
-    };
+    }
 
     // Fill part to the left
     $cx = $x;
@@ -232,7 +232,7 @@ class OutputDriverFPDF extends OutputDriverGenericPDF {
       $this->_coords2pdf($tx, $ty);
       $this->pdf->Image($tmpname, $tx, $ty, $image->sx() * $scale, $image->sy() * $scale, "png");
       $cx -= $width;
-    };
+    }
 
     unlink($tmpname);
   }
@@ -251,7 +251,7 @@ class OutputDriverFPDF extends OutputDriverGenericPDF {
 
         $this->pdf->Image($tmpname, $tx, $ty, $image->sx() * $scale, $image->sy() * $scale, "png");
         $cx += $width;
-      };
+      }
       $cy -= $height;
     }
 
@@ -265,7 +265,7 @@ class OutputDriverFPDF extends OutputDriverGenericPDF {
         $this->_coords2pdf($tx, $ty);
         $this->pdf->Image($tmpname, $tx, $ty, $image->sx() * $scale, $image->sy() * $scale, "png");
         $cx -= $width;
-      };
+      }
       $cy -= $height;
     }
 
@@ -279,7 +279,7 @@ class OutputDriverFPDF extends OutputDriverGenericPDF {
         $this->_coords2pdf($tx, $ty);
         $this->pdf->Image($tmpname, $tx, $ty, $image->sx() * $scale, $image->sy() * $scale, "png");
         $cx += $width;
-      };
+      }
       $cy += $height;
     }
 
@@ -293,7 +293,7 @@ class OutputDriverFPDF extends OutputDriverGenericPDF {
         $this->_coords2pdf($tx, $ty);
         $this->pdf->Image($tmpname, $tx, $ty, $image->sx() * $scale, $image->sy() * $scale, "png");
         $cx -= $width;
-      };
+      }
       $cy += $height;
     }
 
@@ -312,7 +312,7 @@ class OutputDriverFPDF extends OutputDriverGenericPDF {
       $this->_coords2pdf($tx, $ty);
       $this->pdf->Image($tmpname, $tx, $ty, $image->sx() * $scale, $image->sy() * $scale, "png");
       $cy -= $height;
-    };
+    }
 
     // Fill part to the top
     $cy = $y;
@@ -322,7 +322,7 @@ class OutputDriverFPDF extends OutputDriverGenericPDF {
       $this->_coords2pdf($tx, $ty);
       $this->pdf->Image($tmpname, $tx, $ty, $image->sx() * $scale, $image->sy() * $scale, "png");
       $cy += $height;
-    };
+    }
 
     unlink($tmpname);
   }
@@ -366,24 +366,24 @@ class OutputDriverFPDF extends OutputDriverGenericPDF {
   }
 
   function reset(&$media) {
-    parent::reset($media);
+    //parent::reset($media);
 
     $this->pdf = new FPDF('P','pt',array(mm2pt($media->width()), mm2pt($media->height())));
 
-// 141016, dwildt
-$classMethods = get_class_methods( 'FPDF' );
-sort($classMethods);
-var_dump( __METHOD__, __LINE__, $classMethods);
-$classMethods = get_class_methods( $this->pdf );
-sort($classMethods);
-var_dump( __METHOD__, __LINE__, $classMethods);
-var_dump( __METHOD__, __LINE__, get_parent_class('FPDF'), get_parent_class($this));
+// #62289, 141016, dwildt
+//$classMethods = get_class_methods( 'FPDF' );
+//sort($classMethods);
+//var_dump( __METHOD__, __LINE__, $classMethods);
+//$classMethods = get_class_methods( $this->pdf );
+//sort($classMethods);
+//var_dump( __METHOD__, __LINE__, $classMethods);
+//var_dump( __METHOD__, __LINE__, get_parent_class('FPDF'), get_parent_class($this));
 
     if (defined('DEBUG_MODE')) {
       $this->pdf->SetCompression(false);
     } else {
       $this->pdf->SetCompression(true);
-    };
+    }
 
     $this->cx = 0;
     $this->cy = 0;
