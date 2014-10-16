@@ -328,7 +328,6 @@ class OutputDriverFPDF extends OutputDriverGenericPDF {
   function reset(&$media) {
     parent::reset($media);
 
-    //$this->pdf =& new FPDF('P','pt',array(mm2pt($media->width()), mm2pt($media->height())));
     $this->pdf = new FPDF('P','pt',array(mm2pt($media->width()), mm2pt($media->height())));
 
     if (defined('DEBUG_MODE')) {
