@@ -1527,10 +1527,6 @@ EOF
       return $family.'-'.$encoding;
     }
 
-    /**
-     * @param $name Boolean indicates whether compression is enabled
-     * @param $encoding Boolean indicates whether compression is enabled
-     */
     function GetFontAscender($name, $encoding) {
       $fontkey = $this->_MakeFontKey($name, $encoding);
       $this->_LoadFont($fontkey, $name, $encoding, '');
