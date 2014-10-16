@@ -151,7 +151,8 @@ class OutputDriverFPDF extends OutputDriverGenericPDF {
   }
 
   function font_ascender($name, $encoding) {
-    return $this->pdf->GetFontAscender($name, $encoding);
+var_dump(__METHOD__, __LINE__, t3lib_utility_Debug::debugTrail());
+        return $this->pdf->GetFontAscender($name, $encoding);
   }
 
   function font_descender($name, $encoding) {
