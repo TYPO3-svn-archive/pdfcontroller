@@ -1,8 +1,8 @@
 <?php
 // $Header: /cvsroot/html2ps/output.fpdf.class.php,v 1.27 2007/05/17 13:55:13 Konstantin Exp $
 
-require_once(HTML2PS_DIR.'pdf.fpdf.php');
-require_once(HTML2PS_DIR.'pdf.fpdf.makefont.php');
+//require_once(HTML2PS_DIR.'pdf.fpdf.php');
+//require_once(HTML2PS_DIR.'pdf.fpdf.makefont.php');
 // require_once(HTML2PS_DIR.'fpdf/font/makefont/makefont.php');
 
 class OutputDriverFPDF extends OutputDriverGenericPDF {
