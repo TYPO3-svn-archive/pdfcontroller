@@ -153,18 +153,15 @@ class OutputDriverFPDF extends OutputDriverGenericPDF {
   function font_ascender($name, $encoding) {
 
     $level = 1;
-    // Get the debug trail
     $strDebugTrail = t3lib_utility_Debug::debugTrail();
-    // Get debug trail elements
     $arrDebugTrail = explode( '//', $strDebugTrail );
-
     // Get class, method
-    $classMethodLine = $arrDebugTrail[ count( $arrDebugTrail ) - ( $level + 2 ) ];
+    $classMethodLine = $arrDebugTrail[ count( $arrDebugTrail ) - ( $level + 1 ) ];
     list( $classMethod ) = explode( '#', $classMethodLine );
     list($class, $method ) = explode( '->', $classMethod );
     // Get class, method
     // Get line
-    $classMethodLine = $arrDebugTrail[ count( $arrDebugTrail ) - ( $level + 1 ) ];
+    $classMethodLine = $arrDebugTrail[ count( $arrDebugTrail ) - ( $level + 0 ) ];
     list( $dummy, $line ) = explode( '#', $classMethodLine );
     unset( $dummy );
     // Get line
@@ -173,8 +170,28 @@ class OutputDriverFPDF extends OutputDriverGenericPDF {
     $arr_return[ 'method' ] = trim( $method );
     $arr_return[ 'line' ] = trim( $line );
     $arr_return[ 'prompt' ] = $arr_return[ 'class' ] . '::' . $arr_return[ 'method' ] . ' (' . $arr_return[ 'line' ] . ')';
-var_dump(__METHOD__, __LINE__, $arr_return);
-        return $this->pdf->GetFontAscender($name, $encoding);
+
+    $arrDebugTrail = array_reverse( $arrDebugTrail );
+    $strDebugTrail = '<ol reversed><li>' . implode( '</li>' . PHP_EOL . '<li>', $arrDebugTrail ) . '</li>' . PHP_EOL . '</ol>';
+
+    $prompt = $prompt . '
+            <h3>
+              Reverse debug trail
+            </h3>
+            ' . $strDebugTrail . '
+            <p>
+              Sorry for the trouble. Browser - TYPO3 without PHP<br />
+              ' . $class . '::' . $method . ' at #' . $line . '
+            </p>
+            <p>
+              If you need any help please visit the
+              <a href="http://typo3-browser-forum.de/" target="_blank" title="TYPO3 Browser Forums. 500 TYPO3-integrators are registered.">
+                TYPO3 Browser Forum &raquo;</a>
+            </p>
+            ';
+#    var_dump(__METHOD__, __LINE__, $strDebugTrail);
+    echo  $prompt;
+    return $this->pdf->GetFontAscender($name, $encoding);
   }
 
   function font_descender($name, $encoding) {
