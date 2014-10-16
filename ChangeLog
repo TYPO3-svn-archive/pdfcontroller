@@ -5,7 +5,9 @@
             #62285: PHP 5.4 E_ALL & ~E_STRICT
             #62289: PHP 5: Call to undefined method FPDF::GetFontAscender()
                     * replace all "=& new" with "= new"
-                    * comment set_magic_quotes_runtime in res/html2ps_v2043/public_html/fpdf/fpdf.php
+                    * res/html2ps_v2043/public_html/fpdf/fpdf.php
+                      * comment set_magic_quotes_runtime
+                      * replace "};" with "}"
             #62281: Warning in case of [FE][pageNotFoundOnCHashError]
             #53019: Depracted require() functions for Typo3 6.2
   * #47107: Manual: Configuration in case of HTML5 (HTML4)
