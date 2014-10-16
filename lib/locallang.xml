@@ -8,20 +8,28 @@
     <languageKey index="default" type="array">
       <label index="promptExternalLinksBody"><![CDATA[
         <div style="float:right;padding-left:1em;">
-          <a href="http://die-netzmacher.de/" 
-            alt="Die Netzmacher - Internet ist Handwerk"
-            title="Die Netzmacher - Internet ist Handwerk"
+          <a href="http://typo3-pdfcontroller.de/en/"
+            alt="The PDF Controller is powered by Dirk Wildt (die-netzmacher.de)"
+            title="The PDF Controller is powered by Dirk Wildt (die-netzmacher.de)"
             target="_blank">
-            <img src="../../../../typo3conf/ext/pdfcontroller/lib/icons/die-netzmacher.de_200px.gif" 
-              width="200" 
-              height="80" 
-              alt="Die Netzmacher - Internet ist Handwerk" /></a>
+            <img src="../../../../typo3conf/ext/pdfcontroller/lib/icons/pdfcontroller_80x90.gif"
+              width="90"
+              height="80"
+              title="The PDF Controller is powered by Dirk Wildt (die-netzmacher.de)" /></a>
+          <a href="http://wildt.at.die-netzmacher.de/"
+            alt="The PDF Controller is powered by Dirk Wildt (die-netzmacher.de)"
+            title="The PDF Controller is powered by Dirk Wildt (die-netzmacher.de)"
+            target="_blank">
+            <img src="../../../../typo3conf/ext/pdfcontroller/lib/icons/die-netzmacher-logo-quadrat.png"
+              width="80"
+              height="80"
+              title="The PDF Controller is powered by Dirk Wildt (die-netzmacher.de)" /></a>
         </div>
-        <ul style="list-style:outside;">
+        <ul>
           <li>
             PDF controller: homepage<br />
             <a href="http://typo3-pdfcontroller.de/en/"
-              style="text-decoration:underline;"
+              style="background:none;border:none;float:none;text-decoration:underline;"
               alt="TYPO3 PDF Controller"
               title="TYPO3 PDF Controller"
               target="_blank">Homepage and forum</a>
@@ -29,40 +37,47 @@
           <li>
             PDF controller: the developer<br />
             <a href="http://die-netzmacher.de/"
-              style="text-decoration:underline;"
+              style="background:none;border:none;float:none;text-decoration:underline;"
               alt="Die Netzmacher - Internet ist Handwerk"
               title="Die Netzmacher - Internet ist Handwerk"
               target="_blank">die-netzmacher.de</a>
           </li>
         </ul>
-        </div>
       ]]></label>
     </languageKey>
     <languageKey index="de" type="array">
       <label index="promptExternalLinksBody"><![CDATA[
         <div style="float:right;padding-left:1em;">
-          <a href="http://die-netzmacher.de/" 
-            alt="Die Netzmacher - Internet ist Handwerk"
-            title="Die Netzmacher - Internet ist Handwerk"
+          <a href="http://typo3-pdfcontroller.de/en/"
+            alt="The PDF Controller is powered by Dirk Wildt (die-netzmacher.de)"
+            title="The PDF Controller is powered by Dirk Wildt (die-netzmacher.de)"
             target="_blank">
-            <img src="../../../../typo3conf/ext/pdfcontroller/lib/icons/die-netzmacher.de_200px.gif" 
-              width="200" 
-              height="80" 
-              alt="Die Netzmacher - Internet ist Handwerk" /></a>
+            <img src="../../../../typo3conf/ext/pdfcontroller/lib/icons/pdfcontroller_80x90.gif"
+              width="90"
+              height="80"
+              title="The PDF Controller is powered by Dirk Wildt (die-netzmacher.de)" /></a>
+          <a href="http://wildt.at.die-netzmacher.de/"
+            alt="The PDF Controller is powered by Dirk Wildt (die-netzmacher.de)"
+            title="The PDF Controller is powered by Dirk Wildt (die-netzmacher.de)"
+            target="_blank">
+            <img src="../../../../typo3conf/ext/pdfcontroller/lib/icons/die-netzmacher-logo-quadrat.png"
+              width="80"
+              height="80"
+              title="The PDF Controller is powered by Dirk Wildt (die-netzmacher.de)" /></a>
         </div>
-        <ul style="list-style:outside;">
+        <ul>
           <li>
             PDF Controller: Website<br />
             <a href="http://typo3-pdfcontroller.de/"
-              style="text-decoration:underline;"
+              style="background:none;border:none;float:none;text-decoration:underline;"
               alt="TYPO3 PDF Controller"
               title="TYPO3 PDF Controller"
               target="_blank">Website und Forum</a>
           </li>
           <li>
             PDF-Controller: die Entwickler<br />
-            <a href="http://die-netzmacher.de/" 
-              style="text-decoration:underline;"
+            <a href="http://die-netzmacher.de/"
+              style="background:none;border:none;float:none;text-decoration:underline;"
               alt="Die Netzmacher - Internet ist Handwerk"
               title="Die Netzmacher - Internet ist Handwerk"
               target="_blank">die-netzmacher.de</a>

@@ -2,7 +2,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2011 Dirk Wildt <http://wildt.at.die-netzmacher.de>
+ *  (c) 2011-2014 -  Dirk Wildt <http://wildt.at.die-netzmacher.de>
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -53,8 +53,21 @@ if (!defined('PATH_typo3'))
 // TYPO3 Downwards Compatibility
 
 
+// TYPO3 Downwards Compatibility
+// #62278, 141016, dwildt, 1-
+//require_once(PATH_tslib . 'class.tslib_pibase.php');
+// #62278, 141016, dwildt, +
+list( $main, $sub, $bugfix ) = explode( '.', TYPO3_version );
+$version = ( ( int ) $main ) * 1000000;
+$version = $version + ( ( int ) $sub ) * 1000;
+$version = $version + ( ( int ) $bugfix ) * 1;
+// Set TYPO3 version as integer (sample: 4.7.7 -> 4007007)
 
-require_once(PATH_tslib.'class.tslib_pibase.php');
+if ( $version < 6002000 )
+{
+  require_once(PATH_tslib . 'class.tslib_pibase.php');
+}
+// #62278, 141016, dwildt, +
 
 /**
  * Plugin 'Calculator for grants' for the 'pdfcontroller' extension.
@@ -63,7 +76,7 @@ require_once(PATH_tslib.'class.tslib_pibase.php');
  * @package    TYPO3
  * @subpackage    pdfcontroller
  *
- * @version 0.0.2
+ * @version 2.0.0
  */
 
 /**
@@ -157,7 +170,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
  * @param string    $content: The content of the PlugIn
  * @param array   $conf: The PlugIn Configuration
  * @return  string    The content that should be displayed on the website
- * @version 0.0.1
+ * @version 2.0.0
  * @since 0.0.1
  */
   public function main($content, $conf)
@@ -171,7 +184,20 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       //
       // Timetracking
 
-    require_once(PATH_t3lib.'class.t3lib_timetrack.php');
+    // TYPO3 Downwards Compatibility
+    // #62278, 141016, dwildt, 1-
+    //require_once(PATH_t3lib.'class.t3lib_timetrack.php');
+    // #62278, 141016, dwildt, +
+    list( $main, $sub, $bugfix ) = explode( '.', TYPO3_version );
+    $version = ( ( int ) $main ) * 1000000;
+    $version = $version + ( ( int ) $sub ) * 1000;
+    $version = $version + ( ( int ) $bugfix ) * 1;
+    // Set TYPO3 version as integer (sample: 4.7.7 -> 4007007)
+    if ( $version < 6002000 )
+    {
+      require_once(PATH_t3lib . 'class.t3lib_timetrack.php');
+    }
+    // #62278, 141016, dwildt, +
     $this->TT        = new t3lib_timeTrack;
     $this->TT->start();
     $this->startTime = $this->TT->getDifferenceToStarttime();
@@ -220,7 +246,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
     {
       //define( 'HTML2PS_DIR', $_SERVER['DOCUMENT_ROOT'] . 'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/' );
       define( 'HTML2PS_DIR', t3lib_extMgm::extPath( 'pdfcontroller' ) . 'res/html2ps_v2043/public_html/' );
-    };
+    }
       // DEFINE HTML2PS_DIR
 
       // Define PDFCONTROLLER_ACCESS
@@ -451,7 +477,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       // 120425, jgoetze, 1+
     $this->piVars['process_mode']   = $this->piVars['process_mode'] ? $this->piVars['process_mode'] : 'single';
 
-    
+
     $this->piVars['encoding']       = '';
     $this->piVars['headerhtml']     = '';
     $this->piVars['footerhtml']     = '';
@@ -932,27 +958,14 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       //
       // Require and init helper classes
 
-//    require_once(t3lib_extMgm::extPath('pdfcontroller') . 'lib/class.tx_pdfcontroller_dynmarkers.php');
-//      // Class with methods for markers
-//    $this->objMarkers = new tx_pdfcontroller_dynmarkers($this);
-//
     require_once('class.tx_pdfcontroller_pi1_flexform.php');
     // Class with methods for get flexform values
     $this->objFlexform = new tx_pdfcontroller_pi1_flexform($this);
-
-//    require_once('class.tx_pdfcontroller_pi1_javascript.php');
-//    // Class with methods for ordering rows
-//    $this->objJss = new tx_pdfcontroller_pi1_javascript($this);
-//
-//    require_once('class.tx_pdfcontroller_pi1_template.php');
-//    // Class with template methods, which return HTML
-//    $this->objTemplate = new tx_pdfcontroller_pi1_template($this);
 
     require_once('class.tx_pdfcontroller_pi1_zz.php');
     // Class with zz methods
     $this->objZz = new tx_pdfcontroller_pi1_zz($this);
       // Require and init helper classes
-
   }
 
 

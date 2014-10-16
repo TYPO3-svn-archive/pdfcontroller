@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'description' => 'Offer your HTML page for PDF download. Controll the conversion with the user interface.',
 	'category' => 'plugin',
 	'shy' => 0,
-	'version' => '1.4.3',
+	'version' => '2.0.0',
 	'dependencies' => '',
 	'conflicts' => '',
 	'priority' => '',
@@ -34,13 +34,12 @@ $EM_CONF[$_EXTKEY] = array(
 	'CGLcompliance_note' => '',
 	'constraints' => array(
 		'depends' => array(
-			'php' => '5.1.0-0.0.0',
-			'typo3' => '4.5.11-0.0.0',
+			'typo3' => '4.5.11-6.2.99',
 		),
 		'conflicts' => array(
 		),
 		'suggests' => array(
-			'pdfcontroller_fonts' => '1.0.0-0.0.0',
+			'pdfcontroller_fonts' => '',
 		),
 	),
 	'suggests' => array(

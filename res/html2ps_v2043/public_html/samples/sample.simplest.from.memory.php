@@ -7,7 +7,9 @@
 require_once(dirname(__FILE__).'/../config.inc.php');
 require_once(HTML2PS_DIR.'pipeline.factory.class.php');
 
-error_reporting(E_ALL);
+// #62285, 141016, dwildt, 1-, 1+
+//error_reporting(E_ALL);
+error_reporting(E_ALL & ~E_STRICT);
 ini_set("display_errors","1");
 @set_time_limit(10000);
 parse_config_file(HTML2PS_DIR.'html2ps.config');
@@ -73,8 +75,8 @@ function convert_to_pdf($html, $path_to_pdf, $base_path='') {
   $pipeline = PipelineFactory::create_default_pipeline('', // Attempt to auto-detect encoding
                                                        '');
 
-  // Override HTML source 
-  // @TODO: default http fetcher will return null on incorrect images 
+  // Override HTML source
+  // @TODO: default http fetcher will return null on incorrect images
   // Bug submitted by 'imatronix' (tufat.com forum).
   $pipeline->fetchers[] = new MyFetcherMemory($html, $base_path);
 
@@ -88,7 +90,7 @@ function convert_to_pdf($html, $path_to_pdf, $base_path='') {
                             'right'  => 0,
                             'top'    => 0,
                             'bottom' => 0));
-  $media->set_pixels(1024); 
+  $media->set_pixels(1024);
 
   global $g_config;
   $g_config = array(

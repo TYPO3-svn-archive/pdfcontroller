@@ -1,3 +1,12 @@
+2.0.0
+  14-10-16
+  Major Feature
+  * #62278: Upgrade TYPO3 6.2
+            #62285: PHP 5.4 E_ALL & ~E_STRICT
+            #62281: Warning in case of [FE][pageNotFoundOnCHashError]
+            #53019: Depracted require() functions for Typo3 6.2
+  * #47107: Manual: Configuration in case of HTML5 (HTML4)
+
 1.4.3
   12-10-30
   Manual

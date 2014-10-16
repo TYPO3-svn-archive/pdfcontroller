@@ -55,7 +55,9 @@ define('CHECK_STATUS_FAILED',  0);
 define('CHECK_STATUS_WARNING', 1);
 define('CHECK_STATUS_SUCCESS', 2);
 
-error_reporting(E_ALL);
+// #62285, 141016, dwildt, 1-, 1+
+//error_reporting(E_ALL);
+error_reporting(E_ALL & ~E_STRICT);
 ini_set("display_errors","1");
 
 $__g_registered_checks = array();
@@ -137,19 +139,19 @@ class CheckSimple {
   }
 
   /**
-   * Start checking 
+   * Start checking
    */
   function run() {
     error_no_method('run', get_class($this));
   }
 
   /**
-   * Get check status code; status code should be one of the following 
+   * Get check status code; status code should be one of the following
    * predefined constants:
-   * CHECK_STATUS_FAILED  - check failed, script will not work unless this issue is fixed 
+   * CHECK_STATUS_FAILED  - check failed, script will not work unless this issue is fixed
    * CHECK_STATUS_WARNING - check succeeded, script may encounter minor issues
    * CHECK_STATUS_SUCCESS - check succeeded without any problems
-   * 
+   *
    * @return Integer Status code
    */
   function getStatus() {
@@ -263,14 +265,14 @@ class CheckDOM extends CheckTriState {
   }
 
   function run() {
-    if (function_exists('domxml_open_mem') || 
-        class_exists('DOMDocument')) { 
+    if (function_exists('domxml_open_mem') ||
+        class_exists('DOMDocument')) {
       $this->setStatus(CHECK_STATUS_SUCCESS);
       $this->setMessage('Native XML DOM extension found');
       return;
     };
-    
-    if (file_exists(HTML2PS_DIR.'classes/include.php')) { 
+
+    if (file_exists(HTML2PS_DIR.'classes/include.php')) {
       $this->setStatus(CHECK_STATUS_WARNING);
       $this->setMessage('No native XML DOM extension found, falling back to Active-State DOM XML. Note that it is <b>highly recommended to use native PHP XML DOM extension</b>.');
       return;
@@ -339,7 +341,7 @@ class CheckGD extends CheckBinaryRequired {
 
     $gd_info = gd_info();
     $gd_version_string = $gd_info['GD Version'];
-    
+
     /**
      * Extract version number if it is a bundled version; otherwise we assume that
      * version string should contain verions number only
@@ -425,7 +427,7 @@ class CheckPCREBacktrack extends CheckBinaryRecommended {
     $this->setSuccess(false);
 
     $version = explode('.', PHP_VERSION);
-    if ($version[0] < 5 || 
+    if ($version[0] < 5 ||
         ($version[0] == 5 && $version[1] < 2)) {
       $this->setMessage('pcre.backtrack_limit is not available in PHP prior to 5.2.0');
       $this->setSuccess(true);
@@ -718,7 +720,7 @@ class CheckPresenceTTF extends CheckBinaryRecommended {
         $message .= "Font ".$fullname." is present and readable.\n";
       };
     };
-        
+
     $this->setMessage($message);
   }
 }
@@ -757,7 +759,7 @@ class CheckPresenceType1AFM extends CheckBinaryRecommended {
         $message .= "Font ".$fullname." is present and readable.\n";
       };
     };
-        
+
     $this->setMessage($message);
   }
 }
@@ -791,14 +793,14 @@ class CheckGDFormat extends CheckBinaryRequired {
     switch( true )
     {
       case( isset( $gd_info[$this->_getInfoKey( )] ) ):
-        if( ! ( $gd_info[$this->_getInfoKey( )] ) ) 
+        if( ! ( $gd_info[$this->_getInfoKey( )] ) )
         {
           $this->setMessage("No ".$this->_getFormatName()." support, some images will not be displayed");
           return;
         }
         break;
       case( isset( $gd_info['JPEG Support'] ) ):
-        if( ! ( $gd_info['JPEG Support'] ) ) 
+        if( ! ( $gd_info['JPEG Support'] ) )
         {
           $this->setMessage("No ".$this->_getFormatName()." support, some images will not be displayed");
           return;

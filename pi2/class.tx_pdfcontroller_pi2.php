@@ -1,8 +1,9 @@
 <?php
-/***************************************************************
+
+/* * *************************************************************
  *  Copyright notice
  *
- *  (c) 2011-2012 - Dirk Wildt <http://wildt.at.die-netzmacher.de>
+ *  (c) 2011-2014 - Dirk Wildt <http://wildt.at.die-netzmacher.de>
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -20,7 +21,7 @@
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 
 
@@ -28,11 +29,11 @@
 //
 // TYPO3 Downwards Compatibility
 
-if (!defined('PATH_typo3'))
+if ( !defined( 'PATH_typo3' ) )
 {
   //var_dump(get_defined_constants());
   //echo 'Not defined: PATH_typo3.<br />tx_pdfcontroller_pi2 defines it now.<br />';
-  if (!defined('PATH_site'))
+  if ( !defined( 'PATH_site' ) )
   {
     echo '<div style="border:1em solid red;padding:1em;color:red;font-weight:bold;font-size:2em;background:white;line-height:2.4em;text-align:center;">Error<br />
       The constant PATH_typo3 isn\'t defined.<br />
@@ -40,7 +41,7 @@ if (!defined('PATH_typo3'))
       <br />
       Please check your TYPO3 installation.</div>';
   }
-  if (!defined('TYPO3_mainDir'))
+  if ( !defined( 'TYPO3_mainDir' ) )
   {
     echo '<div style="border:1em solid red;padding:1em;color:red;font-weight:bold;font-size:2em;background:white;line-height:2.4em;text-align:center;">Error<br />
       The constant PATH_typo3 isn\'t defined.<br />
@@ -48,13 +49,26 @@ if (!defined('PATH_typo3'))
       <br />
       Please check your TYPO3 installation.</div>';
   }
-  define('Path_typo3', PATH_site.TYPO3_mainDir);
+  define( 'Path_typo3', PATH_site . TYPO3_mainDir );
 }
 // TYPO3 Downwards Compatibility
+// TYPO3 Downwards Compatibility
+// #62278, 141016, dwildt, 1-
+//require_once(PATH_tslib . 'class.tslib_pibase.php');
+// #62278, 141016, dwildt, +
+list( $main, $sub, $bugfix ) = explode( '.', TYPO3_version );
+$version = ( ( int ) $main ) * 1000000;
+$version = $version + ( ( int ) $sub ) * 1000;
+$version = $version + ( ( int ) $bugfix ) * 1;
+// Set TYPO3 version as integer (sample: 4.7.7 -> 4007007)
+
+if ( $version < 6002000 )
+{
+  require_once(PATH_tslib . 'class.tslib_pibase.php');
+}
+// #62278, 141016, dwildt, +
 
 
-
-require_once(PATH_tslib.'class.tslib_pibase.php');
 
 /**
  * Plugin 'Calculator for grants' for the 'pdfcontroller' extension.
@@ -63,7 +77,7 @@ require_once(PATH_tslib.'class.tslib_pibase.php');
  * @package    TYPO3
  * @subpackage    pdfcontroller
  *
- * @version 1.1.1
+ * @version 2.0.0
  */
 
 /**
@@ -86,53 +100,44 @@ require_once(PATH_tslib.'class.tslib_pibase.php');
  * (This index is automatically created/updated by the extension "extdeveval")
  *
  */
-class tx_pdfcontroller_pi2 extends tslib_pibase {
+class tx_pdfcontroller_pi2 extends tslib_pibase
+{
 
   var $prefixId = 'tx_pdfcontroller_pi2';
-    // Same as class name
+  // Same as class name
   var $scriptRelPath = 'pi2/class.tx_pdfcontroller_pi2.php';
-    // Path to this script relative to the extension dir.
+  // Path to this script relative to the extension dir.
   var $extKey = 'pdfcontroller';
-    // The extension key.
+  // The extension key.
   var $pi_checkCHash = true;
-  
-    // [integer] The current typeNum given by the current URL
-  var $param_typeNum  = 0;
-    // [string] current page object: page | print | pdf
+  // [integer] The current typeNum given by the current URL
+  var $param_typeNum = 0;
+  // [string] current page object: page | print | pdf
   var $str_pageObject = 'page';
-  
-
-
-
-  var $str_developer_name     = 'Dirk Wildt';
-  var $str_developer_mail     = 'http://wildt.at.die-netzmacher.de';
-  var $str_developer_phone    = '+49 361 21655226';
-  var $str_developer_company  = 'Die Netzmacher';
-  var $str_developer_web      = 'http://die-netzmacher.de';
+  var $str_developer_name = 'Dirk Wildt';
+  var $str_developer_mail = 'http://wildt.at.die-netzmacher.de';
+  var $str_developer_phone = '+49 361 21655226';
+  var $str_developer_company = 'Die Netzmacher';
+  var $str_developer_web = 'http://die-netzmacher.de';
   var $str_developer_typo3ext = '';
-  var $str_developer_lang     = 'german, english';
-    // [Boolean] Set by init_drs()
-  var $developer_contact      = false;
+  var $str_developer_lang = 'german, english';
+  // [Boolean] Set by init_drs()
+  var $developer_contact = false;
+  var $arr_extConf = array();
+  // Array out of the extConf file
+  // Booleans for DRS - Development Reporting System
+  var $b_drs_all = false;
+  var $b_drs_error = false;
+  var $b_drs_warn = false;
+  var $b_drs_info = false;
+  var $b_drs_flexform = false;
+  var $b_drs_marker = false;
+  var $b_drs_perform = false;
+  var $b_drs_security = false;
+  var $b_drs_typolink = false;
+  var $b_drs_typoscript = false;
 
-
-
-  var $arr_extConf            = array();
-    // Array out of the extConf file
-
-
-
-    // Booleans for DRS - Development Reporting System
-  var $b_drs_all          = false;
-  var $b_drs_error        = false;
-  var $b_drs_warn         = false;
-  var $b_drs_info         = false;
-  var $b_drs_flexform     = false;
-  var $b_drs_marker       = false;
-  var $b_drs_perform      = false;
-  var $b_drs_security     = false;
-  var $b_drs_typolink     = false;
-  var $b_drs_typoscript   = false;
-    // Booleans for DRS - Development Reporting System
+  // Booleans for DRS - Development Reporting System
 
 
 
@@ -144,404 +149,340 @@ class tx_pdfcontroller_pi2 extends tslib_pibase {
 
 
 
-  /***********************************************
+  /*   * *********************************************
    *
    * Main Process
    *
-   **********************************************/
-
-
-
+   * ******************************************** */
 
   /**
- * Main method of your PlugIn
- *
- * @param string    $content: The content of the PlugIn
- * @param array   $conf: The PlugIn Configuration
- * @return  string    The content that should be displayed on the website
- * @version 1.2.2
- * @since 0.0.1
- */
+   * Main method of your PlugIn
+   *
+   * @param string    $content: The content of the PlugIn
+   * @param array   $conf: The PlugIn Configuration
+   * @return  string    The content that should be displayed on the website
+   * @version 2.0.0
+   * @since 0.0.1
+   */
   public function main( $content, $conf )
   {
+    unset( $content );
+
     $this->conf = $conf;
     $this->pi_loadLL();
 
+    ////////////////////////////////////////////////////////////////////
+    //
+    // Timetracking
+    // TYPO3 Downwards Compatibility
+    // #62278, 141016, dwildt, 1-
+    //require_once(PATH_t3lib.'class.t3lib_timetrack.php');
+    // #62278, 141016, dwildt, +
+    list( $main, $sub, $bugfix ) = explode( '.', TYPO3_version );
+    $version = ( ( int ) $main ) * 1000000;
+    $version = $version + ( ( int ) $sub ) * 1000;
+    $version = $version + ( ( int ) $bugfix ) * 1;
+    // Set TYPO3 version as integer (sample: 4.7.7 -> 4007007)
+    if ( $version < 6002000 )
+    {
+      require_once(PATH_t3lib . 'class.t3lib_timetrack.php');
+    }
+    // #62278, 141016, dwildt, +
 
-
-      ////////////////////////////////////////////////////////////////////
-      //
-      // Timetracking
-
-    require_once(PATH_t3lib.'class.t3lib_timetrack.php');
-    $this->TT        = new t3lib_timeTrack;
+    $this->TT = new t3lib_timeTrack;
     $this->TT->start();
     $this->startTime = $this->TT->getDifferenceToStarttime();
-      // Timetracking
-
-
-
-      //////////////////////////////////////////////////////////////////////
-      //
+    // Timetracking
+    //////////////////////////////////////////////////////////////////////
+    //
       // Get the values from the localconf.php file
 
-    $this->arr_extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey]);
-      // Get the values from the localconf.php file
-
-
-
-      //////////////////////////////////////////////////////////////////////
-      //
+    $this->arr_extConf = unserialize( $GLOBALS[ 'TYPO3_CONF_VARS' ][ 'EXT' ][ 'extConf' ][ $this->extKey ] );
+    // Get the values from the localconf.php file
+    //////////////////////////////////////////////////////////////////////
+    //
       // Init DRS - Development Reporting System
 
     $this->init_drs();
-    if ($this->b_drs_perform)
+    if ( $this->b_drs_perform )
     {
-      t3lib_div::devlog('[INFO/PERFORMANCE] START', $this->extKey, 0);
+      t3lib_div::devlog( '[INFO/PERFORMANCE] START', $this->extKey, 0 );
     }
-      // Init DRS - Development Reporting System
-
-
-
-      //////////////////////////////////////////////////////////////////////
-      //
+    // Init DRS - Development Reporting System
+    //////////////////////////////////////////////////////////////////////
+    //
       // Require and init helper classes
 
     $this->require_classes();
-      // Require and init helper classes
-
-
-
-      //////////////////////////////////////////////////////////////////////
-      //
+    // Require and init helper classes
+    //////////////////////////////////////////////////////////////////////
+    //
       // Check TypoScript configuration
-
-      // RETURN TypoScript template isn't included, button is missing
-    if (empty($this->conf['button']))
+    // RETURN TypoScript template isn't included, button is missing
+    if ( empty( $this->conf[ 'button' ] ) )
     {
-      if ($this->b_drs_error)
+      if ( $this->b_drs_error )
       {
-        t3lib_div::devLog('[ERROR] TypoScript template isn\'t included', $this->extKey, 3);
-        t3lib_div::devLog('[INFO] ABORTED', $this->extKey, 0);
+        t3lib_div::devLog( '[ERROR] TypoScript template isn\'t included', $this->extKey, 3 );
+        t3lib_div::devLog( '[INFO] ABORTED', $this->extKey, 0 );
       }
-      $str_header  = '<h1 style="color:red;">'.$this->pi_getLL('error_typoscripttemplate_h1').'</h1>';
-      $str_prompt  = '<p style="color:red;font-weight:bold;">'.$this->pi_getLL('error_typoscripttemplate_p').'</p>';
-      return $this->pi_wrapInBaseClass($str_header . $str_prompt);
+      $str_header = '<h1 style="color:red;">' . $this->pi_getLL( 'error_typoscripttemplate_h1' ) . '</h1>';
+      $str_prompt = '<p style="color:red;font-weight:bold;">' . $this->pi_getLL( 'error_typoscripttemplate_p' ) . '</p>';
+      return $this->pi_wrapInBaseClass( $str_header . $str_prompt );
     }
-      // RETURN TypoScript template isn't included, button is missing
-      // Check TypoScript configuration
-
-
-
-      //////////////////////////////////////////////////////////////////////
-      //
+    // RETURN TypoScript template isn't included, button is missing
+    // Check TypoScript configuration
+    //////////////////////////////////////////////////////////////////////
+    //
       // Init flexform
-
-      // Init methods for pi_flexform
+    // Init methods for pi_flexform
     $this->pi_initPIflexForm();
-    $this->pi_flexform = $this->cObj->data['pi_flexform'];
-    
-      // RETURN flexform is empty
-    if (!is_array($this->pi_flexform))
+    $this->pi_flexform = $this->cObj->data[ 'pi_flexform' ];
+
+    // RETURN flexform is empty
+    if ( !is_array( $this->pi_flexform ) )
     {
-      if ($this->b_drs_error)
+      if ( $this->b_drs_error )
       {
-        t3lib_div::devLog('[ERROR] Flexform is empty.', $this->extKey, 3);
-        t3lib_div::devLog('[INFO] ABORTED', $this->extKey, 0);
+        t3lib_div::devLog( '[ERROR] Flexform is empty.', $this->extKey, 3 );
+        t3lib_div::devLog( '[INFO] ABORTED', $this->extKey, 0 );
       }
-      $str_header  = '<h1 style="color:red;">'.$this->pi_getLL('error_flexform_h1').'</h1>';
-      $str_prompt  = '<p style="color:red;font-weight:bold;">'.$this->pi_getLL('error_flexform_p').'</p>';
-      return $this->pi_wrapInBaseClass($str_header . $str_prompt);
+      $str_header = '<h1 style="color:red;">' . $this->pi_getLL( 'error_flexform_h1' ) . '</h1>';
+      $str_prompt = '<p style="color:red;font-weight:bold;">' . $this->pi_getLL( 'error_flexform_p' ) . '</p>';
+      return $this->pi_wrapInBaseClass( $str_header . $str_prompt );
     }
-      // RETURN flexform is empty
-      // Init flexform
-
-
-
-      //////////////////////////////////////////////////////////////////////
-      //
+    // RETURN flexform is empty
+    // Init flexform
+    //////////////////////////////////////////////////////////////////////
+    //
       // Get flexform values
+    // Uid of the page with the PDF Controller
+    $pid_converter = $this->pi_flexform[ 'data' ][ 'sDEF' ][ 'lDEF' ][ 'pid_converter' ][ 'vDEF' ];
 
-      // Uid of the page with the PDF Controller
-    $pid_converter  = $this->pi_flexform['data']['sDEF']['lDEF']['pid_converter']['vDEF'];
-
-    $handleimage    = $this->pi_flexform['data']['sDEF']['lDEF']['handleimage']['vDEF'];
-    switch( $handleimage )
+    $handleimage = $this->pi_flexform[ 'data' ][ 'sDEF' ][ 'lDEF' ][ 'handleimage' ][ 'vDEF' ];
+    switch ( $handleimage )
     {
       case( 1 ):
-        $imagefile = $this->pi_flexform['data']['sDEF']['lDEF']['imagepath']['vDEF'];
+        $imagefile = $this->pi_flexform[ 'data' ][ 'sDEF' ][ 'lDEF' ][ 'imagepath' ][ 'vDEF' ];
         $imagefile = 'uploads/tx_pdfcontroller/' . $imagefile;
         break;
       case( 0 ):
       default:
-          // Take path for imagefile from TypoScript 
+        // Take path for imagefile from TypoScript
         $imagefile = $this->cObj->cObjGetSingle
-        (
-          $this->conf['flexform.']['sDEF.']['imagefile'],
-          $this->conf['flexform.']['sDEF.']['imagefile.']
+                (
+                $this->conf[ 'flexform.' ][ 'sDEF.' ][ 'imagefile' ], $this->conf[ 'flexform.' ][ 'sDEF.' ][ 'imagefile.' ]
         );
     }
 
-    $wrap_in_pibase = $this->pi_flexform['data']['sDEF']['lDEF']['wrap_in_pibase']['vDEF'];
-      // Get flexform values
-
-
-
-      ////////////////////////////////////////////////////////////////////////
-      //
+    $wrap_in_pibase = $this->pi_flexform[ 'data' ][ 'sDEF' ][ 'lDEF' ][ 'wrap_in_pibase' ][ 'vDEF' ];
+    // Get flexform values
+    ////////////////////////////////////////////////////////////////////////
+    //
       // Generate additional paramater
 
-    $TYPO3_REQUEST_URL  = t3lib_div::getIndpEnv('TYPO3_REQUEST_URL');
+    $TYPO3_REQUEST_URL = t3lib_div::getIndpEnv( 'TYPO3_REQUEST_URL' );
 //    $paramsEncode       = rawurlencode ( $TYPO3_REQUEST_URL );
-    $paramsEncode       = str_replace ( '&', '%26', $TYPO3_REQUEST_URL );
-    $additionalParams   = '&tx_pdfcontroller_pi1[URL]=' . $paramsEncode;
-      // Generate additional paramater
-
-
-
-      ////////////////////////////////////////////////////////////////////////
-      //
+    $paramsEncode = str_replace( '&', '%26', $TYPO3_REQUEST_URL );
+    $additionalParams = '&tx_pdfcontroller_pi1[URL]=' . $paramsEncode;
+    // Generate additional paramater
+    ////////////////////////////////////////////////////////////////////////
+    //
       // DRS
 
     if ( $this->b_drs_warn )
     {
       $prompt = 'Be aware of the configuration of additionalParams: If you aren\'t ' .
-                'using RealURL please use %26 in place of an &. If you are using RealURL ' .
-                'please use something like print.html in place of something like &type=98. ' .
-                'Please attend the three TypoScript templates in the masterTemplate section. ' .
-                'If you have any question, please refer to the manual! ';
-      t3lib_div::devLog( '[WARN/TYPOLINK] '. $prompt, $this->extKey, 2 );
+              'using RealURL please use %26 in place of an &. If you are using RealURL ' .
+              'please use something like print.html in place of something like &type=98. ' .
+              'Please attend the three TypoScript templates in the masterTemplate section. ' .
+              'If you have any question, please refer to the manual! ';
+      t3lib_div::devLog( '[WARN/TYPOLINK] ' . $prompt, $this->extKey, 2 );
     }
     if ( $this->b_drs_typolink )
     {
       $prompt = 'Marker ###ADDITIONALPARAMS### will replaced with ' . $additionalParams;
-      t3lib_div::devLog( '[INFO/TYPOLINK] '. $prompt, $this->extKey, 0 );
+      t3lib_div::devLog( '[INFO/TYPOLINK] ' . $prompt, $this->extKey, 0 );
       $prompt = '###ADDITIONALPARAMS### decoded: ' . rawurldecode( $additionalParams );
-      t3lib_div::devLog( '[INFO/TYPOLINK] '. $prompt, $this->extKey, 0 );
+      t3lib_div::devLog( '[INFO/TYPOLINK] ' . $prompt, $this->extKey, 0 );
     }
-      // DRS
-
-    
-    
-      ////////////////////////////////////////////////////////////////////////
-      //
+    // DRS
+    ////////////////////////////////////////////////////////////////////////
+    //
       // Replace markers in the TypoScript configuration
-
-      // Get TypoScript configuration as one dimensional array
-      // 100921, dwildt, Bugfix in t3lib_BEfunc::implodeTSParams
-      // See http://bugs.typo3.org/view.php?id=15757 implodeTSParams(): numeric keys will be renumbered
-    $conf_oneDim      = t3lib_BEfunc::implodeTSParams( $this->conf );
-      // Get TypoScript configuration as one dimensional array
-
-      // Replacement
-    $marker       = array('###IMAGEFILE###',  '###PARAMETER###',  '###ADDITIONALPARAMS###');
-    $values       = array($imagefile,         $pid_converter,     $additionalParams);
-    $conf_oneDim  = str_replace( $marker, $values, $conf_oneDim );
-      // Replacement
-
-
-
-      ////////////////////////////////////////////////////////////////////////
-      //
+    // Get TypoScript configuration as one dimensional array
+    // 100921, dwildt, Bugfix in t3lib_BEfunc::implodeTSParams
+    // See http://bugs.typo3.org/view.php?id=15757 implodeTSParams(): numeric keys will be renumbered
+    $conf_oneDim = t3lib_BEfunc::implodeTSParams( $this->conf );
+    // Get TypoScript configuration as one dimensional array
+    // Replacement
+    $marker = array( '###IMAGEFILE###', '###PARAMETER###', '###ADDITIONALPARAMS###' );
+    $values = array( $imagefile, $pid_converter, $additionalParams );
+    $conf_oneDim = str_replace( $marker, $values, $conf_oneDim );
+    // Replacement
+    ////////////////////////////////////////////////////////////////////////
+    //
       // DRS
 
     if ( $this->b_drs_marker || $this->b_drs_typoscript )
     {
-      foreach( $marker as $markerKey => $markerValue )
+      foreach ( $marker as $markerKey => $markerValue )
       {
-        $prompt = $markerValue . ' becomes ' . $values[$markerKey];
-        t3lib_div::devLog( '[INFO/MARKER+TYPOSCRIPT] '. $prompt, $this->extKey, 0 );
+        $prompt = $markerValue . ' becomes ' . $values[ $markerKey ];
+        t3lib_div::devLog( '[INFO/MARKER+TYPOSCRIPT] ' . $prompt, $this->extKey, 0 );
       }
     }
-      // DRS
-    
-    
-    
-      // Reset the TypoScript
-    $this->conf   = $this->objTyposcript->oneDim_to_tree($conf_oneDim);
-      // Replace markers in the TypoScript configuration
-
-    
-
-
-      ////////////////////////////////////////////////////////////////////////
-      //
+    // DRS
+    // Reset the TypoScript
+    $this->conf = $this->objTyposcript->oneDim_to_tree( $conf_oneDim );
+//var_dump(__METHOD__, __LINE__, $conf_oneDim, $this->conf[ 'button' ]);
+    // Replace markers in the TypoScript configuration
+    ////////////////////////////////////////////////////////////////////////
+    //
       // Wrap the Pdf Controller button
 
-    $conf_button = $this->cObj->cObjGetSingle( $this->conf['button'], $this->conf['button.'] );
-      // Wrap the Pdf Controller button
-
-
-
-      ////////////////////////////////////////////////////////////////////////
-      //
+    $conf_button = $this->cObj->cObjGetSingle( $this->conf[ 'button' ], $this->conf[ 'button.' ] );
+var_dump(__METHOD__, __LINE__, $this->conf[ 'button' ], $this->conf[ 'button.' ], $conf_button );
+    // Wrap the Pdf Controller button
+    ////////////////////////////////////////////////////////////////////////
+    //
       // DRS - Performance
 
-    if ($this->b_drs_perform)
+    if ( $this->b_drs_perform )
     {
       $endTime = $this->TT->getDifferenceToStarttime();
-      t3lib_div::devLog('[INFO/PERFORMANCE] end: '. ($endTime - $this->startTime).' ms', $this->extKey, 0);
+      t3lib_div::devLog( '[INFO/PERFORMANCE] end: ' . ($endTime - $this->startTime) . ' ms', $this->extKey, 0 );
     }
-      // DRS - Performance
-
-
-
-      ////////////////////////////////////////////////////////////////////////
-      //
+    // DRS - Performance
+    ////////////////////////////////////////////////////////////////////////
+    //
       // Return the button
 
     $this->content = $conf_button;
-    switch($wrap_in_pibase)
+    switch ( $wrap_in_pibase )
     {
       case(0):
         return $this->content;
-        break;
       case(1):
       default:
-        return $this->pi_wrapInBaseClass($this->content);
+        return $this->pi_wrapInBaseClass( $this->content );
     }
-      // Return the button
+    // Return the button
   }
 
-
-
-
-
-
-
-
-
-  /***********************************************
+  /*   * *********************************************
    *
    * DRS - Development Reporting System
    *
-   **********************************************/
-
-
+   * ******************************************** */
 
   /**
- * Set the booleans for Warnings, Errors and DRS - Development Reporting System
- *
- * @return  void
- * @version 1.2.2
- * @since 0.0.2
- */
+   * Set the booleans for Warnings, Errors and DRS - Development Reporting System
+   *
+   * @return  void
+   * @version 1.2.2
+   * @since 0.0.2
+   */
   private function init_drs()
   {
 
-      //////////////////////////////////////////////////////////////////////
-      //
+    //////////////////////////////////////////////////////////////////////
+    //
       // Prepaire the developer contact prompt
 
-    $this->developer_contact =
-      'company: ' . $this->str_developer_company . '<br />'.
-      'name: '    . $this->str_developer_name    . '<br />'.
-      'mail: <a href="mailto:' . $this->str_developer_mail . '" title="Send a mail">' . $this->str_developer_mail . '</a><br />' .
-      'web: <a href="' . $this->str_developer_web . '" title="Website" target="_blank">' . $this->str_developer_web.'</a><br />' .
-      'phone: '     . $this->str_developer_phone . '<br />' .
-      'languages: ' . $this->str_developer_lang  . '<br /><br />' .
-      'TYPO3 Repository:<br /><a href="' . $this->str_developer_typo3ext . '" title="' . $this->extKey . ' online" target="_blank">' . $this->str_developer_typo3ext . '</a>';
-      // Prepaire the developer contact prompt
-
-
-
-      //////////////////////////////////////////////////////////////////////
-      //
+    $this->developer_contact = 'company: ' . $this->str_developer_company . '<br />' .
+            'name: ' . $this->str_developer_name . '<br />' .
+            'mail: <a href="mailto:' . $this->str_developer_mail . '" title="Send a mail">' . $this->str_developer_mail . '</a><br />' .
+            'web: <a href="' . $this->str_developer_web . '" title="Website" target="_blank">' . $this->str_developer_web . '</a><br />' .
+            'phone: ' . $this->str_developer_phone . '<br />' .
+            'languages: ' . $this->str_developer_lang . '<br /><br />' .
+            'TYPO3 Repository:<br /><a href="' . $this->str_developer_typo3ext . '" title="' . $this->extKey . ' online" target="_blank">' . $this->str_developer_typo3ext . '</a>';
+    // Prepaire the developer contact prompt
+    //////////////////////////////////////////////////////////////////////
+    //
       // Set the DRS mode
 
-    if ($this->arr_extConf['drs_mode'] == 'All')
+    if ( $this->arr_extConf[ 'drs_mode' ] == 'All' )
     {
-      $this->b_drs_all        = true;
-      $this->b_drs_error      = true;
-      $this->b_drs_warn       = true;
-      $this->b_drs_info       = true;
-      $this->b_drs_flexform   = true;
-      $this->b_drs_marker     = true;
-      $this->b_drs_perform    = true;
-      $this->b_drs_typolink   = true;
-      $this->b_drs_security   = true;
+      $this->b_drs_all = true;
+      $this->b_drs_error = true;
+      $this->b_drs_warn = true;
+      $this->b_drs_info = true;
+      $this->b_drs_flexform = true;
+      $this->b_drs_marker = true;
+      $this->b_drs_perform = true;
+      $this->b_drs_typolink = true;
+      $this->b_drs_security = true;
       $this->b_drs_typoscript = true;
-      t3lib_div::devlog('[INFO/DRS] DRS - Development Reporting System:<br />'.$this->arr_extConf['drs_mode'], $this->extKey, 0);
+      t3lib_div::devlog( '[INFO/DRS] DRS - Development Reporting System:<br />' . $this->arr_extConf[ 'drs_mode' ], $this->extKey, 0 );
     }
-    if ($this->arr_extConf['drs_mode'] == 'Errors and Warnings')
+    if ( $this->arr_extConf[ 'drs_mode' ] == 'Errors and Warnings' )
     {
-      $this->b_drs_error      = true;
-      $this->b_drs_warn       = true;
-      t3lib_div::devlog('[INFO/DRS] DRS - Development Reporting System:<br />'.$this->arr_extConf['drs_mode'], $this->extKey, 0);
+      $this->b_drs_error = true;
+      $this->b_drs_warn = true;
+      t3lib_div::devlog( '[INFO/DRS] DRS - Development Reporting System:<br />' . $this->arr_extConf[ 'drs_mode' ], $this->extKey, 0 );
     }
-    if ($this->arr_extConf['drs_mode'] == 'Flexform')
+    if ( $this->arr_extConf[ 'drs_mode' ] == 'Flexform' )
     {
-      $this->b_drs_error      = true;
-      $this->b_drs_warn       = true;
-      $this->b_drs_info       = true;
-      $this->b_drs_flexform   = true;
-      $this->b_drs_perform    = true;
+      $this->b_drs_error = true;
+      $this->b_drs_warn = true;
+      $this->b_drs_info = true;
+      $this->b_drs_flexform = true;
+      $this->b_drs_perform = true;
       $this->b_drs_typoscript = true;
-      t3lib_div::devlog('[INFO/DRS] DRS - Development Reporting System:<br />'.$this->arr_extConf['drs_mode'], $this->extKey, 0);
+      t3lib_div::devlog( '[INFO/DRS] DRS - Development Reporting System:<br />' . $this->arr_extConf[ 'drs_mode' ], $this->extKey, 0 );
     }
-    if ($this->arr_extConf['drs_mode'] == 'Marker')
+    if ( $this->arr_extConf[ 'drs_mode' ] == 'Marker' )
     {
-      $this->b_drs_error      = true;
-      $this->b_drs_warn       = true;
-      $this->b_drs_info       = true;
-      $this->b_drs_marker     = true;
-      t3lib_div::devlog('[INFO/DRS] DRS - Development Reporting System:<br />'.$this->arr_extConf['drs_mode'], $this->extKey, 0);
+      $this->b_drs_error = true;
+      $this->b_drs_warn = true;
+      $this->b_drs_info = true;
+      $this->b_drs_marker = true;
+      t3lib_div::devlog( '[INFO/DRS] DRS - Development Reporting System:<br />' . $this->arr_extConf[ 'drs_mode' ], $this->extKey, 0 );
     }
-    if ($this->arr_extConf['drs_mode'] == 'Performance')
+    if ( $this->arr_extConf[ 'drs_mode' ] == 'Performance' )
     {
-      $this->b_drs_perform    = true;
-      t3lib_div::devlog('[INFO/DRS] DRS - Development Reporting System:<br />'.$this->arr_extConf['drs_mode'], $this->extKey, 0);
+      $this->b_drs_perform = true;
+      t3lib_div::devlog( '[INFO/DRS] DRS - Development Reporting System:<br />' . $this->arr_extConf[ 'drs_mode' ], $this->extKey, 0 );
     }
-    if ($this->arr_extConf['drs_mode'] == 'TypoLink')
+    if ( $this->arr_extConf[ 'drs_mode' ] == 'TypoLink' )
     {
-      $this->b_drs_error      = true;
-      $this->b_drs_warn       = true;
-      $this->b_drs_info       = true;
-      $this->b_drs_marker     = true;
-      $this->b_drs_typolink   = true;
-      t3lib_div::devlog('[INFO/DRS] DRS - Development Reporting System:<br />'.$this->arr_extConf['drs_mode'], $this->extKey, 0);
+      $this->b_drs_error = true;
+      $this->b_drs_warn = true;
+      $this->b_drs_info = true;
+      $this->b_drs_marker = true;
+      $this->b_drs_typolink = true;
+      t3lib_div::devlog( '[INFO/DRS] DRS - Development Reporting System:<br />' . $this->arr_extConf[ 'drs_mode' ], $this->extKey, 0 );
     }
-    if ($this->arr_extConf['drs_mode'] == 'Security')
+    if ( $this->arr_extConf[ 'drs_mode' ] == 'Security' )
     {
-      $this->b_drs_error      = true;
-      $this->b_drs_warn       = true;
-      $this->b_drs_info       = true;
-      $this->b_drs_security   = true;
-      t3lib_div::devlog('[INFO/DRS] DRS - Development Reporting System:<br />'.$this->arr_extConf['drs_mode'], $this->extKey, 0);
+      $this->b_drs_error = true;
+      $this->b_drs_warn = true;
+      $this->b_drs_info = true;
+      $this->b_drs_security = true;
+      t3lib_div::devlog( '[INFO/DRS] DRS - Development Reporting System:<br />' . $this->arr_extConf[ 'drs_mode' ], $this->extKey, 0 );
     }
-      // Set the DRS mode
-
+    // Set the DRS mode
   }
 
-
-
-
-
-
-
-
-
-  /***********************************************
+  /*   * *********************************************
    *
    * Classes
    *
-   **********************************************/
-
-
+   * ******************************************** */
 
   /**
- * Init the helper classes
- *
- * @return  void
- * @version 0.0.2
- * @since 0.0.2
- */
+   * Init the helper classes
+   *
+   * @return  void
+   * @version 0.0.2
+   * @since 0.0.2
+   */
   private function require_classes()
   {
-      //////////////////////////////////////////////////////////////////////
-      //
+    //////////////////////////////////////////////////////////////////////
+    //
       // Require and init helper classes
-
 //    require_once(t3lib_extMgm::extPath('pdfcontroller') . 'lib/class.tx_pdfcontroller_dynmarkers.php');
 //      // Class with methods for markers
 //    $this->objMarkers = new tx_pdfcontroller_dynmarkers($this);
@@ -556,28 +497,18 @@ class tx_pdfcontroller_pi2 extends tslib_pibase {
 
     require_once('class.tx_pdfcontroller_pi2_typoscript.php');
     // Class with typoscript methods, which return HTML
-    $this->objTyposcript = new tx_pdfcontroller_pi2_typoscript($this);
+    $this->objTyposcript = new tx_pdfcontroller_pi2_typoscript( $this );
 //
 //    require_once('class.tx_pdfcontroller_pi2_zz.php');
 //    // Class with zz methods
 //    $this->objZz = new tx_pdfcontroller_pi2_zz($this);
 //      // Require and init helper classes
-
   }
 
-
-
-
-
-
-
-
-
-
 }
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pdfcontroller/pi2/class.tx_pdfcontroller_pi2.php']) {
-  include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pdfcontroller/pi2/class.tx_pdfcontroller_pi2.php']);
+if ( defined( 'TYPO3_MODE' ) && $TYPO3_CONF_VARS[ TYPO3_MODE ][ 'XCLASS' ][ 'ext/pdfcontroller/pi2/class.tx_pdfcontroller_pi2.php' ] )
+{
+  include_once($TYPO3_CONF_VARS[ TYPO3_MODE ][ 'XCLASS' ][ 'ext/pdfcontroller/pi2/class.tx_pdfcontroller_pi2.php' ]);
 }
-
 ?>
