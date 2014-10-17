@@ -174,22 +174,7 @@ class OutputDriverFPDF extends OutputDriverGenericPDF {
 //    $arrDebugTrail = array_reverse( $arrDebugTrail );
 //    $strDebugTrail = '<ol reversed><li>' . implode( '</li>' . PHP_EOL . '<li>', $arrDebugTrail ) . '</li>' . PHP_EOL . '</ol>';
 //
-//    $prompt = $prompt . '
-//            <h3>
-//              Reverse debug trail
-//            </h3>
-//            ' . $strDebugTrail . '
-//            <p>
-//              Sorry for the trouble. Browser - TYPO3 without PHP<br />
-//              ' . $class . '::' . $method . ' at #' . $line . '
-//            </p>
-//            <p>
-//              If you need any help please visit the
-//              <a href="http://typo3-browser-forum.de/" target="_blank" title="TYPO3 Browser Forums. 500 TYPO3-integrators are registered.">
-//                TYPO3 Browser Forum &raquo;</a>
-//            </p>
-//            ';
-//#    var_dump(__METHOD__, __LINE__, $strDebugTrail);
+//    var_dump(__METHOD__, __LINE__, $strDebugTrail);
 //    echo  $prompt;
     return $this->pdf->GetFontAscender($name, $encoding);
   }
@@ -366,7 +351,7 @@ class OutputDriverFPDF extends OutputDriverGenericPDF {
   }
 
   function reset(&$media) {
-    //parent::reset($media);
+    parent::reset($media);
 
     $this->pdf = new FPDF('P','pt',array(mm2pt($media->width()), mm2pt($media->height())));
 

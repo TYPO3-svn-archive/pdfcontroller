@@ -21,7 +21,7 @@ class OutputDriverPdflib extends OutputDriverGenericPDF {
 
   var $_status;
 
-  // Converts common encoding names to their PDFLIB equivalents 
+  // Converts common encoding names to their PDFLIB equivalents
   // (for example, PDFLIB does not understand iso-8859-1 encoding name,
   // but have its equivalent names winansi..)
   //
@@ -56,17 +56,17 @@ class OutputDriverPdflib extends OutputDriverGenericPDF {
   }
 
   function add_local_link($left, $top, $width, $height, $anchor) {
-    pdf_add_locallink($this->pdf, 
-                      $left, 
-                      $top-$height - $this->offset , 
-                      $left+$width, 
-                      $top - $this->offset, 
-                      $anchor->page, 
+    pdf_add_locallink($this->pdf,
+                      $left,
+                      $top-$height - $this->offset ,
+                      $left+$width,
+                      $top - $this->offset,
+                      $anchor->page,
                       "fitwidth");
   }
 
-  function circle($x, $y, $r) { 
-    pdf_circle($this->pdf, $x, $y, $r); 
+  function circle($x, $y, $r) {
+    pdf_circle($this->pdf, $x, $y, $r);
   }
 
   function clip() {
@@ -75,16 +75,16 @@ class OutputDriverPdflib extends OutputDriverGenericPDF {
 
   function close() {
     pdf_end_page($this->pdf);
-    pdf_close($this->pdf); 
+    pdf_close($this->pdf);
     pdf_delete($this->pdf);
   }
 
-  function closepath() { 
-    pdf_closepath($this->pdf); 
+  function closepath() {
+    pdf_closepath($this->pdf);
   }
 
   function dash($x, $y) {
-    pdf_setdash($this->pdf, $x, $y); 
+    pdf_setdash($this->pdf, $x, $y);
   }
 
   function decoration($underline, $overline, $strikeout) {
@@ -96,26 +96,26 @@ class OutputDriverPdflib extends OutputDriverGenericPDF {
     pdf_set_parameter($this->pdf, "strikeout", $strikeout ? "true" : "false");
   }
 
-  function fill() { 
-    pdf_fill($this->pdf); 
+  function fill() {
+    pdf_fill($this->pdf);
   }
 
-  function findfont($name, $encoding) { 
+  function findfont($name, $encoding) {
     // PDFLIB is limited by 'builtin' encoding for "Symbol" font
-    if ($name == 'Symbol') { 
-      $encoding = 'builtin'; 
+    if ($name == 'Symbol') {
+      $encoding = 'builtin';
     };
 
     global $g_font_resolver_pdf;
     $embed = $g_font_resolver_pdf->embed[$name];
-    return pdf_findfont($this->pdf, $name, $this->encoding($encoding), $embed); 
+    return pdf_findfont($this->pdf, $name, $this->encoding($encoding), $embed);
   }
 
-  function font_ascender($name, $encoding) { 
+  function font_ascender($name, $encoding) {
     return pdf_get_value($this->pdf, "ascender", $this->findfont($name, $encoding));
   }
 
-  function font_descender($name, $encoding) { 
+  function font_descender($name, $encoding) {
     return -pdf_get_value($this->pdf, "descender", $this->findfont($name, $encoding));
   }
 
@@ -176,7 +176,7 @@ class OutputDriverPdflib extends OutputDriverGenericPDF {
     imagepng($image->get_handle(), $tmpname);
     $pim = pdf_open_image_file($this->pdf, "png", $tmpname, "", 0);
 
-    // Fill part to the right 
+    // Fill part to the right
     $cx = $x;
     while ($cx < $right) {
       pdf_place_image($this->pdf, $pim, $cx, $y, $scale);
@@ -247,12 +247,12 @@ class OutputDriverPdflib extends OutputDriverGenericPDF {
     unlink($tmpname);
   }
 
-  function lineto($x, $y) { 
-    pdf_lineto($this->pdf, $x, $y); 
+  function lineto($x, $y) {
+    pdf_lineto($this->pdf, $x, $y);
   }
 
-  function moveto($x, $y) { 
-    pdf_moveto($this->pdf, $x, $y); 
+  function moveto($x, $y) {
+    pdf_moveto($this->pdf, $x, $y);
   }
 
   // OutputDriver interface functions
@@ -261,13 +261,13 @@ class OutputDriverPdflib extends OutputDriverGenericPDF {
       pdf_end_page($this->pdf);
     };
     pdf_begin_page($this->pdf, mm2pt($this->media->width()), mm2pt($this->media->height()));
-    
+
     // Calculate coordinate of the next page bottom edge
     $this->offset -= $height - $this->offset_delta;
 
     // Reset the "correction" offset to it normal value
-    // Note: "correction" offset is an offset value required to avoid page breaking 
-    // in the middle of text boxes 
+    // Note: "correction" offset is an offset value required to avoid page breaking
+    // in the middle of text boxes
     $this->offset_delta = 0;
 
     pdf_translate($this->pdf, 0, -$this->offset);
@@ -295,12 +295,12 @@ class OutputDriverPdflib extends OutputDriverGenericPDF {
     $manager_encoding = ManagerEncoding::get();
     for ($i = 1, $size = $manager_encoding->get_custom_vector_index(); $i <= $size; $i++) {
       $encoding_name = $manager_encoding->get_custom_encoding_name($i);
-      $filename = $this->generate_cpg($encoding_name, 
+      $filename = $this->generate_cpg($encoding_name,
                                       true);
-      pdf_set_parameter($this->pdf, 
+      pdf_set_parameter($this->pdf,
                         'Encoding',
                         sprintf('%s=%s',
-                                $encoding_name, 
+                                $encoding_name,
                                 $filename));
     };
   }
@@ -342,13 +342,13 @@ class OutputDriverPdflib extends OutputDriverGenericPDF {
 
     // Set path to the PDFLIB UPR file containig information about fonts and encodings
     if (defined("PDFLIB_UPR_PATH")) {
-      pdf_set_parameter($this->pdf, "resourcefile", PDFLIB_UPR_PATH); 
+      pdf_set_parameter($this->pdf, "resourcefile", PDFLIB_UPR_PATH);
     };
 
     // Setup encodings not bundled with PDFLIB
     $filename = $this->generate_cpg('koi8-r');
     pdf_set_parameter($this->pdf, 'Encoding', sprintf('koi8-r=%s', $filename));
-    
+
     // Setup font outlines
     global $g_font_resolver_pdf;
     $g_font_resolver_pdf->setup_ttf_mappings($this->pdf);
@@ -362,16 +362,16 @@ class OutputDriverPdflib extends OutputDriverGenericPDF {
     $this->_status = PDFLIB_STATUS_DOCUMENT_STARTED;
   }
 
-  function rect($x, $y, $w, $h) { 
-    pdf_rect($this->pdf, $x, $y, $w, $h); 
+  function rect($x, $y, $w, $h) {
+    pdf_rect($this->pdf, $x, $y, $w, $h);
   }
 
-  function restore() { 
-    pdf_restore($this->pdf); 
+  function restore() {
+    pdf_restore($this->pdf);
   }
 
-  function save() { 
-    pdf_save($this->pdf); 
+  function save() {
+    pdf_save($this->pdf);
   }
 
   function setfont($name, $encoding, $size) {
@@ -383,32 +383,32 @@ class OutputDriverPdflib extends OutputDriverGenericPDF {
   }
 
 //   function setfontcore($name, $size) {
-//     $this->_currentfont = pdf_findfont($this->pdf, $name, 'host', 1 /* embed */); 
+//     $this->_currentfont = pdf_findfont($this->pdf, $name, 'host', 1 /* embed */);
 
 //     pdf_setfont($this->pdf, $this->_currentfont, $size);
 
 //     return true;
 //   }
 
-  function setlinewidth($x) { 
-    pdf_setlinewidth($this->pdf, $x); 
+  function setlinewidth($x) {
+    pdf_setlinewidth($this->pdf, $x);
   }
 
   // PDFLIB wrapper functions
-  function setrgbcolor($r, $g, $b)  { 
-    pdf_setcolor($this->pdf, "both", "rgb", $r, $g, $b, 0); 
+  function setrgbcolor($r, $g, $b)  {
+    pdf_setcolor($this->pdf, "both", "rgb", $r, $g, $b, 0);
   }
 
   function show_xy($text, $x, $y) {
     pdf_show_xy($this->pdf, $text, $x, $y);
   }
 
-  function stroke() { 
-    pdf_stroke($this->pdf); 
+  function stroke() {
+    pdf_stroke($this->pdf);
   }
 
-  function stringwidth($string, $name, $encoding, $size) { 
-    return pdf_stringwidth($this->pdf, $string, $this->findfont($name, $encoding), $size); 
+  function stringwidth($string, $name, $encoding, $size) {
+    return pdf_stringwidth($this->pdf, $string, $this->findfont($name, $encoding), $size);
   }
 
   /* private routines */
@@ -416,7 +416,7 @@ class OutputDriverPdflib extends OutputDriverGenericPDF {
   function _show_watermark($watermark) {
     $font = $this->findfont('Helvetica', 'iso-8859-1');
     pdf_setfont($this->pdf, $font, 100);
-    
+
     $x = $this->left + $this->width / 2;
     $y = $this->bottom + $this->height / 2 + $this->offset;
 
