@@ -1,3 +1,18 @@
+2.0.3
+  15-02-03
+  SECURITY FIX!
+  * #i0003: Fix against Cross-Site Scripting
+            Done by Christian Bernet, http://www.bernetimux.ch/
+            Effected files:
+            * lib/html2ps.php
+            * res/html2ps_v2043/public_html/demo/html2ps.php
+
+2.0.2
+  14-11-22
+  Bugfix
+  * #i0002: state is moved from alpha to beta
+  * #i0001: Class t3lib_extMgm is moved to \TYPO3\CMS\Core\Utility\ExtensionManagementUtility
+
 2.0.0
   14-10-16
   Major Feature

@@ -245,7 +245,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
     if( ! defined( 'HTML2PS_DIR' ) )
     {
       //define( 'HTML2PS_DIR', $_SERVER['DOCUMENT_ROOT'] . 'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/' );
-      define( 'HTML2PS_DIR', t3lib_extMgm::extPath( 'pdfcontroller' ) . 'res/html2ps_v2043/public_html/' );
+      define( 'HTML2PS_DIR', \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath( 'pdfcontroller' ) . 'res/html2ps_v2043/public_html/' );
     }
       // DEFINE HTML2PS_DIR
 
@@ -580,7 +580,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       //
       // Remove all files in the html2ps cache
 
-    //$path_to_html2ps        = t3lib_extMgm::extPath( 'pdfcontroller' ) . 'res/html2ps_v2043/public_html/';
+    //$path_to_html2ps        = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath( 'pdfcontroller' ) . 'res/html2ps_v2043/public_html/';
     $path_to_html2ps_cache  = HTML2PS_DIR . 'cache/';
     $path_to_html2ps_out    = HTML2PS_DIR . 'out/';
     $path_to_html2ps_temp   = HTML2PS_DIR . 'temp/';

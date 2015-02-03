@@ -483,7 +483,7 @@ class tx_pdfcontroller_pi2 extends tslib_pibase
     //////////////////////////////////////////////////////////////////////
     //
       // Require and init helper classes
-//    require_once(t3lib_extMgm::extPath('pdfcontroller') . 'lib/class.tx_pdfcontroller_dynmarkers.php');
+//    require_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('pdfcontroller') . 'lib/class.tx_pdfcontroller_dynmarkers.php');
 //      // Class with methods for markers
 //    $this->objMarkers = new tx_pdfcontroller_dynmarkers($this);
 //

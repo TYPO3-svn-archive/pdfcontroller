@@ -54,7 +54,7 @@ class tx_pdfcontroller_pi1_be_wizicon
     $wizardItems['plugins_tx_pdfcontroller_pi1'] =
       array
       (
-        'icon'        => t3lib_extMgm::extRelPath('pdfcontroller').'pi1/pdfcontroller_wizard.gif',
+        'icon'        => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('pdfcontroller').'pi1/pdfcontroller_wizard.gif',
         'title'       => $LANG->getLLL('wizard.list_type_pi1', $LL),
         'description' => $LANG->getLLL('wizard.list_type_pi1.desc', $LL),
         'params'      => '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=pdfcontroller_pi1'
@@ -69,7 +69,7 @@ class tx_pdfcontroller_pi1_be_wizicon
  */
   function getLL()
   {
-    $path2llXml = t3lib_extMgm::extPath('pdfcontroller').'locallang_db.xml';
+    $path2llXml = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('pdfcontroller').'locallang_db.xml';
     $llXml       = implode('', file($path2llXml));
     $arr_ll      = t3lib_div::xml2array($llXml, $NSprefix='', $reportDocTag=false);
     $LOCAL_LANG  = $arr_ll['data'];
