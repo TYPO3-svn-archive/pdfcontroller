@@ -244,8 +244,8 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       // DEFINE HTML2PS_DIR
     if( ! defined( 'HTML2PS_DIR' ) )
     {
-      //define( 'HTML2PS_DIR', $_SERVER['DOCUMENT_ROOT'] . 'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/' );
-      define( 'HTML2PS_DIR', \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath( 'pdfcontroller' ) . 'res/html2ps_v2043/public_html/' );
+      //define( 'HTML2PS_DIR', $_SERVER['DOCUMENT_ROOT'] . 'typo3conf/ext/pdfcontroller/Resources/Public/html2ps_v2043/public_html/' );
+      define( 'HTML2PS_DIR', \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath( 'pdfcontroller' ) . 'Resources/Public/html2ps_v2043/public_html/' );
     }
       // DEFINE HTML2PS_DIR
 
@@ -540,7 +540,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
         // #31190, 111213: Borries Jensen+
     }
     $str_url  = t3lib_div::getIndpEnv( 'TYPO3_SITE_URL' ) .
-      'typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/demo/html2ps.php?';
+      'typo3conf/ext/pdfcontroller/Resources/Public/html2ps_v2043/public_html/demo/html2ps.php?';
     $str_url  = $str_url . $params;
       // Build URL query
 
@@ -580,13 +580,13 @@ class tx_pdfcontroller_pi1 extends tslib_pibase {
       //
       // Remove all files in the html2ps cache
 
-    //$path_to_html2ps        = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath( 'pdfcontroller' ) . 'res/html2ps_v2043/public_html/';
+    //$path_to_html2ps        = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath( 'pdfcontroller' ) . 'Resources/Public/html2ps_v2043/public_html/';
     $path_to_html2ps_cache  = HTML2PS_DIR . 'cache/';
     $path_to_html2ps_out    = HTML2PS_DIR . 'out/';
     $path_to_html2ps_temp   = HTML2PS_DIR . 'temp/';
     $arr_pathToDir          = array( $path_to_html2ps_cache, $path_to_html2ps_out, $path_to_html2ps_temp);
-    // find /home/www/htdocs/typo3/typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/cache/* | xargs /bin/rm
-    // find /home/www/htdocs/typo3/typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/cache/* -mtime -0,2
+    // find /home/www/htdocs/typo3/typo3conf/ext/pdfcontroller/Resources/Public/html2ps_v2043/public_html/cache/* | xargs /bin/rm
+    // find /home/www/htdocs/typo3/typo3conf/ext/pdfcontroller/Resources/Public/html2ps_v2043/public_html/cache/* -mtime -0,2
 
       // Set rmCacheAll
     $rmCacheAll = $this->arr_extConf['rmCacheAll'];
