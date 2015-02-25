@@ -5,7 +5,7 @@
  *
  *  2011-07-23 Dirk Wildt <http://wildt.at.die-netzmacher.de>
  *
- * This is a copy of the file ../res/html2ps_v2043/public_html/demo/html2ps
+ * This is a copy of the file ../Resources/Public/html2ps_v2043/public_html/demo/html2ps
  * It is adapted to the needs of TYPO3 pdfcontroller.
  *
  * See comment string 'dwildt' in the code below.
@@ -38,11 +38,11 @@ if ( $this->b_drs_perform )
 // 110723, dwildt +
 
 
-$path_to_html2ps = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath( 'pdfcontroller' ) . 'res/html2ps_v2043/public_html/';
+$path_to_html2ps = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath( 'pdfcontroller' ) . 'Resources/Public/html2ps_v2043/public_html/';
 require_once($path_to_html2ps . 'demo/generic.param.php');
 require_once($path_to_html2ps . 'config.inc.php');
 // 110723, dwildt +
-//var_dump(HTML2PS_DIR); // /home/www/htdocs/typo3/typo3conf/ext/pdfcontroller/res/html2ps_v2043/public_html/
+//var_dump(HTML2PS_DIR); // /home/www/htdocs/typo3/typo3conf/ext/pdfcontroller/Resources/Public/html2ps_v2043/public_html/
 require_once(HTML2PS_DIR . 'pipeline.factory.class.php');
 
 ini_set( "user_agent", DEFAULT_USER_AGENT );
