@@ -16,12 +16,8 @@ plugin.tx_pdfcontroller_pi1 {
         config {
           admPanel        = 0
           xhtml_cleaning  = 0
-          language        = de
-          locale_all      = de_DE
           metaCharset     = UTF-8
           doctype         = xhtml_strict
-          htmlTag_langKey = de
-          no_cache        = 1
         }
         typeNum = {$plugin.pdfcontroller.pages.print.typeNum}
           // header, content, footer
