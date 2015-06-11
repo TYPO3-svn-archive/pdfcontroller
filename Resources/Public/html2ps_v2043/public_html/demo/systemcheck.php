@@ -1,6 +1,6 @@
 <?php
 
-  // 120202, security, dwildt+
+// 120202, security, dwildt+
 $prompt = '
             <div style="border:1em solid red;color:red;padding:1em;text-align:center;">
               <h1>
@@ -22,78 +22,83 @@ $prompt = '
           ';
 
 
-if( ! defined( 'PDFCONTROLLER_ACCESS' ) )
+if ( !defined( 'PDFCONTROLLER_ACCESS' ) )
 {
   die( $prompt );
 }
-  // 120202, security, dwildt+
-
-  // 120202, security, dwildt-
+// 120202, security, dwildt+
+// 120202, security, dwildt-
 //require_once('../config.inc.php');
-  // 120202, security, dwildt+
-switch( true )
+// 120202, security, dwildt+
+switch ( true )
 {
-  case( ! defined( 'HTML2PS_DIR' ) ):
+  case(!defined( 'HTML2PS_DIR' ) ):
     require_once('../config.inc.php');
     break;
   case( defined( 'HTML2PS_DIR' ) ):
     require_once(HTML2PS_DIR . 'config.inc.php');
     break;
 }
-  // 120202, security, dwildt+
+// 120202, security, dwildt+
 
-require_once(HTML2PS_DIR.'stubs.common.inc.php');
-require_once(HTML2PS_DIR.'error.php');
-require_once(HTML2PS_DIR.'config.parse.php');
+require_once(HTML2PS_DIR . 'stubs.common.inc.php');
+require_once(HTML2PS_DIR . 'error.php');
+require_once(HTML2PS_DIR . 'config.parse.php');
 
-  // 120202, security, dwildt-
+// 120202, security, dwildt-
 //parse_config_file('../html2ps.config');
-  // 120202, security, dwildt-
-parse_config_file(HTML2PS_DIR . 'html2ps.config');
+// 120202, security, dwildt-
+parse_config_file( HTML2PS_DIR . 'html2ps.config' );
 
-define('CHECK_STATUS_FAILED',  0);
-define('CHECK_STATUS_WARNING', 1);
-define('CHECK_STATUS_SUCCESS', 2);
+define( 'CHECK_STATUS_FAILED', 0 );
+define( 'CHECK_STATUS_WARNING', 1 );
+define( 'CHECK_STATUS_SUCCESS', 2 );
 
 // #62285, 141016, dwildt, 1-, 1+
 //error_reporting(E_ALL);
-error_reporting(E_ALL & ~E_STRICT);
-ini_set("display_errors","1");
+error_reporting( E_ALL & ~E_STRICT );
+ini_set( "display_errors", "1" );
 
 $__g_registered_checks = array();
 
-function out_header() {
-    // 120202, security, dwildt-
+function out_header()
+{
+  // 120202, security, dwildt-
   //readfile('systemcheck.header.tpl');
-    // 120202, security, dwildt+
+  // 120202, security, dwildt+
   require_once('systemcheck.header.tpl');
 }
 
-function out_footer() {
-    // 120202, security, dwildt-
+function out_footer()
+{
+  // 120202, security, dwildt-
   //readfile('systemcheck.footer.tpl');
-    // 120202, security, dwildt+
+  // 120202, security, dwildt+
   require_once('systemcheck.footer.tpl');
 }
 
-function status2class($status) {
-  $mapping = array(CHECK_STATUS_FAILED  => "failed",
-                   CHECK_STATUS_WARNING => "warning",
-                   CHECK_STATUS_SUCCESS => "success");
-  if (isset($mapping[$status])) {
-    return $mapping[$status];
+function status2class( $status )
+{
+  $mapping = array( CHECK_STATUS_FAILED => "failed",
+    CHECK_STATUS_WARNING => "warning",
+    CHECK_STATUS_SUCCESS => "success" );
+  if ( isset( $mapping[ $status ] ) )
+  {
+    return $mapping[ $status ];
   };
 
-  error_log(sprintf("Unknown status code passed to 'status2class': %s", $status));
+  error_log( sprintf( "Unknown status code passed to 'status2class': %s", $status ) );
   return "unknown";
 }
 
-function out_check_list() {
+function out_check_list()
+{
   $checks = ManagerChecks::getChecks();
-  foreach ($checks as $check) {
-    $title   = htmlspecialchars($check->title());
-    $message = nl2br($check->getMessage());
-    $status_class = status2class($check->getStatus());
+  foreach ( $checks as $check )
+  {
+    $title = htmlspecialchars( $check->title() );
+    $message = nl2br( $check->getMessage() );
+    $status_class = status2class( $check->getStatus() );
 
     print <<<EOF
 <div class="check">
@@ -104,45 +109,57 @@ EOF;
   };
 }
 
-class ManagerChecks {
-  function register($check) {
+class ManagerChecks
+{
+
+  function register( $check )
+  {
     global $__g_registered_checks;
     $__g_registered_checks[] = $check;
   }
 
-  function run() {
+  function run()
+  {
     global $__g_registered_checks;
-    $size = count($__g_registered_checks);
-    for ($i=0; $i<$size; $i++) {
-      $__g_registered_checks[$i]->run();
+    $size = count( $__g_registered_checks );
+    for ( $i = 0; $i < $size; $i++ )
+    {
+      $__g_registered_checks[ $i ]->run();
     };
   }
 
-  function getChecks() {
+  function getChecks()
+  {
     global $__g_registered_checks;
     return $__g_registered_checks;
   }
+
 }
 
-class CheckSimple {
+class CheckSimple
+{
+
   var $_message;
 
   /**
    * Invariants
    */
-  function title() {
-    error_no_method('title', get_class($this));
+  function title()
+  {
+    error_no_method( 'title', get_class( $this ) );
   }
 
-  function description() {
-    error_no_method('description', get_class($this));
+  function description()
+  {
+    error_no_method( 'description', get_class( $this ) );
   }
 
   /**
    * Start checking
    */
-  function run() {
-    error_no_method('run', get_class($this));
+  function run()
+  {
+    error_no_method( 'run', get_class( $this ) );
   }
 
   /**
@@ -154,8 +171,9 @@ class CheckSimple {
    *
    * @return Integer Status code
    */
-  function getStatus() {
-    error_no_method('status', get_class($this));
+  function getStatus()
+  {
+    error_no_method( 'status', get_class( $this ) );
   }
 
   /**
@@ -165,65 +183,92 @@ class CheckSimple {
    *
    * @return String description of the test results
    */
-  function getMessage() {
+  function getMessage()
+  {
     return $this->_message;
   }
 
-  function setMessage($message) {
+  function setMessage( $message )
+  {
     $this->_message = $message;
   }
+
 }
 
 /**
  */
-class CheckBinary extends CheckSimple {
+class CheckBinary extends CheckSimple
+{
+
   var $_success;
 
-  function setSuccess($success) {
+  function setSuccess( $success )
+  {
     $this->_success = $success;
   }
 
-  function getSuccess() {
+  function getSuccess()
+  {
     return $this->_success;
   }
+
 }
 
 /**
  */
-class CheckBinaryRequired extends CheckBinary {
-  function getStatus() {
-    if ($this->getSuccess()) {
+class CheckBinaryRequired extends CheckBinary
+{
+
+  function getStatus()
+  {
+    if ( $this->getSuccess() )
+    {
       return CHECK_STATUS_SUCCESS;
-    } else {
+    }
+    else
+    {
       return CHECK_STATUS_FAILED;
     };
   }
+
 }
 
 /**
  */
-class CheckBinaryRecommended extends CheckBinary {
-  function getStatus() {
-    if ($this->getSuccess()) {
+class CheckBinaryRecommended extends CheckBinary
+{
+
+  function getStatus()
+  {
+    if ( $this->getSuccess() )
+    {
       return CHECK_STATUS_SUCCESS;
-    } else {
+    }
+    else
+    {
       return CHECK_STATUS_WARNING;
     };
   }
+
 }
 
 /**
  */
-class CheckTriState extends CheckSimple {
+class CheckTriState extends CheckSimple
+{
+
   var $_status;
 
-  function getStatus() {
+  function getStatus()
+  {
     return $this->_status;
   }
 
-  function setStatus($status) {
+  function setStatus( $status )
+  {
     $this->_status = $status;
   }
+
 }
 
 /**
@@ -233,19 +278,26 @@ class CheckTriState extends CheckSimple {
 /**
  * PHP version
  */
-class CheckPHPVersion extends CheckTriState {
-  function title() {
+class CheckPHPVersion extends CheckTriState
+{
+
+  function title()
+  {
     return "PHP Version";
   }
 
-  function description() {
+  function description()
+  {
     return "";
   }
 
-  function run() {
+  function run()
+  {
     //    > "4.3.0";
   }
+
 }
+
 // ManagerChecks::register(new CheckPHPVersion());
 
 /**
@@ -255,117 +307,148 @@ class CheckPHPVersion extends CheckTriState {
 /**
  * Presense of DOM/XML extensions
  */
-class CheckDOM extends CheckTriState {
-  function title() {
+class CheckDOM extends CheckTriState
+{
+
+  function title()
+  {
     return "XML DOM extension";
   }
 
-  function description() {
+  function description()
+  {
     return "HTML files are parsed using XML DOM extensions";
   }
 
-  function run() {
-    if (function_exists('domxml_open_mem') ||
-        class_exists('DOMDocument')) {
-      $this->setStatus(CHECK_STATUS_SUCCESS);
-      $this->setMessage('Native XML DOM extension found');
+  function run()
+  {
+    if ( function_exists( 'domxml_open_mem' ) ||
+            class_exists( 'DOMDocument' ) )
+    {
+      $this->setStatus( CHECK_STATUS_SUCCESS );
+      $this->setMessage( 'Native XML DOM extension found' );
       return;
     };
 
-    if (file_exists(HTML2PS_DIR.'classes/include.php')) {
-      $this->setStatus(CHECK_STATUS_WARNING);
-      $this->setMessage('No native XML DOM extension found, falling back to Active-State DOM XML. Note that it is <b>highly recommended to use native PHP XML DOM extension</b>.');
+    if ( file_exists( HTML2PS_DIR . 'classes/include.php' ) )
+    {
+      $this->setStatus( CHECK_STATUS_WARNING );
+      $this->setMessage( 'No native XML DOM extension found, falling back to Active-State DOM XML. Note that it is <b>highly recommended to use native PHP XML DOM extension</b>.' );
       return;
     };
 
-    $this->setStatus(CHECK_STATUS_FAILED);
-    $this->setMessage('No XML DOM extension found');
+    $this->setStatus( CHECK_STATUS_FAILED );
+    $this->setMessage( 'No XML DOM extension found' );
   }
+
 }
 
 /**
  * Presense of PDFLIB extension
  */
-class CheckPDFLIB extends CheckBinaryRecommended {
+class CheckPDFLIB extends CheckBinaryRecommended
+{
+
 }
 
 /**
  * Presense of Curl extension
  */
-class CheckCurl extends CheckBinaryRecommended {
-  function title() {
+class CheckCurl extends CheckBinaryRecommended
+{
+
+  function title()
+  {
     return "Curl PHP Extension";
   }
 
-  function description() {
+  function description()
+  {
     return "Curl PHP extension is recommended for fetching files via HTTP protocol";
   }
 
-  function run() {
-    $this->setSuccess(false);
+  function run()
+  {
+    $this->setSuccess( false );
 
-    if (!extension_loaded('curl')) {
-      $this->setMessage('Missing Curl extension. Script will use pure-PHP fallback (allow_url_fopen=On is required!). <b>Proxy support is not available</b>');
+    if ( !extension_loaded( 'curl' ) )
+    {
+      $this->setMessage( 'Missing Curl extension. Script will use pure-PHP fallback (allow_url_fopen=On is required!). <b>Proxy support is not available</b>' );
       return;
     };
 
     $version = curl_version();
     // PHP 5.0.1 and greater return array instead of string
-    if (is_array($version)) {
-      $version = $version['version'];
+    if ( is_array( $version ) )
+    {
+      $version = $version[ 'version' ];
     };
-    $this->setMessage(sprintf('Found Curl extension version %s.', $version['version']));
-    $this->setSuccess(true);
+    $this->setMessage( sprintf( 'Found Curl extension version %s.', $version[ 'version' ] ) );
+    $this->setSuccess( true );
   }
+
 }
 
 /**
  * Presense of GD extension
  */
-class CheckGD extends CheckBinaryRequired {
-  function title() {
+class CheckGD extends CheckBinaryRequired
+{
+
+  function title()
+  {
     return "GD PHP Extension";
   }
 
-  function description() {
+  function description()
+  {
     return "GD PHP extension is required for graphic file processing";
   }
 
-  function run() {
-    $this->setSuccess(false);
+  function run()
+  {
+    $this->setSuccess( false );
 
-    if (!extension_loaded('gd')) {
-      $this->setMessage('Missing GD extension. Please refer to <a href="http://php.net/gd">PHP.net instructions</a> on installing/enabling this extension.');
+    if ( !extension_loaded( 'gd' ) )
+    {
+      $this->setMessage( 'Missing GD extension. Please refer to <a href="http://php.net/gd">PHP.net instructions</a> on installing/enabling this extension.' );
       return;
     };
 
     $gd_info = gd_info();
-    $gd_version_string = $gd_info['GD Version'];
+    $gd_version_string = $gd_info[ 'GD Version' ];
 
     /**
      * Extract version number if it is a bundled version; otherwise we assume that
      * version string should contain verions number only
      */
-    if (preg_match("/bundled \(([\d\.]+) compatible\)/", $gd_version_string, $matches)) {
-      $gd_version = $matches[1];
-    } else {
+    if ( preg_match( "/bundled \(([\d\.]+) compatible\)/", $gd_version_string, $matches ) )
+    {
+      $gd_version = $matches[ 1 ];
+    }
+    else
+    {
       $gd_version = $gd_version_string;
     };
 
-    if (!function_exists('imagecreatetruecolor')) {
-      $this->setMessage("GD version 2.0.1+ required for 'imagecreatetruecolor' function to work");
+    if ( !function_exists( 'imagecreatetruecolor' ) )
+    {
+      $this->setMessage( "GD version 2.0.1+ required for 'imagecreatetruecolor' function to work" );
       return;
     };
 
-    $this->setMessage("Found GD version $gd_version.");
-    $this->setSuccess(true);
+    $this->setMessage( "Found GD version $gd_version." );
+    $this->setSuccess( true );
   }
+
 }
 
 /**
  * Presense of ZLIB extension (compressed files)
  */
-class CheckZLIB extends CheckBinaryRecommended {
+class CheckZLIB extends CheckBinaryRecommended
+{
+
 }
 
 /**
@@ -375,77 +458,93 @@ class CheckZLIB extends CheckBinaryRecommended {
 /**
  * Execution time limit
  */
-class CheckMaxExecutionTime extends CheckTriState {
+class CheckMaxExecutionTime extends CheckTriState
+{
+
 }
 
 /**
  * Memory limit
  */
-class CheckMemoryLimit extends CheckTriState {
+class CheckMemoryLimit extends CheckTriState
+{
+
 }
 
 /**
  * Allow_url_fopen setting
  */
-class CheckAllowURLFopen extends CheckBinaryRecommended {
-  function title() {
+class CheckAllowURLFopen extends CheckBinaryRecommended
+{
+
+  function title()
+  {
     return "allow_url_fopen ini setting";
   }
 
-  function description() {
+  function description()
+  {
     return "allow_url_fopen should be enabled when CURL extension is not available";
   }
 
-  function run() {
-    $this->setSuccess(false);
+  function run()
+  {
+    $this->setSuccess( false );
 
-    $setting = ini_get('allow_url_fopen');
-    if (!$setting) {
-      $this->setMessage('<a href="http://php.net/filesystem">allow_url_fopen</a> is disabled. You will not be able to fetch files via HTTP without CURL extension.');
+    $setting = ini_get( 'allow_url_fopen' );
+    if ( !$setting )
+    {
+      $this->setMessage( '<a href="http://php.net/filesystem">allow_url_fopen</a> is disabled. You will not be able to fetch files via HTTP without CURL extension.' );
       return;
     }
 
-    $this->setMessage('allow_url_fopen is enabled');
-    $this->setSuccess(true);
+    $this->setMessage( 'allow_url_fopen is enabled' );
+    $this->setSuccess( true );
   }
-}
 
+}
 
 /**
  * pcre.backtrack_limit setting (PHP 5.2)
  */
-class CheckPCREBacktrack extends CheckBinaryRecommended {
-  function title() {
+class CheckPCREBacktrack extends CheckBinaryRecommended
+{
+
+  function title()
+  {
     return "pcre.backtrack_limit ini setting";
   }
 
-  function description() {
+  function description()
+  {
     return "It is recommended to increase pcre.backtrack_limit value to 1,000,000";
   }
 
-  function run() {
-    $this->setSuccess(false);
+  function run()
+  {
+    $this->setSuccess( false );
 
-    $version = explode('.', PHP_VERSION);
-    if ($version[0] < 5 ||
-        ($version[0] == 5 && $version[1] < 2)) {
-      $this->setMessage('pcre.backtrack_limit is not available in PHP prior to 5.2.0');
-      $this->setSuccess(true);
+    $version = explode( '.', PHP_VERSION );
+    if ( $version[ 0 ] < 5 ||
+            ($version[ 0 ] == 5 && $version[ 1 ] < 2) )
+    {
+      $this->setMessage( 'pcre.backtrack_limit is not available in PHP prior to 5.2.0' );
+      $this->setSuccess( true );
       return;
     };
 
-    $setting = ini_get('pcre.backtrack_limit');
-    if ($setting < 1000000) {
-      $this->setMessage(sprintf('<a href="http://php.net/filesystem">pcre.backtrack_limit</a> is set to %s (less than 1,000,000). You could experience issues converting large pages.',
-                                $setting));
+    $setting = ini_get( 'pcre.backtrack_limit' );
+    if ( $setting < 1000000 )
+    {
+      $this->setMessage( sprintf( '<a href="http://php.net/filesystem">pcre.backtrack_limit</a> is set to %s (less than 1,000,000). You could experience issues converting large pages.', $setting ) );
       return;
     }
 
-    $this->setMessage('pcre.backtrack_limit is greater than 1,000,000');
-    $this->setSuccess(true);
+    $this->setMessage( 'pcre.backtrack_limit is greater than 1,000,000' );
+    $this->setSuccess( true );
   }
-}
 
+}
 
 /**
  * Access/permissions
@@ -454,127 +553,157 @@ class CheckPCREBacktrack extends CheckBinaryRecommended {
 /**
  * permissions on cache directory
  */
-class CheckPermissionsCache extends CheckBinaryRequired {
-  function title() {
+class CheckPermissionsCache extends CheckBinaryRequired
+{
+
+  function title()
+  {
     return "Permissions on 'cache' subdirectory";
   }
 
-  function description() {
+  function description()
+  {
     return "Script should have full access to 'cache' subdirectory to keep cached files there";
   }
 
-  function run() {
-    if (!file_exists(HTML2PS_DIR.'/cache/')) {
-      $this->setMessage("'cache' subdirectory is missing");
-      $this->setSuccess(false);
+  function run()
+  {
+    if ( !file_exists( HTML2PS_DIR . '/cache/' ) )
+    {
+      $this->setMessage( "'cache' subdirectory is missing" );
+      $this->setSuccess( false );
       return;
     };
 
-    if (!is_readable(HTML2PS_DIR.'/cache/')) {
-      $this->setMessage("'cache' subdirectory is not readable");
-      $this->setSuccess(false);
+    if ( !is_readable( HTML2PS_DIR . '/cache/' ) )
+    {
+      $this->setMessage( "'cache' subdirectory is not readable" );
+      $this->setSuccess( false );
       return;
     };
 
-    if (!is_writable(HTML2PS_DIR.'/cache/')) {
-      $this->setMessage("'cache' subdirectory is not writable");
-      $this->setSuccess(false);
+    if ( !is_writable( HTML2PS_DIR . '/cache/' ) )
+    {
+      $this->setMessage( "'cache' subdirectory is not writable" );
+      $this->setSuccess( false );
       return;
     };
 
-    if (!is_executable(HTML2PS_DIR.'/cache/') && PHP_OS != "WINNT") {
-      $this->setMessage("'cache' subdirectory is not executable");
-      $this->setSuccess(false);
+    if ( !is_executable( HTML2PS_DIR . '/cache/' ) && PHP_OS != "WINNT" )
+    {
+      $this->setMessage( "'cache' subdirectory is not executable" );
+      $this->setSuccess( false );
       return;
     };
 
-    $this->setMessage("'cache' subdirectory is fully accessible to the script");
-    $this->setSuccess(true);
+    $this->setMessage( "'cache' subdirectory is fully accessible to the script" );
+    $this->setSuccess( true );
   }
+
 }
 
 /**
  * Permissions on 'out' directory
  */
-class CheckPermissionsOut extends CheckBinaryRecommended {
-  function title() {
+class CheckPermissionsOut extends CheckBinaryRecommended
+{
+
+  function title()
+  {
     return "Permissions on 'out' subdirectory";
   }
 
-  function description() {
+  function description()
+  {
     return "Script should have full access to 'out' subdirectory to put generated files there";
   }
 
-  function run() {
-    if (!file_exists(HTML2PS_DIR.'/out/')) {
-      $this->setMessage("'out' subdirectory is missing");
-      $this->setSuccess(false);
+  function run()
+  {
+    if ( !file_exists( HTML2PS_DIR . '/out/' ) )
+    {
+      $this->setMessage( "'out' subdirectory is missing" );
+      $this->setSuccess( false );
       return;
     };
 
-    if (!is_readable(HTML2PS_DIR.'/out/')) {
-      $this->setMessage("'out' subdirectory is not readable");
-      $this->setSuccess(false);
+    if ( !is_readable( HTML2PS_DIR . '/out/' ) )
+    {
+      $this->setMessage( "'out' subdirectory is not readable" );
+      $this->setSuccess( false );
       return;
     };
 
-    if (!is_writable(HTML2PS_DIR.'/out/')) {
-      $this->setMessage("'out' subdirectory is not writable");
-      $this->setSuccess(false);
+    if ( !is_writable( HTML2PS_DIR . '/out/' ) )
+    {
+      $this->setMessage( "'out' subdirectory is not writable" );
+      $this->setSuccess( false );
       return;
     };
 
-    if (!is_executable(HTML2PS_DIR.'/out/') && PHP_OS != "WINNT") {
-      $this->setMessage("'out' subdirectory is not executable");
-      $this->setSuccess(false);
+    if ( !is_executable( HTML2PS_DIR . '/out/' ) && PHP_OS != "WINNT" )
+    {
+      $this->setMessage( "'out' subdirectory is not executable" );
+      $this->setSuccess( false );
       return;
     };
 
-    $this->setMessage("'out' subdirectory is fully accessible to the script");
-    $this->setSuccess(true);
+    $this->setMessage( "'out' subdirectory is fully accessible to the script" );
+    $this->setSuccess( true );
   }
+
 }
 
 /**
  * Permissions on 'temp' directory (system-dependent)
  */
-class CheckPermissionsTemp extends CheckBinaryRequired {
-  function title() {
+class CheckPermissionsTemp extends CheckBinaryRequired
+{
+
+  function title()
+  {
     return "Permissions on 'temp' subdirectory";
   }
 
-  function description() {
+  function description()
+  {
     return "Script should have full access to 'temp' subdirectory to keep temporary files there";
   }
 
-  function run() {
-    if (!file_exists(HTML2PS_DIR.'/temp/')) {
-      $this->setMessage("'temp' subdirectory is missing");
-      $this->setSuccess(false);
+  function run()
+  {
+    if ( !file_exists( HTML2PS_DIR . '/temp/' ) )
+    {
+      $this->setMessage( "'temp' subdirectory is missing" );
+      $this->setSuccess( false );
       return;
     };
 
-    if (!is_readable(HTML2PS_DIR.'/temp/')) {
-      $this->setMessage("'temp' subdirectory is not readable");
-      $this->setSuccess(false);
+    if ( !is_readable( HTML2PS_DIR . '/temp/' ) )
+    {
+      $this->setMessage( "'temp' subdirectory is not readable" );
+      $this->setSuccess( false );
       return;
     };
 
-    if (!is_writable(HTML2PS_DIR.'/temp/')) {
-      $this->setMessage("'temp' subdirectory is not writable");
-      $this->setSuccess(false);
+    if ( !is_writable( HTML2PS_DIR . '/temp/' ) )
+    {
+      $this->setMessage( "'temp' subdirectory is not writable" );
+      $this->setSuccess( false );
       return;
     };
 
-    if (!is_executable(HTML2PS_DIR.'/temp/') && PHP_OS != "WINNT") {
-      $this->setMessage("'temp' subdirectory is not executable");
-      $this->setSuccess(false);
+    if ( !is_executable( HTML2PS_DIR . '/temp/' ) && PHP_OS != "WINNT" )
+    {
+      $this->setMessage( "'temp' subdirectory is not executable" );
+      $this->setSuccess( false );
       return;
     };
 
-    $this->setMessage("'temp' subdirectory is fully accessible to the script");
-    $this->setSuccess(true);
+    $this->setMessage( "'temp' subdirectory is fully accessible to the script" );
+    $this->setSuccess( true );
   }
+
 }
 
 /**
@@ -584,98 +713,114 @@ class CheckPermissionsTemp extends CheckBinaryRequired {
 /**
  * Permissions of fonts directory
  */
-class CheckPermissionsFonts extends CheckBinaryRequired {
-  function title() {
+class CheckPermissionsFonts extends CheckBinaryRequired
+{
+
+  function title()
+  {
     return "Permissions on 'fonts' subdirectory";
   }
 
-  function description() {
+  function description()
+  {
     return "Script should be able to read 'fonts' subdirectory to access installed fonts";
   }
 
-  function run() {
-      // dwildt, 110919+
-    $path_to_fonts = HTML2PS_DIR."fonts/";
-    $path_to_fonts = str_replace('pdfcontroller', 'pdfcontroller_fonts', $path_to_fonts);
-      // dwildt, 110919+
-
-      // dwildt, 110919-
+  function run()
+  {
+    // dwildt, 110919+
+    $path_to_fonts = HTML2PS_DIR . "fonts/";
+    $path_to_fonts = str_replace( 'pdfcontroller', 'pdfcontroller_fonts', $path_to_fonts );
+    // dwildt, 110919+
+    // dwildt, 110919-
     //if (!file_exists(HTML2PS_DIR.'/fonts/')) {
-      // dwildt, 110919+
-    if (!file_exists( $path_to_fonts )) {
-        // dwildt, 110919-
+    // dwildt, 110919+
+    if ( !file_exists( $path_to_fonts ) )
+    {
+      // dwildt, 110919-
       //$this->setMessage("'fonts' subdirectory is missing");
-        // dwildt, 110919+
-      $this->setMessage("'fonts' subdirectory is missing. Didn't you install the TYPO3 extension pdfcontroller_fonts?");
-      $this->setSuccess(false);
+      // dwildt, 110919+
+      $this->setMessage( "'fonts' subdirectory is missing. Didn't you install the TYPO3 extension pdfcontroller_fonts? Path to fonts: " . $path_to_fonts );
+      $this->setSuccess( false );
       return;
     };
 
-      // dwildt, 110919-
+    // dwildt, 110919-
     //if (!is_readable(HTML2PS_DIR.'/fonts/')) {
-      // dwildt, 110919+
-    if (!is_readable( $path_to_fonts )) {
-      $this->setMessage("'fonts' subdirectory is not readable");
-      $this->setSuccess(false);
+    // dwildt, 110919+
+    if ( !is_readable( $path_to_fonts ) )
+    {
+      $this->setMessage( "'fonts' subdirectory is not readable" );
+      $this->setSuccess( false );
       return;
     };
 
-      // dwildt, 110919-
+    // dwildt, 110919-
     //if (!is_executable(HTML2PS_DIR.'/fonts/') && PHP_OS != "WINNT") {
-      // dwildt, 110919+
-    if (!is_executable( $path_to_fonts ) && PHP_OS != "WINNT") {
-      $this->setMessage("'fonts' subdirectory is not executable");
-      $this->setSuccess(false);
+    // dwildt, 110919+
+    if ( !is_executable( $path_to_fonts ) && PHP_OS != "WINNT" )
+    {
+      $this->setMessage( "'fonts' subdirectory is not executable" );
+      $this->setSuccess( false );
       return;
     };
 
-    $this->setMessage("'fonts' subdirectory is readable and executable by the script");
-    $this->setSuccess(true);
+    $this->setMessage( "'fonts' subdirectory is readable and executable by the script" );
+    $this->setSuccess( true );
   }
+
 }
 
 /**
  * Permissions/presence of Type1 fonts repository
  */
-class CheckPermissionsType1 extends CheckBinaryRecommended {
-  function title() {
+class CheckPermissionsType1 extends CheckBinaryRecommended
+{
+
+  function title()
+  {
     return "Permissions on Type1 fonts directory";
   }
 
-  function description() {
+  function description()
+  {
     return "Script should be able to access Type1 fonts directory containing font metrics in order to generate Postscript files";
   }
 
-  function run() {
-    if (!file_exists(TYPE1_FONTS_REPOSITORY)) {
-      $this->setMessage("Type1 fonts directory (".TYPE1_FONTS_REPOSITORY.") is missing. You will not be able to generate postscript files.");
-      $this->setSuccess(false);
+  function run()
+  {
+    if ( !file_exists( TYPE1_FONTS_REPOSITORY ) )
+    {
+      $this->setMessage( "Type1 fonts directory (" . TYPE1_FONTS_REPOSITORY . ") is missing. You will not be able to generate postscript files." );
+      $this->setSuccess( false );
       return;
     };
 
-    if (!is_readable(TYPE1_FONTS_REPOSITORY)) {
-      $this->setMessage("Type1 fonts directory (".TYPE1_FONTS_REPOSITORY.") is not readable. You will not be able to generate postscript files.");
-      $this->setSuccess(false);
+    if ( !is_readable( TYPE1_FONTS_REPOSITORY ) )
+    {
+      $this->setMessage( "Type1 fonts directory (" . TYPE1_FONTS_REPOSITORY . ") is not readable. You will not be able to generate postscript files." );
+      $this->setSuccess( false );
       return;
     };
 
-      // dwildt, 111213+
-    $path_to_fonts = HTML2PS_DIR."fonts/";
-    $path_to_fonts = str_replace('pdfcontroller', 'pdfcontroller_fonts', $path_to_fonts);
-      // dwildt, 111213+
-
-      // dwildt, 111213-
+    // dwildt, 111213+
+    $path_to_fonts = HTML2PS_DIR . "fonts/";
+    $path_to_fonts = str_replace( 'pdfcontroller', 'pdfcontroller_fonts', $path_to_fonts );
+    // dwildt, 111213+
+    // dwildt, 111213-
     //if (!is_executable(HTML2PS_DIR.'/fonts/') && PHP_OS != "WINNT") {
-      // dwildt, 111213+
-    if (!is_executable( $path_to_fonts ) && PHP_OS != "WINNT") {
-      $this->setMessage("Type1 fonts directory (".TYPE1_FONTS_REPOSITORY.") is not executable. You will not be able to generate postscript files.");
-      $this->setSuccess(false);
+    // dwildt, 111213+
+    if ( !is_executable( $path_to_fonts ) && PHP_OS != "WINNT" )
+    {
+      $this->setMessage( "Type1 fonts directory (" . TYPE1_FONTS_REPOSITORY . ") is not executable. You will not be able to generate postscript files." );
+      $this->setSuccess( false );
       return;
     };
 
-    $this->setMessage("Type1 fonts directory is readable and executable by the script");
-    $this->setSuccess(true);
+    $this->setMessage( "Type1 fonts directory is readable and executable by the script" );
+    $this->setSuccess( true );
   }
+
 }
 
 /**
@@ -685,44 +830,56 @@ class CheckPermissionsType1 extends CheckBinaryRecommended {
 /**
  * Permissions/presense of TTF files
  */
-class CheckPresenceTTF extends CheckBinaryRecommended {
-  function title() {
+class CheckPresenceTTF extends CheckBinaryRecommended
+{
+
+  function title()
+  {
     return "Presense of registered TTF files";
   }
 
-  function description() {
+  function description()
+  {
     return "TrueType fonts registered in html2ps.config should be present in order to generate PDF files with these fonts.";
   }
 
-  function run() {
+  function run()
+  {
     $message = "";
-    $this->setSuccess(true);
+    $this->setSuccess( true );
 
-      // dwildt, 111213+
-    $path_to_fonts = HTML2PS_DIR."fonts/";
-    $path_to_fonts = str_replace('pdfcontroller', 'pdfcontroller_fonts', $path_to_fonts);
-      // dwildt, 111213+
+    // dwildt, 111213+
+    $path_to_fonts = HTML2PS_DIR . "fonts/";
+    $path_to_fonts = str_replace( 'pdfcontroller', 'pdfcontroller_fonts', $path_to_fonts );
+    // dwildt, 111213+
 
     global $g_font_resolver_pdf;
-    foreach ($g_font_resolver_pdf->ttf_mappings as $file) {
-        // dwildt, 111213-
+    foreach ( $g_font_resolver_pdf->ttf_mappings as $file )
+    {
+      // dwildt, 111213-
       //$fullname = HTML2PS_DIR.'/fonts/'.$file;
-        // dwildt, 111213+
-      $fullname = $path_to_fonts.$file;
+      // dwildt, 111213+
+      $fullname = $path_to_fonts . $file;
 
-      if (!file_exists($fullname)) {
-        $message .= "Font ".$fullname." is missing. You will not be able to generate PDF files with this font.\n";
-        $this->setSuccess(false);
-      } elseif (!file_exists($fullname)) {
-        $message .= "Font ".$fullname." is not readable. You will not be able to generate PDF files with this font.\n";
-        $this->setSuccess(false);
-      } else {
-        $message .= "Font ".$fullname." is present and readable.\n";
+      if ( !file_exists( $fullname ) )
+      {
+        $message .= "Font " . $fullname . " is missing. You will not be able to generate PDF files with this font.\n";
+        $this->setSuccess( false );
+      }
+      elseif ( !file_exists( $fullname ) )
+      {
+        $message .= "Font " . $fullname . " is not readable. You will not be able to generate PDF files with this font.\n";
+        $this->setSuccess( false );
+      }
+      else
+      {
+        $message .= "Font " . $fullname . " is present and readable.\n";
       };
     };
 
-    $this->setMessage($message);
+    $this->setMessage( $message );
   }
+
 }
 
 /**
@@ -732,36 +889,48 @@ class CheckPresenceTTF extends CheckBinaryRecommended {
 /**
  * Permissions/presense of AFM files for Type1 fonts
  */
-class CheckPresenceType1AFM extends CheckBinaryRecommended {
-  function title() {
+class CheckPresenceType1AFM extends CheckBinaryRecommended
+{
+
+  function title()
+  {
     return "Presense of registered TTF files";
   }
 
-  function description() {
+  function description()
+  {
     return "TrueType fonts registered in html2ps.config should be present in order to generate PDF files with these fonts.";
   }
 
-  function run() {
+  function run()
+  {
     $message = "";
-    $this->setSuccess(true);
+    $this->setSuccess( true );
 
     global $g_font_resolver;
-    foreach ($g_font_resolver->afm_mappings as $file) {
-      $fullname = TYPE1_FONTS_REPOSITORY.$file.'.afm';
+    foreach ( $g_font_resolver->afm_mappings as $file )
+    {
+      $fullname = TYPE1_FONTS_REPOSITORY . $file . '.afm';
 
-      if (!file_exists($fullname)) {
-        $message .= "Font ".$fullname." is missing. You will not be able to generate PDF files with this font.\n";
-        $this->setSuccess(false);
-      } elseif (!file_exists($fullname)) {
-        $message .= "Font ".$fullname." is not readable. You will not be able to generate PDF files with this font.\n";
-        $this->setSuccess(false);
-      } else {
-        $message .= "Font ".$fullname." is present and readable.\n";
+      if ( !file_exists( $fullname ) )
+      {
+        $message .= "Font " . $fullname . " is missing. You will not be able to generate PDF files with this font.\n";
+        $this->setSuccess( false );
+      }
+      elseif ( !file_exists( $fullname ) )
+      {
+        $message .= "Font " . $fullname . " is not readable. You will not be able to generate PDF files with this font.\n";
+        $this->setSuccess( false );
+      }
+      else
+      {
+        $message .= "Font " . $fullname . " is present and readable.\n";
       };
     };
 
-    $this->setMessage($message);
+    $this->setMessage( $message );
   }
+
 }
 
 /**
@@ -771,43 +940,49 @@ class CheckPresenceType1AFM extends CheckBinaryRecommended {
 /**
  * Generic
  */
-class CheckGDFormat extends CheckBinaryRequired {
-  function title() {
-    return "GD ".$this->_getFormatName()." Support";
+class CheckGDFormat extends CheckBinaryRequired
+{
+
+  function title()
+  {
+    return "GD " . $this->_getFormatName() . " Support";
   }
 
-  function description() {
-    return "GD ".$this->_getFormatName()." Support is required for reading images in ".$this->_getFormatName()." format";
+  function description()
+  {
+    return "GD " . $this->_getFormatName() . " Support is required for reading images in " . $this->_getFormatName() . " format";
   }
 
-  function run() {
-    $this->setSuccess(false);
+  function run()
+  {
+    $this->setSuccess( false );
 
-    if (!extension_loaded('gd')) {
-      $this->setMessage('Missing GD extension. Please refer to <a href="http://php.net/gd">PHP.net instructions</a> on installing/enabling this extension.');
+    if ( !extension_loaded( 'gd' ) )
+    {
+      $this->setMessage( 'Missing GD extension. Please refer to <a href="http://php.net/gd">PHP.net instructions</a> on installing/enabling this extension.' );
       return;
     };
 
     $gd_info = gd_info();
 // #36857, dwildt, 120505, 20+
-    switch( true )
+    switch ( true )
     {
-      case( isset( $gd_info[$this->_getInfoKey( )] ) ):
-        if( ! ( $gd_info[$this->_getInfoKey( )] ) )
+      case( isset( $gd_info[ $this->_getInfoKey() ] ) ):
+        if ( !( $gd_info[ $this->_getInfoKey() ] ) )
         {
-          $this->setMessage("No ".$this->_getFormatName()." support, some images will not be displayed");
+          $this->setMessage( "No " . $this->_getFormatName() . " support, some images will not be displayed" );
           return;
         }
         break;
-      case( isset( $gd_info['JPEG Support'] ) ):
-        if( ! ( $gd_info['JPEG Support'] ) )
+      case( isset( $gd_info[ 'JPEG Support' ] ) ):
+        if ( !( $gd_info[ 'JPEG Support' ] ) )
         {
-          $this->setMessage("No ".$this->_getFormatName()." support, some images will not be displayed");
+          $this->setMessage( "No " . $this->_getFormatName() . " support, some images will not be displayed" );
           return;
         }
         break;
       default:
-          // Do nothing;
+        // Do nothing;
         break;
     }
 // #36857, dwildt, 120505, 20+
@@ -818,54 +993,69 @@ class CheckGDFormat extends CheckBinaryRequired {
 //    };
 // #36857, dwildt, 120505, 4-
 
-    $this->setMessage($this->_getFormatName()." support enabled");
-    $this->setSuccess(true);
+    $this->setMessage( $this->_getFormatName() . " support enabled" );
+    $this->setSuccess( true );
   }
+
 }
 
 /**
  * JPEG support
  */
-class CheckGDJPEG extends CheckGDFormat {
-  function _getFormatName() {
+class CheckGDJPEG extends CheckGDFormat
+{
+
+  function _getFormatName()
+  {
     return "JPEG";
   }
 
-  function _getInfoKey() {
+  function _getInfoKey()
+  {
     return "JPG Support";
   }
+
 }
 
 /**
  * GIF support
  */
-class CheckGDGIF extends CheckGDFormat {
-  function _getFormatName() {
+class CheckGDGIF extends CheckGDFormat
+{
+
+  function _getFormatName()
+  {
     return "GIF";
   }
 
-  function _getInfoKey() {
+  function _getInfoKey()
+  {
     return "GIF Read Support";
   }
+
 }
 
 /**
  * PNG support
  */
-class CheckGDPNG extends CheckGDFormat {
-  function _getFormatName() {
+class CheckGDPNG extends CheckGDFormat
+{
+
+  function _getFormatName()
+  {
     return "PNG";
   }
 
-  function _getInfoKey() {
+  function _getInfoKey()
+  {
     return "PNG Support";
   }
+
 }
 
 /**
  * Freetype support
  */
-
 /**
  * Miscellanous
  */
@@ -873,26 +1063,27 @@ class CheckGDPNG extends CheckGDFormat {
 /**
  * Check if outgoing connections are allowed
  */
-class CheckOutgoingConnections extends CheckBinary {
+class CheckOutgoingConnections extends CheckBinary
+{
+
 }
 
-ManagerChecks::register(new CheckDOM());
-ManagerChecks::register(new CheckCurl());
-ManagerChecks::register(new CheckAllowURLFopen());
-ManagerChecks::register(new CheckPCREBacktrack());
-ManagerChecks::register(new CheckGD());
-ManagerChecks::register(new CheckGDJPEG());
-ManagerChecks::register(new CheckGDGIF());
-ManagerChecks::register(new CheckGDPNG());
-ManagerChecks::register(new CheckPermissionsTemp());
-ManagerChecks::register(new CheckPermissionsFonts());
-ManagerChecks::register(new CheckPermissionsType1());
-ManagerChecks::register(new CheckPresenceTTF());
-ManagerChecks::register(new CheckPresenceType1AFM());
+ManagerChecks::register( new CheckDOM() );
+ManagerChecks::register( new CheckCurl() );
+ManagerChecks::register( new CheckAllowURLFopen() );
+ManagerChecks::register( new CheckPCREBacktrack() );
+ManagerChecks::register( new CheckGD() );
+ManagerChecks::register( new CheckGDJPEG() );
+ManagerChecks::register( new CheckGDGIF() );
+ManagerChecks::register( new CheckGDPNG() );
+ManagerChecks::register( new CheckPermissionsTemp() );
+ManagerChecks::register( new CheckPermissionsFonts() );
+ManagerChecks::register( new CheckPermissionsType1() );
+ManagerChecks::register( new CheckPresenceTTF() );
+ManagerChecks::register( new CheckPresenceType1AFM() );
 
 ManagerChecks::run();
 out_header();
 out_check_list();
 out_footer();
-
 ?>
