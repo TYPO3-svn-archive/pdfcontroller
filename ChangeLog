@@ -1,4 +1,7 @@
 3.0.0
+  15-06-10
+  Major Feature
+  * #67396: New PDF engine tcpdf
   15-02-03
   Feature
   * #i0005: Constant Editor: page.pdf_button. Id of the page, which contains the PDF Controller button.
@@ -6,6 +9,14 @@
             * plugin.tx_pdfcontroller_pi2.page.pdf_controller > plugin.pdfcontroller.pages.userinterface.id
             * plugin.tx_pdfcontroller_pi2.realUrl.print > plugin.pdfcontroller.realUrl.print
             * plugin.tx_pdfcontroller_pi2.typeNum.print > plugin.pdfcontroller.pages.print.typeNum
+  Improvement
+  * #i0006: HTML2PS: Deprecated: set_magic_quotes_runtime()
+            * Resources/Public/html2ps_v2043/public_html/config.parse.php
+
+2.0.4
+  15-02-25
+  Feature
+  * #47108:	Documentation of adding indidiual fonts
   Manual
   * #i0004: Update
 
