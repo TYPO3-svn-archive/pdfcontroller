@@ -21,12 +21,13 @@
 
       <label index="sheet_debugging">Debugging</label>
       <label index="sheet_debugging.debug_tools">Debugging tools (the tools will displayed in the frontend, a PDF file won't generated) - for admins only!</label>
-      <label index="sheet_debugging.debug_tools.0">No tool (default)</label>
-      <label index="sheet_debugging.debug_tools.1">Frontend: Check system requirements</label>
-      <label index="sheet_debugging.debug_tools.2">Frontend: Test form for your URL and your parameters</label>
-      <label index="sheet_debugging.debug_tools.3">Frontend: html2ps documentation</label>
-      <label index="sheet_debugging.debug_tools.4">Frontend: list with parameters, which will send to html2ps</label>
-      <label index="sheet_debugging.debug_tools.5">Frontend: Don't suppress PHP error messages</label>
+      <label index="sheet_debugging.debug_tools.0">Productive: TCPDF (recommended)</label>
+      <label index="sheet_debugging.debug_tools.1">Productive: HTML2PS [DEPRECATED]</label>
+      <label index="sheet_debugging.debug_tools.2">Test: HTML2PS [DEPRECATED]: Check system requirements</label>
+      <label index="sheet_debugging.debug_tools.3">Test: HTML2PS [DEPRECATED]: Test form for your URL and your parameters</label>
+      <label index="sheet_debugging.debug_tools.4">Test: HTML2PS [DEPRECATED]: html2ps documentation</label>
+      <label index="sheet_debugging.debug_tools.5">Test: HTML2PS [DEPRECATED]: list with parameters, which will send to html2ps</label>
+      <label index="sheet_debugging.debug_tools.6">Test: HTML2PS [DEPRECATED]: Don't suppress PHP error messages</label>
       <label index="sheet_debugging.debugbox">Show content boxes</label>
       <label index="sheet_debugging.debugbox.0">Disabled (default)</label>
       <label index="sheet_debugging.debugbox.1">Enabled (debugging)</label>
@@ -156,12 +157,13 @@
 
       <label index="sheet_debugging">Debugging</label>
       <label index="sheet_debugging.debug_tools">Werkzeuge (werden im Frontend angezeigt, ein PDF wird dann nicht generiert) - nur für Administratoren!</label>
-      <label index="sheet_debugging.debug_tools.0">Kein Werkzeug verwenden (Standardeinstellung)</label>
-      <label index="sheet_debugging.debug_tools.1">Frontend: System-Voraussetzungen prüfen</label>
-      <label index="sheet_debugging.debug_tools.2">Frontend: Test-Formular für Deine URL mit Deinen Parametern</label>
-      <label index="sheet_debugging.debug_tools.3">Frontend: html2ps Dokumentation</label>
-      <label index="sheet_debugging.debug_tools.4">Frontend: Liste der Parameter, die an html2ps gesendet werden</label>
-      <label index="sheet_debugging.debug_tools.5">Frontend: PHP-Fehlermeldungen nicht unterdrücken</label>
+      <label index="sheet_debugging.debug_tools.0">Produktiv: TCPDF (empfohlen)</label>
+      <label index="sheet_debugging.debug_tools.1">Produktiv: HTML2PS [VERALTET]</label>
+      <label index="sheet_debugging.debug_tools.2">Test: HTML2PS [VERALTET]: System-Voraussetzungen prüfen</label>
+      <label index="sheet_debugging.debug_tools.3">Test: HTML2PS [VERALTET]: Test-Formular für Deine URL mit Deinen Parametern</label>
+      <label index="sheet_debugging.debug_tools.4">Test: HTML2PS [VERALTET]: html2ps Dokumentation</label>
+      <label index="sheet_debugging.debug_tools.5">Test: HTML2PS [VERALTET]: Liste der Parameter, die an html2ps gesendet werden</label>
+      <label index="sheet_debugging.debug_tools.6">Test: HTML2PS [VERALTET]: PHP-Fehlermeldungen nicht unterdrücken</label>
       <label index="sheet_debugging.debugbox">Zeige Rahmen um PDF Inhaltszellen</label>
       <label index="sheet_debugging.debugbox.0">Deaktiviert (Standardeinstellung)</label>
       <label index="sheet_debugging.debugbox.1">Aktiviert (Debug-Modus)</label>

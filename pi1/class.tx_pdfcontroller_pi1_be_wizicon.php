@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2011 - Dirk Wildt <dirk.wildt.at.die-netzmacher.de>
+*  (c) 2011-2015 - Dirk Wildt <dirk.wildt.at.die-netzmacher.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -54,7 +54,7 @@ class tx_pdfcontroller_pi1_be_wizicon
     $wizardItems['plugins_tx_pdfcontroller_pi1'] =
       array
       (
-        'icon'        => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('pdfcontroller').'pi1/pdfcontroller_wizard.gif',
+        'icon'        => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('pdfcontroller').'pi1/pdfcontroller_wizard2.gif',
         'title'       => $LANG->getLLL('wizard.list_type_pi1', $LL),
         'description' => $LANG->getLLL('wizard.list_type_pi1.desc', $LL),
         'params'      => '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=pdfcontroller_pi1'
