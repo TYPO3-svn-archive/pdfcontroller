@@ -39,7 +39,7 @@ $EM_CONF[$_EXTKEY] = array(
 		'conflicts' => array(
 		),
 		'suggests' => array(
-			'pdfcontroller_fonts' => '',
+			'pdfcontroller_fonts' => '3.0.0-3.9.99',
 		),
 	),
 	'suggests' => array(
