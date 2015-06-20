@@ -106,9 +106,7 @@ class tx_pdfcontroller_pi1_flexform
   }
 
   /**
-   * init(): Init the array $arr_values_forFlexformCheckboxes.
-   *         Key is the value of the flexform.
-   *         Value is the value in html2ps.
+   * init(): 
    *
    * @return  void
    * @version 3.0.0

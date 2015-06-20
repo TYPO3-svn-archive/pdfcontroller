@@ -10,30 +10,12 @@
       <label index="sheet_sDEF.wrap_in_pibase"><![CDATA[piBase wrap <div class="tx-pdfcontroller-pi2">|</div>]]></label>
       <label index="sheet_sDEF.wrap_in_pibase.0">Don't use it (recommended)</label>
       <label index="sheet_sDEF.wrap_in_pibase.1">Use it</label>
-      <label index="sheet_sDEF.handleimage">Button: icon</label>
-      <label index='sheet_sDEF.handleimage.0'>PDF icon (default)</label>
-      <label index='sheet_sDEF.handleimage.1'>Own icon</label>
-      <label index="sheet_sDEF.buttonseo">Button: SEO (Search Engine Optimisation)</label>
-      <label index='sheet_sDEF.buttonseo.0'>Don't index PDF download link (recommended)</label>
-      <label index='sheet_sDEF.buttonseo.1'>Index PDF download link</label>
-      <label index='sheet_sDEF.buttonseo.2'>Take the value from TypoScript!</label>
-      <label index='sheet_sDEF.imagepath'>Own icon</label>
-      <label index="sheet_sDEF.pid_converter">Page with the PDF Controller User Interface</label>
     </languageKey>
     <languageKey index="de" type="array">
       <label index="sheet_sDEF">PDF-Konverter</label>
       <label index="sheet_sDEF.wrap_in_pibase"><![CDATA[piBase-Wrap <div class="tx-pdfcontroller-pi2">|</div>]]></label>
       <label index="sheet_sDEF.wrap_in_pibase.0">Nicht verwenden (empfohlen)</label>
       <label index="sheet_sDEF.wrap_in_pibase.1">Verwenden</label>
-      <label index="sheet_sDEF.handleimage">Button: Symbol</label>
-      <label index='sheet_sDEF.handleimage.0'>PDF Symbol (Standard)</label>
-      <label index='sheet_sDEF.handleimage.1'>Eigenes Symbol</label>
-      <label index="sheet_sDEF.buttonseo">Button: SEO (Suchmaschinen-Optimierung)</label>
-      <label index='sheet_sDEF.buttonseo.0'>Den Link zum PDF Download nicht indizieren (empfohlen)</label>
-      <label index='sheet_sDEF.buttonseo.1'>Den Link zum PDF Download indizieren</label>
-      <label index='sheet_sDEF.buttonseo.2'>Nimm den Wert aus TypoScript!</label>
-      <label index='sheet_sDEF.imagepath'>Eigenes Symbol</label>
-      <label index="sheet_sDEF.pid_converter">Seite mit dem User-Interface des PDF-Controllers</label>
     </languageKey>
   </data>
 </T3locallang>

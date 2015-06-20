@@ -5,12 +5,16 @@ plugin.tx_pdfcontroller_pi2 {
   button = IMAGE
   button {
     wrap = |&nbsp;
-    file = ###IMAGEFILE###
-    altText = TEXT
+    file = {$plugin.pdfcontroller.button.icon}
     altText {
-      value = Download content as PDF file
-      lang {
-        de = Inhalt als PDF-Datei herunterladen
+      stdWrap {
+        cObject = TEXT
+        cObject {
+          value = Download content as PDF file
+          lang {
+            de = Inhalt als PDF-Datei herunterladen
+          }
+        }
       }
     }
     titleText < .altText
@@ -18,8 +22,10 @@ plugin.tx_pdfcontroller_pi2 {
     imageLinkWrap {
       enable = 1
       typolink {
-        parameter         = ###PARAMETER###
-        additionalParams  = ###ADDITIONALPARAMS###
+        parameter {
+          data = page:uid
+        }
+        additionalParams  = &type={$plugin.pdfcontroller.pages.pdf.typeNum}
         ATagParams        = rel="nofollow"
       }
     }

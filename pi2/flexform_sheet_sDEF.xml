@@ -6,26 +6,6 @@
     </TCEforms>
     <type>array</type>
     <el>
-      <pid_converter>
-        <TCEforms>
-          <exclude>0</exclude>
-          <label>LLL:EXT:pdfcontroller/pi2/flexform_locallang.xml:sheet_sDEF.pid_converter</label>
-          <config>
-            <type>group</type>
-            <internal_type>db</internal_type>
-            <allowed>pages</allowed>
-            <size>1</size>
-            <maxitems>1</maxitems>
-            <minitems>1</minitems>
-            <show_thumbs>1</show_thumbs>
-            <wizards>
-              <suggest>
-                <type>suggest</type>
-              </suggest>
-            </wizards>
-          </config>
-        </TCEforms>
-      </pid_converter>
       <wrap_in_pibase>
         <TCEforms>
           <label>LLL:EXT:pdfcontroller/pi2/flexform_locallang.xml:sheet_sDEF.wrap_in_pibase</label>
@@ -47,45 +27,6 @@
           </config>
         </TCEforms>
       </wrap_in_pibase>
-      <handleimage>
-        <TCEforms>
-          <label>LLL:EXT:pdfcontroller/pi2/flexform_locallang.xml:sheet_sDEF.handleimage</label>
-          <onChange>reload</onChange>
-          <config>
-            <type>select</type>
-            <items type="array">
-              <numIndex index="0" type="array">
-                <numIndex index="0">LLL:EXT:pdfcontroller/pi2/flexform_locallang.xml:sheet_sDEF.handleimage.0</numIndex>
-                <numIndex index="1">0</numIndex>
-              </numIndex>
-              <numIndex index="1" type="array">
-                <numIndex index="0">LLL:EXT:pdfcontroller/pi2/flexform_locallang.xml:sheet_sDEF.handleimage.1</numIndex>
-                <numIndex index="1">1</numIndex>
-              </numIndex>
-            </items>
-            <default>0</default>
-            <maxitems>1</maxitems>
-            <size>1</size>
-          </config>
-        </TCEforms>
-      </handleimage>
-      <imagepath>
-        <TCEforms>
-          <label>LLL:EXT:pdfcontroller/pi2/flexform_locallang.xml:sheet_sDEF.imagepath</label>
-          <displayCond>FIELD:handleimage:=:1</displayCond>
-          <config>
-            <type>group</type>
-            <internal_type>file</internal_type>
-            <allowed>gif,jpg,png</allowed>
-            <maxsize>1000</maxsize>
-            <uploadfolder>uploads/tx_pdfcontroller</uploadfolder>
-            <show_thumbs>1</show_thumbs>
-            <size>1</size>
-            <maxitems>200</maxitems>
-            <minitems>0</minitems>
-          </config>
-        </TCEforms>
-      </imagepath>
     </el>
   </ROOT>
 </T3DataStructure>
