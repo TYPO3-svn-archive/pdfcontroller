@@ -10,6 +10,8 @@
             * plugin.tx_pdfcontroller_pi2.realUrl.print > plugin.pdfcontroller.realUrl.print
             * plugin.tx_pdfcontroller_pi2.typeNum.print > plugin.pdfcontroller.pages.print.typeNum
   Improvement
+  * #67426: Unique typenum for print PAGE object
+  * #67425: Unique typenum for pdf PAGE object
   * #i0006: HTML2PS: Deprecated: set_magic_quotes_runtime()
             * Resources/Public/html2ps_v2043/public_html/config.parse.php
 

@@ -281,10 +281,7 @@ class tx_pdfcontroller_pi2 extends tslib_pibase
     //
       // Generate additional paramater
 
-    $TYPO3_REQUEST_URL = t3lib_div::getIndpEnv( 'TYPO3_REQUEST_URL' );
-//    $paramsEncode       = rawurlencode ( $TYPO3_REQUEST_URL );
-    $paramsEncode = str_replace( '&', '%26', $TYPO3_REQUEST_URL );
-    $additionalParams = '&tx_pdfcontroller_pi1[URL]=' . $paramsEncode;
+    $additionalParams = $this->additionalParams();
     // Generate additional paramater
     ////////////////////////////////////////////////////////////////////////
     //
@@ -368,6 +365,24 @@ class tx_pdfcontroller_pi2 extends tslib_pibase
         return $this->pi_wrapInBaseClass( $this->content );
     }
     // Return the button
+  }
+
+
+  /**
+   * Set the booleans for Warnings, Errors and DRS - Development Reporting System
+   *
+   * @return  void
+   * @version 3.0.0
+   * @since 3.0.0
+   */
+  private function additionalParams()
+  {
+    $TYPO3_REQUEST_URL = t3lib_div::getIndpEnv( 'TYPO3_REQUEST_URL' );
+    //$paramsEncode       = rawurlencode ( $TYPO3_REQUEST_URL );
+    $paramsEncode = str_replace( '&', '%26', $TYPO3_REQUEST_URL );
+    $additionalParams = '&tx_pdfcontroller_pi1[URL]=' . $paramsEncode;
+
+    return $additionalParams;
   }
 
   /*   * *********************************************

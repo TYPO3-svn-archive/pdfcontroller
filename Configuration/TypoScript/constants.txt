@@ -3,14 +3,20 @@ plugin.pdfcontroller {
   # cat=PDF Controller - button*//100;          type=int+;    label= Page Id:Id of the page, which contains the PDF Controller button
   button.id =
 
-  # cat=PDF Controller - pages//200;            type=int+;    label= typeNum:type number for the PAGE, which is optimised for printing. Recommended 98. Use another number, if you are still using 98.
-  pages.print.typeNum = 98
-  # cat=PDF Controller - pages//201;            type=string;  label= header:
+  # cat=PDF Controller - pages pdf//100;        type=int+;    label= typeNum:type number for the PAGE, which generates the PDF. Recommended 67425. Use another number, if you are still using 99.
+  pages.pdf.typeNum = 67425
+
+  # cat=PDF Controller - pages print//200;      type=int+;    label= typeNum:type number for the PAGE, which is optimised for printing. Recommended 67426. Use another number, if you are still using 67426.
+  pages.print.typeNum = 67426
+  # cat=PDF Controller - pages print//201;      type=string;  label= header:
   pages.print.header = My header content. See @ TypoScript at plugin.tx_pdfcontroller_pi1.master_templates.print...
-  # cat=PDF Controller - pages//202;            type=string;  label= copyright:Copyright in the footer.
+  # cat=PDF Controller - pages print//202;      type=string;  label= copyright:Copyright in the footer.
   pages.print.copyright = | &#169; See @ Constant Editor category [PDF CONTROLLER - PAGES] > copyright |
-  # cat=PDF Controller - pages//203;            type=string;  label= time format:PHP function strftime. Example for German language: Gedruckt am %d.%m.%y um %T Uhr
+  # cat=PDF Controller - pages print//203;      type=string;  label= time format:PHP function strftime. Example for German language: Gedruckt am %d.%m.%y um %T Uhr
   pages.print.strftime = printed at %y/%m/%d %T
+
+  # cat=PDF Controller - pages user interface*//100; type=int+;  label= Page ID*:*OBLIGATED: ID of the page, which contains the PDF user interface.
+  pages.userinterface.pid =
 
   # cat=PDF Controller - realurl//300;          type=string;  label= Print page:realUrl name for pages with the typeNum.print (see above). Name depends on your realURL configuration. Example: print.html
   realUrl.print =

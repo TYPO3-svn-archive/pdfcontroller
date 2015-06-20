@@ -11,13 +11,15 @@ plugin.tx_pdfcontroller_pi1 {
       // content
     print = COA
     print {
+        // config, typeNum, CONTENT
       content = PAGE
       content {
-        config {
-          admPanel        = 0
-          xhtml_cleaning  = 0
-          metaCharset     = UTF-8
-          doctype         = xhtml_strict
+          config {
+          admPanel              = 0
+          disableAllHeaderCode  = 1
+          doctype               = xhtml_strict
+          metaCharset           = UTF-8
+          xhtml_cleaning        = 0
         }
         typeNum = {$plugin.pdfcontroller.pages.print.typeNum}
           // header, content, footer
@@ -29,11 +31,13 @@ plugin.tx_pdfcontroller_pi1 {
             value = {$plugin.pdfcontroller.pages.print.header}
             wrap = <div id="header">|</div>
           }
+          10 >
             // hr
           11 = TEXT
           11 {
             value = <hr />
           }
+          11 >
             // content
           20 = COA
           20 {
@@ -45,6 +49,7 @@ plugin.tx_pdfcontroller_pi1 {
           21 {
             value = <hr />
           }
+          21 >
             // footer
           30 = COA
           30 {
@@ -94,6 +99,7 @@ plugin.tx_pdfcontroller_pi1 {
               strftime = {$plugin.pdfcontroller.pages.print.strftime}
             }
           }
+          30 >
         }
       }
     }

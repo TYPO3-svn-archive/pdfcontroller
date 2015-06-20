@@ -4,10 +4,8 @@
     <langDisable>1</langDisable>
   </meta>
   <sheets>
-    <input>EXT:pdfcontroller/pi1/flexform_sheet_input.xml</input>
-    <addcontent>EXT:pdfcontroller/pi1/flexform_sheet_addcontent.xml</addcontent>
-    <properties>EXT:pdfcontroller/pi1/flexform_sheet_properties.xml</properties>
-    <output>EXT:pdfcontroller/pi1/flexform_sheet_output.xml</output>
+    <template>EXT:pdfcontroller/pi1/flexform_sheet_template.xml</template>
+    <templatefirstpage>EXT:pdfcontroller/pi1/flexform_sheet_templatefirstpage.xml</templatefirstpage>
     <sDEF>EXT:pdfcontroller/pi1/flexform_sheet_sDEF.xml</sDEF>
     <debugging>EXT:pdfcontroller/pi1/flexform_sheet_debugging.xml</debugging>
   </sheets>

@@ -1,7 +1,7 @@
 plugin.tx_pdfcontroller_pi1 {
     // empty statement for proper comments only
-  //master_templates {
-  //}
+  master_templates {
+  }
     // print
   master_templates =
   master_templates {
