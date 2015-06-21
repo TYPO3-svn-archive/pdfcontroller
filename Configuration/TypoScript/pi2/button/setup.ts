@@ -23,7 +23,37 @@ plugin.tx_pdfcontroller_pi2 {
       enable = 1
       typolink {
         parameter {
-          data = page:uid
+          cObject = COA
+          cObject {
+              // url
+            10 = TEXT
+            10 {
+              data = page:uid
+            }
+              // target
+            20 = TEXT
+            20 {
+              value       = _blank
+              noTrimWrap  = | "|"|
+            }
+              // class
+            30 = TEXT
+            30 {
+              value       = -
+              noTrimWrap  = | "|"|
+            }
+              // title
+            40 = TEXT
+            40 {
+              value       = -
+              stdWrap {
+                stripHtml         = 1
+                htmlSpecialChars  = 1
+                crop              = 30
+              }
+              noTrimWrap  = | "|"|
+            }
+          }
         }
         additionalParams  = &type={$plugin.pdfcontroller.pages.pdf.typeNum}
         ATagParams        = rel="nofollow"

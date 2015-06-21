@@ -1,0 +1,1 @@
+pdfcontrollerPDF < plugin.tx_pdfcontroller_pi1.master_templates.pdf

@@ -54,8 +54,8 @@
  * @author    Dirk Wildt http://wildt.at.die-netzmacher.de
  * @package    TYPO3
  * @subpackage    tx_pdfcontroller_pi1
- * @version 3.0.0
- * @since   3.0.0
+ * @version 3.1.0
+ * @since   3.1.0
  */
 class tx_pdfcontroller_pi1_flexform
 {
@@ -106,10 +106,10 @@ class tx_pdfcontroller_pi1_flexform
   }
 
   /**
-   * init(): 
+   * init():
    *
    * @return  void
-   * @version 3.0.0
+   * @version 3.1.0
    * @since 0.0.1
    */
   public function init()
@@ -134,7 +134,7 @@ class tx_pdfcontroller_pi1_flexform
    * initPiInitPiFlexForm():
    *
    * @return  void
-   * @version 3.0.0
+   * @version 3.1.0
    * @since 2.0.0
    */
   private function initPiInitPiFlexForm()
@@ -220,7 +220,7 @@ class tx_pdfcontroller_pi1_flexform
    * sheet_debugging(): Handle configuration from the sheet debugging
    *
    * @return  void
-   * @version 3.0.0
+   * @version 3.1.0
    * @since 0.0.1
    */
   private function sheet_debugging()
@@ -260,8 +260,8 @@ class tx_pdfcontroller_pi1_flexform
    * sheet_template(): Handle configuration from the sheet template
    *
    * @return  void
-   * @version 3.0.0
-   * @since 3.0.0
+   * @version 3.1.0
+   * @since 3.1.0
    */
   private function sheet_template()
   {
@@ -316,8 +316,8 @@ class tx_pdfcontroller_pi1_flexform
    * sheet_templatefirstpage(): Handle configuration from the sheet templatefirstpage
    *
    * @return  void
-   * @version 3.0.0
-   * @since 3.0.0
+   * @version 3.1.0
+   * @since 3.1.0
    */
   private function sheet_templatefirstpage()
   {
@@ -385,11 +385,12 @@ class tx_pdfcontroller_pi1_flexform
           <h1>
             ERROR</h1>
           <p>
-            Flexform isn\'t never saved
+            Flexform isn\'t never saved.<br />
+            Please save the flexform of the PDF Controller once.
           </p>
-            <p>
-              ' . $this->pObj->extKey . ': ' . __METHOD__ . ' (line ' . __LINE__ . ')
-            </p>
+          <p>
+            ' . $this->pObj->extKey . ': ' . __METHOD__ . ' (line ' . __LINE__ . ')
+          </p>
         </div>';
       die( $prompt );
     }
@@ -404,9 +405,13 @@ class tx_pdfcontroller_pi1_flexform
             sheet: ' . $sheet . '<br />
             field: ' . $field . '
           </p>
-            <p>
-              ' . $this->pObj->extKey . ': ' . __METHOD__ . ' (line ' . __LINE__ . ')
-            </p>
+          <p>
+            Maybe Flexform isn\'t never saved.<br />
+            Please save the flexform of the PDF Controller once.
+          </p>
+          <p>
+            ' . $this->pObj->extKey . ': ' . __METHOD__ . ' (line ' . __LINE__ . ')
+          </p>
         </div>';
       die( $prompt );
     }
@@ -498,7 +503,7 @@ class tx_pdfcontroller_pi1_flexform
    * @param string    $field    label of the field
    * @param string    $default  default value
    * @return  string            value of the flexform field
-   * @version 3.0.0
+   * @version 3.1.0
    * @since 0.0.2
    */
   private function set_default_if_empty( $sheet, $field, $default )

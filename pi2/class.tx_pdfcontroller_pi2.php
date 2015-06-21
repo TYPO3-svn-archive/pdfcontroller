@@ -49,7 +49,7 @@ if ( $version < 6002000 )
  * @package    TYPO3
  * @subpackage    pdfcontroller
  *
- * @version 3.0.0
+ * @version 3.1.0
  */
 
 /**
@@ -134,7 +134,7 @@ class tx_pdfcontroller_pi2 extends tslib_pibase
    * @param array   $conf: The PlugIn Configuration
    * @return  string    The content that should be displayed on the website
    * @access  public
-   * @version 3.0.0
+   * @version 3.1.0
    * @since 0.0.1
    */
   public function main( $content, $conf )
@@ -313,7 +313,7 @@ class tx_pdfcontroller_pi2 extends tslib_pibase
    * startTimetracking()
    *
    * @return  void
-   * @version 3.0.0
+   * @version 3.1.0
    * @since 0.0.1
    */
   private function startTimetracking()

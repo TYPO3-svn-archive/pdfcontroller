@@ -12,6 +12,12 @@
       <label index="sheet_debugging.mode.production">Production (default)</label>
       <label index="sheet_debugging.mode.test">Test</label>
 
+      <label index="sheet_fonts">Fonts</label>
+      <label index="sheet_fonts.familybody">Body: Default font-family</label>
+      <label index="sheet_fonts.familyfooter">Footer: Default font-family</label>
+      <label index="sheet_fonts.familyheader">Header: Default font-family</label>
+      <label index="sheet_fonts.path">Relative path to my fonts directory (f.e: fileadmin/myfonts/). Only lower case!</label>
+
       <label index="sheet_sDEF">Safety</label>
       <label index="sheet_sDEF.proxy">Use proxy</label>
 
@@ -39,6 +45,12 @@
       <label index="sheet_debugging.mode">Modus</label>
       <label index="sheet_debugging.mode.production">Produktiv (Standard)</label>
       <label index="sheet_debugging.mode.test">Test</label>
+
+      <label index="sheet_fonts">Fonts</label>
+      <label index="sheet_fonts.familybody">Inhalt: Standard Font-Family</label>
+      <label index="sheet_fonts.familyfooter">Fußzeile: Standard Font-Family</label>
+      <label index="sheet_fonts.familyheader">Kopfzeile: Standard Font-Family</label>
+      <label index="sheet_fonts.path">Relativer Pfad zu meinem Fonts-Ordner (z.B.: fileadmin/meinefonts/). Nur Kleinbuchstaben!</label>
 
       <label index="sheet_sDEF">Sicherheit</label>
       <label index="sheet_sDEF.proxy">Verwende folgenden Proxy</label>

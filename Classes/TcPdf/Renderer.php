@@ -20,8 +20,8 @@ namespace Netzmacher\Pdfcontroller\TcPdf;
  * @package TYPO3
  * @subpackage pdfcontroller
  * @author Dirk Wildt <http://wildt.at.die-netzmacher.de>
- * @version 3.0.0
- * @since 3.0.0
+ * @version 3.1.0
+ * @since 3.1.0
  */
 // Require TCPDF and FPDI
 $t3_tcpdf = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath( 't3_tcpdf' ) . 'class.tx_t3_tcpdf.php';
@@ -43,25 +43,25 @@ class PdfcontrollerFpdi extends \FPDI
    *
    * @return	void
    * @access public
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
 
   public function Footer()
   {
-    $content = $this->FooterContent();
-    $this->FooterWrite( $content );
+    $content = $this->_FooterContent();
+    $this->_FooterWrite( $content );
   }
 
   /**
-   * FooterContent( )  : Returns HTML footer code
+   * _FooterContent( )  : Returns HTML footer code
    *
    * @return	string  $content  : HTML footer code
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
-  private function FooterContent()
+  private function _FooterContent()
   {
     $confName = $this->conf[ 'pdf.' ][ 'footer' ];
     $confObj = $this->conf[ 'pdf.' ][ 'footer.' ];
@@ -77,20 +77,21 @@ class PdfcontrollerFpdi extends \FPDI
       $content = str_replace( '%page%', $this->getPageNumGroupAlias(), $content );
       $content = str_replace( '%pages%', $this->getPageGroupAlias(), $content );
     }
-
+//    var_dump(__METHOD__, __LINE__, $content );
+//    exit();
     return $content;
   }
 
   /**
-   * FooterWrite( )  : Returns HTML footer code
+   * _FooterWrite( )  : Returns HTML footer code
    *
    * @param string  $content  : HTML footer code
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
-  private function FooterWrite( $content )
+  private function _FooterWrite( $content )
   {
     $cur_y = $this->y;
     $this->SetY( $cur_y );
@@ -117,8 +118,8 @@ class PdfcontrollerFpdi extends \FPDI
    *
    * @return	void
    * @access public
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
   public function Header()
   {
@@ -137,19 +138,26 @@ class PdfcontrollerFpdi extends \FPDI
    *
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
   private function _pdfMargins()
   {
     switch ( true )
     {
-      case( $this->_tplIdx >= 2 ):
+      case( ( $this->getPage() < 2 ) && ( $this->_tplIdLast >= 2 ) ):
+        // Current page is the first page and the PDF template contains more than one opage
+        $this->_pdfMarginsByFlexform( 'templatefirstpage' );
+        break;
+      case( ( $this->getPage() >= 2 ) && ( $this->_tplIdLast >= 2 ) ):
+        // Current page isn't the first page and the PDF template contains more than one opage
         $this->_pdfMarginsByFlexform( 'template' );
         break;
-      case( $this->_tplIdx == 1 ):
+      case( $this->getPage() < 2 ):
+      case( $this->_tplIdLast < 2 ):
       default:
-        $this->_pdfMarginsByFlexform( 'templatefirstpage' );
+        // Current page is the first page or PDF template contains only one page
+        $this->_pdfMarginsByFlexform( 'template' );
         break;
     }
   }
@@ -160,8 +168,8 @@ class PdfcontrollerFpdi extends \FPDI
    * @param string $sheet :
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
   private function _pdfMarginsByFlexform( $sheet )
   {
@@ -186,8 +194,8 @@ class PdfcontrollerFpdi extends \FPDI
    *
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
   private function _pdfTemplate()
   {
@@ -206,8 +214,8 @@ class PdfcontrollerFpdi extends \FPDI
    *
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
   private function _pdfTemplateInit()
   {
@@ -227,8 +235,8 @@ class PdfcontrollerFpdi extends \FPDI
    * @param   string	$field:
    * @return	string  $value:
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
   private function _t3FlexformValue( $sheet, $field )
   {
@@ -244,8 +252,8 @@ class PdfcontrollerFpdi extends \FPDI
    * @param	array		$cObj_conf  : null or the configuration of the property
    * @return	string		$value      : unchanged value or rendered typoscript property
    * @access private
-   * @version    3.0.0
-   * @since      3.0.0
+   * @version    3.1.0
+   * @since      3.1.0
    */
   private function _zzCObjGetSingle( $cObj_name, $cObj_conf )
   {
@@ -269,8 +277,8 @@ class PdfcontrollerFpdi extends \FPDI
    * @param   object $cObj:  current t3 cObject
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
   public function setCObj( $cObj )
   {
@@ -283,8 +291,8 @@ class PdfcontrollerFpdi extends \FPDI
    * @param   array $conf:  TypoScript configuration of the current page
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
   public function setConf( $conf )
   {
@@ -297,8 +305,8 @@ class PdfcontrollerFpdi extends \FPDI
    * @param   object $objFlexform:  Flexform object: PDF Controller Interface
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
   public function setObjFlexform( $objFlexform )
   {
@@ -313,32 +321,16 @@ class PdfcontrollerFpdi extends \FPDI
  * @package TYPO3
  * @subpackage pdfcontroller
  * @author Dirk Wildt <http://wildt.at.die-netzmacher.de>
- * @version 3.0.0
- * @since 3.0.0
+ * @version 3.1.0
+ * @since 3.1.0
  */
 class Renderer
 {
 
-  private $pdfTemplateLastPage = 0;   // [int] number of pages of the pdf template file
-  private $pObj = null;               // [object] The parent object
-  private $tcpdf = null;              // [object] The t3 tcpdf object
-
-  /**
-   * ffValue( ) : Get value from the flexform
-   *
-   * @param   string	$sheet:
-   * @param   string	$field:
-   * @return	string  $value:
-   * @access private
-   * @version 3.0.0
-   * @since   3.0.0
-   */
-
-  private function ffValue( $sheet, $field )
-  {
-    $value = $this->pObj->objFlexform->get_sheet_field( $sheet, $field );
-    return $value;
-  }
+  private $_listOfFonts = null; // [array] list of current fonts
+  private $_pObj = null;      // [object] The parent object
+  private $_tcpdf = null;     // [object] The t3 tcpdf object
+  private $_tplIdLast = 0;    // [int] number of pages of the pdf template file
 
   /**
    * pdf( ) : Create PDF from HTML (using TCPDF through t3_tcpdf extension)
@@ -346,44 +338,44 @@ class Renderer
    *          * It prints the HTML content in debug mode
    *
    * @param array $conf
-   * @param object $pObj  : The parent object
+   * @param object $_pObj  : The parent object
    * @return void
    * @access public
-   * @version 3.0.0
-   * @since 3.0.0
+   * @version 3.1.0
+   * @since 3.1.0
    */
-  public function pdf( $pObj )
-  {
-    $this->pObj = $pObj;
 
-    Renderer::pdfTcpdfInstance();
+  public function pdf( $_pObj )
+  {
+    $this->_pObj = $_pObj;
+
+    Renderer::_pdfTcpdfInstance();
 
     // Reset PDF defaults
-    Renderer::pdfReset();
+    Renderer::_pdfReset();
 
     // Properties
-    Renderer::pdfProperties();
-    Renderer::pdfFont();
-    Renderer::pdfImages();
-    Renderer::pdfLanguage();
+    Renderer::_pdfPageProperties();
+    Renderer::_pdfFont();
+    Renderer::_pdfImages();
+    Renderer::_pdfLanguage();
 
     // Header, Footer
-    Renderer::pdfHeader();
-    Renderer::pdfFooter();
+    Renderer::_pdfHeader();
+    Renderer::_pdfFooter();
 
     // Add page
-    Renderer::pdfTemplate();
-    Renderer::pdfAddPage();
+    Renderer::_pdfTemplate();
+    Renderer::_pdfAddPage();
 
     // Add content
-    $content = Renderer::pdfBody();
+    $content = Renderer::_pdfBody();
 
 //    // Debugging
-//    var_dump( __METHOD__, __LINE__, $this->tcpdf->getPageDimensions() );
+//    var_dump( __METHOD__, __LINE__, $this->_tcpdf->getPageDimensions() );
 //    exit();
-
     // Provide a PDF file
-    Renderer::pdfOutput();
+    Renderer::_pdfOutput();
 
     // Debug mode
     echo $content;
@@ -391,84 +383,103 @@ class Renderer
   }
 
   /**
-   * pdfOutput( ) : exit!
+   * _ffValue( ) : Get value from the flexform
    *
-   * @return
+   * @param   string	$sheet:
+   * @param   string	$field:
+   * @return	string  $value:
    * @access private
-   * @version 3.0.0
-   * @since 3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
-  private function pdfOutput()
+  private function _ffValue( $sheet, $field )
   {
-    $mode = Renderer::ffValue( 'debugging', 'mode' );
-    switch ( $mode )
+    $value = $this->_pObj->objFlexform->get_sheet_field( $sheet, $field );
+    return $value;
+  }
+
+  /**
+   * _fontCopyToTcpdf() :
+   *
+   * @param string $srce  : Path to the source with filename but extension
+   * @param string $dest  : Path to the destination with filename but extension
+   * @return	void
+   * @access private
+   * @version 3.1.0
+   * @since   3.1.0
+   */
+  private function _fontCopyToTcpdf( $srce, $dest )
+  {
+    $extensions = array(
+      'ctg.z',
+      'php',
+      'z'
+    );
+
+    foreach ( $extensions as $extension )
     {
-      case('test'):
-        return;
-      case('production'):
-      default:
-        // follow the workflow
-        break;
+      if ( !copy( $srce . '.' . $extension, $dest . '.' . $extension ) )
+      {
+        echo 'ERROR: copy from ' . $srce . '.' . $extension . ' to ', $dest . '.' . $extension . ' wasn\'t possible.<br />';
+        echo __METHOD__ . ' (#' . __LINE__ . ')<br />';
+        echo '<br />';
+        echo 'Sorry for the trouble. PDF Controller.<br />';
+      }
     }
-
-    $outMode = 'D'; // D: Download
-    $this->tcpdf->Output( Renderer::pdfFilename(), $outMode );
-    exit();
   }
 
   /**
-   * pdfAddPage( ) :
+   * _pdfAddPage( ) :
    *
    * @return	void
-   * @version    3.0.0
-   * @since      3.0.0
+   * @version    3.1.0
+   * @since      3.1.0
    */
-  private function pdfAddPage()
+  private function _pdfAddPage()
   {
 
-    Renderer::pdfAddPageWiTemplate();
-    Renderer::pdfAddPageWoTemplate();
+    Renderer::_pdfAddPageWiTemplate();
+    Renderer::_pdfAddPageWoTemplate();
   }
 
   /**
-   * pdfAddPageWiTemplate( ) :
+   * _pdfAddPageWiTemplate( ) :
    *
-   * @param	object $tcpdf: TCPDF object
+   * @param	object $_tcpdf: TCPDF object
    * @return	void
-   * @version    3.0.0
-   * @since      3.0.0
+   * @version    3.1.0
+   * @since      3.1.0
    */
-  private function pdfAddPageWiTemplate()
+  private function _pdfAddPageWiTemplate()
   {
-    if ( $this->pdfTemplateLastPage < 1 )
+    if ( $this->_tplIdLast < 1 )
     {
       return;
     }
 
 
-    $nextTemplatePage = $this->tcpdf->getPage() + 1;
-    if ( $nextTemplatePage > $this->pdfTemplateLastPage )
+    $nextTemplatePage = $this->_tcpdf->getPage() + 1;
+    if ( $nextTemplatePage > $this->_tplIdLast )
     {
-      $nextTemplatePage = $this->pdfTemplateLastPage;
+      $nextTemplatePage = $this->_tplIdLast;
     }
 
     // get id of the next template page
 
-    $templateId = $this->tcpdf->importPage( $nextTemplatePage );
+    $templateId = $this->_tcpdf->importPage( $nextTemplatePage );
 //var_dump( __METHOD__, __LINE__, $templateId);
     // get the size of the template
 
-    $size = $this->tcpdf->getTemplateSize( $templateId );
-
+    $size = $this->_tcpdf->getTemplateSize( $templateId );
 
     // create a page (landscape or portrait depending on the imported template size)
     if ( $size[ 'w' ] > $size[ 'h' ] )
     {
-      $this->tcpdf->AddPage( 'L', array( $size[ 'w' ], $size[ 'h' ] ) );
+      $this->_tcpdf->AddPage( 'L', array( $size[ 'w' ], $size[ 'h' ] ) );
     }
     else
     {
-      $this->tcpdf->AddPage( 'P', array( $size[ 'w' ], $size[ 'h' ] ) );
+      $this->_tcpdf->AddPage( 'P', array( $size[ 'w' ], $size[ 'h' ] ) );
     }
 
 
@@ -484,41 +495,41 @@ class Renderer
     // If this parameter is set to true the page size will be adjusted to the size of the imported page.
     $adjustPageSize = true;
 
-    $this->tcpdf->useTemplate( $templateId, $x, $y, $w, $h, $adjustPageSize );
+    $this->_tcpdf->useTemplate( $templateId, $x, $y, $w, $h, $adjustPageSize );
   }
 
   /**
-   * pdfAddPageWoTemplate( ) :
+   * _pdfAddPageWoTemplate( ) :
    *
-   * @param	object $tcpdf: TCPDF object
+   * @param	object $_tcpdf: TCPDF object
    * @return	void
-   * @version    3.0.0
-   * @since      3.0.0
+   * @version    3.1.0
+   * @since      3.1.0
    */
-  private function pdfAddPageWoTemplate()
+  private function _pdfAddPageWoTemplate()
   {
-    if ( $this->pdfTemplateLastPage > 0 )
+    if ( $this->_tplIdLast > 0 )
     {
       return;
     }
 
-    $this->tcpdf->AddPage();
+    $this->_tcpdf->AddPage();
   }
 
   /**
-   * pdfBody() :
+   * _pdfBody() :
    *
    * @return	string  $content : HTML code
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
-  private function pdfBody()
+  private function _pdfBody()
   {
 
     $align = 'L'; // L : left align, C : center, R : right align
     $autopadding = true;
-    $content = Renderer::pdfBodyTypenumPrint();
+    $content = Renderer::_pdfBodyTypenumPrint();
     //$content = 'Hallo';
     $border = 0;
     $fill = 0;
@@ -529,20 +540,20 @@ class Renderer
     $x = '';
     $y = '';
 
-    $this->tcpdf->writeHTMLCell( $w, $h, $x, $y, $content, $border, $ln, $fill, $reseth, $align, $autopadding );
+    $this->_tcpdf->writeHTMLCell( $w, $h, $x, $y, $content, $border, $ln, $fill, $reseth, $align, $autopadding );
 
     return $content;
   }
 
   /**
-   * pdfBodyTypenumPrint( )  :
+   * _pdfBodyTypenumPrint( )  :
    *
    * @return	string  $content  : Content of the page with the typeNum pdfPrint
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
-  private function pdfBodyTypenumPrint()
+  private function _pdfBodyTypenumPrint()
   {
     $conf = array(
       'additionalParams' => '&type=' . ( int ) $this->conf[ 'typeNum.' ][ 'print' ],
@@ -559,14 +570,14 @@ class Renderer
   }
 
   /**
-   * pdfFilename() :
+   * _pdfFilename() :
    *
    * @return	string  $filename :
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
-  private function pdfFilename()
+  private function _pdfFilename()
   {
     $confName = $this->conf[ 'pdf.' ][ 'filename' ];
     $confObj = $this->conf[ 'pdf.' ][ 'filename.' ];
@@ -575,127 +586,361 @@ class Renderer
   }
 
   /**
-   * pdfFont() :
+   * _pdfFont() :
    *
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
-  private function pdfFont()
+  private function _pdfFont()
   {
-    $this->tcpdf->setFontSubsetting( true );
-    $this->tcpdf->SetDefaultMonospacedFont( PDF_FONT_MONOSPACED ); // courier
-
-    Renderer::pdfFontBody();
+    Renderer::_pdfFontAddFonts();
+    Renderer::_pdfFontBody();
+    Renderer::_pdfFontHeader();
+    Renderer::_pdfFontFooter();
   }
 
   /**
-   * pdfFont() :
+   * _pdfFontAddFonts() :
    *
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
-  private function pdfFontBody()
+  private function _pdfFontAddFonts()
   {
-    $bodyFont = $this->conf[ 'pdfBodyFont' ] ? $this->conf[ 'pdfBodyFont' ] : 'helvetica';
-    $bodyFontStyle = $this->conf[ 'pdfBodyFontStyle' ] ? $this->conf[ 'pdfBodyFontStyle' ] : '';
-    $bodyFontSize = $this->conf[ 'pdfBodyFontSize' ] ? $this->conf[ 'pdfBodyFontSize' ] : 11;
-    $bodyFontFile = $this->conf[ 'pdfBodyFontFile' ] ? $this->conf[ 'pdfBodyFontFile' ] : '';
-    $this->tcpdf->SetFont( $bodyFont, $bodyFontStyle, $bodyFontSize, $bodyFontFile, 'default' );
+    Renderer::_pdfFontAddFontsRegisterTcpdf();
+    Renderer::_pdfFontAddFontsCopyFromPdfControllerFonts();
+    Renderer::_pdfFontAddFontsCopyFromDirectory();
   }
 
   /**
-   * pdfFooter() :
+   * _pdfFontAddFontsCopyFromDirectory() :
    *
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
-  private function pdfFooter()
+  private function _pdfFontAddFontsCopyFromDirectory()
   {
-    Renderer::pdfFooterContent();
-    Renderer::pdfFooterMargin();
+    $myDirectory = Renderer::_ffValue( 'fonts', 'path' );
+    $srcePath = PATH_site . $myDirectory . '/';
+
+    // Source directory doesn't exist or T3 TCPDF isn't loaded
+    switch ( true )
+    {
+      case (empty( $myDirectory ) ):
+      case (!file_exists( $srcePath ) ):
+      case (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded( 't3_tcpdf' ) ):
+        return;
+      default:
+        // follow the workflow
+        break;
+    }
+
+    $style = '';
+    $srcefile = '';
+    $subset = '';
+
+    $destPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath( 't3_tcpdf' ) . 'tcpdf/fonts/';
+    $srceFilesPhp = \TYPO3\CMS\Core\Utility\GeneralUtility::getFilesInDir( $srcePath, 'php' );
+
+    foreach ( $srceFilesPhp as $srceFilePhp )
+    {
+      list($srceFile) = explode( '.', $srceFilePhp );
+      switch ( true )
+      {
+        case( file_exists( $destPath . $srceFilePhp )):
+        case ( in_array( $srceFile, $this->_listOfFonts ) ):
+          continue 2;
+        default:
+          // follow the workflow
+          break;
+      }
+      $dest = $destPath . $srceFile;
+      $srce = $srcePath . $srceFile;
+      Renderer::_fontCopyToTcpdf( $srce, $dest );
+      $family = $destPath . $srceFile;
+      $this->_tcpdf->AddFont( $family, $style, $srcefile, $subset );
+      $this->_listOfFonts[] = $srceFile;
+    }
   }
 
   /**
-   * pdfFooterContent() :
+   * _pdfFontAddFontsCopyFromPdfControllerFonts() : Add fonts from extension pdfcontroller_fonts
    *
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
-  private function pdfFooterContent()
+  private function _pdfFontAddFontsCopyFromPdfControllerFonts()
+  {
+    // PDF Controller Fonts or T3 TCPDF aren't loaded
+    switch ( true )
+    {
+      case (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded( 'pdfcontroller_fonts' ) ):
+      case (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded( 't3_tcpdf' ) ):
+        return;
+      default:
+        // follow the workflow
+        break;
+    }
+
+    $style = '';
+    $srcefile = '';
+    $subset = '';
+
+    $destPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath( 't3_tcpdf' ) . 'tcpdf/fonts/';
+
+    $srcePath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath( 'pdfcontroller_fonts' ) . 'fonts/';
+    $srceFilesPhp = \TYPO3\CMS\Core\Utility\GeneralUtility::getFilesInDir( $srcePath, 'php' );
+
+    foreach ( $srceFilesPhp as $srceFilePhp )
+    {
+      list($srceFile) = explode( '.', $srceFilePhp );
+      switch ( true )
+      {
+        case( file_exists( $destPath . $srceFilePhp )):
+        case ( in_array( $srceFile, $this->_listOfFonts ) ):
+          continue 2;
+        default:
+          // follow the workflow
+          break;
+      }
+      $dest = $destPath . $srceFile;
+      $srce = $srcePath . $srceFile;
+      Renderer::_fontCopyToTcpdf( $srce, $dest );
+      $family = $destPath . $srceFile;
+      $this->_tcpdf->AddFont( $family, $style, $srcefile, $subset );
+      $this->_listOfFonts[] = $srceFile;
+    }
+  }
+
+  /**
+   * _pdfFontAddFontsRegisterTcpdf() : Add fonts from extension pdfcontroller_fonts
+   *
+   * @return	void
+   * @access private
+   * @version 3.1.0
+   * @since   3.1.0
+   */
+  private function _pdfFontAddFontsRegisterTcpdf()
+  {
+    // PDF Controller Fonts isn't loaded
+    if ( !\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded( 't3_tcpdf' ) )
+    {
+      return;
+    }
+
+    $fontPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath( 't3_tcpdf' ) . 'tcpdf/fonts/';
+    $fontFilesPhp = \TYPO3\CMS\Core\Utility\GeneralUtility::getFilesInDir( $fontPath, 'php' );
+
+    foreach ( $fontFilesPhp as $fontFilePhp )
+    {
+      switch ( $fontFilePhp )
+      {
+        case('cid0cs.php'):
+        case('cid0ct.php'):
+        case('cid0jp.php'):
+        case('cid0kr.php'):
+          continue 2;
+        default:
+          // follow the workflow
+          break;
+      }
+      list($fontFile) = explode( '.', $fontFilePhp );
+      $this->_listOfFonts[] = $fontFile;
+    }
+  }
+
+  /**
+   * _pdfFontBody() :
+   *
+   * @return	void
+   * @access private
+   * @version 3.1.0
+   * @since   3.1.0
+   */
+  private function _pdfFontBody()
+  {
+    if ( !\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded( 't3_tcpdf' ) )
+    {
+      return;
+    }
+
+    $fontPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath( 't3_tcpdf' ) . 'tcpdf/fonts/';
+
+    $family = Renderer::_ffValue( 'fonts', 'familybody' );
+    if ( empty( $family ) )
+    {
+      $family = 'helvetica';
+    }
+    $family = $fontPath . $family;
+
+    $fontfile = '';
+    $out = true;
+    $size = null;
+    $subset = 'default';
+    $style = '';
+
+    $this->_tcpdf->SetFont( $family, $style, $size, $fontfile, $subset, $out );
+  }
+
+  /**
+   * _pdfFontFooter() :
+   *
+   * @return	void
+   * @access private
+   * @version 3.1.0
+   * @since   3.1.0
+   */
+  private function _pdfFontFooter()
+  {
+    if ( !\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded( 't3_tcpdf' ) )
+    {
+      return;
+    }
+
+    $fontPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath( 't3_tcpdf' ) . 'tcpdf/fonts/';
+
+    $family = Renderer::_ffValue( 'fonts', 'familyfooter' );
+    if ( empty( $family ) )
+    {
+      $family = 'helvetica';
+    }
+
+    $font = array(
+      'family' => $fontPath . $family,
+      'size' => null,
+      'style' => ''
+    );
+    $this->_tcpdf->SetFooterFont( $font );
+  }
+
+  /**
+   * _pdfFontHeader() :
+   *
+   * @return	void
+   * @access private
+   * @version 3.1.0
+   * @since   3.1.0
+   */
+  private function _pdfFontHeader()
+  {
+    if ( !\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded( 't3_tcpdf' ) )
+    {
+      return;
+    }
+
+    $fontPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath( 't3_tcpdf' ) . 'tcpdf/fonts/';
+
+    $family = Renderer::_ffValue( 'fonts', 'familyheader' );
+    if ( empty( $family ) )
+    {
+      $family = 'helvetica';
+    }
+
+    $font = array(
+      'family' => $fontPath . $family,
+      'size' => null,
+      'style' => ''
+    );
+    $this->_tcpdf->SetFooterFont( $font );
+  }
+
+  /**
+   * _pdfFooter() :
+   *
+   * @return	void
+   * @access private
+   * @version 3.1.0
+   * @since   3.1.0
+   */
+  private function _pdfFooter()
+  {
+    Renderer::_pdfFooterContent();
+    Renderer::_pdfFooterMargin();
+  }
+
+  /**
+   * _pdfFooterContent() :
+   *
+   * @return	void
+   * @access private
+   * @version 3.1.0
+   * @since   3.1.0
+   */
+  private function _pdfFooterContent()
   {
 
   }
 
   /**
-   * pdfFooterMargin() :
+   * _pdfFooterMargin() :
    *
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
-  private function pdfFooterMargin()
+  private function _pdfFooterMargin()
   {
-//    $this->tcpdf->SetFooterMargin( PDF_MARGIN_FOOTER );
+//    $this->_tcpdf->SetFooterMargin( PDF_MARGIN_FOOTER );
   }
 
   /**
-   * pdfHeader() :
+   * _pdfHeader() :
    *
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
-  private function pdfHeader()
+  private function _pdfHeader()
   {
-    Renderer::pdfHeaderContent();
-    Renderer::pdfHeaderMargin();
+    Renderer::_pdfHeaderContent();
+    Renderer::_pdfHeaderMargin();
   }
 
   /**
-   * pdfHeaderContent() :
+   * _pdfHeaderContent() :
    *
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
-  private function pdfHeaderContent()
+  private function _pdfHeaderContent()
   {
 
   }
 
   /**
-   * pdfHeaderMargin() :
+   * _pdfHeaderMargin() :
    *
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
-  private function pdfHeaderMargin()
+  private function _pdfHeaderMargin()
   {
-//    $this->tcpdf->SetHeaderMargin( PDF_MARGIN_HEADER );
+//    $this->_tcpdf->SetHeaderMargin( PDF_MARGIN_HEADER );
   }
 
   /**
-   * pdfLanguage() :
+   * _pdfLanguage() :
    *
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
-  private function pdfLanguage()
+  private function _pdfLanguage()
   {
 //    $language = array(
 //      'a_meta_charset' => 'UTF-8',
@@ -703,188 +948,214 @@ class Renderer
 //      'a_meta_language' => 'fa',
 //      'w_page' => 'page'
 //    );
-//    $this->tcpdf->setLanguageArray( $language );
+//    $this->_tcpdf->setLanguageArray( $language );
   }
 
   /**
-   * pdfImages() :
+   * _pdfImages() :
    *
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
-  private function pdfImages()
+  private function _pdfImages()
   {
-    Renderer::pdfImagesScale();
+    Renderer::_pdfImagesScale();
   }
 
   /**
-   * pdfImagesScale() :
+   * _pdfImagesScale() :
    *
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
-  private function pdfImagesScale()
+  private function _pdfImagesScale()
   {
     //set image scale factor
-    $this->tcpdf->setImageScale( PDF_IMAGE_SCALE_RATIO );
+    $this->_tcpdf->setImageScale( PDF_IMAGE_SCALE_RATIO );
   }
 
   /**
-   * pdfProperties()  :
+   * _pdfOutput( ) : exit!
    *
-   * @return	void
+   * @return
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since 3.1.0
    */
-  private function pdfProperties()
+  private function _pdfOutput()
   {
-    Renderer::pdfPropertiesAuthor();
-    Renderer::pdfPropertiesKeywords();
-    Renderer::pdfPropertiesSubject();
-    Renderer::pdfPropertiesTitle();
+    $mode = Renderer::_ffValue( 'debugging', 'mode' );
+    switch ( $mode )
+    {
+      case('test'):
+        return;
+      case('production'):
+      default:
+        // follow the workflow
+        break;
+    }
+
+    $outMode = 'D'; // D: Download
+    $this->_tcpdf->Output( Renderer::_pdfFilename(), $outMode );
+    exit();
   }
 
   /**
-   * pdfPropertiesAuthor()  : Sets the author property of the pdf file
+   * _pdfPageProperties()  :
    *
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
-  private function pdfPropertiesAuthor()
+  private function _pdfPageProperties()
+  {
+    Renderer::_pdfPagePropertiesAuthor();
+    Renderer::_pdfPagePropertiesKeywords();
+    Renderer::_pdfPagePropertiesSubject();
+    Renderer::_pdfPagePropertiesTitle();
+  }
+
+  /**
+   * _pdfPagePropertiesAuthor()  : Sets the author property of the pdf file
+   *
+   * @return	void
+   * @access private
+   * @version 3.1.0
+   * @since   3.1.0
+   */
+  private function _pdfPagePropertiesAuthor()
   {
     $confName = $this->conf[ 'pdf.' ][ 'properties.' ][ 'documentAuthor' ];
     $confObj = $this->conf[ 'pdf.' ][ 'properties.' ][ 'documentAuthor.' ];
-    $this->tcpdf->SetAuthor( Renderer::zz_cObjGetSingle( $confName, $confObj ) );
+    $this->_tcpdf->SetAuthor( Renderer::zz_cObjGetSingle( $confName, $confObj ) );
   }
 
   /**
-   * pdfPropertiesKeywords()  : Sets the author property of the pdf file
+   * _pdfPagePropertiesKeywords()  : Sets the author property of the pdf file
    *
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
-  private function pdfPropertiesKeywords()
+  private function _pdfPagePropertiesKeywords()
   {
     $confName = $this->conf[ 'pdf.' ][ 'properties.' ][ 'documentKeywords' ];
     $confObj = $this->conf[ 'pdf.' ][ 'properties.' ][ 'documentKeywords.' ];
-    $this->tcpdf->SetKeywords( Renderer::zz_cObjGetSingle( $confName, $confObj ) );
+    $this->_tcpdf->SetKeywords( Renderer::zz_cObjGetSingle( $confName, $confObj ) );
   }
 
   /**
-   * pdfPropertiesSubject()  : Sets the author property of the pdf file
+   * _pdfPagePropertiesSubject()  : Sets the author property of the pdf file
    *
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
-  private function pdfPropertiesSubject()
+  private function _pdfPagePropertiesSubject()
   {
     $confName = $this->conf[ 'pdf.' ][ 'properties.' ][ 'documentSubject' ];
     $confObj = $this->conf[ 'pdf.' ][ 'properties.' ][ 'documentSubject.' ];
-    $this->tcpdf->SetSubject( Renderer::zz_cObjGetSingle( $confName, $confObj ) );
+    $this->_tcpdf->SetSubject( Renderer::zz_cObjGetSingle( $confName, $confObj ) );
   }
 
   /**
-   * pdfPropertiesTitle()  : Sets the author property of the pdf file
+   * _pdfPagePropertiesTitle()  : Sets the author property of the pdf file
    *
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
-  private function pdfPropertiesTitle()
+  private function _pdfPagePropertiesTitle()
   {
     $confName = $this->conf[ 'pdf.' ][ 'properties.' ][ 'documentTitle' ];
     $confObj = $this->conf[ 'pdf.' ][ 'properties.' ][ 'documentTitle.' ];
-    $this->tcpdf->SetTitle( Renderer::zz_cObjGetSingle( $confName, $confObj ) );
+    $this->_tcpdf->SetTitle( Renderer::zz_cObjGetSingle( $confName, $confObj ) );
   }
 
   /**
-   * pdfTemplate()  :
+   * _pdfReset( ) :
    *
-   * @return	void
+   * @return void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since 3.1.0
    */
-  private function pdfTemplate()
+  private function _pdfReset()
   {
-    Renderer::pdfTemplateFile();
+    Renderer::_pdfResetMargins();
   }
 
   /**
-   * pdfTemplateFile()  :
+   * _pdfResetMargins( ) :
+   *
+   * @return void
+   * @access private
+   * @version 3.1.0
+   * @since 3.1.0
+   */
+  private function _pdfResetMargins()
+  {
+    $marginright = ( int ) Renderer::_ffValue( 'template', 'marginright' );
+    $marginleft = ( int ) Renderer::_ffValue( 'template', 'marginleft' );
+
+    $this->_tcpdf->SetTopMargin( 0 );
+    $this->_tcpdf->SetRightMargin( $marginright - 1.000125 );  // Definition for all pages
+    $this->_tcpdf->SetLeftMargin( $marginleft );               // Definition for all pages
+    $this->_tcpdf->SetAutoPageBreak( true, 0 );
+  }
+
+  /**
+   * _pdfTemplate()  :
    *
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
-  private function pdfTemplateFile()
+  private function _pdfTemplate()
   {
-    $ffValue = Renderer::ffValue( 'template', 'filepath' );
+    Renderer::_pdfTemplateFile();
+  }
+
+  /**
+   * _pdfTemplateFile()  :
+   *
+   * @return	void
+   * @access private
+   * @version 3.1.0
+   * @since   3.1.0
+   */
+  private function _pdfTemplateFile()
+  {
+    $ffValue = Renderer::_ffValue( 'template', 'filepath' );
     // get the page count
-    $this->pdfTemplateLastPage = $this->tcpdf->setSourceFile( $ffValue );
+    $this->_tplIdLast = $this->_tcpdf->setSourceFile( $ffValue );
   }
 
   /**
-   * pdfReset( ) :
-   *
-   * @return void
-   * @access private
-   * @version 3.0.0
-   * @since 3.0.0
-   */
-  private function pdfReset()
-  {
-    Renderer::pdfResetMargins();
-  }
-
-  /**
-   * pdfResetMargins( ) :
-   *
-   * @return void
-   * @access private
-   * @version 3.0.0
-   * @since 3.0.0
-   */
-  private function pdfResetMargins()
-  {
-    $marginright = ( int ) Renderer::ffValue( 'template', 'marginright' );
-    $marginleft = ( int ) Renderer::ffValue( 'template', 'marginleft' );
-
-    $this->tcpdf->SetTopMargin( 0 );
-    $this->tcpdf->SetRightMargin( $marginright - 1.000125 );  // Definition for all pages
-    $this->tcpdf->SetLeftMargin( $marginleft );               // Definition for all pages
-    $this->tcpdf->SetAutoPageBreak( true, 0 );
-  }
-
-  /**
-   * pdfTcpdfInstance()  :
+   * _pdfTcpdfInstance()  :
    *
    * @return	void
    * @access private
-   * @version 3.0.0
-   * @since   3.0.0
+   * @version 3.1.0
+   * @since   3.1.0
    */
-  private function pdfTcpdfInstance()
+  private function _pdfTcpdfInstance()
   {
 
-    $this->tcpdf = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
+    $this->_tcpdf = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
                     'Netzmacher\Pdfcontroller\TcPdf\PdfcontrollerFpdi', 'P', 'mm', 'A4', true, 'UTF-8', false );
-    $this->tcpdf->setCObj( $this->pObj->cObj );
-    $this->tcpdf->setConf( $this->pObj->conf );
-    $this->tcpdf->setObjFlexform( $this->pObj->objFlexform );
+    $this->_tcpdf->setCObj( $this->_pObj->cObj );
+    $this->_tcpdf->setConf( $this->_pObj->conf );
+    $this->_tcpdf->setObjFlexform( $this->_pObj->objFlexform );
   }
 
   /**
@@ -895,8 +1166,8 @@ class Renderer
    * @param	array		$cObj_conf  : null or the configuration of the property
    * @return	string		$value      : unchanged value or rendered typoscript property
    * @access private
-   * @version    3.0.0
-   * @since      3.0.0
+   * @version    3.1.0
+   * @since      3.1.0
    */
   private function zz_cObjGetSingle( $cObj_name, $cObj_conf )
   {

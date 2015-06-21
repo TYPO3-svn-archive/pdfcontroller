@@ -11,11 +11,11 @@
 ########################################################################
 
 $EM_CONF[$_EXTKEY] = array(
-	'title' => 'PDF Controller',
+	'title' => 'PDF Controller 3',
 	'description' => 'Offer your HTML page for PDF download. Controll the conversion with the user interface.',
 	'category' => 'plugin',
 	'shy' => 0,
-	'version' => '3.0.0',
+	'version' => '3.1.0',
 	'dependencies' => '',
 	'conflicts' => '',
 	'priority' => '',
@@ -35,15 +35,12 @@ $EM_CONF[$_EXTKEY] = array(
 	'constraints' => array(
 		'depends' => array(
 			'typo3' => '6.0.0-6.2.99',
+			't3_tcpdf' => '2.4.0-',
 		),
 		'conflicts' => array(
 		),
 		'suggests' => array(
-			'pdfcontroller_fonts' => '3.0.0-3.9.99',
 		),
-	),
-	'suggests' => array(
-		'0' => 'pdfcontroller_fonts',
 	),
 	'_md5_values_when_last_written' => '',
 );

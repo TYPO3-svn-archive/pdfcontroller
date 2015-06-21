@@ -47,7 +47,7 @@ if ( $version < 6002000 )
  * @package    TYPO3
  * @subpackage    pdfcontroller
  *
- * @version 3.0.0
+ * @version 3.1.0
  */
 class tx_pdfcontroller_pi1 extends tslib_pibase
 {
@@ -190,7 +190,7 @@ class tx_pdfcontroller_pi1 extends tslib_pibase
    * startTimetracking()
    *
    * @return  void
-   * @version 3.0.0
+   * @version 3.1.0
    * @since 0.0.1
    */
   private function startTimetracking()

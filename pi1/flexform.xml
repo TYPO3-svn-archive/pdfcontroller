@@ -6,6 +6,7 @@
   <sheets>
     <template>EXT:pdfcontroller/pi1/flexform_sheet_template.xml</template>
     <templatefirstpage>EXT:pdfcontroller/pi1/flexform_sheet_templatefirstpage.xml</templatefirstpage>
+    <fonts>EXT:pdfcontroller/pi1/flexform_sheet_fonts.xml</fonts>
     <sDEF>EXT:pdfcontroller/pi1/flexform_sheet_sDEF.xml</sDEF>
     <debugging>EXT:pdfcontroller/pi1/flexform_sheet_debugging.xml</debugging>
   </sheets>
