@@ -178,7 +178,7 @@ class Controller
           break;
       }
       list($fontFile) = explode( '.', $fontFilePhp );
-      if ( in_array( $fontFile, $this->_listOfFonts ) )
+      if ( in_array( $fontFile, ( array ) $this->_listOfFonts ) )
       {
         continue;
       }

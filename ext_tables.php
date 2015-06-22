@@ -132,12 +132,12 @@ if (!defined ('TYPO3_MODE'))  die ('Access denied.');
     case($llStatic == 'de'):
         // German
 //      \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY,'static/pi1/', 'PDF-Controller: User-Interface');
-      \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY,'Configuration/TypoScript/', 'PDF Controller');
+      \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY,'Configuration/TypoScript/', 'PDF Controller 3');
       break;
     default:
         // English
 //      \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY,'static/pi1/', 'PDF Controller: User Interface');
-      \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY,'Configuration/TypoScript/', 'PDF Controller');
+      \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY,'Configuration/TypoScript/', 'PDF Controller 3');
   }
     // Enables the Include Static Templates
 
