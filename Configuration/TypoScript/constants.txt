@@ -21,7 +21,4 @@ plugin.pdfcontroller {
   # cat=PDF Controller - realurl//300;          type=string;  label= Print page:realUrl name for pages with the typeNum.print (see above). Name depends on your realURL configuration. Example: print.html
   realUrl.print =
 
-  # cat=PDF Controller - user interface*//400;  type=int+;    label= page Id:Id of the page, which contains the PDF Controller User Interface
-  userinterface.id =
-
 }
