@@ -10,7 +10,9 @@
       <label index="sheet_debugging">Debugging</label>
       <label index="sheet_debugging.mode">Mode</label>
       <label index="sheet_debugging.mode.production">Production (default)</label>
-      <label index="sheet_debugging.mode.test">Test</label>
+      <label index="sheet_debugging.mode.test.html">Test: Display HTML</label>
+      <label index="sheet_debugging.mode.test.example.061.html">Test: TCPDF example 61 "XHTML+CSS" (HTML)</label>
+      <label index="sheet_debugging.mode.test.example.061.pdf">Test: TCPDF example 61 "XHTML+CSS" (PDF)</label>
 
       <label index="sheet_fonts">Fonts</label>
       <label index="sheet_fonts.familybody">Body: Default font-family</label>
@@ -18,8 +20,21 @@
       <label index="sheet_fonts.familyheader">Header: Default font-family</label>
       <label index="sheet_fonts.path">Relative path to my fonts directory (f.e: fileadmin/myfonts/). Only lower case!</label>
 
+      <label index="sheet_images">Images</label>
+      <label index="sheet_images.scale">Scaling - decrease it for size up the image (float)</label>
+
       <label index="sheet_sDEF">Safety</label>
       <label index="sheet_sDEF.proxy">Use proxy</label>
+
+      <label index="sheet_tags">Tags</label>
+      <label index="sheet_tags.aFontstyle">a: fontstyle</label>
+      <label index="sheet_tags.aFontstyle.bold">bold</label>
+      <label index="sheet_tags.aFontstyle.italic">italic</label>
+      <label index="sheet_tags.aFontstyle.linethrough">line through</label>
+      <label index="sheet_tags.aFontstyle.overline">overline</label>
+      <label index="sheet_tags.aFontstyle.regular">regular</label>
+      <label index="sheet_tags.aFontstyle.underline">underline (default)</label>
+      <label index="sheet_tags.aRgb">a: color (r,g,b)</label>
 
       <label index="sheet_template">Template</label>
       <label index="sheet_template.filepath">Path to the PDF template file (file may contain upto two pages)</label>
@@ -44,7 +59,9 @@
       <label index="sheet_debugging">Debugging</label>
       <label index="sheet_debugging.mode">Modus</label>
       <label index="sheet_debugging.mode.production">Produktiv (Standard)</label>
-      <label index="sheet_debugging.mode.test">Test</label>
+      <label index="sheet_debugging.mode.test.html">Test: HTML anzeigen</label>
+      <label index="sheet_debugging.mode.test.example.061.html">Test: TCPDF Example 61 "XHTML+CSS" (HTML)</label>
+      <label index="sheet_debugging.mode.test.example.061.pdf">Test: TCPDF Example 61 "XHTML+CSS" (PDF)</label>
 
       <label index="sheet_fonts">Fonts</label>
       <label index="sheet_fonts.familybody">Inhalt: Standard Font-Family</label>
@@ -52,8 +69,21 @@
       <label index="sheet_fonts.familyheader">Kopfzeile: Standard Font-Family</label>
       <label index="sheet_fonts.path">Relativer Pfad zu meinem Fonts-Ordner (z.B.: fileadmin/meinefonts/). Nur Kleinbuchstaben!</label>
 
+      <label index="sheet_images">Bilder</label>
+      <label index="sheet_images.scale">Skalierung - je kleiner, desto größer ist das Bild (Dezimalzahl)</label>
+
       <label index="sheet_sDEF">Sicherheit</label>
       <label index="sheet_sDEF.proxy">Verwende folgenden Proxy</label>
+
+      <label index="sheet_tags">Tags</label>
+      <label index="sheet_tags.aFontstyle">a: Stil</label>
+      <label index="sheet_tags.aFontstyle.bold">fett</label>
+      <label index="sheet_tags.aFontstyle.italic">kursiv</label>
+      <label index="sheet_tags.aFontstyle.linethrough">durchgestrichen</label>
+      <label index="sheet_tags.aFontstyle.overline">überstrichen</label>
+      <label index="sheet_tags.aFontstyle.regular">standard</label>
+      <label index="sheet_tags.aFontstyle.underline">unterstrichen (Standard)</label>
+      <label index="sheet_tags.aRgb">a: Farbe (R,G,B)</label>
 
       <label index="sheet_template">Vorlage</label>
       <label index="sheet_template.filepath">Pfad zur PDF-Vorlagen-Datei (darf bis zu zwei Seiten enthalten)</label>

@@ -63,8 +63,8 @@ class PdfcontrollerFpdi extends \FPDI
    */
   private function _FooterContent()
   {
-    $confName = $this->conf[ 'pdf.' ][ 'footer' ];
-    $confObj = $this->conf[ 'pdf.' ][ 'footer.' ];
+    $confName = $this->conf[ 'pdf.' ][ 'content.' ][ 'footer' ];
+    $confObj = $this->conf[ 'pdf.' ][ 'content.' ][ 'footer.' ];
     $content = $this->_zzCObjGetSingle( $confName, $confObj );
 
     if ( empty( $this->pagegroups ) )
@@ -93,8 +93,8 @@ class PdfcontrollerFpdi extends \FPDI
    */
   private function _FooterWrite( $content )
   {
-    $cur_y = $this->y;
-    $this->SetY( $cur_y );
+//    $cur_y = $this->y;
+//    $this->SetY( $cur_y );
 
     $align = 'C';
     $autopadding = true;
@@ -123,14 +123,21 @@ class PdfcontrollerFpdi extends \FPDI
    */
   public function Header()
   {
-    $this->_pdfTemplate();
-    $this->_pdfMargins();
+    $mode = $this->_t3FlexformValue( 'debugging', 'mode' );
 
-//    exit();
-//    $this->SetFont( 'freesans', 'B', 9 );
-//    $this->SetTextColor( 255 );
-//    $this->SetXY( 60.5, 24.8 );
-//    $this->Cell( 0, 8.6, "TCPDF and FPDI" );
+    switch ( $mode )
+    {
+      case('testTCPDF061HTML'):
+      case('testTCPDF061PDF'):
+        // Follow the workflow
+        break;
+      case('production'):
+      case('testDefaultHTML'):
+      default:
+        $this->_pdfTemplate();
+        break;
+    }
+    $this->_pdfMargins();
   }
 
   /**
@@ -348,6 +355,7 @@ class Renderer
   public function pdf( $_pObj )
   {
     $this->_pObj = $_pObj;
+    $mode = Renderer::_ffValue( 'debugging', 'mode' );
 
     Renderer::_pdfTcpdfInstance();
 
@@ -360,25 +368,54 @@ class Renderer
     Renderer::_pdfImages();
     Renderer::_pdfLanguage();
 
+    // CSS
+    switch ( $mode )
+    {
+      case('testTCPDF061HTML'):
+      case('testTCPDF061PDF'):
+        // Follow the workflow
+        break;
+      case('production'):
+      case('testDefaultHTML'):
+      default:
+        // CSS
+        Renderer::_pdfCSS();
+        break;
+    }
+    //$this->_tcpdf->setCellPadding( 1.000125 );
+//    var_dump( __METHOD__, __LINE__, $this->_tcpdf->getCellPaddings());
+//exit();
     // Header, Footer
     Renderer::_pdfHeader();
     Renderer::_pdfFooter();
 
-    // Add page
+    // Use PDF template file
     Renderer::_pdfTemplate();
-    Renderer::_pdfAddPage();
-
+    // Add page
+    $this->_tcpdf->AddPage();
+    //Renderer::_pdfAddPage();
     // Add content
     $content = Renderer::_pdfBody();
+
+    // reset pointer to the last page
+    $this->_tcpdf->lastPage();
 
 //    // Debugging
 //    var_dump( __METHOD__, __LINE__, $this->_tcpdf->getPageDimensions() );
 //    exit();
-    // Provide a PDF file
-    Renderer::_pdfOutput();
-
-    // Debug mode
-    echo $content;
+    switch ( $mode )
+    {
+      case('testDefaultHTML'):
+      case('testTCPDF061HTML'):
+        echo $content;
+        break;
+      case('production'):
+      case('testTCPDF061PDF'):
+      default:
+        // Provide a PDF file
+        Renderer::_pdfOutputAndExit();
+        break;
+    }
     exit();
   }
 
@@ -437,7 +474,6 @@ class Renderer
    */
   private function _pdfAddPage()
   {
-
     Renderer::_pdfAddPageWiTemplate();
     Renderer::_pdfAddPageWoTemplate();
   }
@@ -452,6 +488,7 @@ class Renderer
    */
   private function _pdfAddPageWiTemplate()
   {
+
     if ( $this->_tplIdLast < 1 )
     {
       return;
@@ -526,11 +563,22 @@ class Renderer
    */
   private function _pdfBody()
   {
+    $mode = Renderer::_ffValue( 'debugging', 'mode' );
+    switch ( $mode )
+    {
+      case('testTCPDF061HTML'):
+      case('testTCPDF061PDF'):
+        $content = Renderer::_pdfBodyTCPDF061();
+        break;
+      case('production'):
+      case('testDefaultHTML'):
+      default:
+        $content = Renderer::_pdfBodyTypenumPrint();
+        break;
+    }
 
     $align = 'L'; // L : left align, C : center, R : right align
     $autopadding = true;
-    $content = Renderer::_pdfBodyTypenumPrint();
-    //$content = 'Hallo';
     $border = 0;
     $fill = 0;
     $h = 0;
@@ -541,7 +589,149 @@ class Renderer
     $y = '';
 
     $this->_tcpdf->writeHTMLCell( $w, $h, $x, $y, $content, $border, $ln, $fill, $reseth, $align, $autopadding );
+    return $content;
+  }
 
+  /**
+   * _pdfBodyTCPDF061() :
+   *
+   * @return	string  $content  : TCPDF example 061
+   *                              See
+   *                              * http://www.tcpdf.org/examples/example_061.phps
+   *                              * http://www.tcpdf.org/examples/example_061.pdf
+   * @access private
+   * @version 3.1.0
+   * @since   3.1.0
+   */
+  private function _pdfBodyTCPDF061()
+  {
+    $content = '<!-- EXAMPLE OF CSS STYLE -->
+<style>
+    h1 {
+        color: navy;
+        font-family: times;
+        font-size: 24pt;
+        text-decoration: underline;
+    }
+    p.first {
+        color: #003300;
+        font-family: helvetica;
+        font-size: 12pt;
+    }
+    p.first span {
+        color: #006600;
+        font-style: italic;
+    }
+    p#second {
+        color: rgb(00,63,127);
+        font-family: times;
+        font-size: 12pt;
+        text-align: justify;
+    }
+    p#second > span {
+        background-color: #FFFFAA;
+    }
+    table.first {
+        color: #003300;
+        font-family: helvetica;
+        font-size: 8pt;
+        border-left: 3px solid red;
+        border-right: 3px solid #FF00FF;
+        border-top: 3px solid green;
+        border-bottom: 3px solid blue;
+        background-color: #ccffcc;
+    }
+    td {
+        border: 2px solid blue;
+        background-color: #ffffee;
+    }
+    td.second {
+        border: 2px dashed green;
+    }
+    div.test {
+        color: #CC0000;
+        background-color: #FFFF66;
+        font-family: helvetica;
+        font-size: 10pt;
+        border-style: solid solid solid solid;
+        border-width: 2px 2px 2px 2px;
+        border-color: green #FF00FF blue red;
+        text-align: center;
+    }
+    .lowercase {
+        text-transform: lowercase;
+    }
+    .uppercase {
+        text-transform: uppercase;
+    }
+    .capitalize {
+        text-transform: capitalize;
+    }
+</style>
+
+<h1 class="title">Example of <i style="color:#990000">XHTML + CSS</i></h1>
+
+<p class="first">Example of paragraph with class selector. <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed imperdiet lectus. Phasellus quis velit velit, non condimentum quam. Sed neque urna, ultrices ac volutpat vel, laoreet vitae augue. Sed vel velit erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras eget velit nulla, eu sagittis elit. Nunc ac arcu est, in lobortis tellus. Praesent condimentum rhoncus sodales. In hac habitasse platea dictumst. Proin porta eros pharetra enim tincidunt dignissim nec vel dolor. Cras sapien elit, ornare ac dignissim eu, ultricies ac eros. Maecenas augue magna, ultrices a congue in, mollis eu nulla. Nunc venenatis massa at est eleifend faucibus. Vivamus sed risus lectus, nec interdum nunc.</span></p>
+
+<p id="second">Example of paragraph with ID selector. <span>Fusce et felis vitae diam lobortis sollicitudin. Aenean tincidunt accumsan nisi, id vehicula quam laoreet elementum. Phasellus egestas interdum erat, et viverra ipsum ultricies ac. Praesent sagittis augue at augue volutpat eleifend. Cras nec orci neque. Mauris bibendum posuere blandit. Donec feugiat mollis dui sit amet pellentesque. Sed a enim justo. Donec tincidunt, nisl eget elementum aliquam, odio ipsum ultrices quam, eu porttitor ligula urna at lorem. Donec varius, eros et convallis laoreet, ligula tellus consequat felis, ut ornare metus tellus sodales velit. Duis sed diam ante. Ut rutrum malesuada massa, vitae consectetur ipsum rhoncus sed. Suspendisse potenti. Pellentesque a congue massa.</span></p>
+
+<div class="test">example of DIV with border and fill.
+<br />Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+<br /><span class="lowercase">text-transform <b>LOWERCASE</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+<br /><span class="uppercase">text-transform <b>uppercase</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+<br /><span class="capitalize">text-transform <b>cAPITALIZE</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+</div>
+
+<br />
+
+<table class="first" cellpadding="4" cellspacing="6">
+ <tr>
+  <td width="30" align="center"><b>No.</b></td>
+  <td width="140" align="center" bgcolor="#FFFF00"><b>XXXX</b></td>
+  <td width="140" align="center"><b>XXXX</b></td>
+  <td width="80" align="center"> <b>XXXX</b></td>
+  <td width="80" align="center"><b>XXXX</b></td>
+  <td width="45" align="center"><b>XXXX</b></td>
+ </tr>
+ <tr>
+  <td width="30" align="center">1.</td>
+  <td width="140" rowspan="6" class="second">XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX</td>
+  <td width="140">XXXX<br />XXXX</td>
+  <td width="80">XXXX<br />XXXX</td>
+  <td width="80">XXXX</td>
+  <td align="center" width="45">XXXX<br />XXXX</td>
+ </tr>
+ <tr>
+  <td width="30" align="center" rowspan="3">2.</td>
+  <td width="140" rowspan="3">XXXX<br />XXXX</td>
+  <td width="80">XXXX<br />XXXX</td>
+  <td width="80">XXXX<br />XXXX</td>
+  <td align="center" width="45">XXXX<br />XXXX</td>
+ </tr>
+ <tr>
+  <td width="80">XXXX<br />XXXX<br />XXXX<br />XXXX</td>
+  <td width="80">XXXX<br />XXXX</td>
+  <td align="center" width="45">XXXX<br />XXXX</td>
+ </tr>
+ <tr>
+  <td width="80" rowspan="2" >XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX</td>
+  <td width="80">XXXX<br />XXXX</td>
+  <td align="center" width="45">XXXX<br />XXXX</td>
+ </tr>
+ <tr>
+  <td width="30" align="center">3.</td>
+  <td width="140">XXXX<br />XXXX</td>
+  <td width="80">XXXX<br />XXXX</td>
+  <td align="center" width="45">XXXX<br />XXXX</td>
+ </tr>
+ <tr bgcolor="#FFFF80">
+  <td width="30" align="center">4.</td>
+  <td width="140" bgcolor="#00CC00" color="#FFFF00">XXXX<br />XXXX</td>
+  <td width="80">XXXX<br />XXXX</td>
+  <td width="80">XXXX<br />XXXX</td>
+  <td align="center" width="45">XXXX<br />XXXX</td>
+ </tr>
+</table>';
     return $content;
   }
 
@@ -570,6 +760,124 @@ class Renderer
   }
 
   /**
+   * _pdfCSS() :
+   *
+   * @return	void
+   * @access private
+   * @version 3.1.0
+   * @since   3.1.0
+   */
+  private function _pdfCSS()
+  {
+    Renderer::_pdfCSSMargin();
+    Renderer::_pdfCSSTags();
+  }
+
+  /**
+   * _pdfCSSTags()  :
+   *
+   * @return	void
+   * @access private
+   * @version 3.1.0
+   * @since   3.1.0
+   */
+  private function _pdfCSSTags()
+  {
+    Renderer::_pdfCSSTagsA();
+  }
+
+  /**
+   * _pdfCSSTagsA()  :
+   *
+   * @return	void
+   * @access private
+   * @version 3.1.0
+   * @since   3.1.0
+   */
+  private function _pdfCSSTagsA()
+  {
+    $ffRgb = Renderer::_ffValue( 'tags', 'aRgb' );
+    $ffFontstyle = Renderer::_ffValue( 'tags', 'aFontstyle' );
+//    $a = $this->conf[ 'pdf.' ][ 'css.' ][ 'tags.' ][ 'a.' ];
+    list( $r, $g, $b ) = explode( ',', $ffRgb );
+    $rgb = array(
+      trim( $r ),
+      trim( $g ),
+      trim( $b )
+    );
+//    var_dump( __METHOD__, __LINE__, $rgb, $ffFontstyle );
+//    exit;
+    $this->_tcpdf->setHtmlLinksStyle( $rgb, $ffFontstyle );
+  }
+
+  /**
+   * _pdfCSSMargin()  : Set the vertical space above and below tags.
+   *                    See details at: _pdfCSSMargintag()
+   *
+   * @return	void
+   * @access private
+   * @version 3.1.0
+   * @since   3.1.0
+   */
+  private function _pdfCSSMargin()
+  {
+    $tagvs = array();
+    $tags = $this->conf[ 'pdf.' ][ 'css.' ][ 'margin.' ];
+    foreach ( array_keys( $tags ) as $tag )
+    {
+      if ( trim( $tag, '.' ) == $tag )
+      {
+        continue;
+      }
+      $tag = trim( $tag, '.' );
+      $tagvs = $tagvs + ( array ) Renderer::_pdfCSSMarginTag( $tag );
+    }
+    //var_dump( __METHOD__, __LINE__, $tagvs );
+    $this->_tcpdf->setHtmlVSpace( $tagvs );
+  }
+
+  /**
+   * _pdfCSSMarginTag() : TCPDF doesn't support the CSS property margin, but enables it by setHtmlVSpace()
+   *
+   *                      See:
+   *                      * http://www.tcpdf.org/examples/example_061.pdf
+   *                      * http://www.tcpdf.org/examples/example_061.phps
+   *                      * http://www.tcpdf.org/doc/code/classTCPDF.html#a71cec8b4c54a78429640e4767648e73e
+   *                      Set the vertical spaces for HTML tags.
+   *                      The array must have the following structure (example):
+   *                      $tagvs = array('h1' => array(0 => array('h' => '', 'n' => 2), 1 => array('h' => 1.3, 'n' => 1)));
+   *                      * The first array level contains the tag names,
+   *                      * the second level contains 0 for opening tags or 1 for closing tags,
+   *                      * the third level contains the vertical space unit (h) and the number spaces to add (n).
+   *                      If the h parameter is not specified, default values are used.
+   *
+   * @param string $tag :
+   * @return	array $tagvs  :
+   * @access private
+   * @version 3.1.0
+   * @since   3.1.0
+   */
+  private function _pdfCSSMarginTag( $tag )
+  {
+    //var_dump( __METHOD__, __LINE__, $tag, $this->conf[ 'pdf.' ][ 'css.' ][ 'margin.' ][ $tag . '.' ] );
+
+    $tagvs = array(
+      $tag => array(
+        0 => array(
+          'h' => $this->conf[ 'pdf.' ][ 'css.' ][ 'margin.' ][ $tag . '.' ][ 'top.' ][ 'value' ],
+          'n' => $this->conf[ 'pdf.' ][ 'css.' ][ 'margin.' ][ $tag . '.' ][ 'top.' ][ 'times' ]
+        ),
+        1 => array(
+          'h' => $this->conf[ 'pdf.' ][ 'css.' ][ 'margin.' ][ $tag . '.' ][ 'bottom.' ][ 'value' ],
+          'n' => $this->conf[ 'pdf.' ][ 'css.' ][ 'margin.' ][ $tag . '.' ][ 'bottom.' ][ 'times' ]
+        )
+      )
+    );
+
+    return $tagvs;
+  }
+
+  /**
    * _pdfFilename() :
    *
    * @return	string  $filename :
@@ -595,6 +903,7 @@ class Renderer
    */
   private function _pdfFont()
   {
+    $this->_tcpdf->SetDefaultMonospacedFont( PDF_FONT_MONOSPACED );
     Renderer::_pdfFontAddFonts();
     Renderer::_pdfFontBody();
     Renderer::_pdfFontHeader();
@@ -965,7 +1274,7 @@ class Renderer
   }
 
   /**
-   * _pdfImagesScale() :
+   * _pdfImagesScale() : set image scale factor
    *
    * @return	void
    * @access private
@@ -974,31 +1283,20 @@ class Renderer
    */
   private function _pdfImagesScale()
   {
-    //set image scale factor
-    $this->_tcpdf->setImageScale( PDF_IMAGE_SCALE_RATIO );
+    $scale = Renderer::_ffValue( 'images', 'scale' );
+    $this->_tcpdf->setImageScale( $scale );
   }
 
   /**
-   * _pdfOutput( ) : exit!
+   * _pdfOutputAndExit( ) : exit!
    *
    * @return
    * @access private
    * @version 3.1.0
    * @since 3.1.0
    */
-  private function _pdfOutput()
+  private function _pdfOutputAndExit()
   {
-    $mode = Renderer::_ffValue( 'debugging', 'mode' );
-    switch ( $mode )
-    {
-      case('test'):
-        return;
-      case('production'):
-      default:
-        // follow the workflow
-        break;
-    }
-
     $outMode = 'D'; // D: Download
     $this->_tcpdf->Output( Renderer::_pdfFilename(), $outMode );
     exit();
@@ -1030,8 +1328,8 @@ class Renderer
    */
   private function _pdfPagePropertiesAuthor()
   {
-    $confName = $this->conf[ 'pdf.' ][ 'properties.' ][ 'documentAuthor' ];
-    $confObj = $this->conf[ 'pdf.' ][ 'properties.' ][ 'documentAuthor.' ];
+    $confName = $this->conf[ 'pdf.' ][ 'pageproperties.' ][ 'documentAuthor' ];
+    $confObj = $this->conf[ 'pdf.' ][ 'pageproperties.' ][ 'documentAuthor.' ];
     $this->_tcpdf->SetAuthor( Renderer::zz_cObjGetSingle( $confName, $confObj ) );
   }
 
@@ -1045,8 +1343,8 @@ class Renderer
    */
   private function _pdfPagePropertiesKeywords()
   {
-    $confName = $this->conf[ 'pdf.' ][ 'properties.' ][ 'documentKeywords' ];
-    $confObj = $this->conf[ 'pdf.' ][ 'properties.' ][ 'documentKeywords.' ];
+    $confName = $this->conf[ 'pdf.' ][ 'pageproperties.' ][ 'documentKeywords' ];
+    $confObj = $this->conf[ 'pdf.' ][ 'pageproperties.' ][ 'documentKeywords.' ];
     $this->_tcpdf->SetKeywords( Renderer::zz_cObjGetSingle( $confName, $confObj ) );
   }
 
@@ -1060,8 +1358,8 @@ class Renderer
    */
   private function _pdfPagePropertiesSubject()
   {
-    $confName = $this->conf[ 'pdf.' ][ 'properties.' ][ 'documentSubject' ];
-    $confObj = $this->conf[ 'pdf.' ][ 'properties.' ][ 'documentSubject.' ];
+    $confName = $this->conf[ 'pdf.' ][ 'pageproperties.' ][ 'documentSubject' ];
+    $confObj = $this->conf[ 'pdf.' ][ 'pageproperties.' ][ 'documentSubject.' ];
     $this->_tcpdf->SetSubject( Renderer::zz_cObjGetSingle( $confName, $confObj ) );
   }
 
@@ -1075,8 +1373,8 @@ class Renderer
    */
   private function _pdfPagePropertiesTitle()
   {
-    $confName = $this->conf[ 'pdf.' ][ 'properties.' ][ 'documentTitle' ];
-    $confObj = $this->conf[ 'pdf.' ][ 'properties.' ][ 'documentTitle.' ];
+    $confName = $this->conf[ 'pdf.' ][ 'pageproperties.' ][ 'documentTitle' ];
+    $confObj = $this->conf[ 'pdf.' ][ 'pageproperties.' ][ 'documentTitle.' ];
     $this->_tcpdf->SetTitle( Renderer::zz_cObjGetSingle( $confName, $confObj ) );
   }
 

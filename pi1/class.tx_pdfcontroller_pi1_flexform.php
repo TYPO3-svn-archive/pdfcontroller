@@ -406,7 +406,7 @@ class tx_pdfcontroller_pi1_flexform
             field: ' . $field . '
           </p>
           <p>
-            Maybe Flexform isn\'t never saved.<br />
+            Maybe flexform isn\'t never saved.<br />
             Please save the flexform of the PDF Controller once.
           </p>
           <p>

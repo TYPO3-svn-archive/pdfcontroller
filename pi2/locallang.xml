@@ -6,14 +6,10 @@
   </meta>
   <data type="array">
     <languageKey index="default" type="array">
-      <label index="error_flexform_h1"><![CDATA[ERROR: flexform is empty]]></label>
-      <label index="error_flexform_p"><![CDATA[Please save the flexform (plugin) one time at least.]]></label>
       <label index="error_typoscripttemplate_h1"><![CDATA[ERROR: TypoScript template isn't included.]]></label>
       <label index="error_typoscripttemplate_p"><![CDATA[Please include it! PDF Controller: Button (pdfcontroller)]]></label>
     </languageKey>
     <languageKey index="de" type="array">
-      <label index="error_flexform_h1"><![CDATA[FEHLER: Die Flexform ist leer.]]></label>
-      <label index="error_flexform_p"><![CDATA[Speichere die Flexform (Plugin) bitte ein Mal.]]></label>
       <label index="error_typoscripttemplate_h1"><![CDATA[FEHLER: TypoScript-Template nicht eingebunden]]></label>
       <label index="error_typoscripttemplate_p"><![CDATA[Binde das Template ein! PDF-Controller: Button (pdfcontroller)]]></label>
     </languageKey>

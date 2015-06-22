@@ -2,15 +2,15 @@ plugin.tx_pdfcontroller_pi1 {
     // empty statement for proper comments only
   pdf {
   }
-    // properties
+    // pageproperties
   pdf =
   pdf {
       // empty statement for proper comments only
-    properties {
+    pageproperties {
     }
       // documentAuthor, documentKeywords, documentSubject, documentTitle
-    properties =
-    properties {
+    pageproperties =
+    pageproperties {
         // page : author
       documentAuthor = CONTENT
       documentAuthor {

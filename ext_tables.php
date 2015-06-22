@@ -64,15 +64,15 @@ if (!defined ('TYPO3_MODE'))  die ('Access denied.');
     //
     // Plugin 2 configuration
 
-  $TCA['tt_content']['types']['list']['subtypes_excludelist'][$_EXTKEY.'_pi2']='layout,select_key,pages,recursive';
-    // Remove the default tt_content fields layout, select_key, pages and recursive.
-  $TCA['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY.'_pi2']='pi_flexform';
-    // Display the field pi_flexform
-  \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($_EXTKEY.'_pi2', 'FILE:EXT:'.$_EXTKEY.'/pi2/flexform.xml');
+//  $TCA['tt_content']['types']['list']['subtypes_excludelist'][$_EXTKEY.'_pi2']='layout,select_key,pages,recursive';
+//    // Remove the default tt_content fields layout, select_key, pages and recursive.
+//  $TCA['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY.'_pi2']='pi_flexform';
+//    // Display the field pi_flexform
+//  \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($_EXTKEY.'_pi2', 'FILE:EXT:'.$_EXTKEY.'/pi2/flexform.xml');
     // Register our file with the flexform structure
   \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(array('LLL:EXT:pdfcontroller/locallang_db.xml:tt_content.list_type_pi2', $_EXTKEY.'_pi2', 'EXT:pdfcontroller/ext_icon.gif'),'list_type');
     // Add the Flexform to the Plugin List
-    // Plugin 1 configuration
+    // Plugin 2 configuration
 
 
 

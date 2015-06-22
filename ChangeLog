@@ -1,7 +1,14 @@
-3.0.0
-  15-06-10
+3.1.0
+  15-06-21
   Major Feature
   * #67396: New PDF engine tcpdf
+            * Dependencies
+              * t3_tcpdf (new)
+            * Flexform
+              * user interface (pi1) is replaced by a new one
+              * button (pi2) is removed
+
+3.0.0
   15-02-03
   Feature
   * #i0005: Constant Editor: page.pdf_button. Id of the page, which contains the PDF Controller button.

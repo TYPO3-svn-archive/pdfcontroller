@@ -161,42 +161,8 @@ class tx_pdfcontroller_pi2 extends tslib_pibase
       return $this->pi_wrapInBaseClass( $str_header . $str_prompt );
     }
 
-    // Init methods for pi_flexform
-    $this->pi_initPIflexForm();
-    $this->pi_flexform = $this->cObj->data[ 'pi_flexform' ];
-
-    // RETURN flexform is empty
-    if ( !is_array( $this->pi_flexform ) )
-    {
-      if ( $this->b_drs_error )
-      {
-        t3lib_div::devLog( '[ERROR] Flexform is empty.', $this->extKey, 3 );
-        t3lib_div::devLog( '[INFO] ABORTED', $this->extKey, 0 );
-      }
-      $str_header = '<h1 style="color:red;">' . $this->pi_getLL( 'error_flexform_h1' ) . '</h1>';
-      $str_prompt = '<p style="color:red;font-weight:bold;">' . $this->pi_getLL( 'error_flexform_p' ) . '</p>';
-      return $this->pi_wrapInBaseClass( $str_header . $str_prompt );
-    }
-
-//    // Uid of the page with the PDF Controller
-//    $pid_converter = $this->pi_flexform[ 'data' ][ 'sDEF' ][ 'lDEF' ][ 'pid_converter' ][ 'vDEF' ];
-
-
     // Wrap the Pdf Controller button
     $content = $this->cObj->cObjGetSingle( $this->conf[ 'button' ], $this->conf[ 'button.' ] );
-
-    // Wrap the button
-    $wrap_in_pibase = $this->pi_flexform[ 'data' ][ 'sDEF' ][ 'lDEF' ][ 'wrap_in_pibase' ][ 'vDEF' ];
-    switch ( $wrap_in_pibase )
-    {
-      case(0):
-        // Follow the workflow;
-        break;
-      case(1):
-      default:
-        $content = $this->pi_wrapInBaseClass( $content );
-        break;
-    }
 
     // RETURN: content. DRS is disabled
     if ( !$this->b_drs_perform )
@@ -264,16 +230,6 @@ class tx_pdfcontroller_pi2 extends tslib_pibase
     {
       $this->b_drs_error = true;
       $this->b_drs_warn = true;
-      t3lib_div::devlog( '[INFO/DRS] DRS - Development Reporting System:<br />' . $this->arr_extConf[ 'drs_mode' ], $this->extKey, 0 );
-    }
-    if ( $this->arr_extConf[ 'drs_mode' ] == 'Flexform' )
-    {
-      $this->b_drs_error = true;
-      $this->b_drs_warn = true;
-      $this->b_drs_info = true;
-      $this->b_drs_flexform = true;
-      $this->b_drs_perform = true;
-      $this->b_drs_typoscript = true;
       t3lib_div::devlog( '[INFO/DRS] DRS - Development Reporting System:<br />' . $this->arr_extConf[ 'drs_mode' ], $this->extKey, 0 );
     }
     if ( $this->arr_extConf[ 'drs_mode' ] == 'Marker' )
