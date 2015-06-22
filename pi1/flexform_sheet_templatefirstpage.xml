@@ -15,7 +15,7 @@
             <size>3</size>
             <max>10</max>
             <eval>required,int</eval>
-            <default>20</default>
+            <default>50</default>
           </config>
         </TCEforms>
       </margintop>
@@ -28,7 +28,7 @@
             <size>3</size>
             <max>10</max>
             <eval>required,int</eval>
-            <default>20</default>
+            <default>30</default>
           </config>
         </TCEforms>
       </marginbottom>
@@ -54,7 +54,7 @@
             <size>3</size>
             <max>10</max>
             <eval>required,int</eval>
-            <default>30</default>
+            <default>20</default>
           </config>
         </TCEforms>
       </marginfooter>

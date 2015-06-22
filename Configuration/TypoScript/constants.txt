@@ -18,7 +18,7 @@ plugin.pdfcontroller {
   # cat=PDF Controller - pages user interface*//100; type=int+;  label= Page ID*:*OBLIGATED: ID of the page, which contains the PDF user interface.
   pages.userinterface.pid =
 
-  # cat=PDF Controller - realurl//300;          type=string;  label= Print page:realUrl name for pages with the typeNum.print (see above). Name depends on your realURL configuration. Example: print.html
-  realUrl.print =
+    # cat=PDF Controller - url*//300;             type=string;  label= Url:Domain of your website with ending slash. F.e: http://die-netzmacher.de/
+  url = /
 
 }

@@ -14,7 +14,8 @@ plugin.tx_pdfcontroller_pi1 {
         // config, typeNum, CONTENT
       content = PAGE
       content {
-          config {
+        config {
+          absRefPrefix          = {$plugin.pdfcontroller.url}
           admPanel              = 0
           disableAllHeaderCode  = 1
           doctype               = xhtml_strict
