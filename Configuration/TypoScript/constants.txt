@@ -18,7 +18,7 @@ plugin.pdfcontroller {
   # cat=PDF Controller - pages user interface*//100; type=int+;  label= Page ID*:*OBLIGATED: ID of the page, which contains the PDF user interface.
   pages.userinterface.pid =
 
-    # cat=PDF Controller - url*//300;             type=string;  label= Url:*OBLIGATED: Domain of your website with ending slash. F.e: http://die-netzmacher.de/
+    # cat=PDF Controller - url*//300;             type=string;  label= Url*:*OBLIGATED: Domain of your website with ending slash. F.e: http://die-netzmacher.de/
   url = http://my-example.com/
 
 }
