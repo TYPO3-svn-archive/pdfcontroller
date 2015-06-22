@@ -1,7 +1,5 @@
 plugin.pdfcontroller {
 
-  # cat=PDF Controller - button*//100;          type=int+;    label= Page Id:Id of the page, which contains the PDF Controller button
-  button.id =
   # cat=PDF Controller - button*//200;          type=string;  label= Icon:Path to the button icon
   button.icon = EXT:pdfcontroller/Resources/Public/Images/pdf.png
 
