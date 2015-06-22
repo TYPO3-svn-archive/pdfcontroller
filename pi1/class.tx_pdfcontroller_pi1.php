@@ -78,13 +78,39 @@ class tx_pdfcontroller_pi1 extends tslib_pibase
    * @param string    $content: The content of the PlugIn
    * @param array   $conf: The PlugIn Configuration
    * @return  string    The content that should be displayed on the website
-   * @version 2.0.0
-   * @since 0.0.1
+   * @access  public
+   * @version 3.0.0
+   * @since 3.0.0
    */
   public function main( $content, $conf )
   {
     $this->conf = $conf;
 
+    $pidUserinterface = $this->conf[ 'pid.' ][ 'userinterface' ];
+    $pidCurrentPage = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP( 'id' );
+    switch ( true )
+    {
+      case( $pidUserinterface == $pidCurrentPage):
+        $content = $this->selfcontent();
+        break;
+      default:
+        $content = $this->pdf();
+        break;
+    }
+
+    return $content;
+  }
+
+  /**
+   * pdf()
+   *
+   * @return  string    The content that should be displayed on the website
+   * @access private
+   * @version 3.0.0
+   * @since 3.0.0
+   */
+  private function pdf()
+  {
     $this->pi_setPiVarDefaults();
     $this->pi_loadLL();
 
@@ -107,6 +133,32 @@ class tx_pdfcontroller_pi1 extends tslib_pibase
       t3lib_div::devLog( '[INFO/ALL] end: ' . ($endTime - $this->startTime) . ' ms', $this->extKey, 0 );
     }
 
+    return $content;
+  }
+
+  /**
+   * selfcontent()
+   *
+   * @param string    $content: The content of the PlugIn
+   * @param array   $conf: The PlugIn Configuration
+   * @return  string    The content that should be displayed on the website
+   * @access private
+   * @version 3.0.0
+   * @since 3.0.0
+   */
+  private function selfcontent()
+  {
+    $content = ''
+            . '<h1>'
+            . '  Warning'
+            . '</h1>'
+            . '<p>'
+            . '  This page should never run directly.<br />'
+            . '  <br />'
+            . '  Sorry for the trouble.<br />'
+            . '  TYPO3 extension PDF Controller'
+            . '</p>'
+    ;
     return $content;
   }
 
@@ -183,7 +235,6 @@ class tx_pdfcontroller_pi1 extends tslib_pibase
     require_once('class.tx_pdfcontroller_pi1_flexform.php');
     // Class with methods for get flexform values
     $this->objFlexform = new tx_pdfcontroller_pi1_flexform( $this );
-
   }
 
   /**
