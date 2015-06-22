@@ -368,6 +368,7 @@ class Renderer
     Renderer::_pdfImages();
     Renderer::_pdfLanguage();
 
+    // Debugging
     // CSS
     switch ( $mode )
     {
@@ -382,9 +383,7 @@ class Renderer
         Renderer::_pdfCSS();
         break;
     }
-    //$this->_tcpdf->setCellPadding( 1.000125 );
-//    var_dump( __METHOD__, __LINE__, $this->_tcpdf->getCellPaddings());
-//exit();
+
     // Header, Footer
     Renderer::_pdfHeader();
     Renderer::_pdfFooter();
@@ -400,9 +399,7 @@ class Renderer
     // reset pointer to the last page
     $this->_tcpdf->lastPage();
 
-//    // Debugging
-//    var_dump( __METHOD__, __LINE__, $this->_tcpdf->getPageDimensions() );
-//    exit();
+    // Debugging
     switch ( $mode )
     {
       case('testDefaultHTML'):
@@ -465,93 +462,93 @@ class Renderer
     }
   }
 
-  /**
-   * _pdfAddPage( ) :
-   *
-   * @return	void
-   * @version    3.1.0
-   * @since      3.1.0
-   */
-  private function _pdfAddPage()
-  {
-    Renderer::_pdfAddPageWiTemplate();
-    Renderer::_pdfAddPageWoTemplate();
-  }
-
-  /**
-   * _pdfAddPageWiTemplate( ) :
-   *
-   * @param	object $_tcpdf: TCPDF object
-   * @return	void
-   * @version    3.1.0
-   * @since      3.1.0
-   */
-  private function _pdfAddPageWiTemplate()
-  {
-
-    if ( $this->_tplIdLast < 1 )
-    {
-      return;
-    }
-
-
-    $nextTemplatePage = $this->_tcpdf->getPage() + 1;
-    if ( $nextTemplatePage > $this->_tplIdLast )
-    {
-      $nextTemplatePage = $this->_tplIdLast;
-    }
-
-    // get id of the next template page
-
-    $templateId = $this->_tcpdf->importPage( $nextTemplatePage );
-//var_dump( __METHOD__, __LINE__, $templateId);
-    // get the size of the template
-
-    $size = $this->_tcpdf->getTemplateSize( $templateId );
-
-    // create a page (landscape or portrait depending on the imported template size)
-    if ( $size[ 'w' ] > $size[ 'h' ] )
-    {
-      $this->_tcpdf->AddPage( 'L', array( $size[ 'w' ], $size[ 'h' ] ) );
-    }
-    else
-    {
-      $this->_tcpdf->AddPage( 'P', array( $size[ 'w' ], $size[ 'h' ] ) );
-    }
-
-
-    // use the template
-    // Abscissa of the upper-left corner.
-    $x = 0;
-    // Ordinate of the upper-left corner.
-    $y = 0;
-    // Width of the template in the page. If not specified or equal to zero, it is automatically calculated.
-    $w = 0;
-    // Height of the template in the page. If not specified or equal to zero, it is automatically calculated.
-    $h = 0;
-    // If this parameter is set to true the page size will be adjusted to the size of the imported page.
-    $adjustPageSize = true;
-
-    $this->_tcpdf->useTemplate( $templateId, $x, $y, $w, $h, $adjustPageSize );
-  }
-
-  /**
-   * _pdfAddPageWoTemplate( ) :
-   *
-   * @param	object $_tcpdf: TCPDF object
-   * @return	void
-   * @version    3.1.0
-   * @since      3.1.0
-   */
-  private function _pdfAddPageWoTemplate()
-  {
-    if ( $this->_tplIdLast > 0 )
-    {
-      return;
-    }
-
-    $this->_tcpdf->AddPage();
-  }
+//  /**
+//   * _pdfAddPage( ) :
+//   *
+//   * @return	void
+//   * @version    3.1.0
+//   * @since      3.1.0
+//   */
+//  private function _pdfAddPage()
+//  {
+//    Renderer::_pdfAddPageWiTemplate();
+//    Renderer::_pdfAddPageWoTemplate();
+//  }
+//
+//  /**
+//   * _pdfAddPageWiTemplate( ) :
+//   *
+//   * @param	object $_tcpdf: TCPDF object
+//   * @return	void
+//   * @version    3.1.0
+//   * @since      3.1.0
+//   */
+//  private function _pdfAddPageWiTemplate()
+//  {
+//
+//    if ( $this->_tplIdLast < 1 )
+//    {
+//      return;
+//    }
+//
+//
+//    $nextTemplatePage = $this->_tcpdf->getPage() + 1;
+//    if ( $nextTemplatePage > $this->_tplIdLast )
+//    {
+//      $nextTemplatePage = $this->_tplIdLast;
+//    }
+//
+//    // get id of the next template page
+//
+//    $templateId = $this->_tcpdf->importPage( $nextTemplatePage );
+////var_dump( __METHOD__, __LINE__, $templateId);
+//    // get the size of the template
+//
+//    $size = $this->_tcpdf->getTemplateSize( $templateId );
+//
+//    // create a page (landscape or portrait depending on the imported template size)
+//    if ( $size[ 'w' ] > $size[ 'h' ] )
+//    {
+//      $this->_tcpdf->AddPage( 'L', array( $size[ 'w' ], $size[ 'h' ] ) );
+//    }
+//    else
+//    {
+//      $this->_tcpdf->AddPage( 'P', array( $size[ 'w' ], $size[ 'h' ] ) );
+//    }
+//
+//
+//    // use the template
+//    // Abscissa of the upper-left corner.
+//    $x = 0;
+//    // Ordinate of the upper-left corner.
+//    $y = 0;
+//    // Width of the template in the page. If not specified or equal to zero, it is automatically calculated.
+//    $w = 0;
+//    // Height of the template in the page. If not specified or equal to zero, it is automatically calculated.
+//    $h = 0;
+//    // If this parameter is set to true the page size will be adjusted to the size of the imported page.
+//    $adjustPageSize = true;
+//
+//    $this->_tcpdf->useTemplate( $templateId, $x, $y, $w, $h, $adjustPageSize );
+//  }
+//
+//  /**
+//   * _pdfAddPageWoTemplate( ) :
+//   *
+//   * @param	object $_tcpdf: TCPDF object
+//   * @return	void
+//   * @version    3.1.0
+//   * @since      3.1.0
+//   */
+//  private function _pdfAddPageWoTemplate()
+//  {
+//    if ( $this->_tplIdLast > 0 )
+//    {
+//      return;
+//    }
+//
+//    $this->_tcpdf->AddPage();
+//  }
 
   /**
    * _pdfBody() :
@@ -798,15 +795,12 @@ class Renderer
   {
     $ffRgb = Renderer::_ffValue( 'tags', 'aRgb' );
     $ffFontstyle = Renderer::_ffValue( 'tags', 'aFontstyle' );
-//    $a = $this->conf[ 'pdf.' ][ 'css.' ][ 'tags.' ][ 'a.' ];
     list( $r, $g, $b ) = explode( ',', $ffRgb );
     $rgb = array(
       trim( $r ),
       trim( $g ),
       trim( $b )
     );
-//    var_dump( __METHOD__, __LINE__, $rgb, $ffFontstyle );
-//    exit;
     $this->_tcpdf->setHtmlLinksStyle( $rgb, $ffFontstyle );
   }
 
