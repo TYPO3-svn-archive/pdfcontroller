@@ -1,6 +1,6 @@
 plugin.pdfcontroller {
 
-  # cat=PDF Controller - button*//200;          type=string;  label= Icon:Path to the button icon
+  # cat=PDF Controller - button//200;          type=string;  label= Icon:Path to the button icon
   button.icon = EXT:pdfcontroller/Resources/Public/Images/pdf.png
 
   # cat=PDF Controller - pages pdf//100;        type=int+;    label= typeNum:type number for the PAGE, which generates the PDF. Recommended 67425. Use another number, if you are still using 99.
