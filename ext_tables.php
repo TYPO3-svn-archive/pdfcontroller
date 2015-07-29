@@ -79,7 +79,7 @@ $TCA[ 'tt_content' ][ 'types' ][ 'list' ][ 'subtypes_addlist' ][ 'pdfcontroller_
 );
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
         'pdfcontroller_pi3'
-        , 'FILE:EXT:' . $_EXTKEY . '/Configuration/Flexforms/Pi3/Flexform.xml'
+        , 'FILE:EXT:' . $_EXTKEY . '/Configuration/Flexforms/Pdf/Flexform.xml'
 );
 // Register our file with the flexform structure
 // Add the Flexform to the Plugin List
