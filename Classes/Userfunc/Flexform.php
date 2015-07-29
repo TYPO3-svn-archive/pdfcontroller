@@ -21,10 +21,10 @@ namespace Netzmacher\Pdfcontroller\Userfunc;
  * @package TYPO3
  * @subpackage pdfcontroller
  * @author Dirk Wildt <http://wildt.at.die-netzmacher.de>
- * @version 3.1.0
+ * @version 4.0.0
  * @since 3.1.0
  */
-class Controller
+class Flexform
 {
 
   private $_listOfFonts = null; // [array] list of current fonts
@@ -41,7 +41,7 @@ class Controller
 
   public function sheetFontsFieldFamilybody( $pluginConf )
   {
-    $pluginConf = Controller::_sheetFontsFieldFamily( $pluginConf );
+    $pluginConf = Flexform::_sheetFontsFieldFamily( $pluginConf );
     return $pluginConf;
   }
 
@@ -56,7 +56,7 @@ class Controller
    */
   public function sheetFontsFieldFamilyfooter( $pluginConf )
   {
-    $pluginConf = Controller::_sheetFontsFieldFamily( $pluginConf );
+    $pluginConf = Flexform::_sheetFontsFieldFamily( $pluginConf );
     return $pluginConf;
   }
 
@@ -71,78 +71,10 @@ class Controller
    */
   public function sheetFontsFieldFamilyheader( $pluginConf )
   {
-    $pluginConf = Controller::_sheetFontsFieldFamily( $pluginConf );
+    $pluginConf = Flexform::_sheetFontsFieldFamily( $pluginConf );
     return $pluginConf;
   }
 
-//  /**
-//   * _fontsFromDirectory()  : Add fonts from an individual fonts directory.
-//   *                            It is proper, if the directory isn't existing,
-//   *
-//   * @return	void
-//   * @access private
-//   * @version 3.1.0
-//   * @since   3.1.0
-//   */
-//  private function _fontsFromDirectory( $pluginConf )
-//  {
-//    $pi_flexform = \TYPO3\CMS\Core\Utility\GeneralUtility::xml2array( $pluginConf[ 'row' ][ 'pi_flexform' ] );
-//    $myDirectory = trim( $pi_flexform[ 'data' ][ 'fonts' ][ 'lDEF' ][ 'path' ][ 'vDEF' ], '/' );
-//
-//    $fontPath = PATH_site . $myDirectory . '/';
-//    $fontFilesPhp = \TYPO3\CMS\Core\Utility\GeneralUtility::getFilesInDir( $fontPath, 'php' );
-////    var_dump( __METHOD__, __LINE__, $fontPath, $fontFilesPhp );
-////    exit;
-//    foreach ( $fontFilesPhp as $fontFilePhp )
-//    {
-//      list($fontFile) = explode( '.', $fontFilePhp );
-//      if ( in_array( $fontFile, $this->_listOfFonts ) )
-//      {
-//        continue;
-//      }
-//      $value = $fontPath . $fontFile;
-//      $label = $fontFile . ' (my fonts)';
-//      $pluginConf[ 'items' ][] = array( $label, $value );
-//      $this->_listOfFonts[] = $fontFile;
-//    }
-//
-//    return $pluginConf;
-//  }
-//
-//  /**
-//   * _fontsFromPdfControllerFonts() : Add fonts from extension pdfcontroller_fonts
-//   *
-//   * @return	void
-//   * @access private
-//   * @version 3.1.0
-//   * @since   3.1.0
-//   */
-//  private function _fontsFromPdfControllerFonts( $pluginConf )
-//  {
-//    // PDF Controller Fonts isn't loaded
-//    if ( !\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded( 'pdfcontroller_fonts' ) )
-//    {
-//      return $pluginConf;
-//    }
-//
-//    $fontPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath( 'pdfcontroller_fonts' ) . 'fonts/';
-//    $fontFilesPhp = \TYPO3\CMS\Core\Utility\GeneralUtility::getFilesInDir( $fontPath, 'php' );
-//
-//    foreach ( $fontFilesPhp as $fontFilePhp )
-//    {
-//      list($fontFile) = explode( '.', $fontFilePhp );
-//      if ( in_array( $fontFile, $this->_listOfFonts ) )
-//      {
-//        continue;
-//      }
-//      $value = $fontPath . $fontFile;
-//      $label = $fontFile . ' (PDF Controller Fonts)';
-//      $pluginConf[ 'items' ][] = array( $label, $value );
-//      $this->_listOfFonts[] = $fontFile;
-//    }
-//
-//    return $pluginConf;
-//  }
 
   /**
    * _fontsFromTcpdf() : Add fonts from extension pdfcontroller_fonts
@@ -210,9 +142,7 @@ class Controller
    */
   private function _sheetFontsFieldFamily( $pluginConf )
   {
-    $pluginConf = Controller::_fontsFromTcpdf( $pluginConf );
-//    $pluginConf = Controller::_fontsFromPdfControllerFonts( $pluginConf );
-//    $pluginConf = Controller::_fontsFromDirectory( $pluginConf );
+    $pluginConf = Flexform::_fontsFromTcpdf( $pluginConf );
 
     return $pluginConf;
   }

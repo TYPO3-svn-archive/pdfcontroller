@@ -19,7 +19,7 @@
             <selectedListStyle>width:200px</selectedListStyle>
             <itemListStyle>width:200px</itemListStyle>
             <items type="array"></items>
-            <itemsProcFunc>Netzmacher\Pdfcontroller\Userfunc\Flexforms\Controller->sheetFontsFieldFamilyheader</itemsProcFunc>
+            <itemsProcFunc>Netzmacher\Pdfcontroller\Userfunc\Flexform->sheetFontsFieldFamilyheader</itemsProcFunc>
             <default>helvetica</default>
           </config>
         </TCEforms>
@@ -37,7 +37,7 @@
             <selectedListStyle>width:200px</selectedListStyle>
             <itemListStyle>width:200px</itemListStyle>
             <items type="array"></items>
-            <itemsProcFunc>Netzmacher\Pdfcontroller\Userfunc\Flexforms\Controller->sheetFontsFieldFamilybody</itemsProcFunc>
+            <itemsProcFunc>Netzmacher\Pdfcontroller\Userfunc\Flexform->sheetFontsFieldFamilybody</itemsProcFunc>
             <default>helvetica</default>
           </config>
         </TCEforms>
@@ -55,7 +55,7 @@
             <selectedListStyle>width:200px</selectedListStyle>
             <itemListStyle>width:200px</itemListStyle>
             <items type="array"></items>
-            <itemsProcFunc>Netzmacher\Pdfcontroller\Userfunc\Flexforms\Controller->sheetFontsFieldFamilyfooter</itemsProcFunc>
+            <itemsProcFunc>Netzmacher\Pdfcontroller\Userfunc\Flexform->sheetFontsFieldFamilyfooter</itemsProcFunc>
             <default>helvetica</default>
           </config>
         </TCEforms>
