@@ -1,1 +1,1 @@
-pdfcontrollerPrint < plugin.tx_pdfcontroller_pi1.master_templates.print.content
+pdfcontrollerPrint < plugin.tx_pdfcontroller.settings.master_templates.print.content

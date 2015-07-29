@@ -62,13 +62,16 @@ t3lib_div::loadTCA( 'tt_content' );
 // Plugin 1 configuration
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        $_EXTKEY, 'Pi3', 'LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_mod.xlf:pluginPi3Title', t3lib_extMgm::extRelPath( $_EXTKEY ) . 'ext_icon.gif'
+        $_EXTKEY
+        , 'Pi3'
+        , 'LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_mod.xlf:pluginPi3Title'
+        , t3lib_extMgm::extRelPath( $_EXTKEY ) . 'ext_icon.gif'
 );
 $TCA[ 'tt_content' ][ 'types' ][ 'list' ][ 'subtypes_excludelist' ][ 'pdfcontroller_pi3' ] = 'layout,select_key,pages,recursive';
 $TCA[ 'tt_content' ][ 'types' ][ 'list' ][ 'subtypes_addlist' ][ 'pdfcontroller_pi3' ] = 'pi_flexform';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(
         array(
-  'LLL:EXT:pdfcontroller/locallang_db.xml:tt_content.list_type_pi1'
+  'LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_mod.xlf:pluginPi3Title'
   , 'pdfcontroller_pi3'
   , 'EXT:pdfcontroller/ext_icon.gif'
         )
@@ -76,7 +79,7 @@ $TCA[ 'tt_content' ][ 'types' ][ 'list' ][ 'subtypes_addlist' ][ 'pdfcontroller_
 );
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
         'pdfcontroller_pi3'
-        , 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/Pi3/Flexform.xml'
+        , 'FILE:EXT:' . $_EXTKEY . '/Configuration/Flexforms/Pi3/Flexform.xml'
 );
 // Register our file with the flexform structure
 // Add the Flexform to the Plugin List
@@ -90,10 +93,16 @@ $TCA[ 'tt_content' ][ 'types' ][ 'list' ][ 'subtypes_addlist' ][ 'pdfcontroller_
 //    // Display the field pi_flexform
 //  \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($_EXTKEY.'_pi2', 'FILE:EXT:'.$_EXTKEY.'/pi2/flexform.xml');
 // Register our file with the flexform structure
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+        $_EXTKEY
+        , 'Pi2'
+        , 'LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_mod.xlf:pluginPi2Title'
+        , t3lib_extMgm::extRelPath( $_EXTKEY ) . 'ext_icon.gif'
+);
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(
         array(
-  'LLL:EXT:pdfcontroller/locallang_db.xml:tt_content.list_type_pi2'
-  , $_EXTKEY . '_pi2'
+  'LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_mod.xlf:pluginPi2Title'
+  , 'pdfcontroller_pi2'
   , 'EXT:pdfcontroller/ext_icon.gif'
         )
         , 'list_type' );
@@ -124,12 +133,6 @@ switch ( true )
     $TCA[ 'pages' ][ 'columns' ][ 'module' ][ 'config' ][ 'items' ][] = array( 'PDF Controller: User Interface', 'pdfctrlg', \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath( $_EXTKEY ) . 'ext_icon.gif' );
     $TCA[ 'pages' ][ 'columns' ][ 'module' ][ 'config' ][ 'items' ][] = array( 'PDF Controller: Button', 'pdfctrlb', \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath( $_EXTKEY ) . 'ext_icon.gif' );
 }
-// #34858, 120315, Rene Staecker-
-//$ICON_TYPES['pdfctrlg'] = array('icon' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY).'ext_icon.gif');
-//$ICON_TYPES['pdfctrlb'] = array('icon' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY).'ext_icon.gif');
-// #34858, 120315, Rene Staecker-
-// #34858, 120315, Rene Staecker+
 t3lib_SpriteManager::addTcaTypeIcon( 'pages', 'contains-pdfctrlg', '../typo3conf/ext/pdfcontroller/ext_icon.gif' );
 t3lib_SpriteManager::addTcaTypeIcon( 'pages', 'contains-pdfctrlb', '../typo3conf/ext/pdfcontroller/ext_icon.gif' );
-// #34858, 120315, Rene Staecker+
 // Add pagetree icons

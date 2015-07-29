@@ -6,17 +6,17 @@
   </meta>
   <data type="array">
     <languageKey index="default" type="array">
-      <label index="tt_content.list_type_pi1">PDF Controller: User Interface</label>
-      <label index="wizard.list_type_pi1">PDF Controller: User Interface</label>
-      <label index="wizard.list_type_pi1.desc">Control the PDF conversion with this interface!</label>
+      <label index="tt_content.list_type_pi1">PDF Controller: User Interface [DEPRECATED]</label>
+      <label index="wizard.list_type_pi1">PDF Controller: User Interface [DEPRECATED]</label>
+      <label index="wizard.list_type_pi1.desc">Control the PDF conversion with this interface! [DEPRECATED]</label>
       <label index="tt_content.list_type_pi2">PDF Controller: Button</label>
       <label index="wizard.list_type_pi2">PDF Controller: Button</label>
       <label index="wizard.list_type_pi2.desc">Offer your HTML page for the PDF download. Link with the button to the PDF controller.</label>
     </languageKey>
     <languageKey index="de" type="array">
-      <label index="tt_content.list_type_pi1">PDF-Controller: User Interface</label>
-      <label index="wizard.list_type_pi1">PDF-Controller: User Interface</label>
-      <label index="wizard.list_type_pi1.desc">Konfiguriere den PDF-Controller mit dem Interface.</label>
+      <label index="tt_content.list_type_pi1">PDF-Controller: User Interface [VERALTET!]</label>
+      <label index="wizard.list_type_pi1">PDF-Controller: User Interface [VERALTET!]</label>
+      <label index="wizard.list_type_pi1.desc">Konfiguriere den PDF-Controller mit dem Interface. [VERALTET!]</label>
       <label index="tt_content.list_type_pi2">PDF-Controller: Button</label>
       <label index="wizard.list_type_pi2">PDF-Controller: Button</label>
       <label index="wizard.list_type_pi2.desc">Biete Deine HTML-Seite für den PDF-Download. Verlinke mit dem PDF-Button auf den PDF-Controller.</label>

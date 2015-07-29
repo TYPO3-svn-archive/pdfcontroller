@@ -14,7 +14,7 @@
             <size>11</size>
             <max>11</max>
             <eval>trim</eval>
-            <default>0,0.255</default>
+            <default>0,0,255</default>
           </config>
         </TCEforms>
       </aRgb>

@@ -28,8 +28,8 @@ plugin.tx_pdfcontroller {
     # cat=PDF Controller - view//101;           type=string;     label= Templates:Path to the templates
 		templateRootPath  = EXT:pdfcontroller/Resources/Private/View/Templates/
     # cat=PDF Controller - view//102;           type=string;     label= Partials:Path to the partials
-		partialRootPath   = EXT:pdfcontroller/Resources/Private/View/Partials/
+		partialRootPath   = EXT:pdfcontroller/Resources/Private/View/Templates/Partials/
     # cat=PDF Controller - view//103;           type=string;     label= Layouts:Path to the layouts
-		layoutRootPath    = EXT:pdfcontroller/Resources/Private/View/Layouts/
+		layoutRootPath    = EXT:pdfcontroller/Resources/Private/View/Templates/Layouts/
   }
 }

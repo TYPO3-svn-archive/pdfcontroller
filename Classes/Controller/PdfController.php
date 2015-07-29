@@ -4,20 +4,31 @@ namespace Netzmacher\Pdfcontroller\Controller;
 
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Extbase\Service\TypoScriptService;
 
-/**
- * This file is part of the TYPO3 CMS project.
+
+/* * *************************************************************
+ *  Copyright notice
  *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ *  (c) 2011-2015 -  Dirk Wildt <http://wildt.at.die-netzmacher.de>
+ *  All rights reserved
  *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
  *
- * The TYPO3 project - inspiring people to share!
- */
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ * ************************************************************* */
+
 /**
  * Class for overloading TCPDF methods
  *
@@ -256,7 +267,7 @@ class PdfControllerFpdi extends \FPDI
    * @param   string	$field:
    * @return	string  $value:
    * @access private
-   * @version 3.2.0
+   * @version 4.0.0
    * @since   3.1.0
    */
   private function _t3FlexformValue( $sheet, $field )
@@ -285,7 +296,7 @@ class PdfControllerFpdi extends \FPDI
    * @param	array		$cObj_conf  : null or the configuration of the property
    * @return	string		$value      : unchanged value or rendered typoscript property
    * @access private
-   * @version    3.2.0
+   * @version    4.0.0
    * @since      3.1.0
    */
   private function _zzCObjGetSingle( $cObj_name, $cObj_conf )
@@ -352,8 +363,8 @@ class PdfControllerFpdi extends \FPDI
 //   * @param   array $conf:  TypoScript configuration of the current page
 //   * @return	void
 //   * @access private
-//   * @version 3.2.0
-//   * @since   3.2.0
+//   * @version 4.0.0
+//   * @since   4.0.0
 //   */
 //  public function setSettings( $settings )
 //  {
@@ -368,7 +379,7 @@ class PdfControllerFpdi extends \FPDI
  * @package TYPO3
  * @subpackage pdfcontroller
  * @author Dirk Wildt <http://wildt.at.die-netzmacher.de>
- * @version 3.2.0
+ * @version 4.0.0
  * @since 3.1.0
  */
 class PdfController extends ActionController
@@ -408,7 +419,7 @@ class PdfController extends ActionController
    *
    * @return void
    * @access public
-   * @version 3.2.0
+   * @version 4.0.0
    * @since 3.1.0
    */
   public function rendererAction()
@@ -493,7 +504,7 @@ class PdfController extends ActionController
    * @param   string	$field:
    * @return	string  $value:
    * @access private
-   * @version 3.2.0
+   * @version 4.0.0
    * @since   3.1.0
    */
   private function _ffValue( $sheet, $field )
@@ -637,10 +648,10 @@ class PdfController extends ActionController
    *
    * @return void
    * @access private
-   * @version 3.2.0
-   * @since 3.2.0
+   * @version 4.0.0
+   * @since 4.0.0
    */
-  public function _init()
+  private function _init()
   {
     $this->_initConf();
     $this->_initCobj();
@@ -651,10 +662,10 @@ class PdfController extends ActionController
    *
    * @return void
    * @access private
-   * @version 3.2.0
-   * @since 3.2.0
+   * @version 4.0.0
+   * @since 4.0.0
    */
-  public function _initCobj()
+  private function _initCobj()
   {
     $this->_cObj = $this->configurationManager->getContentObject();
   }
@@ -664,10 +675,10 @@ class PdfController extends ActionController
    *
    * @return void
    * @access private
-   * @version 3.2.0
-   * @since 3.2.0
+   * @version 4.0.0
+   * @since 4.0.0
    */
-  public function _initConf()
+  private function _initConf()
   {
     $typoScriptService = $this->objectManager->get( 'TYPO3\CMS\Extbase\Service\TypoScriptService' );
     $this->_conf = $typoScriptService->convertPlainArrayToTypoScriptArray( $this->settings );
@@ -1634,8 +1645,8 @@ class PdfController extends ActionController
    *
    * @return void
    * @access private
-   * @version 3.2.0
-   * @since 3.2.0
+   * @version 4.0.0
+   * @since 4.0.0
    */
   private function _tsDisplayDie()
   {
@@ -1653,7 +1664,7 @@ class PdfController extends ActionController
    * @param	array		$cObj_conf  : null or the configuration of the property
    * @return	string		$value      : unchanged value or rendered typoscript property
    * @access private
-   * @version    3.2.0
+   * @version    4.0.0
    * @since      3.1.0
    */
   private function _zzCObjGetSingle( $cObj_name, $cObj_conf )
