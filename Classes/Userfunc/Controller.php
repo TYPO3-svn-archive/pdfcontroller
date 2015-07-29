@@ -1,6 +1,6 @@
 <?php
 
-namespace Netzmacher\Pdfcontroller\Userfunc\Flexforms;
+namespace Netzmacher\Pdfcontroller\Userfunc;
 
 /**
  * This file is part of the TYPO3 CMS project.

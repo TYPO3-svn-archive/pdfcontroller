@@ -20,13 +20,13 @@ plugin.tx_pdfcontroller_pi1 {
           // bottom, top
         div =
         div {
-            // value, times
+            // value: 0, times: 0
           bottom =
           bottom {
             value = 0
             times = 0
           }
-            // value, times
+            // value: 0, times: 0
           top =
           top {
             value = 0
@@ -41,10 +41,18 @@ plugin.tx_pdfcontroller_pi1 {
         h3 < .div
           // bottom, top
         ol < .div
+        ol {
+            // value: 1, times: 3
+          bottom =
+          bottom {
+            value = 1
+            times = 3
+          }
+        }
           // bottom, top
         p < .div
           // bottom, top
-        ul < .div
+        ul < .ol
       }
     }
   }

@@ -2,14 +2,14 @@
 <T3DataStructure>
   <ROOT>
     <TCEforms>
-      <sheetTitle>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_templatefirstpage</sheetTitle>
+      <sheetTitle>LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_db.xlf:sheet_templatefirstpage</sheetTitle>
     </TCEforms>
     <type>array</type>
     <el>
       <margintop>
         <TCEforms>
           <exclude>0</exclude>
-          <label>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_templatefirstpage.margintop</label>
+          <label>LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_db.xlf:sheet_templatefirstpage.margintop</label>
           <config>
             <type>input</type>
             <size>3</size>
@@ -22,7 +22,7 @@
       <marginbottom>
         <TCEforms>
           <exclude>0</exclude>
-          <label>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_templatefirstpage.marginbottom</label>
+          <label>LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_db.xlf:sheet_templatefirstpage.marginbottom</label>
           <config>
             <type>input</type>
             <size>3</size>
@@ -35,7 +35,7 @@
       <marginheader>
         <TCEforms>
           <exclude>0</exclude>
-          <label>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_templatefirstpage.marginheader</label>
+          <label>LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_db.xlf:sheet_templatefirstpage.marginheader</label>
           <config>
             <type>input</type>
             <size>3</size>
@@ -48,7 +48,7 @@
       <marginfooter>
         <TCEforms>
           <exclude>0</exclude>
-          <label>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_templatefirstpage.marginfooter</label>
+          <label>LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_db.xlf:sheet_templatefirstpage.marginfooter</label>
           <config>
             <type>input</type>
             <size>3</size>

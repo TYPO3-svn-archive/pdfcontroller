@@ -9,6 +9,7 @@
 
       <label index="sheet_debugging">Debugging</label>
       <label index="sheet_debugging.mode">Mode</label>
+      <label index="sheet_debugging.mode.development.tsDisplay">Development: Display TypoScript</label>
       <label index="sheet_debugging.mode.production">Production (default)</label>
       <label index="sheet_debugging.mode.test.html">Test: Display HTML</label>
       <label index="sheet_debugging.mode.test.example.061.html">Test: TCPDF example 61 "XHTML+CSS" (HTML)</label>

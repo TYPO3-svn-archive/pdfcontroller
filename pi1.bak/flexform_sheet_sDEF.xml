@@ -2,14 +2,14 @@
 <T3DataStructure>
   <ROOT>
     <TCEforms>
-      <sheetTitle>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_sDEF</sheetTitle>
+      <sheetTitle>LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_db.xlf:sheet_sDEF</sheetTitle>
     </TCEforms>
     <type>array</type>
     <el>
       <proxy>
         <TCEforms>
           <exclude>0</exclude>
-          <label>LLL:EXT:pdfcontroller/pi1/flexform_locallang.xml:sheet_sDEF.proxy</label>
+          <label>LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_db.xlf:sheet_sDEF.proxy</label>
           <config>
             <type>input</type>
             <size>80</size>

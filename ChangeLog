@@ -1,9 +1,15 @@
+4.0.0
+  15-07-29
+  Major Features
+  * #i0010: Preparation for TYPO3 7.x
+  * #i0009: Session handling
+
 3.1.1
   15-06-22
   Improvement
   * #i0008: Constant Editor: new property url.
   Bugfix
-  * #i0007: PHP Warning: in_array() expects parameter 2 to be array, null given in Classes/Userfunc/Flexforms/Controller.php line 181
+  * #i0007: PHP Warning: in_array() expects parameter 2 to be array, null given in Configuration/FlexForms/Controller.php line 181
 
 3.1.0
   15-06-21
@@ -132,7 +138,7 @@
   New Feature
   * #33851: SEO rel="nofollow"
   Improvements
-  * #00000: pi1/flexform_locallang.xml
+  * #00000: Resources/Private/Language/locallang_db.xlf
 
 1.1.0
   12-02-02
