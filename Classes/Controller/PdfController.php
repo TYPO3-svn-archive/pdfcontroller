@@ -550,7 +550,8 @@ class PdfController extends ActionController
 
     $prompt = 'FATAL ERROR: "' . $sheet . '.' . $field . '" isn\'t set!<br />'
             . 'Save the Plugin "PDF Controller User Interface" and reload this page.<br />'
-            . __METHOD__ . ' (#' .  __LINE__ . '<br />'
+            . __METHOD__ . ' (#' .  __LINE__ . ')<br />'
+            . '<br />'
             . 'Sorry for the trouble.<br />'
             . 'This is a prompt of the TYPO3 extension PDF Controller.'
     ;
@@ -1003,7 +1004,7 @@ class PdfController extends ActionController
       'returnLast' => 'url',
       'useCacheHash' => 0,
     );
-    $url = $GLOBALS[ 'TSFE' ]->cObj->typoLink( null, $conf );
+    $url = '"' . $GLOBALS[ 'TSFE' ]->cObj->typoLink( null, $conf ) . '"';
 
     // #i0014, 150817, dwildt, +
     if ( $this->_bDrsSession )
