@@ -549,9 +549,12 @@ class PdfController extends ActionController
     }
 
     $prompt = 'FATAL ERROR: "' . $sheet . '.' . $field . '" isn\'t set!<br />'
-            . 'Save the Plugin "PDF Controller User Interface" and reload this page.';
-    var_dump( __METHOD__, __LINE__, $prompt );
-    die();
+            . 'Save the Plugin "PDF Controller User Interface" and reload this page.<br />'
+            . __METHOD__ . ' (#' .  __LINE__ . '<br />'
+            . 'Sorry for the trouble.<br />'
+            . 'This is a prompt of the TYPO3 extension PDF Controller.'
+    ;
+    die( $prompt );
   }
 
   /**
