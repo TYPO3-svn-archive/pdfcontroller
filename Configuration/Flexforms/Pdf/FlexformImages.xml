@@ -1,0 +1,22 @@
+<T3DataStructure>
+  <ROOT>
+    <TCEforms>
+      <sheetTitle>LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_db.xlf:sheet_images</sheetTitle>
+    </TCEforms>
+    <type>array</type>
+    <el>
+      <settings.flexform.images.scale>
+        <TCEforms>
+          <label>LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_db.xlf:sheet_images.scale</label>
+          <config>
+            <type>input</type>
+            <size>5</size>
+            <max>5</max>
+            <eval>trim,double</eval>
+            <default>1</default>
+          </config>
+        </TCEforms>
+      </settings.flexform.images.scale>
+    </el>
+  </ROOT>
+</T3DataStructure>

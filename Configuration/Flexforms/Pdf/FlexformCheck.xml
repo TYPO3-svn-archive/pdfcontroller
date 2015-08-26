@@ -1,0 +1,20 @@
+<T3DataStructure>
+  <ROOT>
+    <TCEforms>
+      <sheetTitle>LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_db.xlf:sheet_check</sheetTitle>
+    </TCEforms>
+    <type>array</type>
+    <el>
+      <settings.flexform.check.lockHashKeyWords>
+        <TCEforms>
+          <exclude>0</exclude>
+          <label>LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_db.xlf:sheet_check.lockHashKeyWords</label>
+          <config>
+            <type>user</type>
+            <userFunc>Netzmacher\Pdfcontroller\Userfunc\Flexform->sheetFontsFieldLockHashKeyWords</userFunc>
+          </config>
+        </TCEforms>
+      </settings.flexform.check.lockHashKeyWords>
+    </el>
+  </ROOT>
+</T3DataStructure>

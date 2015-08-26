@@ -20,7 +20,7 @@ namespace Netzmacher\Pdfcontroller\TcPdf;
  * @package TYPO3
  * @subpackage pdfcontroller
  * @author Dirk Wildt <http://wildt.at.die-netzmacher.de>
- * @version 3.1.0
+ * @version 4.0.0
  * @since 3.1.0
  */
 // Require TCPDF and FPDI
@@ -739,13 +739,14 @@ die();
    *
    * @return	string  $content  : Content of the page with the typeNum pdfPrint
    * @access private
-   * @version 3.1.0
+   * @version 4.0.0
    * @since   3.1.0
    */
   private function _pdfBodyTypenumPrint()
   {
     global $GLOBALS;
 
+    // #i0009, 150729, dwildt, +
     $feSessionKey = NULL;
     if ( $GLOBALS[ 'TSFE' ]->loginUser )
     {

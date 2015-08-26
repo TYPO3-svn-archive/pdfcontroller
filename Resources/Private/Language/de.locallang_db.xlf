@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2015-07-01T21:00:00Z" product-name="deal">
+    <header/>
+    <body>
+      <trans-unit id="sheet_check">
+        <source>Check!</source>
+        <target state="translated">Test!</target>
+      </trans-unit>
+      <trans-unit id="sheet_check.lockHashKeyWords">
+        <source>Check for [FE][lockHashKeyWords]</source>
+        <target state="translated">Test [FE][lockHashKeyWords]</target>
+      </trans-unit>
+      <trans-unit id="sheet_check.lockHashKeyWords.message.ok">
+        <source>OK: [FE][lockHashKeyWords] is empty. The PDF Controller should run proper.</source>
+        <target state="translated">[FE][lockHashKeyWords] sind nicht gesetzt. Der PDF Controller sollte korrekt funktionieren.</target>
+      </trans-unit>
+      <trans-unit id="sheet_check.lockHashKeyWords.message.error">
+        <source>
+          ERROR: [FE][lockHashKeyWords] is '%lockHashKeyWords%'. The PDF Controller won't run proper. Please remove '%lockHashKeyWords%'.
+          You can use the module: System > Install.
+        </source>
+        <target state="translated">
+          FEHLER: [FE][lockHashKeyWords] ist '%lockHashKeyWords%'. Der PDF Controller eird nicht funktionieren. Bitte entferne '%lockHashKeyWords%'.
+          Du kannst dafür das Modul benutzen: System > Installation.
+        </target>
+      </trans-unit>
+
+      <trans-unit id="sheet_debugging">
+        <source>Debugging</source>
+        <target state="translated">Debugging</target>
+      </trans-unit>
+      <trans-unit id="sheet_debugging.drs">
+        <source>DRS (Development Reporting System)</source>
+        <target state="translated">DRS (Development Reporting System)</target>
+      </trans-unit>
+      <trans-unit id="sheet_debugging.drs.all">
+        <source>all: errors, warnings and infos</source>
+        <target state="translated">Alles: Fehler, Warnungen und Informationen</target>
+      </trans-unit>
+      <trans-unit id="sheet_debugging.drs.disabled">
+        <source>disabled (recommended)</source>
+        <target state="translated">Aus (empfohlen)</target>
+      </trans-unit>
+      <trans-unit id="sheet_debugging.drs.session">
+        <source>session-management</source>
+        <target state="translated">Session-Management</target>
+      </trans-unit>
+
+      <trans-unit id="sheet_debugging.mode">
+        <source>Mode</source>
+        <target state="translated">Modus</target>
+      </trans-unit>
+      <trans-unit id="sheet_debugging.mode.production">
+        <source>Production (default)</source>
+        <target state="translated">Produktiv (Standard)</target>
+      </trans-unit>
+      <trans-unit id="sheet_debugging.mode.development.tsDisplay">
+        <source>Development: Display TypoScript</source>
+        <target state="translated">Development: TypoScript anzeigen</target>
+      </trans-unit>
+      <trans-unit id="sheet_debugging.mode.test.html">
+        <source>Test: Display HTML</source>
+        <target state="translated">Test: HTML anzeigen</target>
+      </trans-unit>
+      <trans-unit id="sheet_debugging.mode.test.example.061.html">
+        <source>Test: TCPDF example 61 "XHTML+CSS" (HTML)</source>
+        <target state="translated">Test: TCPDF Example 61 "XHTML+CSS" (HTML)</target>
+      </trans-unit>
+      <trans-unit id="sheet_debugging.mode.test.example.061.pdf">
+        <source>Test: TCPDF example 61 "XHTML+CSS" (PDF)</source>
+        <target state="translated">Test: TCPDF Example 61 "XHTML+CSS" (PDF)</target>
+      </trans-unit>
+
+      <trans-unit id="sheet_fonts">
+        <source>Fonts</source>
+        <target state="translated">Fonts</target>
+      </trans-unit>
+      <trans-unit id="sheet_fonts.familybody">
+        <source>Body: Default font-family</source>
+        <target state="translated">Inhalt: Standard Font-Family</target>
+      </trans-unit>
+      <trans-unit id="sheet_fonts.familyfooter">
+        <source>Footer: Default font-family</source>
+        <target state="translated">Fußzeile: Standard Font-Family</target>
+      </trans-unit>
+      <trans-unit id="sheet_fonts.familyheader">
+        <source>Header: Default font-family</source>
+        <target state="translated">Kopfzeile: Standard Font-Family</target>
+      </trans-unit>
+      <trans-unit id="sheet_fonts.path">
+        <source>Relative path to my fonts directory (f.e: fileadmin/myfonts/). Only lower case!</source>
+        <target state="translated">Relativer Pfad zu meinem Fonts-Ordner (z.B.: fileadmin/meinefonts/). Nur Kleinbuchstaben!</target>
+      </trans-unit>
+
+      <trans-unit id="sheet_images">
+        <source>Images</source>
+        <target state="translated">Bilder</target>
+      </trans-unit>
+      <trans-unit id="sheet_images.scale">
+        <source>Scaling - decrease it for size up the image (float)</source>
+        <target state="translated">Skalierung - je kleiner, desto größer ist das Bild (Dezimalzahl)</target>
+      </trans-unit>
+
+      <trans-unit id="sheet_sDEF">
+        <source>Safety</source>
+        <target state="translated">Sicherheit</target>
+      </trans-unit>
+      <trans-unit id="sheet_sDEF.proxy">
+        <source>Use proxy</source>
+        <target state="translated">Verwende folgenden Proxy</target>
+      </trans-unit>
+
+      <trans-unit id="sheet_tags">
+        <source>Tags</source>
+        <target state="translated">Tags</target>
+      </trans-unit>
+      <trans-unit id="sheet_tags.aFontstyle">
+        <source>a: fontstyle</source>
+        <target state="translated">a: Stil</target>
+      </trans-unit>
+      <trans-unit id="sheet_tags.aFontstyle.bold">
+        <source>bold</source>
+        <target state="translated">fett</target>
+      </trans-unit>
+      <trans-unit id="sheet_tags.aFontstyle.italic">
+        <source>italic</source>
+        <target state="translated">kursiv</target>
+      </trans-unit>
+      <trans-unit id="sheet_tags.aFontstyle.linethrough">
+        <source>line through</source>
+        <target state="translated">durchgestrichen</target>
+      </trans-unit>
+      <trans-unit id="sheet_tags.aFontstyle.overline">
+        <source>overline</source>
+        <target state="translated">überstrichen</target>
+      </trans-unit>
+      <trans-unit id="sheet_tags.aFontstyle.regular">
+        <source>regular</source>
+        <target state="translated">standard</target>
+      </trans-unit>
+      <trans-unit id="sheet_tags.aFontstyle.underline">
+        <source>underline (default)</source>
+        <target state="translated">unterstrichen (Standard)</target>
+      </trans-unit>
+      <trans-unit id="sheet_tags.aRgb">
+        <source>a: color (r,g,b)</source>
+        <target state="translated">a: Farbe (R,G,B)</target>
+      </trans-unit>
+
+      <trans-unit id="sheet_template">
+        <source>Template</source>
+        <target state="translated">Vorlage</target>
+      </trans-unit>
+      <trans-unit id="sheet_template.filepath">
+        <source>Path to the PDF template file (file may contain upto two pages)</source>
+        <target state="translated">Pfad zur PDF-Vorlagen-Datei (darf bis zu zwei Seiten enthalten)</target>
+      </trans-unit>
+      <trans-unit id="sheet_template.marginbottom">
+        <source>Bottom margin / auto page break (mm)</source>
+        <target state="translated">Rand unten / automatischer Seitenumbruch (mm)</target>
+      </trans-unit>
+      <trans-unit id="sheet_template.marginfooter">
+        <source>Footer margin (mm)</source>
+        <target state="translated">Rand Fußzeile (mm)</target>
+      </trans-unit>
+      <trans-unit id="sheet_template.marginheader">
+        <source>Header margin (mm)</source>
+        <target state="translated">Rand Kopfzeile (mm)</target>
+      </trans-unit>
+      <trans-unit id="sheet_template.marginleft">
+        <source>Left margin (mm)</source>
+        <target state="translated">Rand links (mm)</target>
+      </trans-unit>
+      <trans-unit id="sheet_template.marginright">
+        <source>Right margin (mm)</source>
+        <target state="translated">Rand Rechts (mm)</target>
+      </trans-unit>
+      <trans-unit id="sheet_template.margintop">
+        <source>Top margin (mm)</source>
+        <target state="translated">Rand oben (mm)</target>
+      </trans-unit>
+
+      <trans-unit id="sheet_templatefirstpage">
+        <source>First page</source>
+        <target state="translated">Erste Seite</target>
+      </trans-unit>
+      <trans-unit id="sheet_templatefirstpage.marginbottom">
+        <source>Bottom margin / auto page break (mm)</source>
+        <target state="translated">Rand unten / automatischer Seitenumbruch (mm)</target>
+      </trans-unit>
+      <trans-unit id="sheet_templatefirstpage.marginfooter">
+        <source>Footer margin (mm)</source>
+        <target state="translated">Rand Fußzeile (mm)</target>
+      </trans-unit>
+      <trans-unit id="sheet_templatefirstpage.marginheader">
+        <source>Header margin (mm)</source>
+        <target state="translated">Rand Kopfzeile (mm)</target>
+      </trans-unit>
+      <trans-unit id="sheet_templatefirstpage.marginleft">
+        <source>Left margin (mm)</source>
+        <target state="translated">Rand links (mm)</target>
+      </trans-unit>
+      <trans-unit id="sheet_templatefirstpage.marginright">
+        <source>Right margin (mm)</source>
+        <target state="translated">Rand Rechts (mm)</target>
+      </trans-unit>
+      <trans-unit id="sheet_templatefirstpage.margintop">
+        <source>Top margin (mm)</source>
+        <target state="translated">Rand oben (mm)</target>
+      </trans-unit>
+
+    </body>
+  </file>
+</xliff>

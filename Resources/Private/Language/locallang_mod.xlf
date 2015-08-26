@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-07-01T21:00:00Z" product-name="deal">
+		<header/>
+		<body>
+			<trans-unit id="pluginPi2Title">
+				<source>PDF Controller: Button</source>
+			</trans-unit>
+			<trans-unit id="pluginPi2WizardDescription">
+				<source>
+          Add the PDF Controller Button to a page and download the page as a PDF file.
+          The Button must configured with the TypoScript Constant Editor.
+        </source>
+			</trans-unit>
+			<trans-unit id="pluginPi2WizardTitle">
+				<source>PDF Controller: Button</source>
+			</trans-unit>
+			<trans-unit id="pluginPi3Title">
+				<source>PDF Controller: User Interface (III)</source>
+			</trans-unit>
+			<trans-unit id="pluginPi3WizardDescription">
+				<source>User interface for controlling the PDF conversion</source>
+			</trans-unit>
+			<trans-unit id="pluginPi3WizardTitle">
+				<source>PDF Controller: User Interface (III)</source>
+			</trans-unit>
+    </body>
+	</file>
+</xliff>

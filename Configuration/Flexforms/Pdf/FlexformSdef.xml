@@ -1,0 +1,22 @@
+<T3DataStructure>
+  <ROOT>
+    <TCEforms>
+      <sheetTitle>LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_db.xlf:sheet_sDEF</sheetTitle>
+    </TCEforms>
+    <type>array</type>
+    <el>
+      <settings.flexform.sdef.proxy>
+        <TCEforms>
+          <exclude>0</exclude>
+          <label>LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_db.xlf:sheet_sDEF.proxy</label>
+          <config>
+            <type>input</type>
+            <size>80</size>
+            <max>255</max>
+            <eval>trim</eval>
+          </config>
+        </TCEforms>
+      </settings.flexform.sdef.proxy>
+    </el>
+  </ROOT>
+</T3DataStructure>

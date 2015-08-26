@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2015-07-01T21:00:00Z" product-name="deal">
+    <header/>
+    <body>
+      <trans-unit id="sheet_check">
+        <source>Check!</source>
+      </trans-unit>
+      <trans-unit id="sheet_check.lockHashKeyWords">
+        <source>Check for [FE][lockHashKeyWords]</source>
+      </trans-unit>
+      <trans-unit id="sheet_check.lockHashKeyWords.message.ok">
+        <source>[FE][lockHashKeyWords] is empty. The PDF Controller should run proper.</source>
+      </trans-unit>
+      <trans-unit id="sheet_check.lockHashKeyWords.message.error">
+        <source>
+          ERROR: [FE][lockHashKeyWords] is '%lockHashKeyWords%'. The PDF Controller won't run proper. Please remove '%lockHashKeyWords%'.
+          You can use the module: System > Install.
+        </source>
+      </trans-unit>
+
+      <trans-unit id="sheet_debugging">
+        <source>Debugging</source>
+      </trans-unit>
+      <trans-unit id="sheet_debugging.drs">
+        <source>DRS (Development Reporting System)</source>
+      </trans-unit>
+      <trans-unit id="sheet_debugging.drs.all">
+        <source>all: errors, warnings and infos</source>
+      </trans-unit>
+      <trans-unit id="sheet_debugging.drs.disabled">
+        <source>disabled (recommended)</source>
+      </trans-unit>
+      <trans-unit id="sheet_debugging.drs.session">
+        <source>session-management</source>
+      </trans-unit>
+      <trans-unit id="sheet_debugging.mode">
+        <source>Mode</source>
+      </trans-unit>
+      <trans-unit id="sheet_debugging.mode.development.tsDisplay">
+        <source>Development: Display TypoScript</source>
+      </trans-unit>
+      <trans-unit id="sheet_debugging.mode.production">
+        <source>Production (default)</source>
+      </trans-unit>
+      <trans-unit id="sheet_debugging.mode.test.html">
+        <source>Test: Display HTML</source>
+      </trans-unit>
+      <trans-unit id="sheet_debugging.mode.test.example.061.html">
+        <source>Test: TCPDF example 61 "XHTML+CSS" (HTML)</source>
+      </trans-unit>
+      <trans-unit id="sheet_debugging.mode.test.example.061.pdf">
+        <source>Test: TCPDF example 61 "XHTML+CSS" (PDF)</source>
+      </trans-unit>
+
+      <trans-unit id="sheet_fonts">
+        <source>Fonts</source>
+      </trans-unit>
+      <trans-unit id="sheet_fonts.familybody">
+        <source>Body: Default font-family</source>
+      </trans-unit>
+      <trans-unit id="sheet_fonts.familyfooter">
+        <source>Footer: Default font-family</source>
+      </trans-unit>
+      <trans-unit id="sheet_fonts.familyheader">
+        <source>Header: Default font-family</source>
+      </trans-unit>
+      <trans-unit id="sheet_fonts.path">
+        <source>Relative path to my fonts directory (f.e: fileadmin/myfonts/). Only lower case!</source>
+      </trans-unit>
+
+      <trans-unit id="sheet_images">
+        <source>Images</source>
+      </trans-unit>
+      <trans-unit id="sheet_images.scale">
+        <source>Scaling - decrease it for size up the image (float)</source>
+      </trans-unit>
+
+      <trans-unit id="sheet_sDEF">
+        <source>Safety</source>
+      </trans-unit>
+      <trans-unit id="sheet_sDEF.proxy">
+        <source>Use proxy</source>
+      </trans-unit>
+
+      <trans-unit id="sheet_tags">
+        <source>Tags</source>
+      </trans-unit>
+      <trans-unit id="sheet_tags.aFontstyle">
+        <source>a: fontstyle</source>
+      </trans-unit>
+      <trans-unit id="sheet_tags.aFontstyle.bold">
+        <source>bold</source>
+      </trans-unit>
+      <trans-unit id="sheet_tags.aFontstyle.italic">
+        <source>italic</source>
+      </trans-unit>
+      <trans-unit id="sheet_tags.aFontstyle.linethrough">
+        <source>line through</source>
+      </trans-unit>
+      <trans-unit id="sheet_tags.aFontstyle.overline">
+        <source>overline</source>
+      </trans-unit>
+      <trans-unit id="sheet_tags.aFontstyle.regular">
+        <source>regular</source>
+      </trans-unit>
+      <trans-unit id="sheet_tags.aFontstyle.underline">
+        <source>underline (default)</source>
+      </trans-unit>
+      <trans-unit id="sheet_tags.aRgb">
+        <source>a: color (r,g,b)</source>
+      </trans-unit>
+
+      <trans-unit id="sheet_template">
+        <source>Template</source>
+      </trans-unit>
+      <trans-unit id="sheet_template.filepath">
+        <source>Path to the PDF template file (file may contain upto two pages)</source>
+      </trans-unit>
+      <trans-unit id="sheet_template.marginbottom">
+        <source>Bottom margin / auto page break (mm)</source>
+      </trans-unit>
+      <trans-unit id="sheet_template.marginfooter">
+        <source>Footer margin (mm)</source>
+      </trans-unit>
+      <trans-unit id="sheet_template.marginheader">
+        <source>Header margin (mm)</source>
+      </trans-unit>
+      <trans-unit id="sheet_template.marginleft">
+        <source>Left margin (mm)</source>
+      </trans-unit>
+      <trans-unit id="sheet_template.marginright">
+        <source>Right margin (mm)</source>
+      </trans-unit>
+      <trans-unit id="sheet_template.margintop">
+        <source>Top margin (mm)</source>
+      </trans-unit>
+
+      <trans-unit id="sheet_templatefirstpage">
+        <source>First page</source>
+      </trans-unit>
+      <trans-unit id="sheet_templatefirstpage.marginbottom">
+        <source>Bottom margin / auto page break (mm)</source>
+      </trans-unit>
+      <trans-unit id="sheet_templatefirstpage.marginfooter">
+        <source>Footer margin (mm)</source>
+      </trans-unit>
+      <trans-unit id="sheet_templatefirstpage.marginheader">
+        <source>Header margin (mm)</source>
+      </trans-unit>
+      <trans-unit id="sheet_templatefirstpage.marginleft">
+        <source>Left margin (mm)</source>
+      </trans-unit>
+      <trans-unit id="sheet_templatefirstpage.marginright">
+        <source>Right margin (mm)</source>
+      </trans-unit>
+      <trans-unit id="sheet_templatefirstpage.margintop">
+        <source>Top margin (mm)</source>
+      </trans-unit>
+
+    </body>
+  </file>
+</xliff>

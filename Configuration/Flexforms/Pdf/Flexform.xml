@@ -1,0 +1,15 @@
+<T3DataStructure>
+  <meta>
+    <langDisable>1</langDisable>
+  </meta>
+  <sheets>
+    <check>EXT:pdfcontroller/Configuration/Flexforms/Pdf/FlexformCheck.xml</check>
+    <template>EXT:pdfcontroller/Configuration/Flexforms/Pdf/FlexformTemplate.xml</template>
+    <templatefirstpage>EXT:pdfcontroller/Configuration/Flexforms/Pdf/FlexformTemplatefirstpage.xml</templatefirstpage>
+    <fonts>EXT:pdfcontroller/Configuration/Flexforms/Pdf/FlexformFonts.xml</fonts>
+    <tags>EXT:pdfcontroller/Configuration/Flexforms/Pdf/FlexformTags.xml</tags>
+    <images>EXT:pdfcontroller/Configuration/Flexforms/Pdf/FlexformImages.xml</images>
+    <sDEF>EXT:pdfcontroller/Configuration/Flexforms/Pdf/FlexformSdef.xml</sDEF>
+    <debugging>EXT:pdfcontroller/Configuration/Flexforms/Pdf/FlexformDebugging.xml</debugging>
+  </sheets>
+</T3DataStructure>

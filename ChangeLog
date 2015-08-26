@@ -1,3 +1,29 @@
+4.0.5
+  15-08-24
+  Improvement
+  * #i0015: Update Manual
+
+4.0.4
+  15-08-17
+  Improvement
+  * #i0014: Flexform with DRS
+
+4.0.3
+  15-08-07
+  Update
+  * #i0013: Manual with CSS sample for images
+
+4.0.2
+  15-08-04
+  Update
+  * #i0012: Manual with CSS sample
+
+4.0.1
+  15-07-30
+  Bugfix
+  * #i0011: XML: missing tag
+            Resources/Private/Language/de.locallang_db.xlf
+
 4.0.0
   15-07-29
   Major Features

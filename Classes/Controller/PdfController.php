@@ -3,8 +3,8 @@
 namespace Netzmacher\Pdfcontroller\Controller;
 
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-
 
 /* * *************************************************************
  *  Copyright notice
@@ -35,7 +35,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
  * @package TYPO3
  * @subpackage pdfcontroller
  * @author Dirk Wildt <http://wildt.at.die-netzmacher.de>
- * @version 3.1.0
+ * @version 4.0.0
  * @since 3.1.0
  */
 // Require TCPDF and FPDI
@@ -47,7 +47,6 @@ require_once( $fpdi );
 class PdfControllerFpdi extends \FPDI
 {
 
-
   /**
    * @var cObject
    */
@@ -57,7 +56,6 @@ class PdfControllerFpdi extends \FPDI
    * @var TypoScript configuration
    */
   private $_conf;
-
   private $_tplIdx = null;    // Current page number of the PDF template
   private $_tplIdLast = null; // Last page number of the PDF template
 //  private $objFlexform;       // Flexform object: PDF Controller Interface
@@ -370,7 +368,6 @@ class PdfControllerFpdi extends \FPDI
 //  {
 //    $this->settings = $settings;
 //  }
-
 }
 
 /**
@@ -403,6 +400,31 @@ class PdfController extends ActionController
   protected $objectManager;
 
   /**
+   * @var boolean   DRS should display all prompts
+   */
+  private $_bDrsAll = FALSE;
+
+  /**
+   * @var boolean   DRS should display error prompts
+   */
+  private $_bDrsError = FALSE;
+
+  /**
+   * @var boolean   DRS should display info prompts
+   */
+  private $_bDrsInfo = FALSE;
+
+  /**
+   * @var boolean   DRS should display session prompts
+   */
+  private $_bDrsSession = FALSE;
+
+  /**
+   * @var boolean   DRS should display warning prompts
+   */
+  private $_bDrsWarn = FALSE;
+
+  /**
    * @var cObject
    */
   private $_cObj;
@@ -411,6 +433,11 @@ class PdfController extends ActionController
    * @var TypoScript configuration
    */
   private $_conf;
+
+  /**
+   * @var TypoScript configuration
+   */
+  private $_drsKey = 'Netzmacher\\Pdfcontroller\\Controller\\PdfController';
 
   /**
    * rendererAction( ) : Create PDF from HTML (using TCPDF through t3_tcpdf extension)
@@ -655,6 +682,7 @@ class PdfController extends ActionController
   {
     $this->_initConf();
     $this->_initCobj();
+    $this->_initDrs();
   }
 
   /**
@@ -682,6 +710,75 @@ class PdfController extends ActionController
   {
     $typoScriptService = $this->objectManager->get( 'TYPO3\CMS\Extbase\Service\TypoScriptService' );
     $this->_conf = $typoScriptService->convertPlainArrayToTypoScriptArray( $this->settings );
+  }
+
+  /**
+   * _initDrs( ) :
+   *
+   * @return void
+   * @access private
+   * @internal #i0014
+   * @version 4.0.4
+   * @since 4.0.4
+   */
+  private function _initDrs()
+  {
+    $drs = PdfController::_ffValue( 'debugging', 'drs' );
+    switch ( $drs )
+    {
+      case('all'):
+        $this->_initDrsAll();
+        return;
+      case('session'):
+        $this->_initDrsSession();
+        return;
+      case('disabled'):
+      default:
+        return;
+    }
+  }
+
+  /**
+   * _initDrsAll( ) :
+   *
+   * @return void
+   * @access private
+   * @version 4.0.4
+   * @since 4.0.4
+   */
+  private function _initDrsAll()
+  {
+    $this->_bDrsAll = true;
+    $this->_bDrsError = true;
+    $this->_bDrsWarn = true;
+    $this->_bDrsInfo = true;
+
+    $bPrompt = FALSE;
+    $this->_initDrsSession( $bPrompt );
+
+    $prompt = 'All prompts are enabled.';
+    GeneralUtility::devLog( '[INFO/DRS] ' . $prompt, $this->_drsKey, 0 );
+  }
+
+  /**
+   * _initDrsSession( ) :
+   *
+   * @return void
+   * @access private
+   * @version 4.0.4
+   * @since 4.0.4
+   */
+  private function _initDrsSession( $bPrompt = TRUE )
+  {
+    $this->_bDrsSession = true;
+
+    if ( !$bPrompt )
+    {
+      return;
+    }
+
+    $prompt = 'Session-management is enabled.';
+    GeneralUtility::devLog( '[INFO/DRS] ' . $prompt, $this->_drsKey, 0 );
   }
 
   /**
@@ -871,13 +968,14 @@ class PdfController extends ActionController
    *
    * @return	string  $content  : Content of the page with the typeNum pdfPrint
    * @access private
-   * @version 3.1.0
+   * @version 4.0.4
    * @since   3.1.0
    */
   private function _pdfBodyTypenumPrint()
   {
     global $GLOBALS;
 
+    // #i0009, 150729, dwildt, +
     $feSessionKey = NULL;
     if ( $GLOBALS[ 'TSFE' ]->loginUser )
     {
@@ -902,8 +1000,35 @@ class PdfController extends ActionController
     );
     $url = $GLOBALS[ 'TSFE' ]->cObj->typoLink( null, $conf );
 
+    // #i0014, 150817, dwildt, +
+    if ( $this->_bDrsSession )
+    {
+//      $prompt = $feSessionKey;
+//      if ( empty( $prompt ) )
+//      {
+//        $prompt = 'Any FE_SESSION_KEY isn\'t given.';
+//      }
+//      GeneralUtility::devLog( '[INFO/SESSION] ' . $prompt, $this->_drsKey, 0 );
+      GeneralUtility::devLog( '[INFO/SESSION] ' . $url, $this->_drsKey, 0 );
+    }
+
+//    // create curl resource
+//    $ch = curl_init();
+//    // set url
+//    curl_setopt( $ch, CURLOPT_URL, $url );
+//    //return the transfer as a string
+//    curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
+//    // return without any header
+//    //curl_setopt( $ch, CURLOPT_HEADER, 0 );
+//    // $output contains the output string
+//    $content = curl_exec( $ch );
+//    // close curl resource to free up system resources
+//    curl_close( $ch );
+//    var_dump( __METHOD__, __LINE__, $GLOBALS[ 'TSFE' ]->fe_user, $GLOBALS[ 'TSFE' ]->fe_user->id, $url, $content );
+//    exit;
+
     $content = file_get_contents( $url );
-//    var_dump( __METHOD__, __LINE__, $GLOBALS[ 'TSFE' ]->fe_user, $GLOBALS[ 'TSFE' ]->fe_user->id, $url );
+//    var_dump( __METHOD__, __LINE__, $GLOBALS[ 'TSFE' ]->fe_user, $GLOBALS[ 'TSFE' ]->fe_user->id, $url, $content );
 //    exit;
     return $content;
   }
@@ -1102,7 +1227,7 @@ class PdfController extends ActionController
     $subset = '';
 
     $destPath = ExtensionManagementUtility::extPath( 't3_tcpdf' ) . 'tcpdf/fonts/';
-    $srceFilesPhp = \TYPO3\CMS\Core\Utility\GeneralUtility::getFilesInDir( $srcePath, 'php' );
+    $srceFilesPhp = GeneralUtility::getFilesInDir( $srcePath, 'php' );
 
     foreach ( $srceFilesPhp as $srceFilePhp )
     {
@@ -1153,7 +1278,7 @@ class PdfController extends ActionController
     $destPath = ExtensionManagementUtility::extPath( 't3_tcpdf' ) . 'tcpdf/fonts/';
 
     $srcePath = ExtensionManagementUtility::extPath( 'pdfcontroller_fonts' ) . 'fonts/';
-    $srceFilesPhp = \TYPO3\CMS\Core\Utility\GeneralUtility::getFilesInDir( $srcePath, 'php' );
+    $srceFilesPhp = GeneralUtility::getFilesInDir( $srcePath, 'php' );
 
     foreach ( $srceFilesPhp as $srceFilePhp )
     {
@@ -1193,7 +1318,7 @@ class PdfController extends ActionController
     }
 
     $fontPath = ExtensionManagementUtility::extPath( 't3_tcpdf' ) . 'tcpdf/fonts/';
-    $fontFilesPhp = \TYPO3\CMS\Core\Utility\GeneralUtility::getFilesInDir( $fontPath, 'php' );
+    $fontFilesPhp = GeneralUtility::getFilesInDir( $fontPath, 'php' );
 
     foreach ( $fontFilesPhp as $fontFilePhp )
     {
@@ -1632,7 +1757,7 @@ class PdfController extends ActionController
   private function _pdfTcpdfInstance()
   {
 
-    $this->_tcpdf = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
+    $this->_tcpdf = GeneralUtility::makeInstance(
                     'Netzmacher\Pdfcontroller\Controller\PdfControllerFpdi', 'P', 'mm', 'A4', true, 'UTF-8', false );
     $this->_tcpdf->setCObj( $this->_cObj );
     $this->_tcpdf->setConf( $this->_conf );
