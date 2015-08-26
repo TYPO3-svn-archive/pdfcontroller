@@ -15,6 +15,16 @@
           </config>
         </TCEforms>
       </settings.flexform.check.lockHashKeyWords>
+      <settings.flexform.check.lockIP>
+        <TCEforms>
+          <exclude>0</exclude>
+          <label>LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_db.xlf:sheet_check.lockIP</label>
+          <config>
+            <type>user</type>
+            <userFunc>Netzmacher\Pdfcontroller\Userfunc\Flexform->sheetFontsFieldLockIP</userFunc>
+          </config>
+        </TCEforms>
+      </settings.flexform.check.lockIP>
     </el>
   </ROOT>
 </T3DataStructure>

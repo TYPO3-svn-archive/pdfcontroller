@@ -142,6 +142,37 @@ class Flexform
   }
 
   /**
+   * _sheetFontsFieldLockIP() :
+   *
+   * @return	string $prompt
+   * @access private
+   * @version 4.0.0
+   * @since   4.0.0
+   */
+  private function _sheetFontsFieldLockIP()
+  {
+    $message = NULL;
+    $lockIP = $GLOBALS[ 'TYPO3_CONF_VARS' ][ 'FE' ][ 'lockIP' ];
+
+    switch ( TRUE )
+    {
+      case( $lockIP > 0 ):
+        $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_db.xlf:sheet_check.lockIP.message.error' );
+        $prompt = str_replace('%lockIP%', $lockIP, $prompt);
+        $message = $message . Flexform::_zzTypo3Message($prompt, 'error');
+        break;
+      case(empty( $lockIP )):
+      case( $lockIP == 0 ):
+      default:
+        $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_db.xlf:sheet_check.lockIP.message.ok' );
+        $message = $message . Flexform::_zzTypo3Message($prompt, 'ok');
+        break;
+    }
+
+    return $message;
+  }
+
+  /**
    * _zzTypo3Message() :
    *
    * @param string $prompt
@@ -236,6 +267,22 @@ class Flexform
   {
     unset( $pluginConf );
     $prompt = Flexform::_sheetFontsFieldLockHashKeyWords();
+    return $prompt;
+  }
+
+  /**
+   * sheetFontsFieldLockIP() :
+   *
+   * @param array $pluginConf: current plugin configuration
+   * @return	array $pluginConf: plugin configuration with updated font-family field
+   * @access public
+   * @version 4.0.0
+   * @since   4.0.0
+   */
+  public function sheetFontsFieldLockIP( $pluginConf )
+  {
+    unset( $pluginConf );
+    $prompt = Flexform::_sheetFontsFieldLockIP();
     return $prompt;
   }
 

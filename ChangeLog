@@ -1,6 +1,13 @@
 4.0.6
   15-08-26
   Improvement
+  * #i0018: Check for [ 'FE' ][ 'lockIP' ]
+            Effected files:
+            * Classes/Userfunc/Flexform.php
+            * Configuration/Flexforms/Pdf/FlexformCheck.xml
+            * Resources/Private/Language
+              * de.locallang_db.xlf
+              * locallang_db.xlf
   * #i0017: _ffValue: error prompt
   * #i0016: Labeling *.xlf
 

@@ -18,6 +18,18 @@
           You can use the module: System > Install.
         </source>
       </trans-unit>
+      <trans-unit id="sheet_check.lockIP">
+        <source>Check for [FE][lockIP]</source>
+      </trans-unit>
+      <trans-unit id="sheet_check.lockIP.message.ok">
+        <source>[FE][lockIP] is 0. The PDF Controller should run proper.</source>
+      </trans-unit>
+      <trans-unit id="sheet_check.lockIP.message.error">
+        <source>
+          ERROR: [FE][lockIP] is %lockIP%. The PDF Controller won't run proper. Please move %lockIP% to 0.
+          You can use the module: System > Install.
+        </source>
+      </trans-unit>
 
       <trans-unit id="sheet_debugging">
         <source>Debugging</source>

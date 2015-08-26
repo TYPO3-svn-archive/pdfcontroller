@@ -1004,7 +1004,7 @@ class PdfController extends ActionController
       'returnLast' => 'url',
       'useCacheHash' => 0,
     );
-    $url = '"' . $GLOBALS[ 'TSFE' ]->cObj->typoLink( null, $conf ) . '"';
+    $url = $GLOBALS[ 'TSFE' ]->cObj->typoLink( null, $conf );
 
     // #i0014, 150817, dwildt, +
     if ( $this->_bDrsSession )

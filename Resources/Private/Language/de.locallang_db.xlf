@@ -25,6 +25,24 @@
           Du kannst dafür das Modul benutzen: System > Installation.
         </target>
       </trans-unit>
+      <trans-unit id="sheet_check.lockIP">
+        <source>Check for [FE][lockIP]</source>
+        <target state="translated">Test [FE][lockIP]</target>
+      </trans-unit>
+      <trans-unit id="sheet_check.lockIP.message.ok">
+        <source>[FE][lockIP] is 0. The PDF Controller should run proper.</source>
+        <target state="translated">[FE][lockIP] ist 0. Der PDF Controller sollte korrekt funktionieren.</target>
+      </trans-unit>
+      <trans-unit id="sheet_check.lockIP.message.error">
+        <source>
+          ERROR: [FE][lockIP] is %lockIP%. The PDF Controller won't run proper. Please move %lockIP% to 0.
+          You can use the module: System > Install.
+        </source>
+        <target state="translated">
+          FEHLER: [FE][lockIP] ist %lockIP%. Der PDF Controller wird nicht funktionieren. Bitte ändere %lockIP% in 0.
+          Du kannst dafür das Modul benutzen: System > Installation.
+        </target>
+      </trans-unit>
 
       <trans-unit id="sheet_debugging">
         <source>Debugging</source>
