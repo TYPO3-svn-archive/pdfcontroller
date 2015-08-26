@@ -531,7 +531,7 @@ class PdfController extends ActionController
    * @param   string	$field:
    * @return	string  $value:
    * @access private
-   * @version 4.0.0
+   * @version 4.0.6
    * @since   3.1.0
    */
   private function _ffValue( $sheet, $field )
@@ -548,7 +548,9 @@ class PdfController extends ActionController
       return $value;
     }
 
-    var_dump( __METHOD__, __LINE__, 'FATAL ERROR: "' . $sheet . '.' . $field . '" isn\'t set!' );
+    $prompt = 'FATAL ERROR: "' . $sheet . '.' . $field . '" isn\'t set!<br />'
+            . 'Save the Plugin "PDF Controller User Interface" and reload this page.';
+    var_dump( __METHOD__, __LINE__, $prompt );
     die();
   }
 

@@ -21,7 +21,7 @@
           You can use the module: System > Install.
         </source>
         <target state="translated">
-          FEHLER: [FE][lockHashKeyWords] ist '%lockHashKeyWords%'. Der PDF Controller eird nicht funktionieren. Bitte entferne '%lockHashKeyWords%'.
+          FEHLER: [FE][lockHashKeyWords] ist '%lockHashKeyWords%'. Der PDF Controller wird nicht funktionieren. Bitte entferne '%lockHashKeyWords%'.
           Du kannst dafür das Modul benutzen: System > Installation.
         </target>
       </trans-unit>
