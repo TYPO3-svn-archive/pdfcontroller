@@ -1,3 +1,10 @@
+4.1.0
+  15-08-29
+  New Feature
+  * #i0019: Support for start
+            Effected files:
+            * Resources/Private/Extensions/Start/Templates (new)
+
 4.0.6
   15-08-26
   Improvement

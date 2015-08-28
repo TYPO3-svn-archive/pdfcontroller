@@ -1,0 +1,18 @@
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pdfcontroller/Configuration/TypoScript/pi1/_setup.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pdfcontroller/Configuration/TypoScript/pi2/_setup.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pdfcontroller/Configuration/TypoScript/pi3/_setup.ts">
+
+plugin.tx_pdfcontroller {
+    // empty statement for proper comments only
+	view {
+  }
+    // templateRootPath, partialRootPath, layoutRootPath
+	view =
+	view {
+		templateRootPath = {$plugin.tx_pdfcontroller.view.templateRootPath}
+		partialRootPath = {$plugin.tx_pdfcontroller.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_pdfcontroller.view.layoutRootPath}
+	}
+}
+
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pdfcontroller/Configuration/TypoScript/PAGE/_setup.ts">
