@@ -1,0 +1,23 @@
+<f:layout name="silver" />
+<f:section name="content">
+  <div class="maincontent">
+    <div class="row">
+      <div class="{settings.classColMainContentTopLeft} columns">
+        <f:cObject typoscriptObjectPath="start.structure.content.topLeft" />
+      </div>
+      <div class="{settings.classColMainContentTopCenter} columns">
+        <f:cObject typoscriptObjectPath="start.structure.content.topCenter" />
+      </div>
+      <div class="{settings.classColMainContentTopRight} columns">
+        <f:cObject typoscriptObjectPath="start.structure.content.topRight" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="{settings.classColMainContentMain} columns maincontentmain">
+        <!--content-->
+        <f:cObject typoscriptObjectPath="start.structure.content.main" />
+        <!--/content-->
+      </div>
+    </div>
+  </div>
+</f:section>
