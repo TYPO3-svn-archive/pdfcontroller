@@ -32,7 +32,7 @@ plugin.tx_pdfcontroller {
             config {
               absRefPrefix          = {$plugin.pdfcontroller.url}
               admPanel              = 0
-              disableAllHeaderCode  = 1
+              disableAllHeaderCode  = {$plugin.pdfcontroller.config.disableAllHeaderCode}
               doctype               = xhtml_strict
               metaCharset           = UTF-8
               xhtml_cleaning        = 0

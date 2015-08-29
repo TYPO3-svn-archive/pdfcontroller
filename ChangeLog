@@ -1,6 +1,7 @@
 4.1.0
   15-08-29
   New Feature
+  * #i0021: Constant for config.disableAllHeaderCode
   * #i0020: Template for tt_content optimisation
   * #i0019: Support for start
             Effected files:
