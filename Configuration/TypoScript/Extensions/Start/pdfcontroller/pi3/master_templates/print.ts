@@ -183,11 +183,11 @@ plugin.tx_pdfcontroller {
                 file = {$plugin.tx_pdfcontroller.extensions.start.fluid.path.templates}silver_03.html
                 settings >
                 settings {
-                  settings.styleTable       = width:600px;
-                  settings.styleTableTr0Td0 = background-color:silver;
-                  settings.styleTableTr1Td0 = width:33%;
-                  settings.styleTableTr1Td1 = width:34%;
-                  settings.styleTableTr1Td2 = width:33%;
+                  styleTable       = width:600px;
+                  styleTableTr0Td0 = background-color:silver;
+                  styleTableTr1Td0 = width:33%;
+                  styleTableTr1Td1 = width:34%;
+                  styleTableTr1Td2 = width:33%;
                 }
               }
                 // One column
