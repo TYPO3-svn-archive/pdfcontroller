@@ -1,23 +1,25 @@
-<f:layout name="silver" />
+<f:layout name="default" />
 <f:section name="content">
-  <div class="maincontent">
-    <div class="row">
-      <div class="{settings.classColMainContentTopLeft} columns">
-        <f:cObject typoscriptObjectPath="start.structure.content.topLeft" />
-      </div>
-      <div class="{settings.classColMainContentTopCenter} columns">
-        <f:cObject typoscriptObjectPath="start.structure.content.topCenter" />
-      </div>
-      <div class="{settings.classColMainContentTopRight} columns">
-        <f:cObject typoscriptObjectPath="start.structure.content.topRight" />
-      </div>
-    </div>
-    <div class="row">
-      <div class="{settings.classColMainContentMain} columns maincontentmain">
-        <!--content-->
-        <f:cObject typoscriptObjectPath="start.structure.content.main" />
-        <!--/content-->
-      </div>
-    </div>
-  </div>
+  <table style="{settings.styleTable}" >
+    <tbody>
+      <tr>
+        <td style="{settings.styleTableTr0Td0}">
+          <f:cObject typoscriptObjectPath="start.structure.content.topLeft" />
+        </td>
+        <td style="{settings.styleTableTr0Td1}">
+          <f:cObject typoscriptObjectPath="start.structure.content.topCenter" />
+        </td>
+        <td style="{settings.styleTableTr0Td2}">
+          <f:cObject typoscriptObjectPath="start.structure.content.topRight" />
+        </td>
+      </tr>
+      <tr>
+        <td style="{settings.styleTableTr1Td0}" colspan="3">
+          <!--content-->
+          <f:cObject typoscriptObjectPath="start.structure.content.main" />
+          <!--/content-->
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </f:section>

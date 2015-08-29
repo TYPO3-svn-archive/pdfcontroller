@@ -1,18 +1,21 @@
-<f:layout name="bronze" />
+<f:layout name="default" />
 <f:section name="content">
-  <div class="maincontent">
-    <div class="row">
-      <div class="{settings.classColMainContentLeft} columns maincontentleft">
-        <f:cObject typoscriptObjectPath="start.structure.content.left" />
-      </div>
-      <div class="{settings.classColMainContentMain} columns maincontentmain">
-        <!--content-->
-        <f:cObject typoscriptObjectPath="start.structure.content.main" />
-        <!--/content-->
-      </div>
-      <div class="{settings.classColMainContentRight} columns maincontentright">
-        <f:cObject typoscriptObjectPath="start.structure.content.right" />
-      </div>
-    </div>
-  </div>
+  <table style="{settings.styleTable}" >
+    <tbody>
+      <tr>
+        <td style="{settings.styleTableTr0Td0}">
+          <f:cObject typoscriptObjectPath="start.structure.content.left" />
+          <!--/content-->
+        </td>
+        <td style="{settings.styleTableTr0Td1}">
+          <!--content-->
+          <f:cObject typoscriptObjectPath="start.structure.content.main" />
+          <!--/content-->
+        </td>
+        <td style="{settings.styleTableTr0Td2}">
+          <f:cObject typoscriptObjectPath="start.structure.content.right" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </f:section>

@@ -82,7 +82,8 @@ plugin.tx_pdfcontroller {
                 variables {
                 }
                 settings {
-                  classColMainContentMain =
+                  styleTable       = font-size:.75em;width:100%;
+                  styleTableTr0Td0 =
                 }
                 stdWrap {
                   wrap (
@@ -97,31 +98,34 @@ plugin.tx_pdfcontroller {
               start__bronze_02 < .start__bronze_01
               start__bronze_02 {
                 file = {$plugin.tx_pdfcontroller.extensions.start.fluid.path.templates}bronze_02.html
+                settings >
                 settings {
-                  classColMainContentMain   >
-                  classColMainContentMain   = small-12 medium-8
-                  classColMainContentRight  = show-for-medium-up medium-4
+                  styleTable       = font-size:.75em;width:100%;
+                  styleTableTr0Td0 = width:67%;
+                  styleTableTr0Td1 = width:33%;
                 }
               }
                 // Two columns: left | content
               start__bronze_03 < .start__bronze_01
               start__bronze_03 {
                 file = {$plugin.tx_pdfcontroller.extensions.start.fluid.path.templates}bronze_03.html
+                settings >
                 settings {
-                  classColMainContentMain >
-                  classColMainContentLeft = show-for-medium-up medium-4
-                  classColMainContentMain = small-12 medium-8
+                  styleTable       = font-size:.75em;width:100%;
+                  styleTableTr0Td0 = width:33%;
+                  styleTableTr0Td1 = width:67%;
                 }
               }
                 // Three columns: left | content | right
               start__bronze_04 < .start__bronze_01
               start__bronze_04 {
                 file = {$plugin.tx_pdfcontroller.extensions.start.fluid.path.templates}bronze_04.html
+                settings >
                 settings {
-                  classColMainContentMain   >
-                  classColMainContentLeft   = show-for-medium-up medium-3
-                  classColMainContentMain   = small-12 medium-6
-                  classColMainContentRight  = show-for-medium-up medium-3
+                  styleTable       = font-size:.75em;width:100%;
+                  styleTableTr1Td0 = width:25%;
+                  styleTableTr1Td1 = width:50%;
+                  styleTableTr1Td2 = width:25%;
                 }
               }
                 // Four columns
@@ -156,10 +160,11 @@ plugin.tx_pdfcontroller {
                 file = {$plugin.tx_pdfcontroller.extensions.start.fluid.path.templates}silver_01.html
                 settings >
                 settings {
-                  classColMainContentTopLeft      = small-12 medium-4 large-4
-                  classColMainContentTopCenter    = small-12 medium-4 large-4
-                  classColMainContentTopRight     = small-12 medium-4 large-4
-                  classColMainContentMain         = small-12
+                  styleTable       = font-size:.75em;width:100%;
+                  styleTableTr0Td0 = width:33%;
+                  styleTableTr0Td1 = width:34%;
+                  styleTableTr0Td2 = width:33%;
+                  styleTableTr1Td0 =
                 }
               }
                 // Three rows: header (left | center | right) | content | bottom (left | center | right)
@@ -168,13 +173,14 @@ plugin.tx_pdfcontroller {
                 file = {$plugin.tx_pdfcontroller.extensions.start.fluid.path.templates}silver_02.html
                 settings >
                 settings {
-                  classColMainContentTopLeft      = small-12 medium-4 large-4
-                  classColMainContentTopCenter    = small-12 medium-4 large-4
-                  classColMainContentTopRight     = small-12 medium-4 large-4
-                  classColMainContentMain         = small-12
-                  classColMainContentBottomLeft   = small-12 medium-4 large-4
-                  classColMainContentBottomCenter = small-12 medium-4 large-4
-                  classColMainContentBottomRight  = small-12 medium-4 large-4
+                  styleTable       = font-size:.75em;width:100%;
+                  styleTableTr0Td0 = width:33%;
+                  styleTableTr0Td1 = width:34%;
+                  styleTableTr0Td2 = width:33%;
+                  styleTableTr1Td0 =
+                  styleTableTr2Td0 = width:33%;
+                  styleTableTr2Td1 = width:34%;
+                  styleTableTr2Td2 = width:33%;
                 }
               }
                 // Two rows: content | bottom (left | center | right)
