@@ -1,1 +1,1 @@
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:ext/pdfcontroller/Configuration/TypoScript/Extensions/Start/Start/constants.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pdfcontroller/Configuration/TypoScript/Extensions/Start/Start/constants.ts">

@@ -1,1 +1,1 @@
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:ext/pdfcontroller/Configuration/TypoScript/Extensions/Start/pdfcontroller/pi3/master_templates/_setup.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pdfcontroller/Configuration/TypoScript/Extensions/Start/pdfcontroller/pi3/master_templates/_setup.ts">
