@@ -1,21 +1,21 @@
 <f:layout name="default" />
 <f:section name="content">
-  <table class="maincontent">
-    <tr class="row">
-      <td class="{settings.classColMainContentMain} columns maincontentmain" colspan="3">
+  <table>
+    <tr>
+      <td style="{settings.stylesColMainContentMain}" colspan="3">
         <!--content-->
         <f:cObject typoscriptObjectPath="start.structure.content.main" />
         <!--/content-->
       </td>
     </tr>
-    <tr class="row">
-      <td class="{settings.classColMainContentBottomLeft} columns">
+    <tr>
+      <td style="{settings.styleColMainContentBottomLeft}">
         <f:cObject typoscriptObjectPath="start.structure.content.bottomLeft" />
       </td>
-      <td class="{settings.classColMainContentBottomCenter} columns">
+      <td style="{settings.styleColMainContentBottomCenter}">
         <f:cObject typoscriptObjectPath="start.structure.content.bottomCenter" />
       </td>
-      <td class="{settings.classColMainContentBottomRight} columns">
+      <td style="{settings.styleColMainContentBottomRight}">
         <f:cObject typoscriptObjectPath="start.structure.content.bottomRight" />
       </td>
     </tr>

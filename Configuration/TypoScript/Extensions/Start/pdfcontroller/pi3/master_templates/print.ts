@@ -187,10 +187,10 @@ plugin.tx_pdfcontroller {
                 file = {$plugin.tx_pdfcontroller.extensions.start.fluid.path.templates}silver_03.html
                 settings >
                 settings {
-                  classColMainContentMain         = small-12
-                  classColMainContentBottomLeft   = small-12 medium-4 large-4
-                  classColMainContentBottomCenter = small-12 medium-4 large-4
-                  classColMainContentBottomRight  = small-12 medium-4 large-4
+                  styleColMainContentMain         = background-color:red;
+                  styleColMainContentBottomLeft   = width:33%;
+                  styleColMainContentBottomCenter = width:34%;
+                  styleColMainContentBottomRight  = width:33%;
                 }
               }
                 // One column
