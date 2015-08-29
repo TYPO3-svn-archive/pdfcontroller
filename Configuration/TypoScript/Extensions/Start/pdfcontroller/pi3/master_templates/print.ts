@@ -183,10 +183,10 @@ plugin.tx_pdfcontroller {
                 file = {$plugin.tx_pdfcontroller.extensions.start.fluid.path.templates}silver_03.html
                 settings >
                 settings {
-                  styleTable       = font-size:.75em;width:100%;
-                  styleTableTr0Td0 =
-                  styleTableTr1Td0 = width:33%;
-                  styleTableTr1Td1 = width:34%;
+                  styleTable       = width:100%;
+                  styleTableTr0Td0 = font-size:.75em;
+                  styleTableTr1Td0 = font-size:.75em;width:33%;
+                  styleTableTr1Td1 = font-size:.75em;width:34%;
                   styleTableTr1Td2 = font-size:.75em;width:33%;
                 }
               }
