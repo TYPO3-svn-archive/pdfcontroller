@@ -1,3 +1,11 @@
+4.1.1
+  15-08-29
+  New Feature
+  * #i0024: addQueryString
+  Improvement
+  * #i0023: Flexform tab sDEF is removed
+  * #i0022: Suggests pdfcontroller_fonts
+
 4.1.0
   15-08-29
   New Feature

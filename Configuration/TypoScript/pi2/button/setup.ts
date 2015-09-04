@@ -56,6 +56,11 @@ plugin.tx_pdfcontroller_pi2 {
           }
         }
         additionalParams  = &type={$plugin.pdfcontroller.pages.pdf.typeNum}
+          // #i0024, 150904, dwildt, 4+
+        addQueryString    = 1
+        addQueryString {
+          exclude = id, cHash
+        }
         ATagParams        = rel="nofollow"
       }
     }

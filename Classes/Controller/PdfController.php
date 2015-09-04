@@ -451,6 +451,8 @@ class PdfController extends ActionController
    */
   public function rendererAction()
   {
+//var_dump( __METHOD__, __LINE__);
+//die();
     $this->_init();
 //var_dump( __METHOD__, __LINE__, $this->_conf);
 //die();
@@ -550,7 +552,7 @@ class PdfController extends ActionController
 
     $prompt = 'FATAL ERROR: "' . $sheet . '.' . $field . '" isn\'t set!<br />'
             . 'Save the Plugin "PDF Controller User Interface" and reload this page.<br />'
-            . __METHOD__ . ' (#' .  __LINE__ . ')<br />'
+            . __METHOD__ . ' (#' . __LINE__ . ')<br />'
             . '<br />'
             . 'Sorry for the trouble.<br />'
             . 'This is a prompt of the TYPO3 extension PDF Controller.'
@@ -999,13 +1001,18 @@ class PdfController extends ActionController
 
     $conf = array(
       'additionalParams' => '&type=' . ( int ) $this->_conf[ 'typeNum.' ][ 'print' ] . $feSessionKey,
+      'addQueryString' => 1,    // #i0024, 150904, dwildt, +
+      'addQueryString.' => array(
+        'exclude' => 'id, cHash',
+      ),
       'forceAbsoluteUrl' => 1,
       'parameter' => $GLOBALS[ 'TSFE' ]->id,
       'returnLast' => 'url',
       'useCacheHash' => 0,
     );
     $url = $GLOBALS[ 'TSFE' ]->cObj->typoLink( null, $conf );
-
+//    var_dump( __METHOD__, __LINE__, $url );
+//    die();
     // #i0014, 150817, dwildt, +
     if ( $this->_bDrsSession )
     {

@@ -40,6 +40,7 @@ $EM_CONF[$_EXTKEY] = array(
 		'conflicts' => array(
 		),
 		'suggests' => array(
+			'pdfcontroller_fonts' => '',
 		),
 	),
 	'_md5_values_when_last_written' => '',
