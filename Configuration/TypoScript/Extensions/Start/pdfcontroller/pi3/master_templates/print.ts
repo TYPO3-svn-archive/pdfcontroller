@@ -101,8 +101,8 @@ plugin.tx_pdfcontroller {
                 settings >
                 settings {
                   styleTable       = font-size:.75em;width:100%;
-                  styleTableTr0Td0 = width:67%;
-                  styleTableTr0Td1 = width:33%;
+                  styleTableTr0Td0 = width:66.67%;
+                  styleTableTr0Td1 = width:33.33%;
                 }
               }
                 // Two columns: left | content
@@ -112,8 +112,8 @@ plugin.tx_pdfcontroller {
                 settings >
                 settings {
                   styleTable       = font-size:.75em;width:100%;
-                  styleTableTr0Td0 = width:33%;
-                  styleTableTr0Td1 = width:67%;
+                  styleTableTr0Td0 = width:33.33%;
+                  styleTableTr0Td1 = width:66.67%;
                 }
               }
                 // Three columns: left | content | right
@@ -161,9 +161,9 @@ plugin.tx_pdfcontroller {
                 settings >
                 settings {
                   styleTable       = font-size:.75em;width:100%;
-                  styleTableTr0Td0 = width:33%;
-                  styleTableTr0Td1 = width:34%;
-                  styleTableTr0Td2 = width:33%;
+                  styleTableTr0Td0 = width:33.33%;
+                  styleTableTr0Td1 = width:33.34%;
+                  styleTableTr0Td2 = width:33.33%;
                   styleTableTr1Td0 =
                 }
               }
@@ -174,13 +174,13 @@ plugin.tx_pdfcontroller {
                 settings >
                 settings {
                   styleTable       = font-size:.75em;width:100%;
-                  styleTableTr0Td0 = width:33%;
-                  styleTableTr0Td1 = width:34%;
-                  styleTableTr0Td2 = width:33%;
+                  styleTableTr0Td0 = width:33.33%;
+                  styleTableTr0Td1 = width:33.34%;
+                  styleTableTr0Td2 = width:33.33%;
                   styleTableTr1Td0 =
-                  styleTableTr2Td0 = width:33%;
-                  styleTableTr2Td1 = width:34%;
-                  styleTableTr2Td2 = width:33%;
+                  styleTableTr2Td0 = width:33.33%;
+                  styleTableTr2Td1 = width:33.34%;
+                  styleTableTr2Td2 = width:33.33%;
                 }
               }
                 // Two rows: content | bottom (left | center | right)
@@ -191,9 +191,9 @@ plugin.tx_pdfcontroller {
                 settings {
                   styleTable       = font-size:.75em;width:100%;
                   styleTableTr0Td0 =
-                  styleTableTr1Td0 = width:33%;
-                  styleTableTr1Td1 = width:34%;
-                  styleTableTr1Td2 = width:33%;
+                  styleTableTr1Td0 = width:33.33%;
+                  styleTableTr1Td1 = width:33.34%;
+                  styleTableTr1Td2 = width:33.33%;
                 }
               }
                 // One column

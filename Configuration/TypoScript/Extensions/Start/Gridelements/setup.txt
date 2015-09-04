@@ -1,0 +1,4 @@
+[globalVar = GP:type = {$plugin.pdfcontroller.pages.print.typeNum}]
+  <INCLUDE_TYPOSCRIPT: source="FILE:EXT:pdfcontroller/Configuration/TypoScript/Extensions/Start/Gridelements/Gridelements/_setup.ts">
+  <INCLUDE_TYPOSCRIPT: source="FILE:EXT:pdfcontroller/Configuration/TypoScript/Extensions/Start/Gridelements/Structure/_setup.ts">
+[global]

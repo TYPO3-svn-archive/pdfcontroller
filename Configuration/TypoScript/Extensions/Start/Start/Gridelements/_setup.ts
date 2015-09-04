@@ -1,9 +1,0 @@
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pdfcontroller/Configuration/TypoScript/Extensions/Start/Start/Gridelements/columns_01.ts">
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pdfcontroller/Configuration/TypoScript/Extensions/Start/Start/Gridelements/columns_02.ts">
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pdfcontroller/Configuration/TypoScript/Extensions/Start/Start/Gridelements/columns_03.ts">
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pdfcontroller/Configuration/TypoScript/Extensions/Start/Start/Gridelements/columns_04.ts">
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pdfcontroller/Configuration/TypoScript/Extensions/Start/Start/Gridelements/columns_05.ts">
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pdfcontroller/Configuration/TypoScript/Extensions/Start/Start/Gridelements/columns_06.ts">
-//<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pdfcontroller/Configuration/TypoScript/Extensions/Start/Start/Gridelements/foundation_orbit.ts">
-//<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pdfcontroller/Configuration/TypoScript/Extensions/Start/Start/Gridelements/foundation_section.ts">
-//<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pdfcontroller/Configuration/TypoScript/Extensions/Start/Start/Gridelements/foundation_tabs.ts">
