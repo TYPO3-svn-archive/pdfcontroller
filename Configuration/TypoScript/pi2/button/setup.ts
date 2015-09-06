@@ -13,6 +13,7 @@ plugin.tx_pdfcontroller_pi2 {
           value = Download content as PDF file
           lang {
             de = Inhalt als PDF-Datei herunterladen
+            en = Download content as PDF file
           }
         }
       }
@@ -45,7 +46,11 @@ plugin.tx_pdfcontroller_pi2 {
               // title
             40 = TEXT
             40 {
-              value       = -
+              value = Download content as PDF file
+              lang {
+                de = Inhalt als PDF-Datei herunterladen
+                en = Download content as PDF file
+              }
               stdWrap {
                 stripHtml         = 1
                 htmlSpecialChars  = 1
@@ -99,7 +104,11 @@ plugin.tx_pdfcontroller_pi2 {
             // title
           40 = TEXT
           40 {
-            value       = -
+            value = Download content as PDF file
+            lang {
+              de = Inhalt als PDF-Datei herunterladen
+              en = Download content as PDF file
+            }
             stdWrap {
               stripHtml         = 1
               htmlSpecialChars  = 1
