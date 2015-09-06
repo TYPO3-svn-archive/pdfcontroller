@@ -51,11 +51,6 @@ plugin.tx_pdfcontroller_pi2 {
                 de = Inhalt als PDF-Datei herunterladen
                 en = Download content as PDF file
               }
-              stdWrap {
-                stripHtml         = 1
-                htmlSpecialChars  = 1
-                crop              = 30
-              }
               noTrimWrap  = | "|"|
             }
           }
@@ -108,11 +103,6 @@ plugin.tx_pdfcontroller_pi2 {
             lang {
               de = Inhalt als PDF-Datei herunterladen
               en = Download content as PDF file
-            }
-            stdWrap {
-              stripHtml         = 1
-              htmlSpecialChars  = 1
-              crop              = 30
             }
             noTrimWrap  = | "|"|
           }
