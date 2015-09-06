@@ -1,6 +1,7 @@
 4.1.1
   15-09-05
   New Features
+  * #i0026: PDF Controller Button TEXT
   * #i0025: Support for Start: grid layouts
   * #i0024: addQueryString
   Improvement
