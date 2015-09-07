@@ -28,9 +28,12 @@
           override >
         }
       }
+      renderMethod = simple
       rendering {
         simple {
-          caption.wrap = <p>|</p>
+          imageStdWrapNoWidth.wrap = |
+          imageStdWrap.dataWrap = |
+          caption.wrap = |
         }
       }
     }
