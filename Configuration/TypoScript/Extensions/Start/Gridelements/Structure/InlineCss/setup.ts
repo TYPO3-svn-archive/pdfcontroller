@@ -22,29 +22,32 @@ start {
   table.columns01 tr td {
     width:100%;
   }
+  table.columns01 tr td.space {
+    width:2%;
+  }
   table.columns02 tr td {
-    width:50%;
+    width:49%;
   }
   table.columns03 tr td {
-    width:33.34%;
+    width:32%;
   }
-  table.columns03 tr td.first,
+/*  table.columns03 tr td.first,
   table.columns03 tr td.last {
-    width:33.33%;
-  }
+    width:32%;
+  }*/
   table.columns04 tr td {
-    width:25%;
+    width:23.5%;
   }
   table.columns05 tr td {
-    width:20%;
+    width:18.4%;
   }
   table.columns06 tr td {
-    width:16.67%;
+    width:15%;
   }
-  table.columns06 tr td.first,
+/*  table.columns06 tr td.first,
   table.columns06 tr td.last {
-    width:16.66%;
-  }
+    width:15%;
+  }*/
 </style>
 )
       }
