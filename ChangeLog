@@ -1,3 +1,8 @@
+4.1.2
+  15-09-07
+  Bugfix
+  * #i0027: <tr> was missing in typoscript for grid elements
+
 4.1.1
   15-09-05
   New Features

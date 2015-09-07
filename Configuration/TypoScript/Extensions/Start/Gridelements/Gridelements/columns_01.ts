@@ -3,7 +3,7 @@ start.gridelements {
     columns.default.wrap.noTrimWrap = |<td class="columns |">|
     columns.default.wrap2 = |</td>
     wrap.stdWrap.cObject.10.value = <table class="row columns01
-    wrap.stdWrap.cObject.30.value = "><tbody>|</tbody></table>
+    wrap.stdWrap.cObject.30.value = "><tbody><tr>|</tr></tbody></table>
   }
 }
 
