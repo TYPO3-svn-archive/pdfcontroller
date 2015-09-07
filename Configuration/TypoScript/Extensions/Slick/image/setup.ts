@@ -14,7 +14,7 @@
           value (
             <table cellspacing="0" cellpadding="0" style="width: 100%; text-align: left; margin: 0;">
               <tr>
-                <td valign="top" align="center" style="text-align: center;">
+                <td valign="top" align="left" style="text-align: left;">
                   ###IMAGES###
                 </td>
               </tr>
