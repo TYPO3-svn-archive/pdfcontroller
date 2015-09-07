@@ -1,7 +1,5 @@
 [globalVar = GP:type = {$plugin.pdfcontroller.pages.print.typeNum}]
   ## images
-
-tt_content.slickslideshow.20.1.layout.default.element = <img src="###SRC###" width="###WIDTH###" height="###HEIGHT###"###PARAMS######ALTPARAMS######BORDER######SELFCLOSINGTAGSLASH###><br /><br />
   tt_content.slickslideshow {
     20 {
       1 {
