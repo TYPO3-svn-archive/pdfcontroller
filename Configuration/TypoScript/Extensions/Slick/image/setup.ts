@@ -33,7 +33,7 @@
         simple {
           imageStdWrapNoWidth.wrap = |
           imageStdWrap.dataWrap = |
-          caption.wrap = <p>|</p>
+          caption.wrap = <p>|<br /><br /></p>
         }
       }
     }
