@@ -22,9 +22,11 @@ start {
   table.columns01 tr td {
     width:100%;
   }
-  table.columns01 tr td.space {
-    width:2%;
-  }
+  table.columns02 tr td.space { width:2%; }
+  table.columns03 tr td.space { width:2%; }
+  table.columns04 tr td.space { width:2%; }
+  table.columns05 tr td.space { width:2%; }
+  table.columns06 tr td.space { width:2%; }
   table.columns02 tr td {
     width:49%;
   }
