@@ -45,6 +45,7 @@ switch ( true )
 //      \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY,'static/pi1/', 'PDF-Controller: User-Interface');
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile( $_EXTKEY, 'Configuration/TypoScript/',                               'PDF Controller [1]' );
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile( $_EXTKEY, 'Configuration/TypoScript/tt_content/',                    'PDF Controller [1.1] +tt_content Optimierung' );
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile( $_EXTKEY, 'Configuration/TypoScript/Extensions/Slick/',              'PDF Controller [2] Ext: Slick' );
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile( $_EXTKEY, 'Configuration/TypoScript/Extensions/Start/',              'PDF Controller [2] Ext: Start' );
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile( $_EXTKEY, 'Configuration/TypoScript/Extensions/Start/Gridelements/', 'PDF Controller [2.1] Ext: +Start Gridelements' );
     break;
@@ -53,6 +54,7 @@ switch ( true )
 //      \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY,'static/pi1/', 'PDF Controller: User Interface');
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile( $_EXTKEY, 'Configuration/TypoScript/',                               'PDF Controller [1]' );
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile( $_EXTKEY, 'Configuration/TypoScript/tt_content/',                    'PDF Controller [1.1] +tt_content optimisation' );
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile( $_EXTKEY, 'Configuration/TypoScript/Extensions/Slick/',              'PDF Controller [2] Ext: Slick' );
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile( $_EXTKEY, 'Configuration/TypoScript/Extensions/Start/',              'PDF Controller [2] Ext: Start' );
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile( $_EXTKEY, 'Configuration/TypoScript/Extensions/Start/Gridelements/', 'PDF Controller [2.1] Ext: +Start Gridelements' );
     break;

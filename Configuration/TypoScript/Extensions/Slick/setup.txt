@@ -1,0 +1,1 @@
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pdfcontroller/Configuration/TypoScript/Extensions/Slick/image/setup.ts">
