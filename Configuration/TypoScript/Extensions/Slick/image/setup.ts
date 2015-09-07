@@ -5,7 +5,7 @@
       1 {
         layout {
           default {
-            element := appendString ( <br /><br /> )
+            element := appendString ( <br /> )
           }
         }
       }
