@@ -1,5 +1,7 @@
 4.1.2
   15-09-07
+  Improvement
+  * #i0028: td.space for grid elements
   Bugfix
   * #i0027: <tr> was missing in typoscript for grid elements
 
