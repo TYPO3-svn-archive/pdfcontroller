@@ -2,19 +2,25 @@
   ## images
   tt_content.image {
     20 {
-      caption.1.1.wrap = <p class="caption">|</p>
+      1 {
+        layout {
+          default {
+            element := appendString ( <br /> )
+          }
+        }
+      }
       layout {
         # above-center
         default {
           value (
-            <table cellspacing="0" cellpadding="0" style="width: 100%; text-align: left; margin: 0;">
+            <table cellspacing="0" cellpadding="0" class="columns01">
               <tr>
-                <td valign="top" align="center" style="text-align: center;">
+                <td>
                   ###IMAGES###
                 </td>
               </tr>
               <tr>
-                <td valign="top">
+                <td>
                   ###TEXT###
                 </td>
               </tr>
@@ -26,14 +32,14 @@
         1 = TEXT
         1 {
           value (
-            <table cellspacing="0" cellpadding="0" style="width: 100%; text-align: left; margin: 0;">
+            <table cellspacing="0" cellpadding="0" class="columns01">
               <tr>
-                <td valign="top" align="right" style="text-align: right;">
+                <td>
                   ###IMAGES###
                 </td>
               </tr>
               <tr>
-                <td valign="top">
+                <td>
                   ###TEXT###
                 </td>
               </tr>
@@ -45,14 +51,14 @@
         2 = TEXT
         2 {
           value (
-            <table cellspacing="0" cellpadding="0" style="width: 100%; text-align: left; margin: 0;">
+            <table cellspacing="0" cellpadding="0" class="columns01">
               <tr>
-                <td valign="top" align="left" style="text-align: left;">
+                <td>
                   ###IMAGES###
                 </td>
               </tr>
               <tr>
-                <td valign="top">
+                <td>
                   ###TEXT###
                 </td>
               </tr>
@@ -64,15 +70,15 @@
         8 = TEXT
         8 {
           value (
-            <table cellspacing="0" cellpadding="0" style="width: 100%; text-align: left; margin: 0;">
+            <table cellspacing="0" cellpadding="0" class="columns01">
               <tr>
-                <td valign="bottom" align="center" style="text-align: center;">
-                  ###IMAGES###
+                <td>
+                  ###TEXT###
                 </td>
               </tr>
               <tr>
-                <td valign="bottom">
-                  ###TEXT###
+                <td>
+                  ###IMAGES###
                 </td>
               </tr>
             </table>
@@ -83,15 +89,15 @@
         9 = TEXT
         9 {
           value (
-            <table cellspacing="0" cellpadding="0" style="width: 100%; text-align: left; margin: 0;">
+            <table cellspacing="0" cellpadding="0" class="columns01">
               <tr>
-                <td valign="bottom" align="right" style="text-align: right;">
-                  ###IMAGES###
+                <td>
+                  ###TEXT###
                 </td>
               </tr>
               <tr>
-                <td valign="bottom">
-                  ###TEXT###
+                <td>
+                  ###IMAGES###
                 </td>
               </tr>
             </table>
@@ -102,15 +108,15 @@
         10 = TEXT
         10 {
           value (
-            <table cellspacing="0" cellpadding="0" style="width: 100%; text-align: left; margin: 0;">
+            <table cellspacing="0" cellpadding="0" class="columns01">
               <tr>
-                <td valign="bottom" align="left" style="text-align: left;">
-                  ###IMAGES###
+                <td>
+                  ###TEXT###
                 </td>
               </tr>
               <tr>
-                <td valign="bottom">
-                  ###TEXT###
+                <td>
+                  ###IMAGES###
                 </td>
               </tr>
             </table>
@@ -121,15 +127,16 @@
         17 = TEXT
         17 {
           value (
-            <table cellspacing="0" cellpadding="0" style="width: 100%; text-align: left; margin: 0;">
+            <table cellspacing="0" cellpadding="0" class="columns02">
               <tr>
-                <td valign="top" align="right" style="text-align: right;">
-                  ###IMAGES###
-                </td>
-              </tr>
-              <tr>
-                <td valign="top">
+                <td>
                   ###TEXT###
+                </td>
+                <td class="space">
+                  &nbsp;
+                </td>
+                <td>
+                  ###IMAGES###
                 </td>
               </tr>
             </table>
@@ -140,14 +147,15 @@
         18 = TEXT
         18 {
           value (
-            <table cellspacing="0" cellpadding="0" style="width: 100%; text-align: left; margin: 0;">
+            <table cellspacing="0" cellpadding="0" class="columns02">
               <tr>
-                <td valign="top" align="left" style="text-align: left;">
+                <td>
                   ###IMAGES###
                 </td>
-              </tr>
-              <tr>
-                <td valign="top">
+                <td class="space">
+                  &nbsp;
+                </td>
+                <td>
                   ###TEXT###
                 </td>
               </tr>
@@ -159,12 +167,15 @@
         25 = TEXT
         25 {
           value (
-            <table cellspacing="0" cellpadding="0" style="width: 100%; text-align: left; margin: 0;">
+            <table cellspacing="0" cellpadding="0" class="columns02">
               <tr>
-                <td valign="top">
+                <td>
                   ###TEXT###
                 </td>
-                <td valign="top"style="padding:0 10px 0 10px;">
+                <td class="space">
+                  &nbsp;
+                </td>
+                <td>
                   ###IMAGES###
                 </td>
               </tr>
@@ -176,12 +187,15 @@
         26 = TEXT
         26 {
           value (
-            <table cellspacing="0" cellpadding="0" style="width: 100%; text-align: left; margin: 0;">
+            <table cellspacing="0" cellpadding="0" class="columns02">
               <tr>
-                <td valign="top"style="padding:0 10px 0 10px;">
+                <td>
                   ###IMAGES###
                 </td>
-                <td valign="top">
+                <td class="space">
+                  &nbsp;
+                </td>
+                <td>
                   ###TEXT###
                 </td>
               </tr>
@@ -195,7 +209,7 @@
         simple {
           imageStdWrapNoWidth.wrap = |
           imageStdWrap.dataWrap = |
-          caption.wrap = |
+          caption.wrap = <p>|<br /><br /></p>
         }
       }
     }
