@@ -16,13 +16,13 @@
 				<source>PDF Controller: Button</source>
 			</trans-unit>
 			<trans-unit id="pluginPi3Title">
-				<source>PDF Controller: User Interface (III)</source>
+				<source>PDF Controller: User Interface</source>
 			</trans-unit>
 			<trans-unit id="pluginPi3WizardDescription">
 				<source>User interface for controlling the PDF conversion</source>
 			</trans-unit>
 			<trans-unit id="pluginPi3WizardTitle">
-				<source>PDF Controller: User Interface (III)</source>
+				<source>PDF Controller: User Interface</source>
 			</trans-unit>
     </body>
 	</file>

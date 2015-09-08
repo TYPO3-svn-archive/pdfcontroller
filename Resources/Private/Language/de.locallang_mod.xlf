@@ -22,16 +22,16 @@
 				<target state="translated">PDF Controller: Button</target>
 			</trans-unit>
 			<trans-unit id="pluginPi3Title">
-				<source>PDF Controller: User Interface (III)</source>
-				<target state="translated">PDF Controller: User Interface (III)</target>
+				<source>PDF Controller: User Interface</source>
+				<target state="translated">PDF Controller: User Interface</target>
 			</trans-unit>
 			<trans-unit id="pluginPi3WizardDescription">
 				<source>User interface for controlling the PDF conversion</source>
 				<target state="translated">User Interface für die Steuerung der PDF-Erstellung</target>
 			</trans-unit>
 			<trans-unit id="pluginPi3WizardTitle">
-				<source>PDF Controller: User Interface (III)</source>
-				<target state="translated">PDF Controller: User Interface (III)</target>
+				<source>PDF Controller: User Interface</source>
+				<target state="translated">PDF Controller: User Interface</target>
 			</trans-unit>
 		</body>
 	</file>
