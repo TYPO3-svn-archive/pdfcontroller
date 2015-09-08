@@ -12,9 +12,10 @@
       <trans-unit id="sheet_check.lockHashKeyWords.message.ok">
         <source>[FE][lockHashKeyWords] is empty. The PDF Controller should run proper.</source>
       </trans-unit>
-      <trans-unit id="sheet_check.lockHashKeyWords.message.error">
+      <trans-unit id="sheet_check.lockHashKeyWords.message.warning">
         <source>
-          ERROR: [FE][lockHashKeyWords] is '%lockHashKeyWords%'. The PDF Controller won't run proper. Please remove '%lockHashKeyWords%'.
+          WARNING: [FE][lockHashKeyWords] is '%lockHashKeyWords%'. The PDF Controller won't run proper on restricted pages.
+          If your are using pages with restricted access, you must remove '%lockHashKeyWords%'.
           You can use the module: System > Install.
         </source>
       </trans-unit>
@@ -24,9 +25,10 @@
       <trans-unit id="sheet_check.lockIP.message.ok">
         <source>[FE][lockIP] is 0. The PDF Controller should run proper.</source>
       </trans-unit>
-      <trans-unit id="sheet_check.lockIP.message.error">
+      <trans-unit id="sheet_check.lockIP.message.warning">
         <source>
-          ERROR: [FE][lockIP] is %lockIP%. The PDF Controller won't run proper. Please move %lockIP% to 0.
+          WARNING: [FE][lockIP] is %lockIP%. The PDF Controller won't run proper. The PDF Controller won't run proper on restricted pages.
+          If your are using pages with restricted access, you have to move %lockIP% to 0.
           You can use the module: System > Install.
         </source>
       </trans-unit>

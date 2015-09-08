@@ -127,9 +127,9 @@ class Flexform
     switch ( TRUE )
     {
       case(!empty( $lockHashKeyWords )):
-        $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_db.xlf:sheet_check.lockHashKeyWords.message.error' );
+        $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_db.xlf:sheet_check.lockHashKeyWords.message.warning' );
         $prompt = str_replace('%lockHashKeyWords%', $lockHashKeyWords, $prompt);
-        $message = $message . Flexform::_zzTypo3Message($prompt, 'error');
+        $message = $message . Flexform::_zzTypo3Message($prompt, 'warning');
         break;
       case(empty( $lockHashKeyWords )):
       default:
@@ -157,9 +157,9 @@ class Flexform
     switch ( TRUE )
     {
       case( $lockIP > 0 ):
-        $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_db.xlf:sheet_check.lockIP.message.error' );
+        $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:pdfcontroller/Resources/Private/Language/locallang_db.xlf:sheet_check.lockIP.message.warning' );
         $prompt = str_replace('%lockIP%', $lockIP, $prompt);
-        $message = $message . Flexform::_zzTypo3Message($prompt, 'error');
+        $message = $message . Flexform::_zzTypo3Message($prompt, 'warning');
         break;
       case(empty( $lockIP )):
       case( $lockIP == 0 ):

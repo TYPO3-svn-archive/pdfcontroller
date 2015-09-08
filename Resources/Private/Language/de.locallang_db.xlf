@@ -15,14 +15,16 @@
         <source>OK: [FE][lockHashKeyWords] is empty. The PDF Controller should run proper.</source>
         <target state="translated">[FE][lockHashKeyWords] sind nicht gesetzt. Der PDF Controller sollte korrekt funktionieren.</target>
       </trans-unit>
-      <trans-unit id="sheet_check.lockHashKeyWords.message.error">
+      <trans-unit id="sheet_check.lockHashKeyWords.message.warning">
         <source>
-          ERROR: [FE][lockHashKeyWords] is '%lockHashKeyWords%'. The PDF Controller won't run proper. Please remove '%lockHashKeyWords%'.
+          WARNING: [FE][lockHashKeyWords] is '%lockHashKeyWords%'. The PDF Controller won't run proper on restricted pages.
+          If your are using pages with restricted access, you must remove '%lockHashKeyWords%'.
           You can use the module: System > Install.
         </source>
         <target state="translated">
-          FEHLER: [FE][lockHashKeyWords] ist '%lockHashKeyWords%'. Der PDF Controller wird nicht funktionieren. Bitte entferne '%lockHashKeyWords%'.
-          Du kannst dafür das Modul benutzen: System > Installation.
+          WARNUNG: [FE][lockHashKeyWords] ist '%lockHashKeyWords%'. Der PDF Controller wird auf Seiten mit Zugriffsschutz nicht funktionieren.
+          Bitte entferne '%lockHashKeyWords%', wenn Du Seiten für Frontend-User geschützt hast.
+          Du kannst dafür das Modul "System > Installation" benutzen.
         </target>
       </trans-unit>
       <trans-unit id="sheet_check.lockIP">
@@ -35,12 +37,14 @@
       </trans-unit>
       <trans-unit id="sheet_check.lockIP.message.error">
         <source>
-          ERROR: [FE][lockIP] is %lockIP%. The PDF Controller won't run proper. Please move %lockIP% to 0.
+          WARNING: [FE][lockIP] is %lockIP%. The PDF Controller won't run proper. The PDF Controller won't run proper on restricted pages.
+          If your are using pages with restricted access, you have to move %lockIP% to 0.
           You can use the module: System > Install.
         </source>
         <target state="translated">
-          FEHLER: [FE][lockIP] ist %lockIP%. Der PDF Controller wird nicht funktionieren. Bitte ändere %lockIP% in 0.
-          Du kannst dafür das Modul benutzen: System > Installation.
+          FEHLER: [FE][lockIP] ist %lockIP%. Der PDF Controller wird auf Seiten mit Zugriffsschutz nicht funktionieren.
+          Bitte ändere %lockIP% in 0, wenn Du Seiten für Frontend-User geschützt hast.
+          Du kannst dafür das Modul "System > Installation" benutzen.
         </target>
       </trans-unit>
 
