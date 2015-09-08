@@ -1,3 +1,8 @@
+4.1.3
+  15-09-08
+  Improvement
+  * #i0031: tt_content optimisation: image caption got the wrap <p class="caption">|</p>
+
 4.1.2
   15-09-07
   New Features

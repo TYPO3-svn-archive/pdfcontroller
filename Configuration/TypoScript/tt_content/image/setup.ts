@@ -2,15 +2,9 @@
   ## images
   tt_content.image {
     20 {
-      renderMethod = simple
-      rendering {
-        simple {
-          imageStdWrapNoWidth.wrap = |
-          imageStdWrap.dataWrap = |
-          caption.wrap = |
-        }
-      }
+      caption.1.1.wrap = <p class="caption">|</p>
       layout {
+        # above-center
         default {
           value (
             <table cellspacing="0" cellpadding="0" style="width: 100%; text-align: left; margin: 0;">
@@ -194,6 +188,14 @@
             </table>
 )
           override >
+        }
+      }
+      renderMethod = simple
+      rendering {
+        simple {
+          imageStdWrapNoWidth.wrap = |
+          imageStdWrap.dataWrap = |
+          caption.wrap = |
         }
       }
     }
