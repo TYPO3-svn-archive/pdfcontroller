@@ -13,7 +13,7 @@
         # above-center
         default {
           value (
-            <table cellspacing="0" cellpadding="0" class="columns01">
+            <table cellspacing="0" cellpadding="0" style="width:100%;" class="columns01">
               <tr>
                 <td>
                   ###IMAGES###
@@ -32,7 +32,7 @@
         1 = TEXT
         1 {
           value (
-            <table cellspacing="0" cellpadding="0" class="columns01">
+            <table cellspacing="0" cellpadding="0" style="width:100%;" class="columns01">
               <tr>
                 <td>
                   ###IMAGES###
@@ -51,7 +51,7 @@
         2 = TEXT
         2 {
           value (
-            <table cellspacing="0" cellpadding="0" class="columns01">
+            <table cellspacing="0" cellpadding="0" style="width:100%;" class="columns01">
               <tr>
                 <td>
                   ###IMAGES###
@@ -70,7 +70,7 @@
         8 = TEXT
         8 {
           value (
-            <table cellspacing="0" cellpadding="0" class="columns01">
+            <table cellspacing="0" cellpadding="0" style="width:100%;" class="columns01">
               <tr>
                 <td>
                   ###TEXT###
@@ -89,7 +89,7 @@
         9 = TEXT
         9 {
           value (
-            <table cellspacing="0" cellpadding="0" class="columns01">
+            <table cellspacing="0" cellpadding="0" style="width:100%;" class="columns01">
               <tr>
                 <td>
                   ###TEXT###
@@ -108,7 +108,7 @@
         10 = TEXT
         10 {
           value (
-            <table cellspacing="0" cellpadding="0" class="columns01">
+            <table cellspacing="0" cellpadding="0" style="width:100%;" class="columns01">
               <tr>
                 <td>
                   ###TEXT###
@@ -127,7 +127,7 @@
         17 = TEXT
         17 {
           value (
-            <table cellspacing="0" cellpadding="0" class="columns02">
+            <table cellspacing="0" cellpadding="0" style="width:100%;" class="columns02">
               <tr>
                 <td>
                   ###TEXT###
@@ -147,7 +147,7 @@
         18 = TEXT
         18 {
           value (
-            <table cellspacing="0" cellpadding="0" class="columns02">
+            <table cellspacing="0" cellpadding="0" style="width:100%;" class="columns02">
               <tr>
                 <td>
                   ###IMAGES###
@@ -167,7 +167,7 @@
         25 = TEXT
         25 {
           value (
-            <table cellspacing="0" cellpadding="0" class="columns02">
+            <table cellspacing="0" cellpadding="0" style="width:100%;" class="columns02">
               <tr>
                 <td>
                   ###TEXT###
@@ -187,7 +187,7 @@
         26 = TEXT
         26 {
           value (
-            <table cellspacing="0" cellpadding="0" class="columns02">
+            <table cellspacing="0" cellpadding="0" style="width:100%;" class="columns02">
               <tr>
                 <td>
                   ###IMAGES###
