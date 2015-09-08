@@ -42,7 +42,6 @@ switch ( true )
 {
   case($llStatic == 'de'):
     // German
-//      \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY,'static/pi1/', 'PDF-Controller: User-Interface');
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile( $_EXTKEY, 'Configuration/TypoScript/',                               'PDF Controller [1]' );
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile( $_EXTKEY, 'Configuration/TypoScript/tt_content/',                    'PDF Controller [1.1] +tt_content Optimierung' );
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile( $_EXTKEY, 'Configuration/TypoScript/Extensions/Slick/',              'PDF Controller [2] Ext: Slick' );
@@ -51,7 +50,6 @@ switch ( true )
     break;
   default:
     // English
-//      \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY,'static/pi1/', 'PDF Controller: User Interface');
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile( $_EXTKEY, 'Configuration/TypoScript/',                               'PDF Controller [1]' );
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile( $_EXTKEY, 'Configuration/TypoScript/tt_content/',                    'PDF Controller [1.1] +tt_content optimisation' );
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile( $_EXTKEY, 'Configuration/TypoScript/Extensions/Slick/',              'PDF Controller [2] Ext: Slick' );
@@ -123,8 +121,6 @@ $TCA[ 'tt_content' ][ 'types' ][ 'list' ][ 'subtypes_addlist' ][ 'pdfcontroller_
 
 if ( TYPO3_MODE == 'BE' )
 {
-//  $TBE_MODULES_EXT[ 'xMOD_db_new_content_el' ][ 'addElClasses' ][ 'tx_pdfcontroller_pi1_be_wizicon' ] = $extPath . 'pi1/class.tx_pdfcontroller_pi1_be_wizicon.php';
-//  $TBE_MODULES_EXT[ 'xMOD_db_new_content_el' ][ 'addElClasses' ][ 'tx_pdfcontroller_pi2_be_wizicon' ] = $extPath . 'pi2/class.tx_pdfcontroller_pi2_be_wizicon.php';
   $TBE_MODULES_EXT[ 'xMOD_db_new_content_el' ][ 'addElClasses' ][ 'Netzmacher\Pdfcontroller\Utility\Hook\ContentElementWizard' ] = $extPath . 'Classes/Utility/Hook/ContentElementWizard.php';
 }
 // Wizard Icons
