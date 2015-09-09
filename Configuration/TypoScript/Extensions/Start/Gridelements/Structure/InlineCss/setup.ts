@@ -42,6 +42,10 @@ start {
   .align-center { text-align:center; }
   .align-left { text-align:left; }
   .align-right { text-align:right; }
+
+  .csc-header-alignment-center { text-align:center; }
+  .csc-header-alignment-left { text-align:left; }
+  .csc-header-alignment-right { text-align:right; }
 </style>
 )
       }
