@@ -9,7 +9,7 @@ start {
     inlineCss {
     }
       // pdfcontroller
-    inlineCss = TEXT
+    inlineCss = 
     inlineCss {
         // for proper comments only
       pdfcontroller {

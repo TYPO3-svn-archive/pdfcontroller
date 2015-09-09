@@ -13,7 +13,7 @@
         # above-center
         default {
           value (
-            <table cellspacing="0" cellpadding="0" style="width:100%;" class="columns01">
+            <table cellspacing="0" cellpadding="0" style="text-align:center;width:100%;" class="columns01">
               <tr>
                 <td>
                   ###IMAGES###
