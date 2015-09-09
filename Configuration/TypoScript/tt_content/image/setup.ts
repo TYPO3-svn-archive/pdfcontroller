@@ -15,12 +15,12 @@
           value (
             <table cellspacing="0" cellpadding="0" style="text-align:center;width:100%;" class="columns01">
               <tr>
-                <td>
+                <td valign="center">
                   ###IMAGES###
                 </td>
               </tr>
               <tr>
-                <td>
+                <td valign="center">
                   ###TEXT###
                 </td>
               </tr>
