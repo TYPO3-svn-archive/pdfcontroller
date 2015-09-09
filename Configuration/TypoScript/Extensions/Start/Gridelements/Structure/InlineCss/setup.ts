@@ -9,7 +9,7 @@ start {
     inlineCss {
     }
       // pdfcontroller
-    inlineCss = 
+    inlineCss =
     inlineCss {
         // for proper comments only
       pdfcontroller {
@@ -38,6 +38,10 @@ start {
   table.columns04 tr td.space { width:2%; }
   table.columns05 tr td.space { width:2%; }
   table.columns06 tr td.space { width:2%; }
+
+  .align-center { text-align:center; }
+  .align-left { text-align:left; }
+  .align-right { text-align:right; }
 </style>
 )
       }

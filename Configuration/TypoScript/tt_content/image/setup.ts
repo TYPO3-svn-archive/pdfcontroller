@@ -13,14 +13,14 @@
         # above-center
         default {
           value (
-            <table cellspacing="0" cellpadding="0" style="text-align:center;width:100%;" class="columns01">
+            <table cellspacing="0" cellpadding="0" class="columns01 align-center">
               <tr>
-                <td valign="center">
+                <td class="align-center">
                   ###IMAGES###
                 </td>
               </tr>
               <tr>
-                <td valign="center">
+                <td class="align-center">
                   ###TEXT###
                 </td>
               </tr>
@@ -32,7 +32,7 @@
         1 = TEXT
         1 {
           value (
-            <table cellspacing="0" cellpadding="0" style="width:100%;" class="columns01">
+            <table cellspacing="0" cellpadding="0" style="text-align:center;width:100%;" class="columns01">
               <tr>
                 <td>
                   ###IMAGES###
