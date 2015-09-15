@@ -209,7 +209,9 @@
         simple {
           imageStdWrapNoWidth.wrap = |
           imageStdWrap.dataWrap = |
-          caption.wrap = <p>|<br /><br /></p>
+          // 150915, dwildt, 1-/+
+          //caption.wrap = <p>|<br /><br /></p>
+          caption.wrap = </td></tr><tr><td>|</td>
         }
       }
     }

@@ -16,12 +16,12 @@ $EM_CONF[ $_EXTKEY ] = array(
   . 'Individual layout with background PDF file. '
   . 'Extra first page is possible. '
   . 'PDF Controller supports TYPO3 sessions and can used on restricted pages. '
-  . 'The PDF Controller can handle responsive backend layouts and responsive grid elements - ready-for-use together with TYPO3 Start.'
+  . 'The PDF Generator can handle responsive backend layouts and responsive grid elements - ready-for-use together with TYPO3 Start.'
   . 'The PDF engine is TCPDF.'
   ,
   'category' => 'plugin',
   'shy' => 0,
-  'version' => '4.1.3',
+  'version' => '4.1.5',
   'dependencies' => '',
   'conflicts' => '',
   'priority' => '',
