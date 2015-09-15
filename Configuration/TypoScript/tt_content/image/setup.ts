@@ -5,7 +5,8 @@
       1 {
         layout {
           default {
-            element := appendString ( <br /> )
+            // #i0034, 150915, dwildt, 1-
+            //element := appendString ( <br /> )
           }
         }
       }
@@ -209,7 +210,7 @@
         simple {
           imageStdWrapNoWidth.wrap = |
           imageStdWrap.dataWrap = |
-          // 150915, dwildt, 1-/+
+          // #i0034, 150915, dwildt, 1-/+
           //caption.wrap = <p>|<br /><br /></p>
           caption.wrap = </td></tr><tr><td>|</td>
         }
