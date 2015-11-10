@@ -35,9 +35,9 @@
         <source>[FE][lockIP] is 0. The PDF Controller should run proper.</source>
         <target state="translated">[FE][lockIP] ist 0. Der PDF Controller sollte korrekt funktionieren.</target>
       </trans-unit>
-      <trans-unit id="sheet_check.lockIP.message.error">
+      <trans-unit id="sheet_check.lockIP.message.warning">
         <source>
-          WARNING: [FE][lockIP] is %lockIP%. The PDF Controller won't run proper. The PDF Controller won't run proper on restricted pages.
+          WARNING: [FE][lockIP] is %lockIP%. The PDF Controller won't run proper on restricted pages.
           If your are using pages with restricted access, you have to move %lockIP% to 0.
           You can use the module: System > Install.
         </source>

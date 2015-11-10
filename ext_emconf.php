@@ -13,6 +13,7 @@
 $EM_CONF[ $_EXTKEY ] = array(
   'title' => 'PDF Controller 3',
   'description' => 'Offer a TYPO3 page for PDF download. '
+  . 'http://typo3-pdfcontroller.de/ '
   . 'Individual layout with background PDF file. '
   . 'Extra first page is possible. '
   . 'PDF Controller supports TYPO3 sessions and can used on restricted pages. '
@@ -21,7 +22,7 @@ $EM_CONF[ $_EXTKEY ] = array(
   ,
   'category' => 'plugin',
   'shy' => 0,
-  'version' => '4.1.5',
+  'version' => '4.1.6',
   'dependencies' => '',
   'conflicts' => '',
   'priority' => '',

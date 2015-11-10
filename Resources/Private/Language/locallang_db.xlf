@@ -27,7 +27,7 @@
       </trans-unit>
       <trans-unit id="sheet_check.lockIP.message.warning">
         <source>
-          WARNING: [FE][lockIP] is %lockIP%. The PDF Controller won't run proper. The PDF Controller won't run proper on restricted pages.
+          WARNING: [FE][lockIP] is %lockIP%. The PDF Controller won't run proper on restricted pages.
           If your are using pages with restricted access, you have to move %lockIP% to 0.
           You can use the module: System > Install.
         </source>
