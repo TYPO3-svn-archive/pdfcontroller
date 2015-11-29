@@ -265,12 +265,17 @@ class PdfControllerFpdi extends \FPDI
    * @param   string	$field:
    * @return	string  $value:
    * @access private
-   * @version 4.0.0
+   * @version 4.2.0
    * @since   3.1.0
    */
   private function _t3FlexformValue( $sheet, $field )
   {
-    $value = $this->_conf[ 'flexform.' ][ $sheet . '.' ][ $field ];
+    // #i0038, 151129, dwildt, 1-
+    //$value = $this->_conf[ 'flexform.' ][ $sheet . '.' ][ $field ];
+
+    $confName = $this->_conf[ 'flexform.' ][ $sheet . '.' ][ $field ];
+    $confObj = $this->_conf[ 'flexform.' ][ $sheet . '.' ][ $field . '.' ];
+    $value = $this->_zzCObjGetSingle( $confName, $confObj );
 
     if ( $value !== NULL )
     {
@@ -533,12 +538,17 @@ class PdfController extends ActionController
    * @param   string	$field:
    * @return	string  $value:
    * @access private
-   * @version 4.0.6
+   * @version 4.2.0
    * @since   3.1.0
    */
   private function _ffValue( $sheet, $field )
   {
-    $value = $this->_conf[ 'flexform.' ][ $sheet . '.' ][ $field ];
+    // #i0038, 151129, dwildt, 1-
+    //$value = $this->_conf[ 'flexform.' ][ $sheet . '.' ][ $field ];
+
+    $confName = $this->_conf[ 'flexform.' ][ $sheet . '.' ][ $field ];
+    $confObj = $this->_conf[ 'flexform.' ][ $sheet . '.' ][ $field . '.' ];
+    $value = $this->_zzCObjGetSingle( $confName, $confObj );
 
     if ( $value !== NULL )
     {
@@ -1001,7 +1011,7 @@ class PdfController extends ActionController
 
     $conf = array(
       'additionalParams' => '&type=' . ( int ) $this->_conf[ 'typeNum.' ][ 'print' ] . $feSessionKey,
-      'addQueryString' => 1,    // #i0024, 150904, dwildt, +
+      'addQueryString' => 1, // #i0024, 150904, dwildt, +
       'addQueryString.' => array(
         'exclude' => 'id, cHash',
       ),
